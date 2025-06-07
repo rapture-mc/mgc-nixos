@@ -1,0 +1,1 @@
+# NixOS Infrastructure Configuration
