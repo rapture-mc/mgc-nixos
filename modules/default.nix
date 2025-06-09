@@ -61,7 +61,7 @@
           aws_subnet.nix-subnet = {
             vpc_id = "\${ aws_vpc.nix-vpc.id }";
             cidr_block = "10.10.0.0/25";
-            availability_zone = "ap-southeast-2a";
+            availability_zone = "${cfg.region}a";
           };
 
           aws_internet_gateway.nix-gateway = {
