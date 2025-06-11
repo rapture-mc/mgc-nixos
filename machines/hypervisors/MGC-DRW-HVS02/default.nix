@@ -1,19 +1,18 @@
 {
   nixpkgs,
   pkgs,
-  megacorp,
   vars,
-  terranix,
-  system,
+  self,
   ...
 }:
 nixpkgs.lib.nixosSystem {
   modules = [
-    megacorp.nixosModules.default
+    self.nixosModules.default
     {
       imports = [
-        (import ../../common-config.nix {inherit vars;})
-        (import ./infra.nix {inherit pkgs vars terranix system;})
+        (import ../../common-config.nix {
+          inherit vars;
+        })
         ./hardware-config.nix
       ];
 
@@ -32,7 +31,7 @@ nixpkgs.lib.nixosSystem {
         wantedBy = ["multi-user.target"];
       };
 
-      # Extra stuff
+      # Extra packages 
       environment.systemPackages = with pkgs; [
         gimp
         sioyek
@@ -71,7 +70,7 @@ nixpkgs.lib.nixosSystem {
         services = {
           comin = {
             enable = true;
-            repo = "https://github.com/rapture-mc/mgc-machines";
+            repo = "https://github.com/rapture-mc/mgc-nixos";
           };
         };
 
@@ -81,6 +80,39 @@ nixpkgs.lib.nixosSystem {
           libvirt-users = [
             "${vars.adminUser}"
           ];
+          declerative ={
+            enable = true;
+            machines = {
+              bastion-server = {
+                vm_hostname_prefix = "MGC-DRW-BST";
+                memory = "6144";
+                vcpu = 2;
+              };
+
+              domain-controller = {
+                vm_hostname_prefix = "MGC-DRW-DMC";
+                vcpu = 2;
+              };
+
+              reverse-proxy = {
+                vm_hostname_prefix = "MGC-DRW-RVP";
+                vcpu = 2;
+                system_volume = 100;
+              };
+
+              desktop-gateway = {
+                vm_hostname_prefix = "MGC-DRW-DGW";
+                vcpu = 2;
+                system_volume = 100;
+              };
+
+              file-browser = {
+                vm_hostname_prefix = "MGC-DRW-FBR";
+                vcpu = 2;
+                system_volume = 300;
+              };
+            }
+          }
         };
       };
     }
