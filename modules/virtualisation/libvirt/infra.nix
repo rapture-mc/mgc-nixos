@@ -1,15 +1,13 @@
-{ lib, config, terranix, pkgs, system, ... }: let
-  cfg = config.megacorp.virtualisation.libvirt;
-
-  terraform-module-source = "git::https://github.com/rapture-mc/terraform-libvirt-module.git?ref=40acff807a0ffb1c0da741774c37ebeda90730b7";
+{ config, lib, pkgs, terranix, system, ... }: let
+  cfg = config.megacorp.virtualisation.libvirt.declerative;
 
   inherit (lib)
+    types
     mkEnableOption
-    mkIf
     mkOption
-    types;
+    mkIf;
 
-  libvirt-config = terranix.lib.terranixConfiguration {
+  terraform-config = terranix.lib.terranixConfiguration {
     inherit system;
     modules = [
       {
@@ -17,57 +15,117 @@
 
         provider.libvirt.uri = "qemu:///system";
 
-        module = {
-          bastion-server = {
-            source = terraform-module-source;
-            vm_hostname_prefix = "MGC-DRW-BST";
-            uefi_enabled = false;
-            autostart = true;
-            vm_count = 1;
-            memory = "6144";
-            vcpu = 2;
-            system_volume = 100;
-            bridge = "br0";
-            dhcp = true;
-          };
-        };
+        module = cfg.machines;
       }
     ];
   };
 in {
-  options.megacorp.virtualisation.libvirt.infra = {
-    enable = mkEnableOption "Enable libvirt infra provisioner";
+  options.megacorp.virtualisation.libvirt.declerative = {
+    enable = mkEnableOption "Whether to enable declerative VMs";
 
-    instance = {
-      enable = mkEnableOption "Enable AWS instance";
+    terraform-action = mkOption {
+      type = types.enum [
+        "apply"
+        "destroy"
+      ];
+      default = "apply";
+      description = "What Terraform action to perform";
+    };
 
-      vm_count = mkOption {
-        type = types.int;
-        default = 1;
-        description = "How many VMs to provision";
-      };
+    machines = mkOption {
+      description = ''
+        Attribute set of declerative machines to create.
 
-      disk-size = mkOption {
-        type = types.str;
-        default = "30";
-        description = "The size of the VM disk";
-      };
+        Example:
+        machines = {
+          bastion-servers = {
+            vm_hostname_prefix = "prod-aus-bst-";
+            vcpu = 2;
+            memory = 2048;
+          };
+
+          file-servers = {
+            vm_hostname_prefix = "prod-aus-fls-";
+            vm_count = 2;
+          };
+        };
+
+      '';
+      type = types.attrsOf (
+        types.submodule (
+          { ... }: {
+            options = {
+              source = mkOption {
+                type = types.str;
+                default = "git::https://github.com/rapture-mc/terraform-libvirt-module.git?ref=40acff807a0ffb1c0da741774c37ebeda90730b7";
+              };
+
+              vm_hostname_prefix = mkOption {
+                type = types.str;
+                default = "test-";
+              };
+
+              vm_count = mkOption {
+                type = types.int;
+                default = 1;
+              };
+
+              uefi_enabled = mkOption {
+                type = types.bool;
+                default = false;
+              };
+
+              autostart = mkOption {
+                type = types.bool;
+                default = true;
+              };
+
+              memory = mkOption {
+                type = types.str;
+                default = "4096";
+              };
+
+              vcpu = mkOption {
+                type = types.int;
+                default = 1;
+              };
+
+              system_volume = mkOption {
+                type = types.int;
+                default = 100;
+              };
+
+              bridge = mkOption {
+                type = types.str;
+                default = "br0";
+              };
+
+             dhcp = mkOption {
+                type = types.bool;
+                default = true;
+              };
+            };
+          }
+        )
+      );
     };
   };
 
   config = mkIf cfg.enable {
     systemd.services.libvirt-infra-provisioner = {
-      wantedBy = ["multi-user.target"];
-      after = ["network.target"];
-      path = [pkgs.git];
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network.target" ];
+      path = [ pkgs.git ];
       serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-libvirt-json-config" ''
         if [[ -e config.tf.json ]]; then
           rm -f config.tf.json;
         fi
-        cp ${libvirt-config} config.tf.json \
+
+        cp ${terraform-config} config.tf.json \
           && ${pkgs.opentofu}/bin/tofu init \
-          && ${pkgs.opentofu}/bin/tofu ${if cfg.instance.enable then "apply" else "destroy"} -auto-approve
+          && ${pkgs.opentofu}/bin/tofu ${cfg.terraform-action} -auto-approve
       '');
     };
   };
 }
+
