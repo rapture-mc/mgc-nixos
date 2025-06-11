@@ -111,8 +111,8 @@ nixpkgs.lib.nixosSystem {
                 vcpu = 2;
                 system_volume = 300;
               };
-            }
-          }
+            };
+          };
         };
       };
     }
