@@ -17,6 +17,7 @@ in {
   imports = [
     ./packages.nix
     ./infra.nix
+    ./guest.nix
   ];
 
   options.megacorp.virtualisation.libvirt = {
