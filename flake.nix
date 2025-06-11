@@ -71,7 +71,6 @@
         inherit self vars nixpkgs pkgs terranix system sops-nix;
       };
   in {
-
     ##################
     # NIXOS MACHINES #
     ##################
@@ -79,14 +78,10 @@
       inherit importMachineConfig;
     };
 
-
     #################
     # NIXOS MODULES #
     #################
-    nixosModules.default = {
-      config,
-      ...
-    }: {
+    nixosModules.default = {config, ...}: {
       imports = [
         nixvim.nixosModules.nixvim
         home-manager.nixosModules.home-manager
@@ -102,7 +97,6 @@
         }
       ];
     };
-
 
     ################
     # NIXOS IMAGES #

@@ -92,8 +92,6 @@ in {
       settings = {
         attrs = {
           olcLogLevel = "conns config";
-
-          olcTLSCACertificateFile = "/etc/megacorp-cert";
         };
 
         children = {
@@ -136,7 +134,9 @@ in {
 
       declarativeContents = {
         "${cfg.domain-component}" =
-          (import ./ou-structure.nix {inherit config;})
+          (import ./ou-structure.nix {
+            inherit config;
+          })
           + cfg.extra-declarative-contents;
       };
     };
