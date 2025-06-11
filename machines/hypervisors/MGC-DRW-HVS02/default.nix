@@ -12,7 +12,7 @@ nixpkgs.lib.nixosSystem {
     megacorp.nixosModules.default
     {
       imports = [
-        (import ../../base-config.nix {inherit vars;})
+        (import ../../common-config.nix {inherit vars;})
         (import ./infra.nix {inherit pkgs vars terranix system;})
         ./hardware-config.nix
       ];

@@ -14,7 +14,7 @@ in
       {
         imports = [
           ../../qemu-hardware-config.nix
-          (import ../../base-config.nix {
+          (import ../../common-config.nix {
             inherit vars;
           })
           (import ./secrets.nix {

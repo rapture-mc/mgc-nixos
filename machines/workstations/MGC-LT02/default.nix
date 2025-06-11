@@ -9,7 +9,9 @@ nixpkgs.lib.nixosSystem {
     megacorp.nixosModules.default
     {
       imports = [
-        (import ../../base-config.nix {inherit vars;})
+        (import ../../common-config.nix {
+          inherit vars;
+        })
         ./hardware-config.nix
       ];
 

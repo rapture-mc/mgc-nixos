@@ -16,7 +16,7 @@ in
       self.nixosModules.default
       {
         imports = [
-          (import ../../base-config.nix {
+          (import ../../common-config.nix {
             inherit vars;
           })
           (import ./infra.nix {inherit pkgs terranix system;})

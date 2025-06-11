@@ -9,4 +9,8 @@
 
   guacamoleFQDN = "guacamole.megacorp.industries";
   file-browserFQDN = "file-browser.megacorp.industries";
+
+  common-config = {
+
+  };
 }

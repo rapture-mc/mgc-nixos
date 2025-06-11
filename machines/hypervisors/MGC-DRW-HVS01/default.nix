@@ -9,7 +9,7 @@ nixpkgs.lib.nixosSystem {
     self.nixosModules.default
     {
       imports = [
-        (import ../../base-config.nix {
+        (import ../../common-config.nix {
           inherit vars;
         })
         (import ./backup.nix {

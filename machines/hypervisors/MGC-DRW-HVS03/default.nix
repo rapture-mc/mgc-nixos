@@ -11,7 +11,7 @@ nixpkgs.lib.nixosSystem {
     {
       imports = [
         ./hardware-config.nix
-        (import ../../base-config.nix {inherit vars;})
+        (import ../../common-config.nix {inherit vars;})
       ];
 
       nixpkgs.config.allowUnfree = true;

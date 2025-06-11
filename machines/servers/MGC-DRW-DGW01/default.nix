@@ -11,7 +11,7 @@ nixpkgs.lib.nixosSystem {
     {
       imports = [
         ../../qemu-hardware-config.nix
-        (import ../../base-config.nix {
+        (import ../../common-config.nix {
           inherit vars;
         })
       ];
