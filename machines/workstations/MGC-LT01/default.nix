@@ -31,6 +31,7 @@ in
           awscli2
           discord
           flameshot
+          hello
           hledger
           hugo
           qbittorrent
