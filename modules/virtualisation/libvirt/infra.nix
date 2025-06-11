@@ -1,11 +1,20 @@
-{ config, lib, pkgs, terranix, system, ... }: let
+{
+  config,
+  lib,
+  pkgs,
+  terranix,
+  system,
+  ...
+}: let
   cfg = config.megacorp.virtualisation.libvirt.declerative;
 
-  inherit (lib)
+  inherit
+    (lib)
     types
     mkEnableOption
     mkOption
-    mkIf;
+    mkIf
+    ;
 
   terraform-config = terranix.lib.terranixConfiguration {
     inherit system;
@@ -53,7 +62,7 @@ in {
       '';
       type = types.attrsOf (
         types.submodule (
-          { ... }: {
+          {...}: {
             options = {
               source = mkOption {
                 type = types.str;
@@ -100,7 +109,7 @@ in {
                 default = "br0";
               };
 
-             dhcp = mkOption {
+              dhcp = mkOption {
                 type = types.bool;
                 default = true;
               };
@@ -113,9 +122,9 @@ in {
 
   config = mkIf cfg.enable {
     systemd.services.libvirt-infra-provisioner = {
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" ];
-      path = [ pkgs.git ];
+      wantedBy = ["multi-user.target"];
+      after = ["network.target"];
+      path = [pkgs.git];
       serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-libvirt-json-config" ''
         if [[ -e config.tf.json ]]; then
           rm -f config.tf.json;
@@ -128,4 +137,3 @@ in {
     };
   };
 }
-

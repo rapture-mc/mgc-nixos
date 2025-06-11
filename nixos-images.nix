@@ -1,9 +1,11 @@
 {
-  megacorp,
   nixos-generators,
   system,
   vars,
+  self,
 }: let
+  megacorp = self.nixosModules.default;
+
   common-config = {
     networking.hostName = "nixos";
 
@@ -32,9 +34,9 @@ in {
     format = "qcow";
     modules = [
       common-config
-      megacorp.nixosModules.default
+      megacorp
       {
-        megacorp.virtualisation.qemu-guest.enable = true;
+        megacorp.virtualisation.libvirt.guest.enable = true;
       }
     ];
   };
@@ -44,7 +46,7 @@ in {
     format = "amazon";
     modules = [
       common-config
-      megacorp.nixosModules.default
+      megacorp
       ({...}: {
         virtualisation.diskSize = 16 * 1024; # See https://github.com/nix-community/nixos-generators/issues/150
       })

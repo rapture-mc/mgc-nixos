@@ -48,10 +48,12 @@ in {
   config = mkIf cfg.enable {
     environment.etc.custom-hosts = {
       enable = true;
-      text = ''
-        127.0.0.1 localhost
-        ::1 localhost
-      '' + cfg.hosts;
+      text =
+        ''
+          127.0.0.1 localhost
+          ::1 localhost
+        ''
+        + cfg.hosts;
     };
 
     services = {

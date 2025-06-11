@@ -25,38 +25,40 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      alejandra
-      age
-      bat
-      dig
-      file
-      gcc
-      git
-      jq
-      lazygit
-      lshw
-      gnumake
-      ncdu
-      nh
-      ripgrep
-      screen
-      sops
-      ssh-to-age
-      sshpass
-      speedtest-cli
-      traceroute
-      tree
-      tldr
-      unzip
-      viddy
-      vim
-      wget
-    ] ++ optionals cfg.ninja-cli.enable [
-      monero-cli
-      mullvad
-      nuclei
-      subfinder
-    ];
+    environment.systemPackages = with pkgs;
+      [
+        alejandra
+        age
+        bat
+        dig
+        file
+        gcc
+        git
+        jq
+        lazygit
+        lshw
+        gnumake
+        ncdu
+        nh
+        ripgrep
+        screen
+        sops
+        ssh-to-age
+        sshpass
+        speedtest-cli
+        traceroute
+        tree
+        tldr
+        unzip
+        viddy
+        vim
+        wget
+      ]
+      ++ optionals cfg.ninja-cli.enable [
+        monero-cli
+        mullvad
+        nuclei
+        subfinder
+      ];
   };
 }

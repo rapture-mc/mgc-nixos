@@ -2,6 +2,8 @@
   lib,
   config,
   pkgs,
+  terranix,
+  system,
   ...
 }: let
   cfg = config.megacorp.virtualisation.libvirt;
@@ -16,8 +18,10 @@
 in {
   imports = [
     ./packages.nix
-    ./infra.nix
     ./guest.nix
+    (import ./infra.nix {
+      inherit config lib pkgs terranix system;
+    })
   ];
 
   options.megacorp.virtualisation.libvirt = {
@@ -51,10 +55,12 @@ in {
         swtpm.enable = true;
         ovmf = {
           enable = true;
-          packages = [(pkgs.OVMF.override {
-            secureBoot = true;
-            tpmSupport = true;
-          }).fd];
+          packages = [
+            (pkgs.OVMF.override {
+              secureBoot = true;
+              tpmSupport = true;
+            }).fd
+          ];
         };
       };
     };

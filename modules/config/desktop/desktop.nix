@@ -27,7 +27,7 @@ in {
       (pkgs.callPackage ./sddm-astronaut-theme.nix {
         theme = "cyberpunk";
         themeConfig.General = {
-          Background = "${../../../home-manager/config/desktop/desktop-wallpaper.jpg}";
+          Background = "${../../home-manager/config/desktop/desktop-wallpaper.jpg}";
           HeaderText = "System Locked...";
           DateFormat = "dd/M";
         };

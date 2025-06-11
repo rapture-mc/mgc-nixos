@@ -1,4 +1,11 @@
-_: {
+{
+  lib,
+  config,
+  pkgs,
+  terranix,
+  system,
+  ...
+}: {
   imports = [
     ./config/bootloader
     ./config/desktop
@@ -32,8 +39,12 @@ _: {
     ./services/wireguard-server.nix
     ./services/wireguard-client.nix
     ./services/zabbix.nix
-    ./virtualisation/aws
-    ./virtualisation/libvirt
+    (import ./virtualisation/aws {
+      inherit config lib pkgs terranix system;
+    })
+    (import ./virtualisation/libvirt {
+      inherit config lib pkgs terranix system;
+    })
     ./virtualisation/whonix
   ];
 }

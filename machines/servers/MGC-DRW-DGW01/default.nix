@@ -1,14 +1,13 @@
 {
   nixpkgs,
   pkgs,
-  megacorp,
   vars,
-  inputs,
+  self,
   ...
 }:
 nixpkgs.lib.nixosSystem {
   modules = [
-    megacorp.nixosModules.default
+    self.nixosModules.default
     {
       imports = [
         ../../qemu-hardware-config.nix
@@ -45,7 +44,7 @@ nixpkgs.lib.nixosSystem {
         services = {
           comin = {
             enable = true;
-            repo = "https://github.com/rapture-mc/mgc-machines";
+            repo = "https://github.com/rapture-mc/mgc-nixos";
           };
 
           guacamole = {
@@ -55,7 +54,7 @@ nixpkgs.lib.nixosSystem {
           };
         };
 
-        virtualisation.qemu-guest.enable = true;
+        virtualisation.libvirt.guest.enable = true;
       };
     }
   ];

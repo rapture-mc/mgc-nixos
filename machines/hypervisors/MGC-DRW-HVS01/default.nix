@@ -9,8 +9,12 @@ nixpkgs.lib.nixosSystem {
     self.nixosModules.default
     {
       imports = [
-        (import ../../base-config.nix {inherit vars;})
-        (import ./backup.nix {inherit vars;})
+        (import ../../base-config.nix {
+          inherit vars;
+        })
+        (import ./backup.nix {
+          inherit vars;
+        })
         ./hardware-config.nix
       ];
 
@@ -57,7 +61,7 @@ nixpkgs.lib.nixosSystem {
 
           comin = {
             enable = true;
-            repo = "https://github.com/rapture-mc/mgc-machines";
+            repo = "https://github.com/rapture-mc/mgc-nixos";
           };
         };
 
@@ -67,6 +71,15 @@ nixpkgs.lib.nixosSystem {
           libvirt-users = [
             "${vars.adminUser}"
           ];
+          declerative = {
+            enable = true;
+            terraform-action = "destroy";
+            machines = {
+              test-box = {
+                vm_hostname_prefix = "test-box-";
+              };
+            };
+          };
         };
       };
     }

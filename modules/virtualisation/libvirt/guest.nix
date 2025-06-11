@@ -10,7 +10,6 @@
     mkIf
     ;
 in {
-
   options.megacorp.virtualisation.libvirt.guest = {
     enable = mkEnableOption "Enable qemu-guest components";
   };

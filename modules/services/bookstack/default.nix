@@ -43,7 +43,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    systemd.services."acme-${cfg.fqdn}".serviceConfig = { SuccessExitStatus = 10; };
+    systemd.services."acme-${cfg.fqdn}".serviceConfig = {SuccessExitStatus = 10;};
 
     networking.firewall.allowedTCPPorts =
       [

@@ -75,7 +75,7 @@ nixpkgs.lib.nixosSystem {
           };
         };
 
-        virtualisation.hypervisor = {
+        virtualisation.libvirt = {
           enable = true;
           logo = true;
           libvirt-users = [

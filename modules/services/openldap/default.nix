@@ -71,7 +71,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ godap ];
+    environment.systemPackages = [godap];
 
     networking.firewall.allowedTCPPorts = [
       389
@@ -119,16 +119,16 @@ in {
               /*
               custom access rules for userPassword attributes
               */
-              ''              {0}to attrs=userPassword
-                                by self write
-                                by anonymous auth
-                                by * none''
+              ''                {0}to attrs=userPassword
+                                  by self write
+                                  by anonymous auth
+                                  by * none''
 
               /*
               allow read on anything else
               */
-              ''              {1}to *
-                                by * read''
+              ''                {1}to *
+                                  by * read''
             ];
           };
         };
@@ -136,8 +136,8 @@ in {
 
       declarativeContents = {
         "${cfg.domain-component}" =
-          (import ./ou-structure.nix {inherit config;}) +
-          cfg.extra-declarative-contents;
+          (import ./ou-structure.nix {inherit config;})
+          + cfg.extra-declarative-contents;
       };
     };
   };

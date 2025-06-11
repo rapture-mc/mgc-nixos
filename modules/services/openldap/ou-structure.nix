@@ -1,4 +1,4 @@
-{ config }: let
+{config}: let
   cfg = config.megacorp.services.openldap;
   ou = "organizationalUnit";
 in ''

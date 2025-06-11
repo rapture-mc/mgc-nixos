@@ -1,11 +1,20 @@
-{ lib, config, terranix, pkgs, system, ... }: let
+{
+  lib,
+  config,
+  terranix,
+  pkgs,
+  system,
+  ...
+}: let
   cfg = config.megacorp.virtualisation.aws;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkIf
     mkOption
-    types;
+    types
+    ;
 
   ec2-config = terranix.lib.terranixConfiguration {
     inherit system;
@@ -188,7 +197,11 @@ in {
         fi
         cp ${ec2-config} config.tf.json \
           && ${pkgs.opentofu}/bin/tofu init \
-          && ${pkgs.opentofu}/bin/tofu ${if cfg.instance.enable then "apply" else "destroy"} -auto-approve
+          && ${pkgs.opentofu}/bin/tofu ${
+          if cfg.instance.enable
+          then "apply"
+          else "destroy"
+        } -auto-approve
       '');
     };
   };

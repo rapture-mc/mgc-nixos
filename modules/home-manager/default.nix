@@ -9,7 +9,8 @@
     ./programs/zsh.nix
     ./programs/rofi.nix
     (
-      if osConfig.megacorp.config.desktop.enable
+      if
+        osConfig.megacorp.config.desktop.enable
         && !osConfig.megacorp.config.hyprland.enable
       then ./config/desktop/plasma.nix
       else ./config/desktop/none.nix

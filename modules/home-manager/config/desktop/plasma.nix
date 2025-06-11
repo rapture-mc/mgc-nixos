@@ -3,22 +3,22 @@
   osConfig,
   ...
 }: let
-cyberpunk-theme = pkgs.stdenv.mkDerivation {
-  name = "theme";
+  cyberpunk-theme = pkgs.stdenv.mkDerivation {
+    name = "theme";
 
-  src = pkgs.fetchFromGitHub {
-    owner = "Roboron3042";
-    repo = "Cyberpunk-Neon";
-    rev = "eb7595459c0d4164262e0ccaf8d6e5c1936a6f67";
-    sha256 = "sha256-whHBIxEGGvTPVUaE/HQDb/Qyl5sPMGlOmofgNCBaNng=";
+    src = pkgs.fetchFromGitHub {
+      owner = "Roboron3042";
+      repo = "Cyberpunk-Neon";
+      rev = "eb7595459c0d4164262e0ccaf8d6e5c1936a6f67";
+      sha256 = "sha256-whHBIxEGGvTPVUaE/HQDb/Qyl5sPMGlOmofgNCBaNng=";
+    };
+
+    installPhase = ''
+      mkdir $out
+
+      cp -rv $src/kde/cyberpunk-neon.colors $out
+    '';
   };
-
-  installPhase = ''
-    mkdir $out
-
-    cp -rv $src/kde/cyberpunk-neon.colors $out
-  '';
-};
 in {
   home.file."cyberpunk-theme" = {
     enable = true;
@@ -37,7 +37,10 @@ in {
 
     kscreenlocker = {
       appearance.wallpaper = ./desktop-wallpaper.jpg;
-      autoLock = if osConfig.megacorp.config.desktop.xrdp then false else true;
+      autoLock =
+        if osConfig.megacorp.config.desktop.xrdp
+        then false
+        else true;
     };
 
     hotkeys.commands."launch-rofi" = {

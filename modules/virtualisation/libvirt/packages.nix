@@ -1,10 +1,15 @@
-{ config, pkgs, lib, ... }: let
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   cfg = config.megacorp.virtualisation.libvirt;
 
   inherit
     (lib)
-    mkIf;
+    mkIf
+    ;
 
   generateWinImage = pkgs.writeShellScriptBin "generateWinImage" ''
     echo -e "This script will build a Windows image with packer based on your selection.\n"
@@ -61,8 +66,6 @@
       esac
     done
   '';
-
-
 in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
