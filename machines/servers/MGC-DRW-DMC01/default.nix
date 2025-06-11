@@ -1,21 +1,25 @@
 {
   nixpkgs,
-  megacorp,
   sops-nix,
   vars,
+  self,
   ...
 }: let
   domain-component = "dc=megacorp,dc=industries";
 in
   nixpkgs.lib.nixosSystem {
     modules = [
-      megacorp.nixosModules.default
+      self.nixosModules.default
       sops-nix.nixosModules.sops
       {
         imports = [
           ../../qemu-hardware-config.nix
-          (import ../../base-config.nix {inherit vars;})
-          (import ./secrets.nix {inherit vars;})
+          (import ../../base-config.nix {
+            inherit vars;
+          })
+          (import ./secrets.nix {
+            inherit vars;
+          })
         ];
 
         networking.hostName = "MGC-DRW-DMC01";
@@ -43,7 +47,7 @@ in
           services = {
             comin = {
               enable = true;
-              repo = "https://github.com/rapture-mc/mgc-machines";
+              repo = "https://github.com/rapture-mc/mgc-nixos";
             };
 
             dnsmasq = {
@@ -81,7 +85,7 @@ in
             };
           };
 
-          virtualisation.qemu-guest.enable = true;
+          virtualisation.libvirt.guest.enable = true;
         };
       }
     ];
