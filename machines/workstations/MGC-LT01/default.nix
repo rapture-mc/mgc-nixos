@@ -19,7 +19,6 @@ in
           (import ../../common-config.nix {
             inherit vars;
           })
-          (import ./infra.nix {inherit pkgs terranix system;})
           ./hardware-config.nix
         ];
 
