@@ -58,6 +58,7 @@
     plasma-manager,
     ...
   }: let
+    # Define system, make lib and pkgs more accessible and import custom variables under "vars"
     system = "x86_64-linux";
     lib = nixpkgs.lib;
     pkgs = nixpkgs.legacyPackages.${system};
@@ -69,11 +70,22 @@
         inherit self vars nixpkgs pkgs terranix system;
       };
   in {
+
+    ##################
+    # NIXOS MACHINES #
+    ##################
     nixosConfigurations = import ./machines {
       inherit importMachineConfig;
     };
 
-    nixosModules.default = {config, ...}: {
+
+    #################
+    # NIXOS MODULES #
+    #################
+    nixosModules.default = {
+      config,
+      ...
+    }: {
       imports = [
         nixvim.nixosModules.nixvim
         home-manager.nixosModules.home-manager
@@ -90,7 +102,11 @@
       ];
     };
 
-    # For generating Megacorp NixOS VM images
+
+    ################
+    # NIXOS IMAGES #
+    ################
+
     # Build with "nix build .#<image-type>"
     packages.${system} = import ./nixos-images.nix {
       inherit self system nixos-generators vars;
