@@ -8,9 +8,10 @@
         admin-user = vars.adminUser;
       };
 
-      nixvim.enable = true;
       packages.enable = true;
     };
+
+    programs.nixvim.enable = true;
 
     services = {
       prometheus = {

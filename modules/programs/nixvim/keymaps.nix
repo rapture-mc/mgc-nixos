@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  cfg = config.megacorp.config.nixvim;
+  cfg = config.megacorp.programs.nixvim;
 
   inherit
     (lib)

@@ -1,6 +1,6 @@
 {
   nixpkgs,
-  megacorp,
+  self,
   system,
   terranix,
   vars,
@@ -13,10 +13,12 @@
 in
   nixpkgs.lib.nixosSystem {
     modules = [
-      megacorp.nixosModules.default
+      self.nixosModules.default
       {
         imports = [
-          (import ../../base-config.nix {inherit vars;})
+          (import ../../base-config.nix {
+            inherit vars;
+          })
           (import ./infra.nix {inherit pkgs terranix system;})
           ./hardware-config.nix
         ];
@@ -75,7 +77,7 @@ in
 
             comin = {
               enable = true;
-              repo = "https://github.com/rapture-mc/mgc-machines";
+              repo = "https://github.com/rapture-mc/mgc-nixos";
             };
 
             password-store.enable = true;

@@ -11,11 +11,11 @@
     ./config/desktop
     ./config/packages
     ./config/networking
-    ./config/nixvim
     ./config/openssh
     ./config/system
     ./config/users
     ./hardening/bootloader.nix
+    ./programs/nixvim
     ./services/bookstack
     ./services/comin
     ./services/controller.nix

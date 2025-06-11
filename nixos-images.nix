@@ -11,21 +11,24 @@
 
     system.stateVersion = "24.11";
 
-    megacorp.config = {
-      system.enable = true;
-      bootloader.enable = false; # nixos-generator will handle bootloader configuration instead
-      nixvim.enable = true;
-      packages.enable = true;
+    megacorp = {
+      config = {
+        system.enable = true;
+        bootloader.enable = false; # nixos-generator will handle bootloader configuration instead
+        packages.enable = true;
 
-      openssh = {
-        enable = true;
-        authorized-ssh-keys = vars.keys.bastionPubKey;
+        openssh = {
+          enable = true;
+          authorized-ssh-keys = vars.keys.bastionPubKey;
+        };
+
+        users = {
+          enable = true;
+          admin-user = "benny";
+        };
       };
 
-      users = {
-        enable = true;
-        admin-user = "benny";
-      };
+      programs.nixvim.enable = true;
     };
   };
 in {
