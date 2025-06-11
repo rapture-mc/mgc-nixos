@@ -19,6 +19,7 @@ in {
         cmp = {
           enable = true;
           autoEnableSources = true;
+          filetype.markdown.completion.autocomplete = false;  # Inserting links with [text](url) generates cmp errors with each subsequent keystroke... So disabling it here - 2025-06-09
           settings = {
             sources = [
               {name = "nvim_lsp";}

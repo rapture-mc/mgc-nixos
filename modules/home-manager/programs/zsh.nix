@@ -29,6 +29,7 @@ _: {
         theme = "fino-time";
         plugins = [
           "tmux"
+          "aws"
         ];
       };
     };
