@@ -1,17 +1,19 @@
 {
   nixpkgs,
   pkgs,
-  megacorp,
+  self,
   vars,
   ...
 }:
 nixpkgs.lib.nixosSystem {
   modules = [
-    megacorp.nixosModules.default
+    self.nixosModules.default
     {
       imports = [
         ./hardware-config.nix
-        (import ../../common-config.nix {inherit vars;})
+        (import ../../common-config.nix {
+          inherit vars;
+        })
       ];
 
       nixpkgs.config.allowUnfree = true;
@@ -57,7 +59,7 @@ nixpkgs.lib.nixosSystem {
         services = {
           comin = {
             enable = true;
-            repo = "https://github.com/rapture-mc/mgc-machines";
+            repo = "https://github.com/rapture-mc/mgc-nixos";
           };
         };
 
