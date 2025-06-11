@@ -71,7 +71,7 @@ in {
 
               vm_hostname_prefix = mkOption {
                 type = types.str;
-                default = "test-";
+                default = "vm-";
               };
 
               vm_count = mkOption {
