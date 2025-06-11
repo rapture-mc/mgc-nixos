@@ -1,18 +1,22 @@
 {
   nixpkgs,
   pkgs,
-  megacorp,
+  self,
   vars,
   ...
 }:
 nixpkgs.lib.nixosSystem {
   modules = [
-    megacorp.nixosModules.default
+    self.nixosModules.default
     {
       imports = [
         ../../qemu-hardware-config.nix
-        (import ../../base-config.nix {inherit vars;})
-        (import ./website.nix {inherit pkgs;})
+        (import ../../base-config.nix {
+          inherit vars;
+        })
+        (import ./website.nix {
+          inherit pkgs;
+        })
       ];
 
       networking.hostName = "MGC-DRW-RVP01";
@@ -41,7 +45,7 @@ nixpkgs.lib.nixosSystem {
         services = {
           comin = {
             enable = true;
-            repo = "https://github.com/rapture-mc/mgc-machines";
+            repo = "https://github.com/rapture-mc/mgc-nixos";
           };
 
           nginx = {
@@ -61,7 +65,7 @@ nixpkgs.lib.nixosSystem {
           };
         };
 
-        virtualisation.qemu-guest.enable = true;
+        virtualisation.libvirt.guest.enable = true;
       };
     }
   ];
