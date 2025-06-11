@@ -51,6 +51,7 @@
     nixpkgs,
     terranix,
     nixos-generators,
+    sops-nix,
     home-manager,
     nixvim,
     arion,
@@ -67,7 +68,7 @@
     # Helper function for importing different nixosConfigurations
     importMachineConfig = machineType: machineName:
       import ./machines/${machineType}/${machineName} {
-        inherit self vars nixpkgs pkgs terranix system;
+        inherit self vars nixpkgs pkgs terranix system sops-nix;
       };
   in {
 
