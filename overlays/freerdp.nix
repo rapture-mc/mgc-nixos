@@ -23,10 +23,6 @@ final: prev: {
       + prev.lib.optionalString (prev.pcsclite != null) ''
         substituteInPlace "winpr/libwinpr/smartcard/smartcard_pcsc.c" \
           --replace-fail "libpcsclite.so" "${prev.lib.getLib prev.pcsclite}/lib/libpcsclite.so"
-      ''
-      + prev.lib.optionalString false ''
-        substituteInPlace "libfreerdp/locale/keyboard_xkbfile.c" \
-          --replace-fail "RDP_SCANCODE_CAPSLOCK" "RDP_SCANCODE_LCONTROL"
       '';
 
     nativeBuildInputs = previousAttrs.nativeBuildInputs ++ [
