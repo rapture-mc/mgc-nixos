@@ -7,7 +7,6 @@
       owner = "nixos";
       repo = "nixpkgs";
       ref = "nixos-25.05";
-      rev = "da303f71c4f9673a7d718396fb23f74679ae4fb0";
     };
 
     terranix = {
