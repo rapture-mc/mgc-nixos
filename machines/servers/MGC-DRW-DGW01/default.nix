@@ -20,8 +20,10 @@ nixpkgs.lib.nixosSystem {
 
       system.stateVersion = "24.11";
 
-      environment.systemPackages = with pkgs; [
-        freerdp
+      # Applying overlays
+      services.guacamole-server.package = pkgs.guacamole-server;
+      environment.systemPackages = [
+        pkgs.freerdp
       ];
 
       megacorp = {

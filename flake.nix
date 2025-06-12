@@ -65,10 +65,18 @@
     plasma-manager,
     ...
   }: let
-    # Define system, make lib and pkgs more accessible and import custom variables under "vars"
+    # Define system architecture, make lib more accessible and apply overlays to pkgs variable
     system = "x86_64-linux";
     lib = nixpkgs.lib;
-    pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = import nixpkgs {
+      inherit system;
+      overlays = [
+        (import ./overlays/freerdp.nix)
+        (import ./overlays/guacamole-server.nix)
+      ];
+    };
+
+    # Import custom variables
     vars = import ./vars;
 
     # Helper function for importing different nixosConfigurations
