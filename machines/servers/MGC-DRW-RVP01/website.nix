@@ -45,7 +45,7 @@
   };
 
   # Deriviations containing the built hugo website
-  built-hugo-root-website = build-website "hugo-website" "52d74cd96f15425eb202b8c8753795ae0b1812a8" "sha256-FJRymHUlyO3FQSMWWeIbs/y2zz5xfxmJDGG307VxrKM=";
+  built-hugo-root-website = build-website "hugo-website" "3eed11c387e49bc75c00261d4645767797655623" "sha256-HRSewPtOVgWlIqi2k/Ax1/uv/3ZRKDU5wCCKrQKB50c=";
 
   built-hugo-cv-website = build-website "hugo-terminal" "fe9d1cbc033f0fc14e554f9e437ce1f03560d511" "sha256-u4ab3eYSlBwRevOohCZ5w2LB3JWXnST+khMPikcCK2U=";
 in {
