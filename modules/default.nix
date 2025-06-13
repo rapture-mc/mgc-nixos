@@ -36,7 +36,9 @@
     ./services/restic.nix
     ./services/semaphore
     ./services/syncthing
-    ./services/vault
+    (import ./services/vault {
+      inherit config lib pkgs;
+    })
     ./services/wireguard-server.nix
     ./services/wireguard-client.nix
     ./services/zabbix.nix
