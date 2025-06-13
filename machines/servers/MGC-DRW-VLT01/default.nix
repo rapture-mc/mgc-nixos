@@ -43,6 +43,14 @@ nixpkgs.lib.nixosSystem {
             enable = true;
             repo = "https://github.com/rapture-mc/mgc-nixos";
           };
+
+          vault = {
+            enable = true;
+            gui = true;
+            logo = true;
+            open-firewall = true;
+            address = vars.networking.hostsAddr.MGC-DRW-VLT01.eth.ipv4;
+          };
         };
 
         virtualisation.libvirt.guest.enable = true;
