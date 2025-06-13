@@ -24,7 +24,7 @@ in {
       then ./gitea-logo
       else if cfg.services.k3s.logo
       then ./k3s-logo
-      else if cfg.services.password-store.logo
+      else if cfg.services.vault.logo
       then ./password-logo
       else if cfg.services.wireguard-server.logo
       then ./wireguard-logo

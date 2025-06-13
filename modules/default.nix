@@ -16,6 +16,7 @@
     ./config/users
     ./hardening/bootloader.nix
     ./programs/nixvim
+    ./programs/pass
     ./services/bookstack
     ./services/comin
     ./services/controller.nix
@@ -31,11 +32,11 @@
     ./services/netbox.nix
     ./services/nextcloud.nix
     ./services/nginx/default.nix
-    ./services/password-store.nix
     ./services/prometheus.nix
     ./services/restic.nix
     ./services/semaphore
     ./services/syncthing
+    ./services/vault
     ./services/wireguard-server.nix
     ./services/wireguard-client.nix
     ./services/zabbix.nix

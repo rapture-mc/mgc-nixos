@@ -46,13 +46,14 @@ nixpkgs.lib.nixosSystem {
           };
         };
 
+        programs.pass.enable = true;
+
         services = {
           comin = {
             enable = true;
             repo = "https://github.com/rapture-mc/mgc-nixos";
           };
 
-          password-store.enable = true;
         };
 
         virtualisation.qemu-guest.enable = true;
