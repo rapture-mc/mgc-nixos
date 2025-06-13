@@ -57,7 +57,7 @@ in {
       pkgs.vault
     ];
 
-    home-manager.users.${config.megacorp.config.admin-user} = _: {
+    home-manager.users.${config.megacorp.config.users.admin-user} = _: {
       programs.zsh.sessionVariables.VAULT_ADDR = "http://${cfg.address}:8200";
     };
   };
