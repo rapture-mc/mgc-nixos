@@ -27,10 +27,10 @@
       exit 1
     fi
 
-    echo "Cloning git directory to /tmp/mgc-machines"
-    git clone https://github.com/rapture-mc/mgc-machines /tmp/mgc-machines
+    echo "Cloning git directory to /tmp/mgc-nixos"
+    git clone https://github.com/rapture-mc/mgc-nixos /tmp/mgc-nixos
 
-    cd /tmp/mgc-machines
+    cd /tmp/mgc-nixos
 
     echo "Running nh os switch..."
     nh os switch . -H $1
