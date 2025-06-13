@@ -1,17 +1,10 @@
 {
   nixpkgs,
   self,
-  system,
-  terranix,
   vars,
+  pkgs,
   ...
-}: let
-  pkgs = import nixpkgs {
-    inherit system;
-    config.allowUnfree = true;
-  };
-in
-  nixpkgs.lib.nixosSystem {
+}: nixpkgs.lib.nixosSystem {
     modules = [
       self.nixosModules.default
       {
@@ -65,16 +58,6 @@ in
           };
 
           services = {
-            # wireguard-client = {
-            #   enable = true;
-            #   ipv4 = vars.networking.hostsAddr.MGC-LT01.wireguard.ipv4;
-            #   allowed-ips = ["${vars.networking.privateLANSubnet}"];
-            #   server = {
-            #     ipv4 = vars.networking.wireguardPublicIP;
-            #     public-key = vars.keys.wireguardPubKeys.MGC-DRW-CTR01;
-            #   };
-            # };
-
             comin = {
               enable = true;
               repo = "https://github.com/rapture-mc/mgc-nixos";

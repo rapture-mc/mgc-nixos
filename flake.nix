@@ -70,6 +70,7 @@
     lib = nixpkgs.lib;
     pkgs = import nixpkgs {
       inherit system;
+      config.allowUnfree = true;
       overlays = [
         (import ./overlays/freerdp.nix)
         (import ./overlays/guacamole-server.nix)
