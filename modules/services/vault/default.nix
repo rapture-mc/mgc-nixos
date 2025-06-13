@@ -19,7 +19,11 @@ in {
 
     gui = mkEnableOption "Whether to enable Vault web GUI inteface";
 
-    zsh-address-env-variable = mkEnableOption true "Whether to add the VAULT_ADDR environment variable automatically to zsh shell";
+    zsh-address-env-variable = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Whether to add the VAULT_ADDR environment variable automatically to zsh shell";
+    };
 
     backend = mkOption {
       type = types.str;
