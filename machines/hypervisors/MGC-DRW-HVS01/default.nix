@@ -73,10 +73,10 @@ nixpkgs.lib.nixosSystem {
           ];
           declerative = {
             enable = true;
-            terraform-action = "destroy";
             machines = {
-              test-box = {
-                vm_hostname_prefix = "test-box-";
+              vault-servers = {
+                vm_hostname_prefix = "MGC-DRW-VLT";
+                vcpu = 2;
               };
             };
           };
