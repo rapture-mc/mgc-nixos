@@ -103,13 +103,11 @@ nixpkgs.lib.nixosSystem {
               desktop-gateway = {
                 vm_hostname_prefix = "MGC-DRW-DGW";
                 vcpu = 2;
-                system_volume = 100;
               };
 
               file-browser = {
                 vm_hostname_prefix = "MGC-DRW-FBR";
                 vcpu = 2;
-                system_volume = 300;
               };
             };
           };
