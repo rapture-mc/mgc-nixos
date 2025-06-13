@@ -69,7 +69,7 @@ in {
     ];
 
     networking.firewall.allowedTCPPorts = (
-      if cfg.open-freiwall
+      if cfg.open-firewall
       then [
         8200
       ]
