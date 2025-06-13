@@ -50,7 +50,7 @@ nixpkgs.lib.nixosSystem {
               ipv4 = vars.networking.hostsAddr.MGC-DRW-HVS02.eth.ipv4;
               interface = vars.networking.hostsAddr.MGC-DRW-HVS02.eth.name;
               gateway = vars.networking.defaultGateway;
-              nameservers = ["8.8.8.8" "8.8.4.4"];
+              nameservers = vars.networking.nameServers;
               lan-domain = vars.networking.internalDomain;
               bridge.enable = true;
             };
