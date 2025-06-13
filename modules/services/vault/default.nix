@@ -33,8 +33,8 @@ in {
 
     address = mkOption {
       type = types.str;
-      default = "127.0.0.1:8200";
-      description = "What address vault will listen on";
+      default = "127.0.0.1";
+      description = "What IP address vault will listen on";
     };
   };
 
@@ -43,7 +43,7 @@ in {
       enable = true;
       package = if cfg.gui then pkgs.vault-bin else pkgs.vault;
       storageBackend = cfg.backend;
-      address = cfg.address;
+      address = "${cfg.address}:8200";
       extraConfig = ''
         ${if cfg.gui then "ui = true" else ""}
       '';
@@ -54,7 +54,7 @@ in {
     ];
 
     home-manager.users.${config.megacorp.config.admin-user} = _: {
-      programs.zsh.sessionVariables.VAULT_ADDR = "http://${cfg.address}";
+      programs.zsh.sessionVariables.VAULT_ADDR = "http://${cfg.address}:8200";
     };
   };
 }
