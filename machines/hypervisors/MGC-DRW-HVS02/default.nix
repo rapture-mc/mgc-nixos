@@ -31,7 +31,7 @@ nixpkgs.lib.nixosSystem {
         wantedBy = ["multi-user.target"];
       };
 
-      # Extra packages 
+      # Extra packages
       environment.systemPackages = with pkgs; [
         gimp
         sioyek
@@ -80,7 +80,7 @@ nixpkgs.lib.nixosSystem {
           libvirt-users = [
             "${vars.adminUser}"
           ];
-          declerative ={
+          declerative = {
             enable = true;
             machines = {
               bastion-server = {

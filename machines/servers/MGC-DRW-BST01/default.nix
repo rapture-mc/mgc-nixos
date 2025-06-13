@@ -53,7 +53,6 @@ nixpkgs.lib.nixosSystem {
             enable = true;
             repo = "https://github.com/rapture-mc/mgc-nixos";
           };
-
         };
 
         virtualisation.qemu-guest.enable = true;

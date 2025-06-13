@@ -6,11 +6,13 @@
 }: let
   cfg = config.megacorp.services.vault;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkOption
     mkEnableOption
     types
-    mkIf;
+    mkIf
+    ;
 in {
   options.megacorp.services.vault = {
     enable = mkEnableOption "Whether to enable Hashicorp Vault";
@@ -18,6 +20,8 @@ in {
     logo = mkEnableOption "Whether to show vault logo on shell startup";
 
     gui = mkEnableOption "Whether to enable Vault web GUI inteface";
+
+    open-firewall = mkEnableOption "Whether to open the firewall for the GUI";
 
     zsh-address-env-variable = mkOption {
       type = types.bool;
@@ -29,9 +33,9 @@ in {
       type = types.str;
       default = "file";
       description = ''
-      Which backend storage to use
+        Which backend storage to use
 
-      See services.vault.storageBackend for possible options
+        See services.vault.storageBackend for possible options
       '';
     };
 
@@ -45,17 +49,32 @@ in {
   config = mkIf cfg.enable {
     services.vault = {
       enable = true;
-      package = if cfg.gui then pkgs.vault-bin else pkgs.vault;
+      package =
+        if cfg.gui
+        then pkgs.vault-bin
+        else pkgs.vault;
       storageBackend = cfg.backend;
       address = "${cfg.address}:8200";
       extraConfig = ''
-        ${if cfg.gui then "ui = true" else ""}
+        ${
+          if cfg.gui
+          then "ui = true"
+          else ""
+        }
       '';
     };
 
     environment.systemPackages = [
       pkgs.vault
     ];
+
+    networking.firewall.allowedTCPPorts = (
+      if cfg.open-freiwall
+      then [
+        8200
+      ]
+      else []
+    );
 
     home-manager.users.${config.megacorp.config.users.admin-user} = _: {
       programs.zsh.sessionVariables.VAULT_ADDR = "http://${cfg.address}:8200";

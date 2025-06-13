@@ -11,6 +11,5 @@
   file-browserFQDN = "file-browser.megacorp.industries";
 
   common-config = {
-
   };
 }

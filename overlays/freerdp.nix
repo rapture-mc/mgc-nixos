@@ -25,8 +25,10 @@ final: prev: {
           --replace-fail "libpcsclite.so" "${prev.lib.getLib prev.pcsclite}/lib/libpcsclite.so"
       '';
 
-    nativeBuildInputs = previousAttrs.nativeBuildInputs ++ [
-      prev.writableTmpDirAsHomeHook
-    ];
+    nativeBuildInputs =
+      previousAttrs.nativeBuildInputs
+      ++ [
+        prev.writableTmpDirAsHomeHook
+      ];
   });
 }
