@@ -1,14 +1,12 @@
 keys:
   - &server_MGC-DRW-DMC01 age13ycsdrpwydpw89ae5tpmmwzwplgs2ne20k9ypyvknpz6faya7evquq4nmv
-  - &server_MGC-DRW-PWS01 age1kldg9c698z3sup4z3uzj8ytmd7jh5k4l53s23pv3h6yk7mdn8u0szlqvm4
   - &server_MGC-DRW-BST01 age174jz0vs3zs06ck59krz3qazrszr8lnst4w8h4shmdj8ccaur84dsea6fkr
   - &server_MGC-DRW-HVS01 age103qqt3eacmhxestkspwqzrgaekzh6gmquuxa7djradah46zuzfkq6qhu7l
 
 creation_rules:
-  - path_regex: sops/secrets/default.yaml
+  - path_regex: sops/default.yaml
     key_groups:
     - age:
       - *server_MGC-DRW-DMC01
-      - *server_MGC-DRW-PWS01
       - *server_MGC-DRW-BST01
       - *server_MGC-DRW-HVS01
