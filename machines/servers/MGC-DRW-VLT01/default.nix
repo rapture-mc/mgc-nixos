@@ -2,6 +2,9 @@
   nixpkgs,
   self,
   vars,
+  terranix,
+  pkgs,
+  system,
   ...
 }:
 nixpkgs.lib.nixosSystem {
@@ -12,6 +15,9 @@ nixpkgs.lib.nixosSystem {
         ../../_shared/qemu-hardware-config.nix
         (import ../../_shared/common-config.nix {
           inherit vars;
+        })
+        (import ./terranix.nix {
+          inherit terranix pkgs system;
         })
       ];
 
