@@ -69,7 +69,7 @@ in
             };
 
             openldap = {
-              enable = true;
+              enable = false;
               domain-component = domain-component;
               logo = true;
               extra-declarative-contents = ''
