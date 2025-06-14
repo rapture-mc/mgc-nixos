@@ -15,14 +15,18 @@
 
         provider.vault.address = "http://${vars.networking.hostsAddr.MGC-DRW-VLT01.eth.ipv4}:8200";
 
-        resource.vault_policy.example = {
-          name = "example-policy";
+        resource = {
+          vault_policy = import ./vault/policies.nix;
+          vault_mount = import ./vault/mounts.nix;
 
-          policy = ''
-            path "secret/my_app" {
-              capabilities = ["update"]
-            }
-          '';
+          vault_pki_secret_backend_root_cert = import ./vault/root-cert-2025.nix;
+          vault_pki_secret_backend_issuer = import ./vault/backend-issuer.nix;
+          vault_pki_secret_backend_role = import ./vault/backend-role.nix;
+
+          local_file.root-cert-2025 = {
+            content = "\${ vault_pki_secret_backend_root_cert.root-cert-2025.certificate }";
+            filename = "/home/${vars.adminUser}/root-cert-2025.crt";
+          };
         };
       }
     ];
