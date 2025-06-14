@@ -84,6 +84,7 @@ nixpkgs.lib.nixosSystem {
                 os_img_url = "/var/lib/libvirt/images/packer-win2022.qcow2";
                 memory = "8192";
                 vcpu = 4;
+                running = false;
               };
             };
           };

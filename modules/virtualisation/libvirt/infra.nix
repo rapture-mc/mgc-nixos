@@ -118,6 +118,11 @@ in {
                 type = types.bool;
                 default = true;
               };
+
+              running = mkOption {
+                type = types.bool;
+                default = true;
+              };
             };
           }
         )
