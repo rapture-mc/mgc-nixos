@@ -52,13 +52,9 @@ nixpkgs.lib.nixosSystem {
             enable = true;
             xrdp = true;
           };
-
-          packages.ninja-cli.enable = true;
         };
 
         services = {
-          controller.server.enable = true;
-
           comin = {
             enable = true;
             repo = "https://github.com/rapture-mc/mgc-nixos";
