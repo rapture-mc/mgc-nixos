@@ -31,6 +31,7 @@ The following outlines the process to add a new NixOS machine to the flake. In t
 
 1. Add the new instance as a function attribute to the machines/default.nix file in alphabetical order:
 ```
+# ./machines/default.nix
 {importMachineConfig, ... }: {
   # other existing machines...
 
@@ -39,14 +40,18 @@ The following outlines the process to add a new NixOS machine to the flake. In t
 ```
 
 2. It's easiest to just make a copy of an existing machine directory and make the necessary modifications like so:
-`cp -r machines/hypervisors/MGC-DRW-HVS01 machines/hypervisors/MGC-DRW-HVS05`
-`vim machines/hypervisors/MGC-DRW-HVS05/default.nix`
+```
+cp -r machines/hypervisors/MGC-DRW-HVS01 machines/hypervisors/MGC-DRW-HVS05
+vim machines/hypervisors/MGC-DRW-HVS05/default.nix
+```
 
 The above commands (if run from the top level directory of the repo) will make a copy of an existing hypervisor config under the new machine name.
 We then edit the default.nix file which contains the primary NixOS configuration and modify accordingly.
 
 3. Update the hardware-config.nix file. Ensure you replace the existing hardware config file with the actual hardware config file of the new machine.
-`nixos-generate-config`
+```
+nixos-generate-config
+```
 
 The above command will scan the hardware and create a Nix file in /etc/nixos/hardware-configuration.nix.
 You will need to copy this file to the new machine's config directory and rename it to hardware-config.nix.
