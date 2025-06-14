@@ -12,7 +12,7 @@
         terraform.required_providers.vault.source = "hashicorp/vault";
 
         provider.vault = {
-          address = "http://127.0.0.1:8200";
+          address = "http://${vars.networking.hostsAddr.MGC-DRW-VLT01.eth.ipv4}:8200";
           token = "/home/${vars.adminUser}/.vault-token";
         };
 
