@@ -3,7 +3,6 @@
   privateLANSubnet = "192.168.1.0/24";
   nameServers = ["192.168.1.5"];
   internalDomain = "megacorp.industries";
-  wireguardPublicIP = "123.243.147.17";
 
   hostsAddr = {
     MGC-DRW-DMC01 = {

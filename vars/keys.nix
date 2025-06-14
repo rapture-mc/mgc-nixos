@@ -1,10 +1,4 @@
 {
-  # Public keys of wireguard clients/servers
-  wireguardPubKeys = {
-    MGC-DRW-CTR01 = "Sgq3D3Kn8LDEB+d4/BqTetGZr07JwygYRELiuUNpVDI=";
-    MGC-LT01 = "WybmIIlnKoaSpJZVLkw34RwhRhogfTbKXNEchGhrAXE=";
-  };
-
   # The following keys are permitted to connect to the bastion server over SSH
   authorizedBastionPubKeys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKhKBbO3gu8cbKQYOopVAA9gkSHHChkjMYPgfW2NIBrN benny@MGC-LT01"
