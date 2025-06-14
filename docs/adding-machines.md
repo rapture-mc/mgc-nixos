@@ -22,7 +22,7 @@ Example: MGC-DRW-HVS01
 Where:
 - [org-shortcode] = The organinational shortcode that the machine belongs to. E.g MGC for "Megacorp Industries Corporation".
 - [machine-location] = The physical location of the machine. E.g DRW for Darwin. **NOTE:** For workstations the location field is omitted.
-- [machine-purpose] = The purpose of the machine. E.g HVS for hypervisor (see [this reference](https://github.com/rapture-mc/mgc-nixos/blob/docs/machine-types.md) for list of types).
+- [machine-purpose] = The purpose of the machine. E.g HVS for hypervisor (see [this reference](https://github.com/rapture-mc/mgc-nixos/blob/main/docs/machine-types.md) for list of types).
 - [machine-instance] = Numbered instance of the machine type.
 
 ## Steps to add a new machine
