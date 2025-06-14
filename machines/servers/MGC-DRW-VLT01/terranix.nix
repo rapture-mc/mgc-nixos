@@ -30,7 +30,10 @@ in {
   systemd.services.vault-config-provisioner = {
     wantedBy = ["multi-user.target"];
     after = ["network.target"];
-    path = [pkgs.git];
+    path = [
+      pkgs.git
+      pkgs.getent
+    ];
     serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-vault-config" ''
       if [[ -e config.tf.json ]]; then
         rm -f config.tf.json;
