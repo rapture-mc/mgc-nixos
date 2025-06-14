@@ -81,6 +81,7 @@ nixpkgs.lib.nixosSystem {
                 memory = "8192";
                 vcpu = 4;
                 autostart = false;
+                running = false;
               };
             };
           };
