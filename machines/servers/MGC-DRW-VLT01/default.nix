@@ -17,7 +17,7 @@ nixpkgs.lib.nixosSystem {
           inherit vars;
         })
         (import ./terranix.nix {
-          inherit terranix pkgs system;
+          inherit terranix pkgs system vars;
         })
       ];
 

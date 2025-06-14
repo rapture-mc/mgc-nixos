@@ -2,6 +2,7 @@
   system,
   terranix,
   pkgs,
+  vars,
   ...
 }: let
   terraform-config = terranix.lib.terranixConfiguration {
@@ -12,6 +13,7 @@
 
         provider.vault = {
           address = "http://127.0.0.1:8200";
+          token = "/home/${vars.adminUser}/.vault-token";
         };
 
         resource.vault_policy.example = {
