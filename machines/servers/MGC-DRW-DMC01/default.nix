@@ -17,9 +17,9 @@ in
           (import ../../_shared/common-config.nix {
             inherit vars;
           })
-          (import ./secrets.nix {
-            inherit vars;
-          })
+          # (import ./secrets.nix {
+          #   inherit vars;
+          # })
         ];
 
         networking.hostName = "MGC-DRW-DMC01";
