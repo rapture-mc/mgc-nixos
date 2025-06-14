@@ -10,8 +10,8 @@ nixpkgs.lib.nixosSystem {
     self.nixosModules.default
     {
       imports = [
-        ../../qemu-hardware-config.nix
-        (import ../../common-config.nix {
+        ../../_shared/qemu-hardware-config.nix
+        (import ../../_shared/common-config.nix {
           inherit vars;
         })
         (import ./website.nix {

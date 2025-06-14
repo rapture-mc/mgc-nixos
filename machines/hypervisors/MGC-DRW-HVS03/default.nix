@@ -11,7 +11,7 @@ nixpkgs.lib.nixosSystem {
     {
       imports = [
         ./hardware-config.nix
-        (import ../../common-config.nix {
+        (import ../../_shared/common-config.nix {
           inherit vars;
         })
       ];

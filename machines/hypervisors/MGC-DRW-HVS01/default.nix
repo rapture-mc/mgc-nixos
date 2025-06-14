@@ -9,13 +9,13 @@ nixpkgs.lib.nixosSystem {
     self.nixosModules.default
     {
       imports = [
-        (import ../../common-config.nix {
+        ./hardware-config.nix
+        (import ../../_shared/common-config.nix {
           inherit vars;
         })
         (import ./backup.nix {
           inherit vars;
         })
-        ./hardware-config.nix
       ];
 
       networking.hostName = "MGC-DRW-HVS01";

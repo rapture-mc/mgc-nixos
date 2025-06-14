@@ -11,10 +11,16 @@ nixpkgs.lib.nixosSystem {
     sops-nix.nixosModules.sops
     {
       imports = [
-        ../../qemu-hardware-config.nix
-        (import ../../common-config.nix {inherit vars;})
-        (import ./backup.nix {inherit vars;})
-        (import ./secrets.nix {inherit vars;})
+          ../../_shared/qemu-hardware-config.nix
+        (import ../../_shared/common-config.nix {
+          inherit vars;
+        })
+        (import ./backup.nix {
+          inherit vars;
+        })
+        (import ./secrets.nix {
+          inherit vars;
+        })
       ];
 
       networking.hostName = "MGC-DRW-BST01";
