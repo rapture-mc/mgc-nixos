@@ -74,6 +74,11 @@ in {
                 default = "vm-";
               };
 
+              os_img_url = mkOption {
+                type = types.str;
+                default = "/var/lib/libvirt/images/nixos.qcow2";
+              };
+
               vm_count = mkOption {
                 type = types.int;
                 default = 1;
