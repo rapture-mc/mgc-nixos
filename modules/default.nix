@@ -19,7 +19,6 @@
     ./programs/pass
     ./services/bookstack
     ./services/comin
-    ./services/controller.nix
     ./services/dnsmasq.nix
     ./services/openldap
     ./services/file-browser.nix
