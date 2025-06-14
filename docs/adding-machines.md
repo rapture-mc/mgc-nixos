@@ -15,7 +15,7 @@ All machines NixOS configurations are stored in the machines/ directory and orga
 
 ## Naming machines
 Machines are named with the following convention:
-"<org-shortcode>-<machine-location>-<machine-purpose><machine-instance>"
+<<org-shortcode>>>-<machine-location>-<machine-purpose><machine-instance>
 
 Example: MGC-DRW-HVS01
 
