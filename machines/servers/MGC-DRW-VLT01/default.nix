@@ -5,11 +5,13 @@
   terranix,
   pkgs,
   system,
+  sops-nix,
   ...
 }:
 nixpkgs.lib.nixosSystem {
   modules = [
     self.nixosModules.default
+    sops-nix.nixosModules.sops
     {
       imports = [
         ../../_shared/qemu-hardware-config.nix
@@ -18,6 +20,9 @@ nixpkgs.lib.nixosSystem {
         })
         (import ./terranix.nix {
           inherit terranix pkgs system vars;
+        })
+        (import ./secrets.nix {
+          inherit vars;
         })
       ];
 
