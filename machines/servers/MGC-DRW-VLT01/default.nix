@@ -35,6 +35,22 @@ nixpkgs.lib.nixosSystem {
         tlsCertFile = "/var/lib/vault/vault-megacorp-industries.pem";
       };
 
+      networking.firewall.allowedTCPPorts = [
+        80
+        443
+      ];
+
+      services.nginx = {
+        enable = true;
+        recommendedProxySettings = true;
+        virtualHosts."vault.megacorp.industries" = {
+          forceSSL = true;
+          locations."/" = {
+            proxyPass = "http://localhost:8200";
+          };
+        };
+      };
+
       megacorp = {
         config = {
           bootloader.enable = true;
