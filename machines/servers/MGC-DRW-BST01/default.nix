@@ -31,8 +31,6 @@ nixpkgs.lib.nixosSystem {
         config = {
           bootloader.enable = true;
 
-          desktop.enable = true;
-
           networking.static-ip = {
             enable = true;
             ipv4 = vars.networking.hostsAddr.MGC-DRW-BST01.eth.ipv4;
