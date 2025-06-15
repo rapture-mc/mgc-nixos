@@ -22,6 +22,9 @@
           vault_pki_secret_backend_root_cert = import ./vault/root-cert-2025.nix;
           vault_pki_secret_backend_issuer = import ./vault/backend-issuer.nix;
           vault_pki_secret_backend_role = import ./vault/backend-role.nix;
+          vault_pki_secret_backend_config_urls = (import ./vault/backend-config-urls.nix {
+            inherit vars;
+          });
 
           local_file.root-cert-2025 = {
             content = "\${ vault_pki_secret_backend_root_cert.root-cert-2025.certificate }";
