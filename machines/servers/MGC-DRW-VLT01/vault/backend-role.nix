@@ -13,7 +13,7 @@
     allow_any_name = true;
   };
 
-  intermediate-role {
+  intermediate-role = {
     backend = "\${ vault_mount.pki_int.path }";
     name = "example-megacorp-industries";
     ttl = 86400;

@@ -24,9 +24,6 @@
             inherit vars;
           });
           vault_pki_secret_backend_issuer = import ./vault/backend-issuer.nix;
-          vault_pki_secret_backend_role = (import ./vault/backend-role.nix {
-            inherit vars;
-          });
           vault_pki_secret_backend_config_urls = (import ./vault/backend-config-urls.nix {
             inherit vars;
           });
@@ -37,6 +34,11 @@
           });
           vault_pki_secret_backend_root_sign_intermediate = import ./vault/backend-root-sign-intermediate.nix;
           vault_pki_secret_backend_intermediate_set_signed = import ./vault/backend-intermediate-set-signed.nix;
+
+          # PKI Roles
+          vault_pki_secret_backend_role = (import ./vault/backend-role.nix {
+            inherit vars;
+          });
 
           local_file = {
             root-cert-2025 = {
