@@ -23,14 +23,6 @@ nixpkgs.lib.nixosSystem {
 
       system.stateVersion = "24.11";
 
-      services.nginx.virtualHosts."vault.megacorp.industries" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/" = {
-          proxyPass = "http://${vars.networking.hostsAddr.MGC-DRW-VLT01.eth.ipv4}:8200";
-        };
-      };
-
       megacorp = {
         config = {
           bootloader.enable = true;
