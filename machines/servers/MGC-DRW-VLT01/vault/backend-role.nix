@@ -1,4 +1,4 @@
-{
+{vars}: {
   role = {
     backend = "\${ vault_mount.pki.path }";
     name = "2025-servers-role";
@@ -7,7 +7,7 @@
     key_type = "rsa";
     key_bits = 4096;
     allowed_domains = [
-      "megacorp.industries"
+      "${vars.networking.internalDomain}"
     ];
     allow_subdomains = true;
     allow_any_name = true;
