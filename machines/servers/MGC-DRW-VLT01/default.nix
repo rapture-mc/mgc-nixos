@@ -30,9 +30,18 @@ nixpkgs.lib.nixosSystem {
 
       system.stateVersion = "24.11";
 
-      services.vault = {
-        tlsKeyFile = "/var/lib/vault/private-key.pem";
-        tlsCertFile = "/var/lib/vault/vault-megacorp-industries.pem";
+      services.nginx = {
+        enable = true;
+        recommendedTlsSettings = true;
+        recommendedProxySettings = true;
+        virtualHosts."vault.megacorp.industries" = {
+          forceSSL = true;
+          sslCertificate = "/var/lib/nginx/vault-megacorp-industries.pem";
+          sslCertificateKey = "/var/lib/nginx/private-key.pem";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:8200";
+          };
+        };
       };
 
       megacorp = {
@@ -65,7 +74,7 @@ nixpkgs.lib.nixosSystem {
             gui = true;
             logo = true;
             open-firewall = true;
-            address = "vault.megacorp.industries";
+            address = "127.0.0.1";
           };
         };
 
