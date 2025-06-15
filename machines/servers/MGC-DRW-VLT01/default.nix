@@ -65,7 +65,7 @@ nixpkgs.lib.nixosSystem {
             gui = true;
             logo = true;
             open-firewall = true;
-            address = "127.0.0.1";
+            address = vars.networking.hostsAddr.MGC-DRW-VLT01.eth.ipv4;
           };
         };
 
