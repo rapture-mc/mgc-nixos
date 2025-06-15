@@ -1,13 +1,13 @@
 {
   nixpkgs,
-  megacorp,
+  self,
   vars,
   sops-nix,
   ...
 }:
 nixpkgs.lib.nixosSystem {
   modules = [
-    megacorp.nixosModules.default
+    self.nixosModules.default
     sops-nix.nixosModules.sops
     {
       imports = [
@@ -61,7 +61,7 @@ nixpkgs.lib.nixosSystem {
           };
         };
 
-        virtualisation.qemu-guest.enable = true;
+        virtualisation.libvirt.guest.enable = true;
       };
     }
   ];
