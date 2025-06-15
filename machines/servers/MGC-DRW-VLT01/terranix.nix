@@ -38,11 +38,17 @@
           vault_pki_secret_backend_root_sign_intermediate = import ./vault/backend-root-sign-intermediate.nix;
           vault_pki_secret_backend_intermediate_set_signed = import ./vault/backend-intermediate-set-signed.nix;
 
-          # Output root CA to ~/root-cert-2025.crt
-          local_file.root-cert-2025 = {
-            content = "\${ vault_pki_secret_backend_root_cert.root-cert-2025.certificate }";
-            filename = "/home/${vars.adminUser}/root-cert-2025.crt";
-          };
+          local_file = {
+            root-cert-2025 = {
+              content = "\${ vault_pki_secret_backend_root_cert.root-cert-2025.certificate }";
+              filename = "/home/${vars.adminUser}/root-cert-2025.crt";
+            };
+
+            intermediate-cert = {
+              content = "\${ vault_pki_secret_backend_root_sign_intermediate.intermediate.certificate }";
+              filename = "/home/${vars.adminUser}/intermediate-cert.crt";
+            };
+          }l
         };
       }
     ];
