@@ -30,6 +30,15 @@ nixpkgs.lib.nixosSystem {
 
       system.stateVersion = "24.11";
 
+      services.vault = {
+        tlsKeyFile = "/home/${vars.adminUser}/vault/vault.megacorp.industries/private-key.pem";
+        tlsCertFile = "/home/${vars.adminUser}/vault/vault.megacorp.industries/vault-megacorp-industries.pem";
+        listenerExtraConfig = ''
+          tls_disable = "false"
+          address = "${vars.networking.hostsAddr.MGC-DRW-VLT01.eth.ipv4}:8200"
+        '';
+      };
+
       megacorp = {
         config = {
           bootloader.enable = true;
