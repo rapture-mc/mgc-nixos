@@ -44,7 +44,6 @@ nixpkgs.lib.nixosSystem {
         enable = true;
         recommendedProxySettings = true;
         virtualHosts."vault.megacorp.industries" = {
-          forceSSL = true;
           locations."/" = {
             proxyPass = "http://localhost:8200";
           };
