@@ -17,7 +17,9 @@
     ;
 in {
   imports = [
-    ./packages.nix
+    (import ./packages.nix {
+      inherit config lib pkgs;
+    })
     ./guest.nix
     (import ./infra.nix {
       inherit config lib pkgs terranix system;
