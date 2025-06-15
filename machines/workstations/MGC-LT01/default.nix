@@ -45,8 +45,31 @@ nixpkgs.lib.nixosSystem {
 
       security.pki.certificates = [
         ''
-        MGC-DRW-VLT01 Root Certificate
+        MGC-DRW-VLT01 Intermediate CA
         ==============================
+
+        -----BEGIN CERTIFICATE-----
+        MIIDojCCAoqgAwIBAgIUb8gfjio47OS2CCqgX9cboTRvmCUwDQYJKoZIhvcNAQEL
+        BQAwHjEcMBoGA1UEAxMTbWVnYWNvcnAuaW5kdXN0cmllczAeFw0yNTA2MTUwMzI0
+        MDhaFw0yNTEyMTEwNzI0MzhaMBsxGTAXBgNVBAMMEG5ld19pbnRlcm1lZGlhdGUw
+        ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDj70T+ZC59PKiNFTfWaHsO
+        sljRpUpJFQnnVTplzpIdog9e32+tOAT8vs07uAElyBZJ8KrmADqDXo4RFmZsocQb
+        JIpwNnkCsE6gl7kOPmb/JX6ksZMe+JEau8ETT1QOWHjYRlx3/i6hQFSINX73YYvT
+        xkGio1Fh5chpOuGmvDUne6JzxhVZAqk58eEHl/caNHmX/r7j7XHULlEzXlNNBrjp
+        EGJC5x8VW7rcnV5D/24EcXGV5/t9wxjcjij4xxLX3avAVoGDzP9VOBxfFQRUEslp
+        9ujL+3YZnhO4ArstXVNm7zTe2dwo7Msc1WLyLYui2BXl2kJiZlCEQk+mxkLaBzgP
+        AgMBAAGjgdowgdcwDgYDVR0PAQH/BAQDAgEGMA8GA1UdEwEB/wQFMAMBAf8wHQYD
+        VR0OBBYEFK27wVoXxOiHNDBSmTEXpRH3ksPLMB8GA1UdIwQYMBaAFMlFeVt1Ha+V
+        d+Irl5FtBYrgVhHdMD4GCCsGAQUFBwEBBDIwMDAuBggrBgEFBQcwAoYiaHR0cDov
+        LzE5Mi4xNjguMS40MTo4MjAwL3YxL3BraS9jYTA0BgNVHR8ELTArMCmgJ6AlhiNo
+        dHRwOi8vMTkyLjE2OC4xLjQxOjgyMDAvdjEvcGtpL2NybDANBgkqhkiG9w0BAQsF
+        AAOCAQEANU3HTK/ExfGWtFb7qT+zEZGBiqLgYS0t7bsitLKcjIXppc0a9AjLaWUR
+        QOPoQw+EZp2q9kU8dNkZsv7o8XJJDoExGsQ2HcAk29qwaTni4SC/QmOGxARAKVIo
+        hgTMkSVI0M+NRbwlLoKv/IgvTcpNYsNcnZdyC+AkFwdQiAx3ZeSpFbgh1cF7fkWw
+        fCsrOdieoxA8jWWQKFNL1CmW0lBL/OC32IIQ2V+RXN3Tnh96bA91WoqKr4HLpUMc
+        IsWfaXpjYXHAnTF4xKoRcTaZpU98Chk0+xi7FKTd4gNy/AGCsPKR4ivV9PNR1jiA
+        C9YiuX3RyG9FTo3C87D4bAn1X8x/wg==
+        -----END CERTIFICATE-----
         -----BEGIN CERTIFICATE-----
         MIIDTzCCAjegAwIBAgIUIOB3FtWwJB6HUgbGaOmXhL5U0wMwDQYJKoZIhvcNAQEL
         BQAwHjEcMBoGA1UEAxMTbWVnYWNvcnAuaW5kdXN0cmllczAeFw0yNTA2MTQxMDMz
