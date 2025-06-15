@@ -48,7 +48,7 @@
               content = "\${ vault_pki_secret_backend_root_sign_intermediate.intermediate.certificate }";
               filename = "/home/${vars.adminUser}/intermediate-cert.crt";
             };
-          }l
+          };
         };
       }
     ];
