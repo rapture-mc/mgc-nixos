@@ -41,12 +41,12 @@
           local_file = {
             root-cert-2025 = {
               content = "\${ vault_pki_secret_backend_root_cert.root-cert-2025.certificate }";
-              filename = "/home/${vars.adminUser}/root-cert-2025.crt";
+              filename = "/home/${vars.adminUser}/vault/root-cert-2025.crt";
             };
 
             intermediate-cert = {
               content = "\${ vault_pki_secret_backend_root_sign_intermediate.intermediate.certificate }";
-              filename = "/home/${vars.adminUser}/intermediate-cert.crt";
+              filename = "/home/${vars.adminUser}/vault/intermediate-cert.crt";
             };
           };
         };
