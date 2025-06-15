@@ -31,8 +31,8 @@ nixpkgs.lib.nixosSystem {
       system.stateVersion = "24.11";
 
       services.vault = {
-        tlsKeyFile = "/home/${vars.adminUser}/vault/vault.megacorp.industries/private-key.pem";
-        tlsCertFile = "/home/${vars.adminUser}/vault/vault.megacorp.industries/vault-megacorp-industries.pem";
+        tlsKeyFile = "/var/lib/vault/private-key.pem";
+        tlsCertFile = "/var/lib/vault/vault-megacorp-industries.pem";
       };
 
       megacorp = {
