@@ -8,13 +8,13 @@
     "title",
     "separator",
     "os",
+    "kernel",
     "host",
     "uptime",
-    "de",
-    "theme",
     "cpu",
     "memory",
     "disk",
-    "localip"
+    "localip",
+    "publicip"
   ]
 }
