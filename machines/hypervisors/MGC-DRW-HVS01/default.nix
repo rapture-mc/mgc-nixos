@@ -22,7 +22,7 @@ nixpkgs.lib.nixosSystem {
 
       system.stateVersion = "24.05";
 
-      nixpkgs.config.allowUnfree = true;
+      systemd.watchdog.rebootTime = "15s";
 
       megacorp = {
         config = {
