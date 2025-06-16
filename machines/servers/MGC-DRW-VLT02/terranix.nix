@@ -65,11 +65,6 @@
               content = "\${ vault_pki_secret_backend_cert.vault02.private_key }";
               filename = "/var/lib/nginx/vault02-private-key.pem";
             };
-
-            vault02-issuing-ca = {
-              content = "\${ vault_pki_secret_backend_cert.vault02.issuing_ca}";
-              filename = "/var/lib/nginx/vault02-issuing-ca.crt";
-            };
           };
         };
       }
@@ -109,29 +104,15 @@ in {
         pkgs.coreutils
       ];
       serviceConfig.ExecStart = toString (pkgs.writers.writeBash "vault-pki-post-setup" ''
-        if [ ! -d "/var/lib/nginx" ]; then
-          echo "Directory /var/lib/nginx doesn't exist... Creating..."
-          mkdir -p /var/lib/nginx
-          chown nginx:nginx /var/lib/nginx
-        else
-          echo "Directory /var/lib/nginx already exists... Skipping..."
-        fi
-
-        cat /var/lib/nginx/vault02-leaf-cert.crt > /var/lib/nginx/vault02-final-cert.crt
-        echo -e "\n" >> /var/lib/nginx/vault02-final-cert.crt
-        cat /var/lib/nginx/vault02-issuing-ca.crt >> /var/lib/nginx/vault02-final-cert.crt
+        chown nginx:nginx /var/lib/nginx
 
         chown nginx:nginx \
           /var/lib/nginx/vault02-private-key.pem \
           /var/lib/nginx/vault02-leaf-cert.crt \
-          /var/lib/nginx/vault02-issuing-ca.crt
-          /var/lib/nginx/vault02-final-cert.crt
 
         chmod 700 \
           /var/lib/nginx/vault02-private-key.pem \
           /var/lib/nginx/vault02-leaf-cert.crt \
-          /var/lib/nginx/vault02-issuing-ca.crt
-          /var/lib/nginx/vault02-final-cert.crt
       '');
     };
   };
