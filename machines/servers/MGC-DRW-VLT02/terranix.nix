@@ -85,16 +85,19 @@ in {
         pkgs.getent
         pkgs.coreutils
       ];
-      serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-vault-config" ''
-        export VAULT_TOKEN=$(cat ${vault-root-token-path})
-        if [[ -e config.tf.json ]]; then
-          rm -f config.tf.json;
-        fi
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = toString (pkgs.writers.writeBash "generate-vault-config" ''
+          export VAULT_TOKEN=$(cat ${vault-root-token-path})
+          if [[ -e config.tf.json ]]; then
+            rm -f config.tf.json;
+          fi
 
-        cp ${terraform-config} config.tf.json \
-          && ${pkgs.opentofu}/bin/tofu init \
-          && ${pkgs.opentofu}/bin/tofu apply -auto-approve
-      '');
+          cp ${terraform-config} config.tf.json \
+            && ${pkgs.opentofu}/bin/tofu init \
+            && ${pkgs.opentofu}/bin/tofu apply -auto-approve
+        '');
+      };
     };
 
     vault-pki-post-setup = {
