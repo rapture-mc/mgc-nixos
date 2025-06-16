@@ -5,7 +5,7 @@
   vars,
   ...
 }: let
-  vault-root-token-path = "/run/secrets/vault-root-token";
+  vault-root-token-path = "/run/secrets/vault-root-token-02";
 
   terraform-config = terranix.lib.terranixConfiguration {
     inherit system;
@@ -13,7 +13,7 @@
       {
         terraform.required_providers.vault.source = "hashicorp/vault";
 
-        provider.vault.address = "http://${vars.networking.hostsAddr.MGC-DRW-VLT01.eth.ipv4}:8200";
+        provider.vault.address = "http://${vars.networking.hostsAddr.MGC-DRW-VLT02.eth.ipv4}:8200";
 
         resource = {
           vault_policy = import ./vault/policies.nix;
