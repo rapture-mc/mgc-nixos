@@ -66,6 +66,7 @@ in
                 ${vars.networking.hostsAddr.MGC-DRW-VLT01.eth.ipv4} MGC-DRW-VLT01
                 192.168.1.99 MGC-DRW-FRW01
                 ${vars.networking.hostsAddr.MGC-DRW-VLT01.eth.ipv4} vault
+                ${vars.networking.hostsAddr.MGC-DRW-VLT02.eth.ipv4} vault02
               '';
             };
 
