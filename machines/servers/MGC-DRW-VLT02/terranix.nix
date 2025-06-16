@@ -41,9 +41,9 @@
           });
 
           # Certificates
-          vault_pki_secret_backend_cert = (import ./vault/backend-cert.nix {
-            inherit vars;
-          });
+          # vault_pki_secret_backend_cert = (import ./vault/backend-cert.nix {
+          #   inherit vars;
+          # });
 
           local_file = {
             root-cert-2025 = {
@@ -56,15 +56,15 @@
               filename = "/home/${vars.adminUser}/vault/intermediate-cert.crt";
             };
 
-            vault02-leaf-cert = {
-              content = "\${ vault_pki_secret_backend_cert.vault02.certificate }";
-              filename = "/var/lib/nginx/vault02-leaf-cert.pem";
-            };
+            # vault02-leaf-cert = {
+            #   content = "\${ vault_pki_secret_backend_cert.vault02.certificate }";
+            #   filename = "/var/lib/nginx/vault02-leaf-cert.pem";
+            # };
 
-            vault02-private-key = {
-              content = "\${ vault_pki_secret_backend_cert.vault02.private_key }";
-              filename = "/var/lib/nginx/vault02-private-key.pem";
-            };
+            # vault02-private-key = {
+            #   content = "\${ vault_pki_secret_backend_cert.vault02.private_key }";
+            #   filename = "/var/lib/nginx/vault02-private-key.pem";
+            # };
           };
         };
       }
