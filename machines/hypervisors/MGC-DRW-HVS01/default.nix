@@ -72,6 +72,7 @@ nixpkgs.lib.nixosSystem {
             machines = {
               vault-servers = {
                 vm_hostname_prefix = "MGC-DRW-VLT";
+                vm_count = 2;
                 memory = "8192";
                 vcpu = 4;
               };
