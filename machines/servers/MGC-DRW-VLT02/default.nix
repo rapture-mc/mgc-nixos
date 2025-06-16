@@ -36,7 +36,7 @@ nixpkgs.lib.nixosSystem {
         recommendedProxySettings = true;
         virtualHosts."vault02.megacorp.industries" = {
           forceSSL = true;
-          sslCertificate = "/var/lib/nginx/vault02-leaf-cert.crt";
+          sslCertificate = "/var/lib/nginx/vault02-leaf-cert.pem";
           sslCertificateKey = "/var/lib/nginx/vault02-private-key.pem";
           locations."/" = {
             proxyPass = "http://127.0.0.1:8200";

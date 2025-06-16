@@ -58,7 +58,7 @@
 
             vault02-leaf-cert = {
               content = "\${ vault_pki_secret_backend_cert.vault02.certificate }";
-              filename = "/var/lib/nginx/vault02-leaf-cert.crt";
+              filename = "/var/lib/nginx/vault02-leaf-cert.pem";
             };
 
             vault02-private-key = {
