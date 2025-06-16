@@ -31,12 +31,12 @@ nixpkgs.lib.nixosSystem {
       system.stateVersion = "24.11";
 
       services.nginx = {
-        enable = false;
+        enable = true;
         recommendedTlsSettings = true;
         recommendedProxySettings = true;
         virtualHosts."vault02.megacorp.industries" = {
           forceSSL = true;
-          sslCertificate = "/var/lib/nginx/vault02-cert.crt";
+          sslCertificate = "/var/lib/nginx/vault02-final-cert.crt";
           sslCertificateKey = "/var/lib/nginx/vault02-private-key.pem";
           locations."/" = {
             proxyPass = "http://127.0.0.1:8200";
@@ -74,7 +74,6 @@ nixpkgs.lib.nixosSystem {
             gui = true;
             logo = true;
             open-firewall = true;
-            # address = "127.0.0.1";
             address = vars.networking.hostsAddr.MGC-DRW-VLT02.eth.ipv4;
           };
         };

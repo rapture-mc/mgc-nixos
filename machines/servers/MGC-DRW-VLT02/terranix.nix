@@ -56,19 +56,14 @@
               filename = "/home/${vars.adminUser}/vault/intermediate-cert.crt";
             };
 
-            vault02-cert = {
+            vault02-leaf-cert = {
               content = "\${ vault_pki_secret_backend_cert.vault02.certificate }";
-              filename = "/var/lib/nginx/vault02-cert.crt";
+              filename = "/var/lib/nginx/vault02-leaf-cert.crt";
             };
 
             vault02-private-key = {
               content = "\${ vault_pki_secret_backend_cert.vault02.private_key }";
               filename = "/var/lib/nginx/vault02-private-key.pem";
-            };
-
-            vault02-ca-chain = {
-              content = "\${ vault_pki_secret_backend_cert.vault02.ca_chain }";
-              filename = "/var/lib/nginx/vault02-ca-chain.crt";
             };
 
             vault02-issuing-ca = {
@@ -102,7 +97,7 @@ in {
       '');
     };
 
-    nginx-fix-permissions = {
+    vault-pki-post-setup = {
       wantedBy = ["nginx.service"];
       after = ["vault-config-provisioner.service"];
       partOf = ["vault-config-provisioner.service"];
@@ -110,9 +105,19 @@ in {
         pkgs.coreutils
       ];
       serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-vault-config" ''
-        chown nginx:nginx /var/lib/nginx/vault02-private-key.pem /var/lib/nginx/vault02-cert.crt /var/lib/nginx/vault02-ca-chain.crt /var/lib/nginx/vault02-issuing-ca.crt
+        cat /var/lib/nginx/vault02-cert.crt > /var/lib/nginx/vault02-final-cert.crt
+        echo -e "\n" >> /var/lib/nginx/vault02-final-cert.crt
+        cat /var/lib/nginx/vault02-issuing-ca.crt >> /var/lib/nginx/vault02-final-cert.crt
 
-        chmod 700 /var/lib/nginx/vault02-private-key.pem /var/lib/nginx/vault02-cert.crt /var/lib/nginx/vault02-ca-chain.crt /var/lib/nginx/vault02-issuing-ca.crt
+        chown nginx:nginx \
+          /var/lib/nginx/vault02-private-key.pem \
+          /var/lib/nginx/vault02-leaf-cert.crt \
+          /var/lib/nginx/vault02-issuing-ca.crt
+
+        chmod 700 \
+          /var/lib/nginx/vault02-private-key.pem \
+          /var/lib/nginx/vault02-leaf-cert.crt \
+          /var/lib/nginx/vault02-issuing-ca.crt
       '');
     };
   };
