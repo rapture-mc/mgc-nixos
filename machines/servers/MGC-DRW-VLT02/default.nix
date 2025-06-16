@@ -44,7 +44,8 @@ nixpkgs.lib.nixosSystem {
         };
       };
 
-      security.pki.certificates = ''
+      security.pki.certificates = [
+        ''
         MGC-DRW-VLT02 Intermediate Certificate
         ======================================
         -----BEGIN CERTIFICATE-----
@@ -95,8 +96,8 @@ nixpkgs.lib.nixosSystem {
         Akg+QwgM/FZ3hlLVLQd0AVKqepJ8uhgM2FYOJ5Vy3yAKjsRyTNtV2wwy/HW7+62i
         eni7T57qvQg2
         -----END CERTIFICATE-----
-
-      '';
+        ''
+      ];
 
       megacorp = {
         config = {
