@@ -108,7 +108,7 @@ in {
         echo -e "\n" >> /var/lib/nginx/vault02-final-cert.crt
         cat /var/lib/nginx/vault02-issuing-ca.crt >> /var/lib/nginx/vault02-final-cert.crt
 
-        chown nginx:nginx \
+        chown 60:60 \
           /var/lib/nginx/vault02-private-key.pem \
           /var/lib/nginx/vault02-leaf-cert.crt \
           /var/lib/nginx/vault02-issuing-ca.crt
