@@ -40,6 +40,11 @@
             inherit vars;
           });
 
+          # Certificates
+          vault_pki_secret_backend_cert = (import ./vault/backend-cert.nix {
+            inherit vars;
+          });
+
           local_file = {
             root-cert-2025 = {
               content = "\${ vault_pki_secret_backend_root_cert.root-cert-2025.certificate }";
@@ -49,6 +54,16 @@
             intermediate-cert = {
               content = "\${ vault_pki_secret_backend_root_sign_intermediate.intermediate.certificate }";
               filename = "/home/${vars.adminUser}/vault/intermediate-cert.crt";
+            };
+
+            vault02-cert = {
+              content = "\${ vault_pki_secret_backend_cert.vault02.certificate }";
+              filename = "/var/lib/vault/vault02-cert.crt";
+            };
+
+            vault02-private-key = {
+              content = "\${ vault_pki_secret_backend_cert.vault02.private_key }";
+              filename = "/var/lib/vault/vault02-private-key.pem";
             };
           };
         };
