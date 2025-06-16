@@ -1,10 +1,10 @@
 {vars}: {
   vault02 = {
-    issuer_ref  = "\${ vault_pki_secret_backend_issuer.root-2025.issuer_ref }";
-    backend     = "\${ vault_pki_secret_backend_role.intermediate-role.backend }";
-    name        = "\${ vault_pki_secret_backend_role.intermediate-role.name }";
+    issuer_ref = "\${ vault_pki_secret_backend_issuer.root-2025.issuer_ref }";
+    backend = "\${ vault_pki_secret_backend_role.intermediate-role.backend }";
+    name = "\${ vault_pki_secret_backend_role.intermediate-role.name }";
     common_name = "vault02.${vars.networking.internalDomain}";
-    ttl         = 3153600;  # 1 year
-    revoke      = true;
+    ttl = 31536000;  # 1 year
+    revoke = true;
   };
 }
