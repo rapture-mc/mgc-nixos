@@ -104,7 +104,6 @@ in {
       onSuccess = ["nginx.service"];
       path = [
         pkgs.coreutils
-        pkgs.hello
       ];
       serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-vault-config" ''
         cat /var/lib/nginx/vault02-leaf-cert.crt > /var/lib/nginx/vault02-final-cert.crt
