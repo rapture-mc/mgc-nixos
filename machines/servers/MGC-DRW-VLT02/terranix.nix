@@ -108,7 +108,15 @@ in {
       path = [
         pkgs.coreutils
       ];
-      serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-vault-config" ''
+      serviceConfig.ExecStart = toString (pkgs.writers.writeBash "vault-pki-post-setup" ''
+        if [ ! -d "/var/lib/nginx" ]; then
+          echo "Directory /var/lib/nginx doesn't exist... Creating..."
+          mkdir -p /var/lib/nginx
+          chown nginx:nginx /var/lib/nginx
+        else
+          echo "Directory /var/lib/nginx already exists... Skipping..."
+        fi
+
         cat /var/lib/nginx/vault02-leaf-cert.crt > /var/lib/nginx/vault02-final-cert.crt
         echo -e "\n" >> /var/lib/nginx/vault02-final-cert.crt
         cat /var/lib/nginx/vault02-issuing-ca.crt >> /var/lib/nginx/vault02-final-cert.crt
