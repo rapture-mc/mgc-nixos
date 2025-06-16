@@ -58,12 +58,12 @@
 
             vault02-cert = {
               content = "\${ vault_pki_secret_backend_cert.vault02.certificate }";
-              filename = "/var/lib/vault/vault02-cert.crt";
+              filename = "/var/lib/nginx/vault02-cert.crt";
             };
 
             vault02-private-key = {
               content = "\${ vault_pki_secret_backend_cert.vault02.private_key }";
-              filename = "/var/lib/vault/vault02-private-key.pem";
+              filename = "/var/lib/nginx/vault02-private-key.pem";
             };
           };
         };
