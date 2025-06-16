@@ -41,9 +41,9 @@
           });
 
           # Certificates
-          # vault_pki_secret_backend_cert = (import ./vault/backend-cert.nix {
-          #   inherit vars;
-          # });
+          vault_pki_secret_backend_cert = (import ./vault/backend-cert.nix {
+            inherit vars;
+          });
 
           local_file = {
             root-cert-2025 = {
@@ -56,15 +56,15 @@
               filename = "/home/${vars.adminUser}/vault/intermediate-cert.crt";
             };
 
-            # vault02-leaf-cert = {
-            #   content = "\${ vault_pki_secret_backend_cert.vault02.certificate }";
-            #   filename = "/var/lib/nginx/vault02-leaf-cert.pem";
-            # };
+            vault02-leaf-cert = {
+              content = "\${ vault_pki_secret_backend_cert.vault02.certificate }";
+              filename = "/var/lib/nginx/vault02-leaf-cert.pem";
+            };
 
-            # vault02-private-key = {
-            #   content = "\${ vault_pki_secret_backend_cert.vault02.private_key }";
-            #   filename = "/var/lib/nginx/vault02-private-key.pem";
-            # };
+            vault02-private-key = {
+              content = "\${ vault_pki_secret_backend_cert.vault02.private_key }";
+              filename = "/var/lib/nginx/vault02-private-key.pem";
+            };
           };
         };
       }
@@ -95,25 +95,25 @@ in {
       };
     };
 
-    # vault-pki-post-setup = {
-    #   wantedBy = ["multi-user.target"];
-    #   after = ["vault-config-provisioner.service"];
-    #   partOf = ["vault-config-provisioner.service"];
-    #   onSuccess = ["nginx.service"];
-    #   path = [
-    #     pkgs.coreutils
-    #   ];
-    #   serviceConfig.ExecStart = toString (pkgs.writers.writeBash "vault-pki-post-setup" ''
-    #     chown nginx:nginx /var/lib/nginx
-    #
-    #     chown nginx:nginx \
-    #       /var/lib/nginx/vault02-private-key.pem \
-    #       /var/lib/nginx/vault02-leaf-cert.pem \
-    #
-    #     chmod 700 \
-    #       /var/lib/nginx/vault02-private-key.pem \
-    #       /var/lib/nginx/vault02-leaf-cert.pem \
-    #   '');
-    # };
+    vault-pki-post-setup = {
+      wantedBy = ["multi-user.target"];
+      after = ["vault-config-provisioner.service"];
+      partOf = ["vault-config-provisioner.service"];
+      onSuccess = ["nginx.service"];
+      path = [
+        pkgs.coreutils
+      ];
+      serviceConfig.ExecStart = toString (pkgs.writers.writeBash "vault-pki-post-setup" ''
+        chown nginx:nginx /var/lib/nginx
+
+        chown nginx:nginx \
+          /var/lib/nginx/vault02-private-key.pem \
+          /var/lib/nginx/vault02-leaf-cert.pem \
+
+        chmod 700 \
+          /var/lib/nginx/vault02-private-key.pem \
+          /var/lib/nginx/vault02-leaf-cert.pem \
+      '');
+    };
   };
 }
