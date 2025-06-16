@@ -100,6 +100,7 @@ in {
     nginx-fix-permissions = {
       wantedBy = ["nginx.service"];
       after = ["vault-config-provisioner.service"];
+      partOf = ["vault-config-provisioner.service"];
       path = [
         pkgs.coreutils
       ];
