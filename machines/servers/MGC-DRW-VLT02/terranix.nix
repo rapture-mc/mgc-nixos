@@ -93,7 +93,7 @@ in {
     };
 
     nginx-fix-permissions = {
-      before = ["nginx.service"];
+      requiredBy = ["nginx.service"];
       after = ["vault-config-provisioner.service"];
       path = [
         pkgs.coreutils
