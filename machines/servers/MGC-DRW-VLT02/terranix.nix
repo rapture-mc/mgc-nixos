@@ -98,8 +98,7 @@ in {
     };
 
     vault-pki-post-setup = {
-      wantedBy = ["nginx.service"];
-      after = ["vault-config-provisioner.service"];
+      after = ["vault-config-provisioner.service" "nginx.service"];
       partOf = ["vault-config-provisioner.service"];
       path = [
         pkgs.coreutils
