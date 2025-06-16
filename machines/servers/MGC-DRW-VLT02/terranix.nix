@@ -13,7 +13,7 @@
       {
         terraform.required_providers.vault.source = "hashicorp/vault";
 
-        provider.vault.address = "http://${vars.networking.hostsAddr.MGC-DRW-VLT02.eth.ipv4}:8200";
+        provider.vault.address = "http://vault02.${vars.networking.internalDomain}";
 
         resource = {
           vault_policy = import ./vault/policies.nix;
