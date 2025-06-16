@@ -31,7 +31,7 @@ nixpkgs.lib.nixosSystem {
       system.stateVersion = "24.11";
 
       services.nginx = {
-        enable = true;
+        enable = false;
         recommendedTlsSettings = true;
         recommendedProxySettings = true;
         virtualHosts."vault02.megacorp.industries" = {
@@ -74,7 +74,8 @@ nixpkgs.lib.nixosSystem {
             gui = true;
             logo = true;
             open-firewall = true;
-            address = "127.0.0.1";
+            # address = "127.0.0.1";
+            address = vars.networking.hostsAddr.MGC-DRW-VLT02.eth.ipv4;
           };
         };
 
