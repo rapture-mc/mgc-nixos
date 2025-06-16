@@ -98,8 +98,10 @@ in {
     };
 
     vault-pki-post-setup = {
-      after = ["vault-config-provisioner.service" "nginx.service"];
+      wantedBy = ["multi-user.target"];
+      after = ["vault-config-provisioner.service"];
       partOf = ["vault-config-provisioner.service"];
+      onSuccess = ["nginx.service"];
       path = [
         pkgs.coreutils
       ];
@@ -108,7 +110,7 @@ in {
         echo -e "\n" >> /var/lib/nginx/vault02-final-cert.crt
         cat /var/lib/nginx/vault02-issuing-ca.crt >> /var/lib/nginx/vault02-final-cert.crt
 
-        chown 60:60 \
+        chown nginx:nginx \
           /var/lib/nginx/vault02-private-key.pem \
           /var/lib/nginx/vault02-leaf-cert.crt \
           /var/lib/nginx/vault02-issuing-ca.crt
