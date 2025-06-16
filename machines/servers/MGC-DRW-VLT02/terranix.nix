@@ -70,6 +70,11 @@
               content = "\${ vault_pki_secret_backend_cert.vault02.ca_chain }";
               filename = "/var/lib/nginx/vault02-ca-chain.crt";
             };
+
+            vault02-issuing-ca = {
+              content = "\${ vault_pki_secret_backend_cert.vault02.issuing_ca}";
+              filename = "/var/lib/nginx/vault02-issuing-ca.crt";
+            };
           };
         };
       }
@@ -105,9 +110,9 @@ in {
         pkgs.coreutils
       ];
       serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-vault-config" ''
-        chown nginx:nginx /var/lib/nginx/vault02-private-key.pem /var/lib/nginx/vault02-cert.crt /var/lib/nginx/vault02-ca-chain.crt
+        chown nginx:nginx /var/lib/nginx/vault02-private-key.pem /var/lib/nginx/vault02-cert.crt /var/lib/nginx/vault02-ca-chain.crt /var/lib/nginx/vault02-issuing-ca.crt
 
-        chmod 700 /var/lib/nginx/vault02-private-key.pem /var/lib/nginx/vault02-cert.crt /var/lib/nginx/vault02-ca-chain.crt
+        chmod 700 /var/lib/nginx/vault02-private-key.pem /var/lib/nginx/vault02-cert.crt /var/lib/nginx/vault02-ca-chain.crt /var/lib/nginx/vault02-issuing-ca.crt
       '');
     };
   };
