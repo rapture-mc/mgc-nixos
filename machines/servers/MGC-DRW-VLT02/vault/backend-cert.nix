@@ -4,7 +4,8 @@
     backend = "\${ vault_pki_secret_backend_role.intermediate-role.backend }";
     name = "\${ vault_pki_secret_backend_role.intermediate-role.name }";
     common_name = "vault02.${vars.networking.internalDomain}";
-    ttl = 31536000;  # 1 year
+    ttl = 3600;
     revoke = true;
+    not_after = "2030-06-16T12:00:00Z";
   };
 }

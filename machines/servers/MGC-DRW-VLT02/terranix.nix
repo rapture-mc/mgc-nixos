@@ -108,11 +108,11 @@ in {
 
         chown nginx:nginx \
           /var/lib/nginx/vault02-private-key.pem \
-          /var/lib/nginx/vault02-leaf-cert.crt \
+          /var/lib/nginx/vault02-leaf-cert.pem \
 
         chmod 700 \
           /var/lib/nginx/vault02-private-key.pem \
-          /var/lib/nginx/vault02-leaf-cert.crt \
+          /var/lib/nginx/vault02-leaf-cert.pem \
       '');
     };
   };
