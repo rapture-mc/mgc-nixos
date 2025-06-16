@@ -34,7 +34,7 @@ nixpkgs.lib.nixosSystem {
         enable = true;
         recommendedTlsSettings = true;
         recommendedProxySettings = true;
-        virtualHosts."vault.megacorp.industries" = {
+        virtualHosts."vault02.megacorp.industries" = {
           forceSSL = true;
           sslCertificate = "/var/lib/nginx/vault02-cert.crt";
           sslCertificateKey = "/var/lib/nginx/vault02-private-key.pem";
