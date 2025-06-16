@@ -7,6 +7,7 @@
   MGC-DRW-RST01 = importMachineConfig "servers" "MGC-DRW-RST01";
   MGC-DRW-RVP01 = importMachineConfig "servers" "MGC-DRW-RVP01";
   MGC-DRW-VLT01 = importMachineConfig "servers" "MGC-DRW-VLT01";
+  MGC-DRW-VLT02 = importMachineConfig "servers" "MGC-DRW-VLT02";
 
   # Hypervisors
   MGC-DRW-HVS01 = importMachineConfig "hypervisors" "MGC-DRW-HVS01";
