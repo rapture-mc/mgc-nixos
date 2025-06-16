@@ -21,9 +21,9 @@ nixpkgs.lib.nixosSystem {
         (import ./terranix.nix {
           inherit terranix pkgs system vars;
         })
-        # (import ./secrets.nix {
-        #   inherit vars;
-        # })
+        (import ./secrets.nix {
+          inherit vars;
+        })
       ];
 
       networking.hostName = "MGC-DRW-VLT02";
