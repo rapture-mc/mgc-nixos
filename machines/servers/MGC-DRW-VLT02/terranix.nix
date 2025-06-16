@@ -71,23 +71,37 @@
     ];
   };
 in {
-  systemd.services.vault-config-provisioner = {
-    wantedBy = ["multi-user.target"];
-    after = ["network.target"];
-    path = [
-      pkgs.git
-      pkgs.getent
-      pkgs.coreutils
-    ];
-    serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-vault-config" ''
-      export VAULT_TOKEN=$(cat ${vault-root-token-path})
-      if [[ -e config.tf.json ]]; then
-        rm -f config.tf.json;
-      fi
+  systemd.services = {
+    vault-config-provisioner = {
+      wantedBy = ["multi-user.target"];
+      after = ["network.target"];
+      path = [
+        pkgs.git
+        pkgs.getent
+        pkgs.coreutils
+      ];
+      serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-vault-config" ''
+        export VAULT_TOKEN=$(cat ${vault-root-token-path})
+        if [[ -e config.tf.json ]]; then
+          rm -f config.tf.json;
+        fi
 
-      cp ${terraform-config} config.tf.json \
-        && ${pkgs.opentofu}/bin/tofu init \
-        && ${pkgs.opentofu}/bin/tofu apply -auto-approve
-    '');
+        cp ${terraform-config} config.tf.json \
+          && ${pkgs.opentofu}/bin/tofu init \
+          && ${pkgs.opentofu}/bin/tofu apply -auto-approve
+      '');
+    };
+
+    nginx-fix-permissions = {
+      before = ["nginx.service"];
+      after = ["vault-config-provisioner.service"];
+      path = [
+        pkgs.coreutils
+      ];
+      serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-vault-config" ''
+        chown nginx:nginx /var/lib/nginx/vault02-private-key.pem /var/lib/nginx/vault02-cert.crt
+        chmod 700 /var/lib/nginx/vault02-private-key.pem /var/lib/nginx/vault02-cert.crt
+      '');
+    };
   };
 }
