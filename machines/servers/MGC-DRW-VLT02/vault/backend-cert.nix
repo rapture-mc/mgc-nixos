@@ -5,6 +5,6 @@
     name = "\${ vault_pki_secret_backend_role.intermediate-role.name }";
     common_name = "vault02.${vars.networking.internalDomain}";
     revoke = true;
-    not_after = "2030-06-16T12:00:00Z";
+    ttl = 7776000;
   };
 }
