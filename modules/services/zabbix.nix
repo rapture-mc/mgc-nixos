@@ -44,7 +44,7 @@ in {
 
   config = mkIf (cfg.server.enable || cfg.agent.enable) {
     networking.firewall.allowedTCPPorts = (
-      if !cfg.server.reverse-proxied
+      if (!cfg.server.reverse-proxied && cfg.server.enable)
       then [80 443]
       else []
     );
