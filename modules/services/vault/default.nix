@@ -79,7 +79,7 @@ in {
     ];
 
     networking.firewall.allowedTCPPortRanges = (
-      if cfg.firewall then [
+      if cfg.open-firewall then [
         80
       ] else []
     );
