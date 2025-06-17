@@ -21,9 +21,9 @@ in {
   };
 
   config = mkIf cfg.enable {
+    programs.ripgrep.enable = true;
     programs.nixvim = {
       enable = true;
-      # defaultEditor = true;
       viAlias = true;
       vimAlias = true;
       colorschemes.catppuccin.enable = true;
