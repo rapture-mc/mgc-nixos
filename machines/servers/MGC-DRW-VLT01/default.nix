@@ -48,7 +48,10 @@ nixpkgs.lib.nixosSystem {
         config = {
           bootloader.enable = true;
 
-          desktop.enable = true;
+          desktop = {
+            xrdp = true;
+            enable = true;
+          };
 
           networking.static-ip = {
             enable = true;
