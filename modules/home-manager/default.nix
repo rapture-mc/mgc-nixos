@@ -4,8 +4,6 @@
     ./programs/btop.nix
     ./programs/kitty.nix
     ./programs/nushell.nix
-    ./programs/ranger.nix
-    ./programs/ripgrep.nix
     ./programs/rofi.nix
     ./programs/tmux.nix
     ./programs/zsh.nix
