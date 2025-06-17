@@ -21,7 +21,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.ripgrep.enable = true;
     programs.nixvim = {
       enable = true;
       viAlias = true;
