@@ -69,11 +69,6 @@ nixpkgs.lib.nixosSystem {
         };
 
         services = {
-          comin = {
-            enable = true;
-            repo = "https://github.com/rapture-mc/mgc-nixos";
-          };
-
           vault = {
             enable = true;
             logo = true;

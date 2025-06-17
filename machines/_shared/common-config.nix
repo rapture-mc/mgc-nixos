@@ -18,6 +18,11 @@
         enable = true;
         node-exporter.enable = true;
       };
+
+      comin = {
+        enable = true;
+        repo = "https://github.com/rapture-mc/mgc-nixos";
+      };
     };
   };
 
