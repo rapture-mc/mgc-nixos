@@ -48,6 +48,7 @@ nixpkgs.lib.nixosSystem {
 
       environment.systemPackages = with pkgs; [
         git
+        ripgrep
       ];
     }
   ];
