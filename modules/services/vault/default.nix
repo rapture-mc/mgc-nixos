@@ -2,6 +2,8 @@
   pkgs,
   lib,
   config,
+  terranix,
+  system,
   ...
 }: let
   cfg = config.megacorp.services.vault;
@@ -14,6 +16,12 @@
     mkIf
     ;
 in {
+  imports = [
+    (import ./pki {
+      inherit config lib pkgs terranix system;
+    })
+  ];
+
   options.megacorp.services.vault = {
     enable = mkEnableOption "Whether to enable Hashicorp Vault";
 
@@ -27,6 +35,12 @@ in {
       type = types.bool;
       default = true;
       description = "Whether to add the VAULT_ADDR environment variable automatically to zsh shell";
+    };
+
+    vault-token = mkOption {
+      type = types.str;
+      default = "/run/secrets/vault-root-token";
+      description = "The path to the file containing the vault token";
     };
 
     backend = mkOption {
@@ -66,11 +80,15 @@ in {
     assertions = [
       {
         assertion = !cfg.tls.enable || (cfg.tls.cert-private-key != null);
-        message = "If vault.tls.enable is true then vault.tls.cert-private-key must be set";
+        message = ''
+          If vault.tls.enable is true then vault.tls.cert-private-key must be set.
+        '';
       }
       {
         assertion = !cfg.tls.enable || (cfg.tls.cert-file != null);
-        message = "If vault.tls.enable is true then vault.tls.cert-file must be set";
+        message = ''
+          If vault.tls.enable is true then vault.tls.cert-file must be set.
+        '';
       }
     ];
 
