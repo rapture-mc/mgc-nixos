@@ -76,6 +76,13 @@ nixpkgs.lib.nixosSystem {
                 memory = "8192";
                 vcpu = 4;
               };
+
+              test-box = {
+                vm_hostname_prefix = "testbox";
+                memory = "4096";
+                vcpu = 2;
+              };
+
               terminal-servers = {
                 vm_hostname_prefix = "MGC-DRW-TMS";
                 os_img_url = "/var/lib/libvirt/images/packer-win2022.qcow2";
