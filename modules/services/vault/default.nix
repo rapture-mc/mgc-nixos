@@ -78,7 +78,7 @@ in {
       pkgs.vault
     ];
 
-    networking.firewall.allowedTCPPortRanges = (
+    networking.firewall.allowedTCPPorts = (
       if cfg.open-firewall then [
         80
       ] else []
