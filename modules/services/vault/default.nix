@@ -42,11 +42,21 @@ in {
     address = mkOption {
       type = types.str;
       default = "127.0.0.1";
-      description = "What IP address vault will listen on";
+      description = "What address vault will listen on";
     };
   };
 
   config = mkIf cfg.enable {
+    services.nginx = {
+      enable = true;
+      recommendedProxySettings = true;
+      virtualHosts."${cfg.address}" = {
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:8200";
+        };
+      };
+    };
+
     services.vault = {
       enable = true;
       package =
@@ -54,7 +64,7 @@ in {
         then pkgs.vault-bin
         else pkgs.vault;
       storageBackend = cfg.backend;
-      address = "${cfg.address}:8200";
+      address = "127.0.0.1:8200";
       extraConfig = ''
         ${
           if cfg.gui
@@ -64,17 +74,13 @@ in {
       '';
     };
 
+    networking.firewall.allowedTCPPorts = [
+      80
+    ];
+
     environment.systemPackages = [
       pkgs.vault
     ];
-
-    networking.firewall.allowedTCPPorts = (
-      if cfg.open-firewall
-      then [
-        8200
-      ]
-      else []
-    );
 
     home-manager.users.${config.megacorp.config.users.admin-user} = _: {
       programs.zsh.sessionVariables.VAULT_ADDR = "http://${cfg.address}:8200";
