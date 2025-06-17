@@ -71,7 +71,7 @@ nixpkgs.lib.nixosSystem {
         services = {
           vault = {
             enable = true;
-            ui = true;
+            gui = true;
             logo = true;
           };
         };
