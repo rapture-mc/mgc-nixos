@@ -44,14 +44,45 @@ in {
       default = "127.0.0.1";
       description = "What address vault will listen on";
     };
+
+    tls = {
+      enable = mkEnableOption "Whether to enable TLS on vault instance";
+
+      cert-private-key = mkOption {
+        type = types.str;
+        default = null;
+        description = "Path to the TLS certificate private key file";
+      };
+
+      cert-file = mkOption {
+        type = types.str;
+        default = null;
+        description = "Path to the TLS certificate file";
+      };
+    };
   };
 
   config = mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = !cfg.tls.enable || (cfg.tls.cert-private-key != null);
+        message = "If vault.tls.enable is true then vault.tls.cert-private-key must be set";
+      }
+      {
+        assertion = !cfg.tls.enable || (cfg.tls.cert-cert-file != null);
+        message = "If vault.tls.enable is true then vault.tls.cert-file must be set";
+      }
+    ];
+
     services.nginx = {
       enable = true;
       recommendedProxySettings = true;
+      recommendedTlsSettings = if cfg.tls.enable then true else false;
       virtualHosts."${cfg.address}" = {
         locations."/" = {
+          forceSSL = if cfg.tls.enable then true else false;
+          sslCertificate = if cfg.tls.enable then cfg.tls.cert-file else null;
+          sslCertificateKey = if cfg.tls.enable then cfg.tls.cert-key-file else null;
           proxyPass = "http://127.0.0.1:8200";
         };
       };
