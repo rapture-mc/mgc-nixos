@@ -21,7 +21,7 @@ in {
 
     gui = mkEnableOption "Whether to enable Vault web GUI inteface";
 
-    open-firewall = mkEnableOption "Whether to open the firewall for the GUI";
+    open-firewall = mkEnableOption "Whether to open the firewall ports";
 
     zsh-address-env-variable = mkOption {
       type = types.bool;
@@ -73,10 +73,6 @@ in {
         }
       '';
     };
-
-    networking.firewall.allowedTCPPorts = [
-      80
-    ];
 
     environment.systemPackages = [
       pkgs.vault
