@@ -40,7 +40,7 @@
     })
     ./services/wireguard-server.nix
     ./services/wireguard-client.nix
-    ./services/zabbix.nix
+    # ./services/zabbix.nix
     (import ./virtualisation/aws {
       inherit config lib pkgs terranix system;
     })
