@@ -79,10 +79,10 @@ in {
       recommendedProxySettings = true;
       recommendedTlsSettings = if cfg.tls.enable then true else false;
       virtualHosts."${cfg.address}" = {
+        forceSSL = if cfg.tls.enable then true else false;
+        sslCertificate = if cfg.tls.enable then cfg.tls.cert-file else null;
+        sslCertificateKey = if cfg.tls.enable then cfg.tls.cert-key-file else null;
         locations."/" = {
-          forceSSL = if cfg.tls.enable then true else false;
-          sslCertificate = if cfg.tls.enable then cfg.tls.cert-file else null;
-          sslCertificateKey = if cfg.tls.enable then cfg.tls.cert-key-file else null;
           proxyPass = "http://127.0.0.1:8200";
         };
       };
@@ -112,6 +112,10 @@ in {
     networking.firewall.allowedTCPPorts = (
       if cfg.open-firewall then [
         80
+      ] else []
+    ) ++ (
+      if (cfg.open-firewall && cfg.tls.enable) then [
+        443
       ] else []
     );
 
