@@ -36,7 +36,7 @@
     ./services/semaphore
     ./services/syncthing
     (import ./services/vault {
-      inherit config lib pkgs;
+      inherit config lib pkgs terranix system;
     })
     ./services/wireguard-server.nix
     ./services/wireguard-client.nix
