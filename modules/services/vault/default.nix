@@ -78,8 +78,14 @@ in {
       pkgs.vault
     ];
 
+    networking.firewall.allowedTCPPortRanges = (
+      if cfg.firewall then [
+        80
+      ] else []
+    );
+
     home-manager.users.${config.megacorp.config.users.admin-user} = _: {
-      programs.zsh.sessionVariables.VAULT_ADDR = "http://${cfg.address}:8200";
+      programs.zsh.sessionVariables.VAULT_ADDR = "http://${cfg.address}";
     };
   };
 }
