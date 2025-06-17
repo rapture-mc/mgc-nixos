@@ -73,6 +73,7 @@ nixpkgs.lib.nixosSystem {
             enable = true;
             gui = true;
             logo = true;
+            open-firewall = true;
           };
         };
 
