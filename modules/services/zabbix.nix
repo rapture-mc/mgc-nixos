@@ -42,12 +42,13 @@ in {
     };
   };
 
-  config = {
-    networking.firewall.allowedTCPPorts =
-      [
+  config = mkIf (cfg.server.enable || cfg.agent.enable) {
+    networking.firewall.allowedTCPPorts = (
+      if cfg.server.enable
+      then [
         80
-      ]
-      ++ (
+      ] else []
+      ) ++ (
         if !cfg.server.reverse-proxied
         then [443]
         else []
