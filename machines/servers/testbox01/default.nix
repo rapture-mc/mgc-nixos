@@ -1,10 +1,12 @@
 {
   nixpkgs,
   pkgs,
+  self,
   ...
 }:
 nixpkgs.lib.nixosSystem {
   modules = [
+    self.nixosModules.default
     {
       imports = [
         ../../_shared/qemu-hardware-config.nix
