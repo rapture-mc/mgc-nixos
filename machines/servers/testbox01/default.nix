@@ -28,7 +28,13 @@ nixpkgs.lib.nixosSystem {
         "flakes"
       ];
 
-      megacorp.programs.nixvim.enable = true;
+      megacorp = {
+        config.users = {
+          enable = true;
+          admin-user = "megaman";
+        };
+        programs.nixvim.enable = true;
+      };
 
       services.openssh.enable = true;
 
