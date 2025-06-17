@@ -49,13 +49,13 @@ in {
       enable = mkEnableOption "Whether to enable TLS on vault instance";
 
       cert-private-key = mkOption {
-        type = types.str;
+        type = types.nullOr types.str;
         default = null;
         description = "Path to the TLS certificate private key file";
       };
 
       cert-file = mkOption {
-        type = types.str;
+        type = types.nullOr types.str;
         default = null;
         description = "Path to the TLS certificate file";
       };
@@ -69,7 +69,7 @@ in {
         message = "If vault.tls.enable is true then vault.tls.cert-private-key must be set";
       }
       {
-        assertion = !cfg.tls.enable || (cfg.tls.cert-cert-file != null);
+        assertion = !cfg.tls.enable || (cfg.tls.cert-file != null);
         message = "If vault.tls.enable is true then vault.tls.cert-file must be set";
       }
     ];
