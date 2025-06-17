@@ -42,16 +42,12 @@ in {
     };
   };
 
-  config = {
-    networking.firewall.allowedTCPPorts =
-      [
-        80
-      ]
-      ++ (
-        if !cfg.server.reverse-proxied
-        then [443]
-        else []
-      );
+  config = mkIf (cfg.server.enable || cfg.agent.enable) {
+    networking.firewall.allowedTCPPorts = (
+      if (!cfg.server.reverse-proxied && cfg.server.enable)
+      then [80 443]
+      else []
+    );
 
     security.acme = mkIf (!cfg.server.reverse-proxied) {
       acceptTerms = true;
