@@ -67,7 +67,11 @@ in {
   };
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [80 443];
+    networking.firewall.allowedTCPPorts = (
+      if !cfg.reverse-proxied
+      then [80 443]
+      else []
+    );
 
     security.acme = mkIf (!cfg.reverse-proxied) {
       acceptTerms = true;
