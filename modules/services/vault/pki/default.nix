@@ -16,6 +16,21 @@
     mkIf
     ;
 
+  extra-cert-attributes = {
+    issuer_ref = "\${ vault_pki_secret_backend_issuer.root-2025.issuer_ref }";
+    backend = "\${ vault_pki_secret_backend_role.intermediate-role.backend }";
+    name = "\${ vault_pki_secret_backend_role.intermediate-role.name }";
+    revoke = true;
+    ttl = 7776000;
+  };
+
+  transformed-cert-config = lib.mapAttrs (name: value:
+    if lib.isAttrs value then
+      value // extra-cert-attributes
+    else
+      value
+  ) cfg.pki.certs;
+
   terraform-config = terranix.lib.terranixConfiguration {
     inherit system;
     modules = [
@@ -52,6 +67,9 @@
             inherit config;
           });
 
+          # Certificates
+          vault_pki_secret_backend_cert = transformed-cert-config;
+
           local_file = {
             root-cert = {
               content = "\${ vault_pki_secret_backend_root_cert.root-cert.certificate }";
@@ -81,6 +99,22 @@ in {
       type = types.str;
       default = "megacorp.industries";
       description = "The domains that this CA is allowed to issue certificates for";
+    };
+
+    certs = mkOption {
+      type = types.attrsOf (
+        types.submodule (
+          {...}: {
+            options = {
+              common_name = mkOption {
+                type = types.str;
+                default = "";
+                description = "Common name of the server (e.g. website.example.com)"
+              };
+            };
+          }
+        )
+      );
     };
   };
 
