@@ -18,31 +18,14 @@ nixpkgs.lib.nixosSystem {
         (import ../../_shared/common-config.nix {
           inherit vars;
         })
-        # (import ./terranix.nix {
-        #   inherit terranix pkgs system vars;
-        # })
-        # (import ./secrets.nix {
-        #   inherit vars;
-        # })
+        (import ./secrets.nix {
+          inherit vars;
+        })
       ];
 
       networking.hostName = "MGC-DRW-VLT01";
 
       system.stateVersion = "24.11";
-
-      # services.nginx = {
-      #   enable = true;
-      #   recommendedTlsSettings = true;
-      #   recommendedProxySettings = true;
-      #   virtualHosts."vault.megacorp.industries" = {
-      #     forceSSL = true;
-      #     sslCertificate = "/var/lib/nginx/vault-megacorp-industries.pem";
-      #     sslCertificateKey = "/var/lib/nginx/private-key.pem";
-      #     locations."/" = {
-      #       proxyPass = "http://127.0.0.1:8200";
-      #     };
-      #   };
-      # };
 
       megacorp = {
         config = {
@@ -74,6 +57,12 @@ nixpkgs.lib.nixosSystem {
             gui = true;
             logo = true;
             open-firewall = true;
+            pki = {
+              enable = true;
+              certs = {
+                mgc-drw-vlt01 = {};
+              };
+            };
           };
         };
 
