@@ -32,7 +32,7 @@
   ) cfg.pki.certs;
 
   local-leaf-cert-files = lib.mapAttrs (name: value: {
-    filename = "/var/lib/vault/${name}.crt";
+    filename = "${cfg.pki.certs.output-dir}/${name}.crt";
     content = "\${ vault_pki_secret_backend_cert.${name}.certificate }";
   }) cfg.pki.certs;
 
@@ -115,6 +115,14 @@ in {
                 type = types.str;
                 default = "";
                 description = "Common name of the server (e.g. website.example.com)";
+              };
+
+              output-dir = mkOption {
+                type = types.str;
+                default = "/var/lib/vault";
+                description = ''
+                  Directory to output the certificate to.
+                '';
               };
             };
           }
