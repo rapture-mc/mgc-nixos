@@ -17,7 +17,7 @@
     ;
 
   extra-cert-attributes = {
-    issuer_ref = "\${ vault_pki_secret_backend_issuer.root-2025.issuer_ref }";
+    issuer_ref = "\${ vault_pki_secret_backend_issuer.root-issuer.issuer_ref }";
     backend = "\${ vault_pki_secret_backend_role.intermediate-role.backend }";
     name = "\${ vault_pki_secret_backend_role.intermediate-role.name }";
     revoke = true;
