@@ -32,8 +32,13 @@
   ) cfg.pki.certs;
 
   local-leaf-cert-files = lib.mapAttrs (name: value: {
-    filename = "${cfg.pki.certs.output-dir}/${name}.crt";
+    filename = "${cfg.pki.certs.cert-output-dir}/${name}.crt";
     content = "\${ vault_pki_secret_backend_cert.${name}.certificate }";
+  }) cfg.pki.certs;
+
+  private-key-files = lib.mapAttrs (name: value: {
+    filename = "${cfg.pki.certs.cert-output-dir}/${name}.pem";
+    content = "\${ vault_pki_secret_backend_cert.${name}.private_key }";
   }) cfg.pki.certs;
 
   terraform-config = terranix.lib.terranixConfiguration {
@@ -85,7 +90,7 @@
               content = "\${ vault_pki_secret_backend_root_sign_intermediate.intermediate.certificate }";
               filename = "/var/lib/vault/intermediate-cert.crt";
             };
-          } // local-leaf-cert-files;
+          } // local-leaf-cert-files // private-key-files;
         };
       }
     ];
@@ -117,11 +122,23 @@ in {
                 description = "Common name of the server (e.g. website.example.com)";
               };
 
-              output-dir = mkOption {
+              cert-output-dir = mkOption {
                 type = types.str;
                 default = "/var/lib/vault";
                 description = ''
                   Directory to output the certificate to.
+
+                  Ensure that the value doesn't have a training "/"!
+                '';
+              };
+
+              key-output-dir = mkOption {
+                type = types.str;
+                default = "/var/lib/vault";
+                description = ''
+                  Directory to output the private key to.
+
+                  Ensure that the value doesn't have a training "/"!
                 '';
               };
             };
