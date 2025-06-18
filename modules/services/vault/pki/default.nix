@@ -109,7 +109,7 @@ in {
               common_name = mkOption {
                 type = types.str;
                 default = "";
-                description = "Common name of the server (e.g. website.example.com)"
+                description = "Common name of the server (e.g. website.example.com)";
               };
             };
           }
