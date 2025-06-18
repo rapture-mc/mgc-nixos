@@ -31,6 +31,11 @@
       value
   ) cfg.pki.certs;
 
+  local-leaf-cert-files = lib.mapAttrs (name: value: {
+    filename = "/var/lib/vault/${name}.crt";
+    content = "\${ vault_pki_secret_backend_cert.${name}.certificate }";
+  }) cfg.pki.certs;
+
   terraform-config = terranix.lib.terranixConfiguration {
     inherit system;
     modules = [
@@ -80,7 +85,7 @@
               content = "\${ vault_pki_secret_backend_root_sign_intermediate.intermediate.certificate }";
               filename = "/var/lib/vault/intermediate-cert.crt";
             };
-          };
+          } // local-leaf-cert-files;
         };
       }
     ];
