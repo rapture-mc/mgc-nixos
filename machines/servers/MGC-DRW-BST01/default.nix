@@ -11,7 +11,7 @@ nixpkgs.lib.nixosSystem {
     sops-nix.nixosModules.sops
     {
       imports = [
-          ../../_shared/qemu-hardware-config.nix
+        ../../_shared/qemu-hardware-config.nix
         (import ../../_shared/common-config.nix {
           inherit vars;
         })

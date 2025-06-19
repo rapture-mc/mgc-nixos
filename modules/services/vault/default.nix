@@ -95,11 +95,23 @@ in {
     services.nginx = {
       enable = true;
       recommendedProxySettings = true;
-      recommendedTlsSettings = if cfg.tls.enable then true else false;
+      recommendedTlsSettings =
+        if cfg.tls.enable
+        then true
+        else false;
       virtualHosts."${cfg.address}" = {
-        forceSSL = if cfg.tls.enable then true else false;
-        sslCertificate = if cfg.tls.enable then cfg.tls.cert-file else null;
-        sslCertificateKey = if cfg.tls.enable then cfg.tls.cert-key-file else null;
+        forceSSL =
+          if cfg.tls.enable
+          then true
+          else false;
+        sslCertificate =
+          if cfg.tls.enable
+          then cfg.tls.cert-file
+          else null;
+        sslCertificateKey =
+          if cfg.tls.enable
+          then cfg.tls.cert-key-file
+          else null;
         locations."/" = {
           proxyPass = "http://127.0.0.1:8200";
         };
@@ -127,15 +139,21 @@ in {
       pkgs.vault
     ];
 
-    networking.firewall.allowedTCPPorts = (
-      if cfg.open-firewall then [
-        80
-      ] else []
-    ) ++ (
-      if (cfg.open-firewall && cfg.tls.enable) then [
-        443
-      ] else []
-    );
+    networking.firewall.allowedTCPPorts =
+      (
+        if cfg.open-firewall
+        then [
+          80
+        ]
+        else []
+      )
+      ++ (
+        if (cfg.open-firewall && cfg.tls.enable)
+        then [
+          443
+        ]
+        else []
+      );
 
     home-manager.users.${config.megacorp.config.users.admin-user} = _: {
       programs.zsh.sessionVariables.VAULT_ADDR = "http://${cfg.address}";

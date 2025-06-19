@@ -18,12 +18,14 @@
 
   terraform-module.source = "git::https://github.com/rapture-mc/terraform-libvirt-module.git?ref=40acff807a0ffb1c0da741774c37ebeda90730b7";
 
-  transformed-terraform-config = lib.mapAttrs (name: value:
-    if lib.isAttrs value then
-      value // terraform-module.source
-    else
-      value
-  ) cfg.machines;
+  transformed-terraform-config =
+    lib.mapAttrs (
+      name: value:
+        if lib.isAttrs value
+        then value // terraform-module.source
+        else value
+    )
+    cfg.machines;
 
   terraform-config = terranix.lib.terranixConfiguration {
     inherit system;
