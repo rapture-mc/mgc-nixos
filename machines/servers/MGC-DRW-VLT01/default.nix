@@ -61,6 +61,11 @@ nixpkgs.lib.nixosSystem {
                   common_name = "mgc-drw-vlt01.megacorp.industries";
                   ttl = 86400;
                 };
+
+                mgc-drw-vlt02 = {
+                  common_name = "mgc-drw-vlt02.megacorp.industries";
+                  ttl = 86400;
+                };
               };
             };
           };
