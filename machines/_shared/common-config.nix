@@ -30,6 +30,7 @@
     ''
       MGC-DRW-VLT01 Intermediate Certificate
       ======================================
+      -----BEGIN CERTIFICATE-----
       MIIDpTCCAo2gAwIBAgIUC3/40dOwRqPy++GgIzDRXVb7xIowDQYJKoZIhvcNAQEL
       BQAwHjEcMBoGA1UEAxMTTWVnYWNvcnAgSW5kdXN0cmllczAeFw0yNTA2MTcxNDEz
       MDdaFw0yNTEyMTMxODEzMzdaMC4xLDAqBgNVBAMTI01lZ2Fjb3JwIEluZHVzdHJp
@@ -50,6 +51,7 @@
       LGc28QmksbZRJ0sJhDDjdSJGp0Y34VgskG4ueP+nllGXgSNxOeW+Txe061PYEj0N
       tL4P1hL0tVlrtPucAtV+yurirteJWJBsBl5nqLlwy0niuY8EMK4POsLzUQMwkBK2
       0q1Cv60mxBZRZg+w00Af/xuJgpfeW2iM9g==
+      -----END CERTIFICATE-----
 
       MGC-DRW-VLT01 Root Certificate
       ==============================
