@@ -70,6 +70,9 @@ nixpkgs.lib.nixosSystem {
                 mgc-drw-dmc01 = {
                   common_name = "mgc-drw-dmc01.${vars.networking.internalDomain}";
                 };
+                mgc-drw-bst01 = {
+                  common_name = "mgc-drw-bst01.${vars.networking.internalDomain}";
+                };
               };
             };
           };
