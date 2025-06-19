@@ -162,7 +162,8 @@ in {
     };
 
     certs = mkOption {
-      type = types.nullOr types.attrsOf (
+      default = {};
+      type = types.attrsOf (
         types.submodule (
           {...}: {
             options = {
@@ -175,7 +176,6 @@ in {
           }
         )
       );
-      default = null;
     };
   };
 
