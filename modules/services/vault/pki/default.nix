@@ -197,8 +197,10 @@ in {
 
         ${
           if cfg.pki.certs != {}
-          then "chmod 600 -R ${cfg.pki.cert-output-dir} && chown vault:vault -R ${cfg.pki.cert-output-dir}"
-          else ""
+          then "echo Setting permissions on leaf cert directory... \\
+            && chmod 600 -R ${cfg.pki.cert-output-dir} \\
+            && chown vault:vault -R ${cfg.pki.cert-output-dir}"
+          else "echo Nothing else to do..."
         }
       '');
     };
