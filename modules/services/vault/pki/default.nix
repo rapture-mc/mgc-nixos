@@ -17,6 +17,7 @@
     ;
 
   # Define ewxtra attributes to append to cfg.pki.certs.<name>
+  # We define these here instead of the cfg.pki.certs.<name> option definition because they never change
   extra-cert-attributes = {
     issuer_ref = "\${ vault_pki_secret_backend_issuer.root-issuer.issuer_ref }";
     backend = "\${ vault_pki_secret_backend_role.intermediate-role.backend }";
@@ -25,7 +26,7 @@
     ttl = 7776000;
   };
 
-  # Append above attributes to the cfg.pki.certs definition
+  # Append above attributes to the cfg.pki.certs.<name> definitions
   modified-cert-attributes = lib.mapAttrs (name: value:
     if lib.isAttrs value then
       value // extra-cert-attributes
@@ -161,7 +162,7 @@ in {
     };
 
     certs = mkOption {
-      type = types.attrsOf (
+      type = types.nullOr types.attrsOf (
         types.submodule (
           {...}: {
             options = {
@@ -174,6 +175,7 @@ in {
           }
         )
       );
+      default = null;
     };
   };
 
