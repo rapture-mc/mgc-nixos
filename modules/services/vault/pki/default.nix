@@ -148,7 +148,7 @@ in {
 
     cert-output-dir = mkOption {
       type = types.str;
-      default = "/var/lib/vault/leaf-certs";
+      default = "/var/lib/vault/generated-certs";
       description = ''
         Directory to output the certificates and private key to.
 
