@@ -2,9 +2,6 @@
   nixpkgs,
   self,
   vars,
-  terranix,
-  pkgs,
-  system,
   sops-nix,
   ...
 }:
@@ -59,9 +56,6 @@ nixpkgs.lib.nixosSystem {
             open-firewall = true;
             pki = {
               enable = true;
-              certs = {
-                mgc-drw-vlt01.common_name = "mgc-drw-vlt01.megacorp.industries";
-              };
             };
           };
         };
