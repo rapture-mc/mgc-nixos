@@ -143,7 +143,7 @@ in {
 
     cert-output-dir = mkOption {
       type = types.str;
-      default = "/var/lib/vault";
+      default = "/var/lib/vault/leaf-certs";
       description = ''
         Directory to output the certificates to.
 
@@ -153,7 +153,7 @@ in {
 
     key-output-dir = mkOption {
       type = types.str;
-      default = "/var/lib/vault";
+      default = "/var/lib/vault/leaf-certs";
       description = ''
         Directory to output the private keys to.
 
