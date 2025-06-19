@@ -54,6 +54,7 @@ nixpkgs.lib.nixosSystem {
             gui = true;
             logo = true;
             open-firewall = true;
+            address = "mgc-drw-vlt01.megacorp.industries";
             tls = {
               enable = true;
               cert-file = "/var/lib/vault/generated-certs/mgc-drw-vlt01.crt";
