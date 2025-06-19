@@ -16,8 +16,8 @@
   intermediate-role = {
     backend = "\${ vault_mount.pki_int.path }";
     name = "intermediate-role";
-    ttl = 86400;
-    max_ttl = 2592000;
+    ttl = 15552000;
+    max_ttl = 15552000;
     allow_ip_sans = true;
     key_type = "rsa";
     key_bits = 4096;
