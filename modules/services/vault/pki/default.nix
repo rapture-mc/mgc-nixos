@@ -45,7 +45,7 @@
       {
         name = "${name}-key";
         value = {
-          filename = "/var/lib/vault/${name}.pem";
+          filename = "${cfg.pki.key-output-dir}/${name}.pem";
           content = "\${ vault_pki_secret_backend_cert.${name}.private_key }";
         };
       }
@@ -53,7 +53,7 @@
       {
         name = "${name}-cert";
         value = {
-          filename = "/var/lib/vault/${name}.crt";
+          filename = "${cfg.pki.cert-output-dir}/${name}.crt";
           content = "\${ vault_pki_secret_backend_cert.${name}.certificate }";
         };
       }
@@ -112,12 +112,12 @@
           local_file = {
             root-cert = {
               content = "\${ vault_pki_secret_backend_root_cert.root-cert.certificate }";
-              filename = "/var/lib/vault/root-cert.crt";
+              filename = "${cfg.pki.cert-output-dir}/root-cert.crt";
             };
 
             intermediate-cert = {
               content = "\${ vault_pki_secret_backend_root_sign_intermediate.intermediate.certificate }";
-              filename = "/var/lib/vault/intermediate-cert.crt";
+              filename = "${cfg.pki.cert-output-dir}/intermediate-cert.crt";
             };
           } // generatedFilesAttrSet;  # Generate local key/cert files for each cfg.pki.certs definition as well as root-cert and intermediate-cert
         };
@@ -140,6 +140,26 @@ in {
       description = "The domains that this CA is allowed to issue certificates for";
     };
 
+    cert-output-dir = mkOption {
+      type = types.str;
+      default = "/var/lib/vault";
+      description = ''
+        Directory to output the certificates to.
+
+        Ensure that the value doesn't have a training "/"!
+      '';
+    };
+
+    key-output-dir = mkOption {
+      type = types.str;
+      default = "/var/lib/vault";
+      description = ''
+        Directory to output the private keys to.
+
+        Ensure that the value doesn't have a training "/"!
+      '';
+    };
+
     certs = mkOption {
       type = types.attrsOf (
         types.submodule (
@@ -149,26 +169,6 @@ in {
                 type = types.str;
                 default = "";
                 description = "Common name of the server (e.g. website.example.com)";
-              };
-
-              cert-output-dir = mkOption {
-                type = types.str;
-                default = "/var/lib/vault";
-                description = ''
-                  Directory to output the certificate to.
-
-                  Ensure that the value doesn't have a training "/"!
-                '';
-              };
-
-              key-output-dir = mkOption {
-                type = types.str;
-                default = "/var/lib/vault";
-                description = ''
-                  Directory to output the private key to.
-
-                  Ensure that the value doesn't have a training "/"!
-                '';
               };
             };
           }
