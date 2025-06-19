@@ -72,7 +72,7 @@ nixpkgs.lib.nixosSystem {
             machines = {
               vault-servers = {
                 vm_hostname_prefix = "MGC-DRW-VLT";
-                vm_count = 2;
+                vm_count = 1;
                 memory = "8192";
                 vcpu = 4;
               };
@@ -80,6 +80,8 @@ nixpkgs.lib.nixosSystem {
               test-box = {
                 vm_hostname_prefix = "testbox";
                 memory = "4096";
+                running = false;
+                autostart = false;
                 vcpu = 2;
               };
 
@@ -90,6 +92,12 @@ nixpkgs.lib.nixosSystem {
                 vcpu = 3;
                 autostart = false;
                 running = false;
+              };
+
+              bookstack-servers = {
+                vm_hostname_prefix = "MGC-DRW-BKS";
+                memory = "4096";
+                vcpu = 2;
               };
             };
           };
