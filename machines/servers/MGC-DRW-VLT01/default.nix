@@ -57,8 +57,8 @@ nixpkgs.lib.nixosSystem {
             address = "mgc-drw-vlt01.megacorp.industries";
             tls = {
               enable = true;
-              cert-file = "/var/lib/vault/generated-certs/mgc-drw-vlt01.crt";
-              cert-private-key = "/var/lib/vault/generated-certs/mgc-drw-vlt01.pem";
+              cert-file = "/var/lib/nginx/mgc-drw-vlt01.crt";
+              cert-private-key = "/var/lib/nginx/mgc-drw-vlt01.pem";
             };
             pki = {
               enable = true;
@@ -66,7 +66,6 @@ nixpkgs.lib.nixosSystem {
                 mgc-drw-vlt01 = {
                   common_name = "mgc-drw-vlt01.${vars.networking.internalDomain}";
                 };
-
                 mgc-drw-vlt02 = {
                   common_name = "mgc-drw-vlt02.${vars.networking.internalDomain}";
                 };
