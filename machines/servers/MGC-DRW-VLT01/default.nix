@@ -58,13 +58,17 @@ nixpkgs.lib.nixosSystem {
               enable = true;
               certs = {
                 mgc-drw-vlt01 = {
-                  common_name = "mgc-drw-vlt01.megacorp.industries";
-                  ttl = 86400;
+                  common_name = "mgc-drw-vlt01.${vars.networking.internalDomain}";
                 };
 
                 mgc-drw-vlt02 = {
-                  common_name = "mgc-drw-vlt02.megacorp.industries";
-                  ttl = 86400;
+                  common_name = "mgc-drw-vlt02.${vars.networking.internalDomain}";
+                };
+                mgc-drw-frw01 = {
+                  common_name = "mgc-drw-drw01.${vars.networking.internalDomain}";
+                };
+                mgc-drw-dmc01 = {
+                  common_name = "mgc-drw-dmc01.${vars.networking.internalDomain}";
                 };
               };
             };
