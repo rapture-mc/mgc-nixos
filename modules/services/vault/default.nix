@@ -110,7 +110,7 @@ in {
           else null;
         sslCertificateKey =
           if cfg.tls.enable
-          then cfg.tls.cert-key-file
+          then cfg.tls.cert-private-key
           else null;
         locations."/" = {
           proxyPass = "http://127.0.0.1:8200";
