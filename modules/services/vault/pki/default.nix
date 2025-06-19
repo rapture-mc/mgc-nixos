@@ -16,6 +16,7 @@
     mkIf
     ;
 
+  # Define ewxtra attributes to append to cfg.pki.certs.<name>
   extra-cert-attributes = {
     issuer_ref = "\${ vault_pki_secret_backend_issuer.root-issuer.issuer_ref }";
     backend = "\${ vault_pki_secret_backend_role.intermediate-role.backend }";
@@ -24,22 +25,50 @@
     ttl = 7776000;
   };
 
-  transformed-cert-config = lib.mapAttrs (name: value:
+  # Append above attributes to the cfg.pki.certs definition
+  modified-cert-attributes = lib.mapAttrs (name: value:
     if lib.isAttrs value then
       value // extra-cert-attributes
     else
       value
   ) cfg.pki.certs;
 
-  local-leaf-cert-files = lib.mapAttrs (name: value: {
-    filename = "${cfg.pki.certs.cert-output-dir}/${name}.crt";
-    content = "\${ vault_pki_secret_backend_cert.${name}.certificate }";
-  }) cfg.pki.certs;
+  # This function now needs to return a LIST of attribute sets,
+  # each suitable for listToAttrs.
+  # So, it generates a list like:
+  # [
+  #   { name = "mgc-drw-vlt01-key"; value = { filename = "..."; content = "..."; }; }
+  #   { name = "mgc-drw-vlt01-cert"; value = { filename = "..."; content = "..."; }; }
+  # ]
+  generate-file-entries = name:
+    [
+      {
+        name = "${name}-key";
+        value = {
+          filename = "/var/lib/vault/${name}.pem";
+          content = "\${ vault_pki_secret_backend_cert.${name}.private_key }";
+        };
+      }
 
-  private-key-files = lib.mapAttrs (name: value: {
-    filename = "${cfg.pki.certs.cert-output-dir}/${name}.pem";
-    content = "\${ vault_pki_secret_backend_cert.${name}.private_key }";
-  }) cfg.pki.certs;
+      {
+        name = "${name}-cert";
+        value = {
+          filename = "/var/lib/vault/${name}.crt";
+          content = "\${ vault_pki_secret_backend_cert.${name}.certificate }";
+        };
+      }
+    ];
+
+  # 1. Map 'modified-cert-attributes' to a list of lists of file entries
+  listOfListsOfFileEntries = lib.mapAttrsToList (name: value:
+    generate-file-entries name
+  ) modified-cert-attributes;
+
+  # 2. Flatten the list of lists into a single list of file entries
+  flatListOfFileEntries = lib.flatten listOfListsOfFileEntries;
+
+  # 3. Convert the flat list of entries into a single attribute set
+  generatedFilesAttrSet = builtins.listToAttrs flatListOfFileEntries;
 
   terraform-config = terranix.lib.terranixConfiguration {
     inherit system;
@@ -78,7 +107,7 @@
           });
 
           # Certificates
-          vault_pki_secret_backend_cert = transformed-cert-config;
+          vault_pki_secret_backend_cert = modified-cert-attributes;
 
           local_file = {
             root-cert = {
@@ -90,7 +119,7 @@
               content = "\${ vault_pki_secret_backend_root_sign_intermediate.intermediate.certificate }";
               filename = "/var/lib/vault/intermediate-cert.crt";
             };
-          } // local-leaf-cert-files // private-key-files;
+          } // generatedFilesAttrSet;  # Generate local key/cert files for each cfg.pki.certs definition as well as root-cert and intermediate-cert
         };
       }
     ];
