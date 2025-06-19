@@ -60,7 +60,7 @@ nixpkgs.lib.nixosSystem {
             pki = {
               enable = true;
               certs = {
-                mgc-drw-vlt01 = {};
+                mgc-drw-vlt01.common_name = "mgc-drw-vlt01.megacorp.industries";
               };
             };
           };
