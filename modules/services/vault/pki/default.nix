@@ -23,7 +23,6 @@
     backend = "\${ vault_pki_secret_backend_role.intermediate-role.backend }";
     name = "\${ vault_pki_secret_backend_role.intermediate-role.name }";
     revoke = true;
-    ttl = 7776000;
   };
 
   # Append above attributes to the cfg.pki.certs.<name> definitions
@@ -167,6 +166,16 @@ in {
                 type = types.str;
                 default = "";
                 description = "Common name of the server (e.g. website.example.com)";
+              };
+
+              ttl = mkOption {
+                type = types.int;
+                default = 7776000;
+                description = ''
+                  TTL of certificates (when they expire)
+
+                  Default is 777600 (90 days)
+                '';
               };
             };
           }
