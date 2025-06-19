@@ -27,12 +27,14 @@
   };
 
   # Append above attributes to the cfg.pki.certs.<name> definitions
-  modified-cert-attributes = lib.mapAttrs (name: value:
-    if lib.isAttrs value then
-      value // extra-cert-attributes
-    else
-      value
-  ) cfg.pki.certs;
+  modified-cert-attributes =
+    lib.mapAttrs (
+      name: value:
+        if lib.isAttrs value
+        then value // extra-cert-attributes
+        else value
+    )
+    cfg.pki.certs;
 
   # This function now needs to return a LIST of attribute sets,
   # each suitable for listToAttrs.
@@ -41,29 +43,31 @@
   #   { name = "mgc-drw-vlt01-key"; value = { filename = "..."; content = "..."; }; }
   #   { name = "mgc-drw-vlt01-cert"; value = { filename = "..."; content = "..."; }; }
   # ]
-  generate-file-entries = name:
-    [
-      {
-        name = "${name}-key";
-        value = {
-          filename = "${cfg.pki.key-output-dir}/${name}.pem";
-          content = "\${ vault_pki_secret_backend_cert.${name}.private_key }";
-        };
-      }
+  generate-file-entries = name: [
+    {
+      name = "${name}-key";
+      value = {
+        filename = "${cfg.pki.cert-output-dir}/${name}.pem";
+        content = "\${ vault_pki_secret_backend_cert.${name}.private_key }";
+      };
+    }
 
-      {
-        name = "${name}-cert";
-        value = {
-          filename = "${cfg.pki.cert-output-dir}/${name}.crt";
-          content = "\${ vault_pki_secret_backend_cert.${name}.certificate }";
-        };
-      }
-    ];
+    {
+      name = "${name}-cert";
+      value = {
+        filename = "${cfg.pki.cert-output-dir}/${name}.crt";
+        content = "\${ vault_pki_secret_backend_cert.${name}.certificate }";
+      };
+    }
+  ];
 
   # 1. Map 'modified-cert-attributes' to a list of lists of file entries
-  listOfListsOfFileEntries = lib.mapAttrsToList (name: value:
-    generate-file-entries name
-  ) modified-cert-attributes;
+  listOfListsOfFileEntries =
+    lib.mapAttrsToList (
+      name: value:
+        generate-file-entries name
+    )
+    modified-cert-attributes;
 
   # 2. Flatten the list of lists into a single list of file entries
   flatListOfFileEntries = lib.flatten listOfListsOfFileEntries;
@@ -85,42 +89,44 @@
           vault_mount = import ./mounts.nix;
 
           # Root CA backend config
-          vault_pki_secret_backend_root_cert = (import ./root-cert.nix {
+          vault_pki_secret_backend_root_cert = import ./root-cert.nix {
             inherit config;
-          });
+          };
           vault_pki_secret_backend_issuer = import ./root-issuer.nix;
-          vault_pki_secret_backend_config_urls = (import ./config-urls.nix {
+          vault_pki_secret_backend_config_urls = import ./config-urls.nix {
             inherit config;
-          });
+          };
 
           # Intermediate CA backend config
-          vault_pki_secret_backend_intermediate_cert_request = (import ./csr-request.nix {
+          vault_pki_secret_backend_intermediate_cert_request = import ./csr-request.nix {
             inherit config;
-          });
-          vault_pki_secret_backend_root_sign_intermediate = (import ./root-sign-intermediate.nix {
+          };
+          vault_pki_secret_backend_root_sign_intermediate = import ./root-sign-intermediate.nix {
             inherit config;
-          });
+          };
           vault_pki_secret_backend_intermediate_set_signed = import ./intermediate-set-signed.nix;
 
           # PKI Roles
-          vault_pki_secret_backend_role = (import ./role.nix {
+          vault_pki_secret_backend_role = import ./role.nix {
             inherit config;
-          });
+          };
 
           # Certificates
           vault_pki_secret_backend_cert = modified-cert-attributes;
 
-          local_file = {
-            root-cert = {
-              content = "\${ vault_pki_secret_backend_root_cert.root-cert.certificate }";
-              filename = "${cfg.pki.cert-output-dir}/root-cert.crt";
-            };
+          local_file =
+            {
+              root-cert = {
+                content = "\${ vault_pki_secret_backend_root_cert.root-cert.certificate }";
+                filename = "${cfg.pki.cert-output-dir}/root-cert.crt";
+              };
 
-            intermediate-cert = {
-              content = "\${ vault_pki_secret_backend_root_sign_intermediate.intermediate.certificate }";
-              filename = "${cfg.pki.cert-output-dir}/intermediate-cert.crt";
-            };
-          } // generatedFilesAttrSet;  # Generate local key/cert files for each cfg.pki.certs definition as well as root-cert and intermediate-cert
+              intermediate-cert = {
+                content = "\${ vault_pki_secret_backend_root_sign_intermediate.intermediate.certificate }";
+                filename = "${cfg.pki.cert-output-dir}/intermediate-cert.crt";
+              };
+            }
+            // generatedFilesAttrSet; # Generate local key/cert files for each cfg.pki.certs definition as well as root-cert and intermediate-cert
         };
       }
     ];
@@ -145,17 +151,7 @@ in {
       type = types.str;
       default = "/var/lib/vault/leaf-certs";
       description = ''
-        Directory to output the certificates to.
-
-        Ensure that the value doesn't have a training "/"!
-      '';
-    };
-
-    key-output-dir = mkOption {
-      type = types.str;
-      default = "/var/lib/vault/leaf-certs";
-      description = ''
-        Directory to output the private keys to.
+        Directory to output the certificates and private key to.
 
         Ensure that the value doesn't have a training "/"!
       '';
@@ -198,8 +194,13 @@ in {
         cp ${terraform-config} config.tf.json \
           && ${pkgs.opentofu}/bin/tofu init \
           && ${pkgs.opentofu}/bin/tofu apply -auto-approve
+
+        ${
+          if cfg.pki.certs != {}
+          then "chmod 600 -R ${cfg.pki.cert-output-dir} && chown vault:vault -R ${cfg.pki.cert-output-dir}"
+          else ""
+        }
       '');
     };
-
   };
 }
