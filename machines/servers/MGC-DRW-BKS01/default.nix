@@ -15,13 +15,13 @@ nixpkgs.lib.nixosSystem {
         (import ../../_shared/common-config.nix {
           inherit vars;
         })
-        # (import ./secrets.nix {
-        #   inherit vars;
-        # })
+        (import ./secrets.nix {
+          inherit vars;
+        })
       ];
 
       services.bookstack = {
-        enable = false;
+        enable = true;
         appKeyFile = "/run/secrets/bookstack-keyfile";
         hostname = "mgc-drw-bks01.${vars.networking.internalDomain}";
         database.createLocally = true;
