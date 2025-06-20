@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   cfg = config.megacorp.services.bookstack;
@@ -63,6 +64,7 @@ in {
     services.bookstack = {
       enable = true;
       hostname = cfg.fqdn;
+      package = pkgs.bookstack;
       appKeyFile = cfg.app-key-file;
       database.createLocally = true;
       nginx = mkIf (!cfg.reverse-proxied) {

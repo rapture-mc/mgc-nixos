@@ -10,6 +10,8 @@
       rev = "88331c17ba434359491e8d5889cce872464052c2";
     };
 
+    nixpkgs2411 = "github:nixos/nixpkgs/nixos-24.11";
+
     terranix = {
       url = "github:terranix/terranix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,6 +65,7 @@
     arion,
     comin,
     plasma-manager,
+    nixpkgs2411,
     ...
   }: let
     # Define system architecture, make lib more accessible and apply overlays to pkgs variable
@@ -74,6 +77,9 @@
       overlays = [
         (import ./overlays/freerdp.nix)
         (import ./overlays/guacamole-server.nix)
+        (import ./overlays/bookstack.nix {
+          inherit nixpkgs2411;
+        })
       ];
     };
 
