@@ -20,6 +20,13 @@ nixpkgs.lib.nixosSystem {
         })
       ];
 
+      services.bookstack = {
+        enable = true;
+        appKeyFile = "/run/secrets/bookstack-keyfile";
+        hostname = "mgc-drw-bks01.${vars.networking.internalDomain}";
+        database.createLocally = true;
+      };
+
       networking.hostName = "MGC-DRW-BKS01";
 
       system.stateVersion = "24.05";
@@ -43,13 +50,13 @@ nixpkgs.lib.nixosSystem {
           };
         };
 
-        services = {
-          bookstack = {
-            enable = true;
-            logo = true;
-            fqdn = "mgc-drw-bks01.${vars.networking.internalDomain}";
-          };
-        };
+        # services = {
+        #   bookstack = {
+        #     enable = true;
+        #     logo = true;
+        #     fqdn = "mgc-drw-bks01.${vars.networking.internalDomain}";
+        #   };
+        # };
 
         virtualisation.libvirt.guest.enable = true;
       };
