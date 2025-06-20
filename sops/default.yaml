@@ -6,7 +6,7 @@ grub-admin-password: ENC[AES256_GCM,data:LYJEuFBhLzyetszAJjy1dZlKbGTkJoH65mRWScY
 keycloak-db-password: ENC[AES256_GCM,data:Jzo5BiONxh3mc8llXhOgZYR+jt1L,iv:8JhQfiOCMKDn+W0CTxn1Ce0ki/kbe+c6oe5+MOQ2WPM=,tag:4dS83mD735Ypjcafg+7Qpw==,type:str]
 olcRootPW: ENC[AES256_GCM,data:4tkgsmEL,iv:JzMSafmZva8fy7IUh0VtO4NoVMz+AJD3VgpiXdHT4po=,tag:LeMCdALNyIPLhzhHChs+Xw==,type:str]
 vault-root-token: ENC[AES256_GCM,data:yAjQzf7IlJ0I80CTBdKaplM6jNaDThUaxMWhAA==,iv:y3oRRhPHtibrtq5NpNQIawAqHs6CacxEtq5yHry4Cy0=,tag:3vrpuaMaoGSBFKaWeLHyeg==,type:str]
-vault-root-token-02: ENC[AES256_GCM,data:JvT9sP4Il4g7VtVfl3QN9yZWhT478QuJvaSFKg==,iv:XgPPFmrqHNyrXgiy+WXdWjsTgoEcD3db+scYn6C+qEw=,tag:/heDPuKA/F5bB45ooSXePQ==,type:str]
+bookstack-keyfile: ENC[AES256_GCM,data:BkK7jrmgIy7OUmrErrhqLHecJk13gTMTuzNvwNXcjJaQxzDbz0Stz6LRc6mCgzIgiWbz,iv:AMuco6K5/v9hP6yzWFS43GtMx3giGod7sQ/LF1bgdSs=,tag:239EuedaBBP0we96TWW64w==,type:str]
 sops:
     age:
         - recipient: age13ycsdrpwydpw89ae5tpmmwzwplgs2ne20k9ypyvknpz6faya7evquq4nmv
@@ -63,7 +63,7 @@ sops:
             WHB5RVlUcUEvUXd2M3crVDFwUnJ5RWsKCiqsJM6++MaDHmhfMXfrC0aPEFOeQZnH
             OjtFu1V97J9hhOr/lsOwbG7xiecGkih1MFKCzkYxShN4OqYLQun6ug==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-06-18T07:53:14Z"
-    mac: ENC[AES256_GCM,data:sq4kNJ4CiI//7hquB5tBZgsES6gyCAU3RgFMdbjIXnZXYvXrnqI/7NAqTvBESiQQD5nWVDSrywJ+yjEDqwJM0zaBVWYQTCCexuEYsiWRDkydW/f4IWbbSOMHOmNClOuyFvIIrdDkS1Mw5vpCHRtlu1G06ZkkK1JpZXgSPjP9YZY=,iv:Tq5Omnr/q2YCzIuq9erl3r6X86Ck41UN2q40+t/E4bQ=,tag:T3AvFGT72mxNmWMkhdVgww==,type:str]
+    lastmodified: "2025-06-20T00:04:49Z"
+    mac: ENC[AES256_GCM,data:tXSxQp9PBvNp0xVc6EAnFuIhKDVTtPXP9ShIcDBQ0DQjec2Txd7aqDi7AmqIWg4NW9AMMrCt8nCq3Z5APyrTWfzIq1x3FJ5DXhWHMlHs+Jdx1YRVqL+ixEvl8gM0p3JeL5Hgr01FXI0KvFo6riJAy9qL1ckV99+j2zkuzFYeUOA=,iv:zM2QDL/w1WxIi70UscSU07OLayWvNsJ+5d6lspmyi8s=,tag:hZQm6OQpFoYHesBVD//ICw==,type:str]
     unencrypted_suffix: _unencrypted
     version: 3.10.2
