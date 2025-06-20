@@ -17,7 +17,9 @@
     ./hardening/bootloader.nix
     ./programs/nixvim
     ./programs/pass
-    ./services/bookstack
+    (import ./services/bookstack {
+      inherit pkgs;
+    })
     ./services/comin
     ./services/dnsmasq.nix
     ./services/openldap
