@@ -56,7 +56,7 @@ nixpkgs.lib.nixosSystem {
             open-firewall = true;
             address = "mgc-drw-vlt01.megacorp.industries";
             tls = {
-              enable = true;
+              enable = false;
               cert-file = "/var/lib/nginx/mgc-drw-vlt01.crt";
               cert-private-key = "/var/lib/nginx/mgc-drw-vlt01.pem";
             };
@@ -67,6 +67,9 @@ nixpkgs.lib.nixosSystem {
                 mgc-drw-vlt01 = {
                   common_name = "mgc-drw-vlt01.${vars.networking.internalDomain}";
                 };
+                # bookstack = {
+                #   common_name = "bookstack.${vars.networking.internalDomain}";
+                # };
               };
             };
           };
