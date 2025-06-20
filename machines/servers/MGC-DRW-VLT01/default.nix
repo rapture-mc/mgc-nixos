@@ -56,7 +56,7 @@ nixpkgs.lib.nixosSystem {
             open-firewall = true;
             address = "mgc-drw-vlt01.megacorp.industries";
             tls = {
-              enable = false;
+              enable = true;
               cert-file = "/var/lib/nginx/mgc-drw-vlt01.crt";
               cert-private-key = "/var/lib/nginx/mgc-drw-vlt01.pem";
             };
