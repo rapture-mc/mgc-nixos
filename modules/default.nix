@@ -18,7 +18,7 @@
     ./programs/nixvim
     ./programs/pass
     (import ./services/bookstack {
-      inherit pkgs;
+      inherit config lib pkgs;
     })
     ./services/comin
     ./services/dnsmasq.nix
