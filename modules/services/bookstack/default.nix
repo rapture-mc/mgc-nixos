@@ -41,6 +41,18 @@ in {
       default = "/run/secrets/bookstack-keyfile";
       description = "The path to the file containing the app key secret";
     };
+
+    cert-private-key = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "Path to the TLS certificate private key file";
+    };
+
+    cert-file = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "Path to the TLS certificate file";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -70,6 +82,8 @@ in {
       nginx = mkIf (!cfg.reverse-proxied) {
         enableACME = true;
         forceSSL = true;
+        sslCertificate = if (cfg.tls.cert-file != null) then cfg.tls.cert-file else null;
+        sslCertificateKey = if (cfg.tls.cert-private-key != null) then cfg.tls.cert-private-key else null;
       };
     };
   };
