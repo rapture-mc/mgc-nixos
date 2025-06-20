@@ -44,6 +44,11 @@ nixpkgs.lib.nixosSystem {
         };
 
         services = {
+          bookstack = {
+            enable = true;
+            logo = true;
+            fqdn = "mgc-drw-bks01.${vars.networking.internalDomain}";
+          };
         };
 
         virtualisation.libvirt.guest.enable = true;
