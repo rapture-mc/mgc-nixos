@@ -17,9 +17,9 @@ in
           (import ../../_shared/common-config.nix {
             inherit vars;
           })
-          # (import ./secrets.nix {
-          #   inherit vars;
-          # })
+          (import ./secrets.nix {
+            inherit vars;
+          })
         ];
 
         networking.hostName = "MGC-DRW-DMC01";
@@ -66,11 +66,12 @@ in
                 ${vars.networking.hostsAddr.MGC-DRW-VLT01.eth.ipv4} MGC-DRW-VLT01
                 ${vars.networking.hostsAddr.MGC-DRW-BKS01.eth.ipv4} MGC-DRW-BKS01
                 192.168.1.99 MGC-DRW-FRW01
+                ${vars.networking.hostsAddr.MGC-DRW-BKS01.eth.ipv4} bookstack.${vars.networking.internalDomain}
               '';
             };
 
             openldap = {
-              enable = false;
+              enable = true;
               domain-component = domain-component;
               logo = true;
               extra-declarative-contents = ''
