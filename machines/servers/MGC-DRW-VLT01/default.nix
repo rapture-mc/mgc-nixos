@@ -64,9 +64,9 @@ nixpkgs.lib.nixosSystem {
             pki = {
               enable = true;
               certs = {
-                mgc-drw-vlt01 = {
-                  common_name = "mgc-drw-vlt01.${vars.networking.internalDomain}";
-                };
+                # mgc-drw-vlt01 = {
+                #   common_name = "mgc-drw-vlt01.${vars.networking.internalDomain}";
+                # };
                 # bookstack = {
                 #   common_name = "bookstack.${vars.networking.internalDomain}";
                 # };
