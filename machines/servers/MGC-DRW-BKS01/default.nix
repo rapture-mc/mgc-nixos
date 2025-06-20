@@ -21,7 +21,7 @@ nixpkgs.lib.nixosSystem {
       ];
 
       services.bookstack = {
-        enable = true;
+        enable = false;
         appKeyFile = "/run/secrets/bookstack-keyfile";
         hostname = "mgc-drw-bks01.${vars.networking.internalDomain}";
         database.createLocally = true;
