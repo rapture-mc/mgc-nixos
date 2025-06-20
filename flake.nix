@@ -7,10 +7,16 @@
       owner = "nixos";
       repo = "nixpkgs";
       ref = "nixos-25.05";
-      rev = "88331c17ba434359491e8d5889cce872464052c2";
+      rev = "88331c17ba434359491e8d5889cce872464052c2"; # 2025-06-20
     };
 
-    nixpkgs2411 = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs24-11 = {
+      type = "github";
+      owner = "nixos";
+      repo = "nixpkgs";
+      ref = "nixos-24.11";
+      rev = "c5d77df613e70b94eededdc43d89827067baeb14"; # 2025-06-20
+    };
 
     terranix = {
       url = "github:terranix/terranix";
@@ -65,7 +71,7 @@
     arion,
     comin,
     plasma-manager,
-    nixpkgs2411,
+    nixpkgs24-11,
     ...
   }: let
     # Define system architecture, make lib more accessible and apply overlays to pkgs variable
@@ -78,7 +84,7 @@
         (import ./overlays/freerdp.nix)
         (import ./overlays/guacamole-server.nix)
         (import ./overlays/bookstack.nix {
-          inherit nixpkgs2411;
+          inherit nixpkgs24-11;
         })
       ];
     };
