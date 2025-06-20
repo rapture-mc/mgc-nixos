@@ -94,11 +94,11 @@ nixpkgs.lib.nixosSystem {
                 running = false;
               };
 
-              # bookstack-servers = {
-              #   vm_hostname_prefix = "MGC-DRW-BKS";
-              #   memory = "4096";
-              #   vcpu = 2;
-              # };
+              bookstack-servers = {
+                vm_hostname_prefix = "MGC-DRW-BKS";
+                memory = "4096";
+                vcpu = 2;
+              };
             };
           };
         };
