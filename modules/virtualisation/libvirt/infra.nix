@@ -22,7 +22,7 @@
     lib.mapAttrs (
       name: value:
         if lib.isAttrs value
-        then value // terraform-module.source
+        then value // terraform-module
         else value
     )
     cfg.machines;
