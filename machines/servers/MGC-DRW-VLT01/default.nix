@@ -70,6 +70,9 @@ nixpkgs.lib.nixosSystem {
                 bookstack = {
                   common_name = "bookstack.${vars.networking.internalDomain}";
                 };
+                mgc-drw-fbr01 = {
+                  common_name = "mgc-drw-fbr01.${vars.networking.internalDomain}";
+                };
               };
             };
           };
