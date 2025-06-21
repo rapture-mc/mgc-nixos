@@ -38,7 +38,7 @@ in {
         forceSSL = true;
         enableACME = true;
         locations."/" = {
-          proxyPass = "http://${cfg.ipv4}:3001";
+          proxyPass = "http://${cfg.ipv4}:80";
         };
       };
     };
