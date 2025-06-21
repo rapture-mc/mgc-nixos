@@ -79,6 +79,12 @@ nixpkgs.lib.nixosSystem {
                 mgc-drw-git01 = {
                   common_name = "mgc-drw-git01.${vars.networking.internalDomain}";
                 };
+                grafana = {
+                  common_name = "grafana.${vars.networking.internalDomain}";
+                };
+                zabbix = {
+                  common_name = "zabbix.${vars.networking.internalDomain}";
+                };
               };
             };
           };
