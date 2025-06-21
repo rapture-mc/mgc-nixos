@@ -35,9 +35,34 @@
     echo "Running nh os switch..."
     nh os switch . -H $1
   '';
+
+  fixNginxCertDirPermissions = pkgs.writeShellScriptBin "fixNginxCertDirPermissions" ''
+    if [ "$(id -u)" -ne 0 ]; then
+      echo "Error: This command must be run with sudo... Exiting!"
+      exit 1
+    else
+      echo "Ensuring /var/lib/nginx directory exists"
+      mkdir -p /var/lib/nginx
+
+      echo "Modifying owner permissions on /var/lib/nginx directory"
+      sudo chown nginx:nginx /var/lib/nginx
+
+      echo "Modifying owner permissions on files in /var/lib/nginx directory"
+      sudo chown nginx:nginx /var/lib/nginx/*
+
+      echo "Setting permissions on /var/lib/nginx directory"
+      sudo chmod 755 /var/lib/nginx
+
+      echo "Setting permissions on files in /var/lib/nginx directory"
+      sudo chmod 600 /var/lib/nginx/*
+
+      echo -e "Done!\n"
+    fi
+  '';
 in {
   environment.systemPackages = [
     generateAgeKey
     firstTimeSetup
+    fixNginxCertDirPermissions
   ];
 }
