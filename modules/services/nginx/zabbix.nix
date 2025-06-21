@@ -39,8 +39,12 @@ in {
         enableACME = true;
         locations = {
           "/" = {
-            proxyPass = "http://${cfg.ipv4}:80";
+            proxyPass = "http://${cfg.ipv4}:10051";
           };
+          "~ \\.php$".extraConfig = ''
+            fastcgi_pass  unix:${config.services.phpfpm.pools.zabbix.socket};
+            fastcgi_index index.php;
+          '';
         };
       };
     };
