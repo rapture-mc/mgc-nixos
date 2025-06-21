@@ -68,6 +68,12 @@ nixpkgs.lib.nixosSystem {
               ipv4 = vars.networking.hostsAddr.MGC-DRW-SEM01.eth.ipv4;
               fqdn = vars.semaphoreFQDN;
             };
+
+            gitea = {
+              enable = true;
+              ipv4 = vars.networking.hostsAddr.MGC-DRW-GIT01.eth.ipv4;
+              fqdn = vars.giteaFQDN;
+            };
           };
         };
 
