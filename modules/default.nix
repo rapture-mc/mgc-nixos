@@ -23,7 +23,7 @@
     ./services/comin
     ./services/dnsmasq.nix
     ./services/openldap
-    ./services/file-browser.nix
+    ./services/file-browser
     ./services/gitea.nix
     ./services/gitea-runner.nix
     ./services/grafana.nix
