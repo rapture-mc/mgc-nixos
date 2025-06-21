@@ -39,10 +39,10 @@ in {
         enableACME = true;
         locations = {
           "/" = {
-            proxyPass = "http://${cfg.ipv4}:3000";
+            proxyPass = "http://${cfg.ipv4}:${toString config.megacorp.services.semaphore.port}";
           };
           "/api/ws" = {
-            proxyPass = "http://${cfg.ipv4}:3000/api/ws";
+            proxyPass = "http://${cfg.ipv4}:${toString config.megacorp.services.semaphore.port}/api/ws";
             proxyWebsockets = true;
           };
         };
