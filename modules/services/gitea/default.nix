@@ -12,13 +12,41 @@
     mkIf
     types
     ;
+
+  use-acme-cert =
+    if cfg.tls.cert-key == null || cfg.tls.cert-file == null
+    then true
+    else false;
 in {
+  imports = [
+    (mkIf cfg.tls.enable (import ../../_shared/nginx/tls-config.nix {
+      inherit cfg lib use-acme-cert;
+    }))
+  ];
+
   options.megacorp.services.gitea = {
     enable = mkEnableOption "Enable Gitea";
 
     logo = mkEnableOption "Whether to show Gitea logo on shell startup";
 
-    reverse-proxied = mkEnableOption "Whether Gitea is served behind a reverse proxy";
+    disable-registration = mkEnableOption ''
+      Disable the account registration option on the main homepage
+    '';
+
+    fqdn = mkOption {
+      type = types.str;
+      default = "localhost";
+      description = ''
+        The fqdn of your gitea instance.
+        NOTE: Don't include "https://" (this is prepended to the value)
+      '';
+    };
+
+    port = mkOption {
+      type = types.int;
+      default = 3001;
+      description = "The port number for file-browser to listen on";
+    };
 
     backups = {
       enable = mkEnableOption "Whether to enable Gitea backup dumps";
@@ -33,56 +61,27 @@ in {
       };
     };
 
-    disable-registration = mkEnableOption ''
-      Disable the account registration option on the main homepage
-    '';
-
-    tls-email = mkOption {
-      type = types.str;
-      default = "someone@somedomain.com";
-      description = ''
-        The email to use for automatic SSL certificates
-        This email will also get SSL certificate renewal email notifications
-      '';
-    };
-
-    fqdn = mkOption {
-      type = types.str;
-      default = "localhost";
-      description = ''
-        The fqdn of your gitea instance.
-        NOTE: Don't include "https://" (this is prepended to the value)
-      '';
+    tls = import ../../_shared/nginx/tls-options.nix {
+      inherit lib;
     };
   };
 
   config = mkIf cfg.enable {
     users.groups.gitea.members = ["${config.megacorp.config.users.admin-user}"];
 
-    networking.firewall.allowedTCPPorts =
-      [
-        3001
-      ]
-      ++ (
-        if !cfg.reverse-proxied
-        then [80 443]
-        else []
-      );
-
-    security.acme = mkIf (!cfg.reverse-proxied) {
-      acceptTerms = true;
-      defaults.email = "${cfg.tls-email}";
-    };
+    networking.firewall.allowedTCPPorts = [
+      80
+    ];
 
     services = {
-      # Reads as if not reversed proxied, enable nginx (default), otherwise dont enable nginx
-      nginx = mkIf (!cfg.reverse-proxied) {
+      nginx = {
         enable = true;
+        recommendedProxySettings = true;
         virtualHosts."${cfg.fqdn}" = {
-          forceSSL = true;
-          enableACME = true;
-          locations."/" = {
-            proxyPass = "http://localhost:3001/";
+          locations = {
+            "/" = {
+              proxyPass = "http://127.0.0.1:${toString cfg.port}";
+            };
           };
         };
       };
@@ -97,12 +96,11 @@ in {
         database = {
           type = "postgres";
         };
-
         settings = {
           server = {
             DOMAIN = "${cfg.fqdn}";
-            ROOT_URL = "https://${cfg.fqdn}/";
-            HTTP_PORT = 3001;
+            ROOT_URL = "http://${cfg.fqdn}/";
+            HTTP_PORT = cfg.port;
           };
           service = {
             DISABLE_REGISTRATION = cfg.disable-registration;
