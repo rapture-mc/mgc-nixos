@@ -41,10 +41,6 @@ in {
           "/" = {
             proxyPass = "http://${cfg.ipv4}:${toString config.megacorp.services.zabbix.server.port}";
           };
-          "~ \\.php$".extraConfig = ''
-            fastcgi_pass  unix:${config.services.phpfpm.pools.zabbix.socket};
-            fastcgi_index index.php;
-          '';
         };
       };
     };
