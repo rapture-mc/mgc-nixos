@@ -46,8 +46,12 @@ nixpkgs.lib.nixosSystem {
 
           file-browser = {
             enable = true;
-            reverse-proxied = true;
-            fqdn = "file-browser.megacorp.industries";
+            fqdn = vars.file-browserFQDN;
+            tls = {
+              enable = false;
+              cert-file = "/var/lib/nginx/mgc-drw-fbr01.crt";
+              cert-key = "/var/lib/nginx/mgc-drw-fbr01.pem";
+            };
           };
         };
 
