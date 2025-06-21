@@ -15,9 +15,9 @@ nixpkgs.lib.nixosSystem {
         (import ../../_shared/common-config.nix {
           inherit vars;
         })
-        # (import ./secrets.nix {
-        #   inherit vars;
-        # })
+        (import ./secrets.nix {
+          inherit vars;
+        })
       ];
 
       networking.hostName = "MGC-DRW-SEM01";
@@ -41,6 +41,11 @@ nixpkgs.lib.nixosSystem {
             enable = true;
             authorized-ssh-keys = vars.keys.bastionPubKey;
           };
+        };
+
+        services.semaphore = {
+          enable = true;
+          fqdn = vars.networking.hostsAddr.MGC-DRW-SEM01.eth.ipv4;
         };
 
         virtualisation.libvirt.guest.enable = true;
