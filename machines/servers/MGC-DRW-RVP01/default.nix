@@ -74,6 +74,18 @@ nixpkgs.lib.nixosSystem {
               ipv4 = vars.networking.hostsAddr.MGC-DRW-GIT01.eth.ipv4;
               fqdn = vars.giteaFQDN;
             };
+
+            grafana = {
+              enable = true;
+              ipv4 = vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4;
+              fqdn = vars.grafanaFQDN;
+            };
+
+            zabbix = {
+              enable = true;
+              ipv4 = vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4;
+              fqdn = vars.zabbixFQDN;
+            };
           };
         };
 
