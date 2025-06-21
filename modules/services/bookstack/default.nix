@@ -15,8 +15,13 @@
     ;
 
   use-acme-cert = if cfg.tls.cert-key == null || cfg.tls.cert-file == null then true else false;
-
 in {
+  imports = [
+    (mkIf cfg.tls.enable (import ../../_shared/nginx/tls-config.nix {
+      inherit cfg lib use-acme-cert;
+    }))
+  ];
+
   options.megacorp.services.bookstack = {
     enable = mkEnableOption "Enable bookstack";
 
@@ -34,28 +39,15 @@ in {
       description = "The path to the file containing the app key secret";
     };
 
-    tls = import ../../_shared/nginx-tls.nix {
+    tls = import ../../_shared/nginx/tls-options.nix {
       inherit lib;
     };
   };
 
   config = mkIf cfg.enable {
-    systemd.services."acme-${cfg.fqdn}".serviceConfig = mkIf use-acme-cert {SuccessExitStatus = 10;};
-
-    networking.firewall.allowedTCPPorts =
-      [
-        80
-      ]
-      ++ (
-        if cfg.tls.enable
-        then [443]
-        else []
-      );
-
-    security.acme = mkIf use-acme-cert {
-      acceptTerms = true;
-      defaults.email = cfg.tls.email;
-    };
+    networking.firewall.allowedTCPPorts = [
+      80
+    ];
 
     services.bookstack = {
       enable = true;
