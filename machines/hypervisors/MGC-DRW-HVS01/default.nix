@@ -106,6 +106,14 @@ nixpkgs.lib.nixosSystem {
                 vm_hostname_prefix = "MGC-DRW-SEM";
                 memory = "4096";
                 vcpu = 2;
+                autostart = false;
+                running = false;
+              };
+
+              gitea-servers = {
+                vm_hostname_prefix = "MGC-DRW-GIT";
+                memory = "4096";
+                vcpu = 2;
               };
             };
           };
