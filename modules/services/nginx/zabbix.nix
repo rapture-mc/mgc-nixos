@@ -39,7 +39,7 @@ in {
         enableACME = true;
         locations = {
           "/" = {
-            proxyPass = "http://${cfg.ipv4}:10051";
+            proxyPass = "http://${cfg.ipv4}:${toString config.megacorp.services.zabbix.server.port}";
           };
           "~ \\.php$".extraConfig = ''
             fastcgi_pass  unix:${config.services.phpfpm.pools.zabbix.socket};
