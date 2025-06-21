@@ -1,8 +1,10 @@
 {lib}: let
-  inherit (lib)
+  inherit
+    (lib)
     mkEnableOption
     mkOption
-    types;
+    types
+    ;
 in {
   enable = mkEnableOption ''
     Whether to enable TLS.

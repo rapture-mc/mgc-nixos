@@ -14,7 +14,10 @@
     types
     ;
 
-  use-acme-cert = if cfg.tls.cert-key == null || cfg.tls.cert-file == null then true else false;
+  use-acme-cert =
+    if cfg.tls.cert-key == null || cfg.tls.cert-file == null
+    then true
+    else false;
 in {
   imports = [
     (mkIf cfg.tls.enable (import ../../_shared/nginx/tls-config.nix {
@@ -56,10 +59,19 @@ in {
       appKeyFile = cfg.app-key-file;
       database.createLocally = true;
       nginx = mkIf cfg.tls.enable {
-        enableACME = if use-acme-cert then true else false;
+        enableACME =
+          if use-acme-cert
+          then true
+          else false;
         forceSSL = true;
-        sslCertificate = if !use-acme-cert then cfg.tls.cert-file else null;
-        sslCertificateKey = if !use-acme-cert then cfg.tls.cert-key else null;
+        sslCertificate =
+          if !use-acme-cert
+          then cfg.tls.cert-file
+          else null;
+        sslCertificateKey =
+          if !use-acme-cert
+          then cfg.tls.cert-key
+          else null;
       };
     };
   };

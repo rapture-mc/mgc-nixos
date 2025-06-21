@@ -14,7 +14,10 @@
     types
     ;
 
-  use-acme-cert = if cfg.tls.cert-key == null || cfg.tls.cert-file == null then true else false;
+  use-acme-cert =
+    if cfg.tls.cert-key == null || cfg.tls.cert-file == null
+    then true
+    else false;
 in {
   imports = [
     (mkIf cfg.tls.enable (import ../../_shared/nginx/tls-config.nix {
