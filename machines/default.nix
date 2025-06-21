@@ -1,13 +1,14 @@
 {importMachineConfig, ...}: {
   # Servers
+  MGC-DRW-BKS01 = importMachineConfig "servers" "MGC-DRW-BKS01";
   MGC-DRW-BST01 = importMachineConfig "servers" "MGC-DRW-BST01";
   MGC-DRW-DGW01 = importMachineConfig "servers" "MGC-DRW-DGW01";
   MGC-DRW-DMC01 = importMachineConfig "servers" "MGC-DRW-DMC01";
   MGC-DRW-FBR01 = importMachineConfig "servers" "MGC-DRW-FBR01";
   MGC-DRW-RST01 = importMachineConfig "servers" "MGC-DRW-RST01";
   MGC-DRW-RVP01 = importMachineConfig "servers" "MGC-DRW-RVP01";
+  MGC-DRW-SEM01 = importMachineConfig "servers" "MGC-DRW-SEM01";
   MGC-DRW-VLT01 = importMachineConfig "servers" "MGC-DRW-VLT01";
-  MGC-DRW-BKS01 = importMachineConfig "servers" "MGC-DRW-BKS01";
   testbox01 = importMachineConfig "servers" "testbox01";
 
   # Hypervisors
