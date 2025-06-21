@@ -26,7 +26,7 @@
     ./services/file-browser
     ./services/gitea
     ./services/grafana
-    ./services/guacamole.nix
+    ./services/guacamole
     ./services/jenkins.nix
     ./services/k3s.nix
     ./services/netbox.nix
