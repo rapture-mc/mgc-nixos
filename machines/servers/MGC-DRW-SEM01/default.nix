@@ -45,7 +45,12 @@ nixpkgs.lib.nixosSystem {
 
         services.semaphore = {
           enable = true;
-          fqdn = vars.networking.hostsAddr.MGC-DRW-SEM01.eth.ipv4;
+          fqdn = vars.semaphoreFQDN;
+          tls = {
+            enable = false;
+            cert-file = "/var/lib/nginx/mgc-drw-sem01.crt";
+            cert-key = "/var/lib/nginx/mgc-drw-sem01.pem";
+          };
         };
 
         virtualisation.libvirt.guest.enable = true;

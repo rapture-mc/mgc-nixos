@@ -13,20 +13,20 @@
     mkIf
     types
     ;
+
+  use-acme-cert =
+    if cfg.tls.cert-key == null || cfg.tls.cert-file == null
+    then true
+    else false;
 in {
+  imports = [
+    (mkIf cfg.tls.enable (import ../../_shared/nginx/tls-config.nix {
+      inherit cfg lib use-acme-cert;
+    }))
+  ];
+
   options.megacorp.services.semaphore = {
     enable = mkEnableOption "Enable Semaphore";
-
-    reverse-proxied = mkEnableOption "Whether Semaphore is served behind a reverse proxy";
-
-    tls-email = mkOption {
-      type = types.str;
-      default = "someone@somedomain.com";
-      description = ''
-        The email to use for automatic SSL certificates
-        This email will also get SSL certificate renewal email notifications
-      '';
-    };
 
     fqdn = mkOption {
       type = types.str;
@@ -35,6 +35,18 @@ in {
         The fqdn of your Semaphore instance.
         NOTE: Don't include "https://" (this is prepended to the value)
       '';
+    };
+
+    admin-email = mkOption {
+      type = types.str;
+      default = "someone@somedomain.com";
+      description = "The email of the admin user";
+    };
+
+    port = mkOption {
+      type = types.int;
+      default = 3000;
+      description = "The port number for file-browser to listen on";
     };
 
     kerberos = {
@@ -52,6 +64,10 @@ in {
         description = "The domain name (e.g. contoso.com) of the domain controller";
       };
     };
+
+    tls = import ../../_shared/nginx/tls-options.nix {
+      inherit lib;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -59,19 +75,24 @@ in {
 
     environment.systemPackages = [pkgs.lazydocker];
 
-    networking.firewall.allowedTCPPorts =
-      [
-        3000
-      ]
-      ++ (
-        if !cfg.reverse-proxied
-        then [80 443]
-        else []
-      );
+    # Note: Docker doesn't respect the NixOS firewall and will open port 8080 since we declared that in the compose file
+    networking.firewall.allowedTCPPorts = [
+      80
+    ];
 
-    security.acme = mkIf (!cfg.reverse-proxied) {
-      acceptTerms = true;
-      defaults.email = "${cfg.tls-email}";
+    services.nginx = {
+      enable = true;
+      virtualHosts."${cfg.fqdn}" = {
+        locations = {
+          "/" = {
+            proxyPass = "http://127.0.0.1:${toString cfg.port}";
+          };
+          "/api/ws" = {
+            proxyPass = "http://127.0.0.1:${toString cfg.port}/api/ws";
+            proxyWebsockets = true;
+          };
+        };
+      };
     };
 
     # See https://github.com/NixOS/nixpkgs/issues/95017
@@ -101,24 +122,6 @@ in {
             kdc = [
               "${cfg.kerberos.kdc}.${cfg.kerberos.domain}"
             ];
-          };
-        };
-      };
-    };
-
-    # Reads as if not reversed proxied, enable nginx (default), otherwise dont enable nginx
-    services.nginx = mkIf (!cfg.reverse-proxied) {
-      enable = true;
-      virtualHosts."${cfg.fqdn}" = {
-        forceSSL = true;
-        enableACME = true;
-        locations = {
-          "/" = {
-            proxyPass = "http://127.0.0.1:3000";
-          };
-          "/api/ws" = {
-            proxyPass = "http://127.0.0.1:3000/api/ws";
-            proxyWebsockets = true;
           };
         };
       };
@@ -158,7 +161,7 @@ in {
                   service = {
                     build.context = "${./docker}";
                     restart = "always";
-                    ports = ["3000:3000"];
+                    ports = ["${toString cfg.port}:3000"];
                     volumes = mkIf cfg.kerberos.enable [
                       "/etc/krb5.conf:/etc/krb5.conf"
                     ];
@@ -172,7 +175,7 @@ in {
                       SEMAPHORE_PLAYBOOK_PATH = "/tmp/semaphore/";
                       SEMAPHORE_ADMIN_NAME = "admin";
                       SEMAPHORE_ADMIN_PASSWORD = "changeme";
-                      SEMAPHORE_ADMIN_EMAIL = "${cfg.tls-email}";
+                      SEMAPHORE_ADMIN_EMAIL = "${cfg.admin-email}";
                       SEMAPHORE_ADMIN = "admin";
                       USE_REMOTE_RUNNER = "true";
                     };
