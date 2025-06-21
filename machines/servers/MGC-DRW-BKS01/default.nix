@@ -24,11 +24,6 @@ nixpkgs.lib.nixosSystem {
 
       system.stateVersion = "24.05";
 
-      services.nginx.virtualHosts."bookstack.${vars.networking.internalDomain}" = {
-        sslCertificate = "/var/lib/nginx/bookstack.crt";
-        sslCertificateKey = "/var/lib/nginx/bookstack.pem";
-      };
-
       megacorp = {
         config = {
           bootloader.enable = true;
