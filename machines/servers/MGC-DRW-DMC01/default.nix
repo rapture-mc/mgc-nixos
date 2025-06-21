@@ -67,6 +67,7 @@ in
                 ${vars.networking.hostsAddr.MGC-DRW-BKS01.eth.ipv4} MGC-DRW-BKS01
                 192.168.1.99 MGC-DRW-FRW01
                 ${vars.networking.hostsAddr.MGC-DRW-BKS01.eth.ipv4} bookstack.${vars.networking.internalDomain}
+                ${vars.networking.hostsAddr.MGC-DRW-FBR01.eth.ipv4} file-browser.${vars.networking.internalDomain}
               '';
             };
 
