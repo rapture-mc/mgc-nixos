@@ -25,7 +25,7 @@
     ./services/openldap
     ./services/file-browser
     ./services/gitea
-    ./services/grafana.nix
+    ./services/grafana
     ./services/guacamole.nix
     ./services/jenkins.nix
     ./services/k3s.nix
