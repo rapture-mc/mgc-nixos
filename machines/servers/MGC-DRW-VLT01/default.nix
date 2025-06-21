@@ -58,7 +58,7 @@ nixpkgs.lib.nixosSystem {
             tls = {
               enable = true;
               cert-file = "/var/lib/nginx/mgc-drw-vlt01.crt";
-              cert-private-key = "/var/lib/nginx/mgc-drw-vlt01.pem";
+              cert-key = "/var/lib/nginx/mgc-drw-vlt01.pem";
             };
 
             pki = {

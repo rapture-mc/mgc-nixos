@@ -62,7 +62,7 @@ in {
     tls = {
       enable = mkEnableOption "Whether to enable TLS on vault instance";
 
-      cert-private-key = mkOption {
+      cert-key = mkOption {
         type = types.nullOr types.str;
         default = null;
         description = "Path to the TLS certificate private key file";
@@ -79,9 +79,9 @@ in {
   config = mkIf cfg.enable {
     assertions = [
       {
-        assertion = !cfg.tls.enable || (cfg.tls.cert-private-key != null);
+        assertion = !cfg.tls.enable || (cfg.tls.cert-key != null);
         message = ''
-          If vault.tls.enable is true then vault.tls.cert-private-key must be set.
+          If vault.tls.enable is true then vault.tls.cert-key must be set.
         '';
       }
       {
@@ -110,7 +110,7 @@ in {
           else null;
         sslCertificateKey =
           if cfg.tls.enable
-          then cfg.tls.cert-private-key
+          then cfg.tls.cert-key
           else null;
         locations."/" = {
           proxyPass = "http://127.0.0.1:8200";

@@ -7,7 +7,7 @@ in {
   enable = mkEnableOption ''
     Whether to enable TLS.
 
-    If this option is set to true and tls.cert-private-key or tls.cert-file are null, a signed certifiacate will be requested using ACME. If the proper networking/DNS are not setup a self-signed certificate will be used instead.
+    If this option is set to true and tls.cert-key or tls.cert-file are null, a signed certifiacate will be requested using ACME. If the proper networking/DNS are not setup a self-signed certificate will be used instead.
   '';
 
   cert-key = mkOption {
