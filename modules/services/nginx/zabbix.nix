@@ -39,7 +39,7 @@ in {
         enableACME = true;
         locations = {
           "/" = {
-            proxyPass = "http://${cfg.ipv4}:10051";
+            proxyPass = "http://${cfg.ipv4}:80";
           };
         };
       };
