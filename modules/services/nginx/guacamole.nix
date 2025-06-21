@@ -42,7 +42,7 @@ in {
             return = "301 https://${cfg.fqdn}/guacamole";
           };
           "/guacamole/" = {
-            proxyPass = "http://${cfg.ipv4}:8080";
+            proxyPass = "http://${cfg.ipv4}:80";
             extraConfig = ''
               proxy_http_version 1.1;
               proxy_buffering off;
