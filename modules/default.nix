@@ -24,7 +24,7 @@
     ./services/dnsmasq.nix
     ./services/openldap
     ./services/file-browser
-    ./services/gitea.nix
+    ./services/gitea
     ./services/grafana.nix
     ./services/guacamole.nix
     ./services/jenkins.nix
