@@ -76,6 +76,9 @@ nixpkgs.lib.nixosSystem {
                 mgc-drw-sem01 = {
                   common_name = "mgc-drw-sem01.${vars.networking.internalDomain}";
                 };
+                mgc-drw-git01 = {
+                  common_name = "mgc-drw-git01.${vars.networking.internalDomain}";
+                };
               };
             };
           };
