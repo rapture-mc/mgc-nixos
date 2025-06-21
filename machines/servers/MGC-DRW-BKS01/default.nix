@@ -53,6 +53,11 @@ nixpkgs.lib.nixosSystem {
             enable = true;
             logo = true;
             fqdn = "bookstack.${vars.networking.internalDomain}";
+            tls = {
+              enable = true;
+              cert-file = "/var/lib/nginx/bookstack.crt";
+              cert-key = "/var/lib/nginx/bookstack.pem";
+            };
           };
         };
 
