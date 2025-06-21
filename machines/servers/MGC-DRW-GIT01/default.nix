@@ -41,6 +41,7 @@ nixpkgs.lib.nixosSystem {
         services = {
           gitea = {
             enable = true;
+            logo = true;
             fqdn = vars.networking.hostsAddr.MGC-DRW-GIT01.eth.ipv4;
           };
         };
