@@ -114,6 +114,14 @@ nixpkgs.lib.nixosSystem {
                 vm_hostname_prefix = "MGC-DRW-GIT";
                 memory = "4096";
                 vcpu = 2;
+                autostart = false;
+                running = false;
+              };
+
+              monitoring-servers = {
+                vm_hostname_prefix = "MGC-DRW-MON";
+                memory = "8192";
+                vcpu = 4;
               };
             };
           };
