@@ -37,11 +37,7 @@ in {
       nginx.virtualHosts."${cfg.fqdn}" = {
         forceSSL = true;
         enableACME = true;
-        locations = {
-          "/" = {
-            proxyPass = "http://${cfg.ipv4}:${toString config.megacorp.services.zabbix.server.port}";
-          };
-        };
+        locations."/".proxyPass = "http://${cfg.ipv4}:80";
       };
     };
   };
