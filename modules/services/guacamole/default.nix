@@ -101,17 +101,24 @@ in {
       80
     ];
 
-    environment.etc = {
-      "guacamole/lib/postgresql-${pgsqlVer}.jar".source = pgsqlDriverSrc;
+    environment = {
+      # Applying overlay ../../../overlays/freerdp.nix
+      systemPackages = [
+        pkgs.freerdp
+      ];
 
-      "guacamole/extensions/guacamole-auth-jdbc-postgresql-${guacVer}.jar".source = "${pgsqlExtension}/guacamole-auth-jdbc-postgresql-${guacVer}.jar";
+      etc = {
+        "guacamole/lib/postgresql-${pgsqlVer}.jar".source = pgsqlDriverSrc;
 
-      "guacamole/extensions/guacamole-auth-totp-${guacVer}.jar" = {
-        enable =
-          if cfg.mfa
-          then true
-          else false;
-        source = "${totpExtension}/guacamole-auth-totp-${guacVer}.jar";
+        "guacamole/extensions/guacamole-auth-jdbc-postgresql-${guacVer}.jar".source = "${pgsqlExtension}/guacamole-auth-jdbc-postgresql-${guacVer}.jar";
+
+        "guacamole/extensions/guacamole-auth-totp-${guacVer}.jar" = {
+          enable =
+            if cfg.mfa
+            then true
+            else false;
+          source = "${totpExtension}/guacamole-auth-totp-${guacVer}.jar";
+        };
       };
     };
 
@@ -180,6 +187,7 @@ in {
       guacamole-server = {
         enable = true;
         host = "127.0.0.1";
+        package = pkgs.guacamole-server; # Applying overlay ../../../overlays/guacamole-server.nix
       };
 
       guacamole-client = {

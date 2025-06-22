@@ -1,6 +1,5 @@
 {
   nixpkgs,
-  pkgs,
   vars,
   self,
   ...
@@ -19,12 +18,6 @@ nixpkgs.lib.nixosSystem {
       networking.hostName = "MGC-DRW-DGW01";
 
       system.stateVersion = "24.11";
-
-      # Applying overlays
-      services.guacamole-server.package = pkgs.guacamole-server;
-      environment.systemPackages = [
-        pkgs.freerdp
-      ];
 
       megacorp = {
         config = {
