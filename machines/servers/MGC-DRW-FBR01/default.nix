@@ -39,11 +39,6 @@ nixpkgs.lib.nixosSystem {
         };
 
         services = {
-          comin = {
-            enable = true;
-            repo = "https://github.com/rapture-mc/mgc-nixos";
-          };
-
           file-browser = {
             enable = true;
             fqdn = vars.file-browserFQDN;
