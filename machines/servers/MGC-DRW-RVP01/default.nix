@@ -86,6 +86,12 @@ nixpkgs.lib.nixosSystem {
               ipv4 = vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4;
               fqdn = vars.zabbixFQDN;
             };
+
+            netbox = {
+              enable = true;
+              ipv4 = vars.networking.hostsAddr.MGC-DRW-NBX01.eth.ipv4;
+              fqdn = vars.netboxFQDN;
+            };
           };
         };
 

@@ -19,6 +19,7 @@ in {
     ./guacamole.nix
     ./grafana.nix
     ./jenkins.nix
+    ./netbox.nix
     ./nextcloud.nix
     ./semaphore.nix
     ./zabbix.nix
