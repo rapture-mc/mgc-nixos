@@ -46,23 +46,10 @@ in {
       defaults.email = "${cfg.tls-email}";
     };
 
-    systemd.services."netbox-generate-key-file" = {
-      enable = false;
-      requiredBy = [
-        "netbox-housekeeping.service"
-      ];
-      serviceConfig = {
-        User = "netbox";
-      };
-      script = ''
-        ${pkgs.openssl}/bin/openssl rand -hex 50 > /var/lib/netbox/secret-key-file
-      '';
-    };
-
     services = {
       netbox = {
         enable = true;
-        secretKeyFile = "/run/secrets//netbox-key-file";
+        secretKeyFile = "/run/secrets/netbox-key-file";
         settings.ALLOWED_HOSTS = [
           "[::1]"
           "${cfg.fqdn}"
