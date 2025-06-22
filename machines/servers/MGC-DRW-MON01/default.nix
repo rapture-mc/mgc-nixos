@@ -55,7 +55,7 @@ nixpkgs.lib.nixosSystem {
               enable = true;
               fqdn = vars.zabbixFQDN;
               tls = {
-                enable = false;
+                enable = true;
                 cert-file = "/var/lib/nginx/zabbix.megacorp.industries.crt";
                 cert-key = "/var/lib/nginx/zabbix.megacorp.industries.pem";
               };
