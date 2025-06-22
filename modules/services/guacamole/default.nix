@@ -57,7 +57,18 @@
     mkIf
     types
     ;
+
+  use-acme-cert =
+    if cfg.tls.cert-key == null || cfg.tls.cert-file == null
+    then true
+    else false;
 in {
+  imports = [
+    (mkIf cfg.tls.enable (import ../../_shared/nginx/tls-config.nix {
+      inherit cfg lib use-acme-cert;
+    }))
+  ];
+
   options.megacorp.services.guacamole = {
     enable = mkEnableOption "Enable Guacamole";
 
@@ -65,15 +76,10 @@ in {
 
     mfa = mkEnableOption "Whether to enable MFA extension";
 
-    reverse-proxied = mkEnableOption "Whether Guacamole is served behind a reverse proxy";
-
-    tls-email = mkOption {
-      type = types.str;
-      default = "someone@somedomain.com";
-      description = ''
-        The email to use for automatic SSL certificates
-        This email will also get SSL certificate renewal email notifications
-      '';
+    port = mkOption {
+      type = types.int;
+      default = 8080;
+      description = "The port number for guacamole to listen on";
     };
 
     fqdn = mkOption {
@@ -84,23 +90,16 @@ in {
         NOTE: Don't include "https://" (this is prepended to the value)
       '';
     };
+
+    tls = import ../../_shared/nginx/tls-options.nix {
+      inherit lib;
+    };
   };
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts =
-      [
-        8080
-      ]
-      ++ (
-        if !cfg.reverse-proxied
-        then [80 443]
-        else []
-      );
-
-    security.acme = mkIf (!cfg.reverse-proxied) {
-      acceptTerms = true;
-      defaults.email = "${cfg.tls-email}";
-    };
+    networking.firewall.allowedTCPPorts = [
+      80
+    ];
 
     environment.etc = {
       "guacamole/lib/postgresql-${pgsqlVer}.jar".source = pgsqlDriverSrc;
@@ -139,26 +138,22 @@ in {
     };
 
     services = {
-      nginx = mkIf (!cfg.reverse-proxied) {
+      nginx = {
         enable = true;
-        virtualHosts."${cfg.fqdn}" = {
-          forceSSL = true;
-          enableACME = true;
-          locations = {
-            "/" = {
-              return = "301 https://${cfg.fqdn}/guacamole";
-            };
-            "/guacamole/" = {
-              proxyPass = "http://127.0.0.1:8080";
-              extraConfig = ''
-                proxy_http_version 1.1;
-                proxy_buffering off;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                proxy_set_header Upgrade $http_upgrade;
-                proxy_set_header Connection $http_connection;
-                access_log off;
-              '';
-            };
+        virtualHosts."${cfg.fqdn}".locations = {
+          "/" = {
+            return = "301 http://${cfg.fqdn}/guacamole";
+          };
+          "/guacamole/" = {
+            proxyPass = "http://127.0.0.1:${toString cfg.port}";
+            extraConfig = ''
+              proxy_http_version 1.1;
+              proxy_buffering off;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Connection $http_connection;
+              access_log off;
+            '';
           };
         };
       };

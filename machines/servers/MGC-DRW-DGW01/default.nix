@@ -54,7 +54,7 @@ nixpkgs.lib.nixosSystem {
           guacamole = {
             enable = true;
             logo = true;
-            reverse-proxied = true;
+            fqdn = vars.guacamoleFQDN;
           };
         };
 

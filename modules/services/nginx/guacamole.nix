@@ -39,7 +39,7 @@ in {
         enableACME = true;
         locations = {
           "/" = {
-            return = "301 https://${cfg.fqdn}/guacamole";
+            return = "301 http://${cfg.fqdn}/guacamole";
           };
           "/guacamole/" = {
             proxyPass = "http://${cfg.ipv4}:80";
