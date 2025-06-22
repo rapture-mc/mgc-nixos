@@ -85,9 +85,6 @@ nixpkgs.lib.nixosSystem {
                 zabbix = {
                   common_name = "zabbix.${vars.networking.internalDomain}";
                 };
-                guacamole = {
-                  common_name = "guacamole.${vars.networking.internalDomain}";
-                };
               };
             };
           };
