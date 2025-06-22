@@ -21,7 +21,7 @@
       inherit config lib pkgs;
     })
     ./services/comin
-    ./services/dnsmasq.nix
+    ./services/dnsmasq
     ./services/openldap
     ./services/file-browser
     ./services/gitea
@@ -29,7 +29,7 @@
     (import ./services/guacamole {
       inherit config lib pkgs;
     })
-    ./services/k3s.nix
+    ./services/k3s
     ./services/netbox.nix
     ./services/nextcloud.nix
     ./services/nginx/default.nix
