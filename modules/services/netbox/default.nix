@@ -66,6 +66,7 @@ in {
     services = {
       netbox = {
         enable = true;
+        package = pkgs.netbox;
         secretKeyFile = "/run/secrets/netbox-key-file";
         settings = {
           CSRF_TRUSTED_ORIGINS = [
