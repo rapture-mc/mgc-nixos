@@ -64,6 +64,7 @@ in
                 ${vars.networking.hostsAddr.MGC-DRW-HVS02.eth.ipv4} MGC-DRW-HVS02
                 ${vars.networking.hostsAddr.MGC-DRW-HVS03.eth.ipv4} MGC-DRW-HVS03
                 ${vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4} MGC-DRW-MON01
+                ${vars.networking.hostsAddr.MGC-DRW-NBX01.eth.ipv4} MGC-DRW-NBX01
                 ${vars.networking.hostsAddr.MGC-DRW-RST01.eth.ipv4} MGC-DRW-RST01
                 ${vars.networking.hostsAddr.MGC-DRW-RVP01.eth.ipv4} MGC-DRW-RVP01
                 ${vars.networking.hostsAddr.MGC-DRW-SEM01.eth.ipv4} MGC-DRW-SEM01
