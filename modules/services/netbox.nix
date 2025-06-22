@@ -47,7 +47,7 @@ in {
     };
 
     systemd.services."netbox-generate-key-file" = {
-      enable = true;
+      enable = false;
       requiredBy = [
         "netbox-housekeeping.service"
       ];
@@ -62,7 +62,7 @@ in {
     services = {
       netbox = {
         enable = true;
-        secretKeyFile = "/var/lib/netbox/secret-key-file";
+        secretKeyFile = "/run/secrets//netbox-key-file";
         settings.ALLOWED_HOSTS = [
           "[::1]"
           "${cfg.fqdn}"

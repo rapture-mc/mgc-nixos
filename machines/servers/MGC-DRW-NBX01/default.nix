@@ -15,9 +15,9 @@ nixpkgs.lib.nixosSystem {
         (import ../../_shared/common-config.nix {
           inherit vars;
         })
-        # (import ./secrets.nix {
-        #   inherit vars;
-        # })
+        (import ./secrets.nix {
+          inherit vars;
+        })
       ];
 
       networking.hostName = "MGC-DRW-NBX01";
@@ -44,6 +44,10 @@ nixpkgs.lib.nixosSystem {
         };
 
         services = {
+          netbox = {
+            enable = true;
+            fqdn = vars.netboxFQDN;
+          };
         };
 
         virtualisation.libvirt.guest.enable = true;
