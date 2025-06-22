@@ -29,7 +29,6 @@
     (import ./services/guacamole {
       inherit config lib pkgs;
     })
-    ./services/jenkins.nix
     ./services/k3s.nix
     ./services/netbox.nix
     ./services/nextcloud.nix
