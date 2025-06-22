@@ -122,6 +122,14 @@ nixpkgs.lib.nixosSystem {
                 vm_hostname_prefix = "MGC-DRW-MON";
                 memory = "8192";
                 vcpu = 4;
+                autostart = false;
+                running = false;
+              };
+
+              netbox-servers = {
+                vm_hostname_prefix = "MGC-DRW-NBX";
+                memory = "4095";
+                vcpu = 2;
               };
             };
           };
