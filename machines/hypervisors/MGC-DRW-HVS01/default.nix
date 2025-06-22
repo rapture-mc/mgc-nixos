@@ -128,7 +128,7 @@ nixpkgs.lib.nixosSystem {
 
               netbox-servers = {
                 vm_hostname_prefix = "MGC-DRW-NBX";
-                memory = "4095";
+                memory = "6144";
                 vcpu = 2;
               };
             };
