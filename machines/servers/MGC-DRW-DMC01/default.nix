@@ -72,7 +72,7 @@ in
                 ${vars.networking.hostsAddr.MGC-DRW-BKS01.eth.ipv4} bookstack.${vars.networking.internalDomain}
                 ${vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4} grafana.${vars.networking.internalDomain}
                 ${vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4} zabbix.${vars.networking.internalDomain}
-                ${vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4} guacamole.${vars.networking.internalDomain}
+                ${vars.networking.hostsAddr.MGC-DRW-DGW01.eth.ipv4} guacamole.${vars.networking.internalDomain}
               '';
             };
 
