@@ -47,6 +47,12 @@ nixpkgs.lib.nixosSystem {
           netbox = {
             enable = true;
             fqdn = vars.netboxFQDN;
+            allowed-hosts = [
+              "${vars.networking.hostsAddr.MGC-DRW-RVP01.eth.ipv4}"
+              "https://${vars.netboxFQDN}"
+              "192.168.1.99"
+            ];
+            tls.enable = false;
           };
         };
 

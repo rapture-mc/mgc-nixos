@@ -30,7 +30,7 @@
       inherit config lib pkgs;
     })
     ./services/k3s
-    ./services/netbox.nix
+    ./services/netbox
     ./services/nextcloud.nix
     ./services/nginx/default.nix
     ./services/prometheus.nix
