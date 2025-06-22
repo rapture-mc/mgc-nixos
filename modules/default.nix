@@ -40,8 +40,8 @@
     (import ./services/vault {
       inherit config lib pkgs terranix system;
     })
-    ./services/wireguard-server.nix
-    ./services/wireguard-client.nix
+    ./services/wireguard/server.nix
+    ./services/wireguard/client.nix
     ./services/zabbix/agent.nix
     ./services/zabbix/server.nix
     (import ./virtualisation/aws {

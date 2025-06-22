@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  cfg = config.megacorp.services.wireguard-server;
+  cfg = config.megacorp.services.wireguard.server;
 
   inherit
     (lib)
@@ -14,7 +14,7 @@
     types
     ;
 in {
-  options.megacorp.services.wireguard-server = {
+  options.megacorp.services.wireguard.server = {
     enable = mkEnableOption "Whether to wireguard server";
 
     logo = mkEnableOption "Whether to show wireguard logo on shell startup";
