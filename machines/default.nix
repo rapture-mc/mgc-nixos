@@ -7,6 +7,7 @@
   MGC-DRW-FBR01 = importMachineConfig "servers" "MGC-DRW-FBR01";
   MGC-DRW-GIT01 = importMachineConfig "servers" "MGC-DRW-GIT01";
   MGC-DRW-MON01 = importMachineConfig "servers" "MGC-DRW-MON01";
+  MGC-DRW-NBX01 = importMachineConfig "servers" "MGC-DRW-NBX01";
   MGC-DRW-RST01 = importMachineConfig "servers" "MGC-DRW-RST01";
   MGC-DRW-RVP01 = importMachineConfig "servers" "MGC-DRW-RVP01";
   MGC-DRW-SEM01 = importMachineConfig "servers" "MGC-DRW-SEM01";
