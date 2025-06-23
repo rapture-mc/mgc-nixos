@@ -80,6 +80,7 @@ in {
     services = {
       nginx = {
         enable = true;
+        recommendedProxySettings = true;
         virtualHosts."${cfg.fqdn}" = {
           locations = {
             "/" = {
