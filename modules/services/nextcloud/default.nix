@@ -84,6 +84,8 @@ in {
     environment.etc."nextcloud-default-admin-password".text = "changeme";
 
     services = {
+      nginx.virtualHosts."${cfg.fqdn}".locations."/".proxyPass = mkIf cfg.tls.enable (lib.mkForce null);
+
       nextcloud = {
         enable = true;
         hostName = cfg.fqdn;
