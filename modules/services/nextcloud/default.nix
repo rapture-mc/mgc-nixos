@@ -84,6 +84,7 @@ in {
     environment.etc."nextcloud-default-admin-password".text = "changeme";
 
     services = {
+      # Nextcloud NixOS module handles web server config. This ensures our shared Nginx module doesn't interfere
       nginx.virtualHosts."${cfg.fqdn}".locations."/".proxyPass = mkIf cfg.tls.enable (lib.mkForce null);
 
       nextcloud = {
