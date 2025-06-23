@@ -31,7 +31,7 @@
     })
     ./services/k3s
     ./services/netbox
-    ./services/nextcloud.nix
+    ./services/nextcloud
     ./services/nginx/default.nix
     ./services/prometheus.nix
     ./services/restic.nix
