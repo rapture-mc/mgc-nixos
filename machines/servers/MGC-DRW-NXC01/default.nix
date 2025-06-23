@@ -48,7 +48,7 @@ nixpkgs.lib.nixosSystem {
             enable = true;
             logo = true;
             fqdn = vars.nextcloudFQDN;
-            tls.enable = true;
+            tls.enable = false;
           };
         };
 
