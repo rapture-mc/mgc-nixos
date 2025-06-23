@@ -131,6 +131,12 @@ nixpkgs.lib.nixosSystem {
                 memory = "6144";
                 vcpu = 2;
               };
+
+              nextcloud-servers = {
+                vm_hostname_prefix = "MGC-DRW-NXC";
+                memory = "6144";
+                vcpu = 2;
+              };
             };
           };
         };
