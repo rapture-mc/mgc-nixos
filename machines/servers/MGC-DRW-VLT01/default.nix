@@ -88,6 +88,9 @@ nixpkgs.lib.nixosSystem {
                 guacamole = {
                   common_name = "guacamole.${vars.networking.internalDomain}";
                 };
+                nextcloud = {
+                  common_name = "nextcloud.${vars.networking.internalDomain}";
+                };
               };
             };
           };
