@@ -78,18 +78,6 @@ in {
     environment.etc."nextcloud-default-admin-password".text = "changeme";
 
     services = {
-      nginx = {
-        enable = true;
-        recommendedProxySettings = true;
-        virtualHosts."${cfg.fqdn}" = {
-          locations = {
-            "/" = {
-              proxyPass = "http://127.0.0.1:80";
-            };
-          };
-        };
-      };
-
       nextcloud = {
         enable = true;
         hostName = cfg.fqdn;
