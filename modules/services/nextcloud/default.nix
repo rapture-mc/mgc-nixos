@@ -14,9 +14,22 @@
     mkIf
     types
     ;
+
+  use-acme-cert =
+    if cfg.tls.cert-key == null || cfg.tls.cert-file == null
+    then true
+    else false;
 in {
+  imports = [
+    (mkIf cfg.tls.enable (import ../../_shared/nginx/tls-config.nix {
+      inherit cfg lib use-acme-cert;
+    }))
+  ];
+
   options.megacorp.services.nextcloud = {
     enable = mkEnableOption "Enable Nextcloud";
+
+    logo = mkEnableOption "Whether to show Nextcloud logo on shell startup";
 
     package = mkOption {
       type = types.package;
@@ -24,9 +37,14 @@ in {
       description = "The nextcloud package instance";
     };
 
-    logo = mkEnableOption "Whether to show Nextcloud logo on shell startup";
-
-    reverse-proxied = mkEnableOption "Whether Nextcloud is served behind a reverse proxy";
+    fqdn = mkOption {
+      type = types.str;
+      default = "localhost";
+      description = ''
+        The fqdn of your nextcloud instance.
+        NOTE: Don't include "https://" (this is prepended to the value)
+      '';
+    };
 
     trusted-proxies = mkOption {
       type = types.listOf types.str;
@@ -47,62 +65,43 @@ in {
       };
     };
 
-    tls-email = mkOption {
-      type = types.str;
-      default = "someone@somedomain.com";
-      description = ''
-        The email to use for automatic SSL certificates
-        This email will also get SSL certificate renewal email notifications
-      '';
-    };
-
-    fqdn = mkOption {
-      type = types.str;
-      default = "localhost";
-      description = ''
-        The fqdn of your nextcloud instance.
-        NOTE: Don't include "https://" (this is prepended to the value)
-      '';
+    tls = import ../../_shared/nginx/tls-options.nix {
+      inherit lib;
     };
   };
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = (
-      if !cfg.reverse-proxied
-      then [80 443]
-      else []
-    );
+    networking.firewall.allowedTCPPorts = [
+      80
+    ];
 
-    security.acme = mkIf (!cfg.reverse-proxied) {
-      acceptTerms = true;
-      defaults.email = "${cfg.tls-email}";
-    };
-
-    environment.etc."nextcloud-admin-password".text = "changeme";
+    environment.etc."nextcloud-default-admin-password".text = "changeme";
 
     services = {
-      # Reads as if not reversed proxied, enable nginx (default), otherwise dont enable nginx
-      nginx = mkIf (!cfg.reverse-proxied) {
+      nginx = {
         enable = true;
         virtualHosts."${cfg.fqdn}" = {
-          forceSSL = true;
-          enableACME = true;
+          locations = {
+            "/" = {
+              proxyPass = "http://127.0.0.1:80";
+            };
+          };
         };
       };
 
       nextcloud = {
         enable = true;
-        hostName = "${cfg.fqdn}";
+        hostName = cfg.fqdn;
         package = cfg.package;
         database.createLocally = true;
         configureRedis = true;
         https =
-          if cfg.reverse-proxied
-          then false
-          else true;
+          if cfg.tls.enable
+          then true 
+          else false;
         config = {
           dbtype = "pgsql";
-          adminpassFile = "/etc/nextcloud-admin-password";
+          adminpassFile = "/etc/nextcloud-default-admin-password";
         };
         settings = {
           trusted_proxies = cfg.trusted-proxies;

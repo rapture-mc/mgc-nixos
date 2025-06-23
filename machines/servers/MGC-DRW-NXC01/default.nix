@@ -44,6 +44,11 @@ nixpkgs.lib.nixosSystem {
         };
 
         services = {
+          nextcloud = {
+            enable = true;
+            logo = true;
+            fqdn = vars.nextcloudFQDN;
+          };
         };
 
         virtualisation.libvirt.guest.enable = true;
