@@ -75,6 +75,7 @@ in
                 ${vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4} grafana.${vars.networking.internalDomain}
                 ${vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4} zabbix.${vars.networking.internalDomain}
                 ${vars.networking.hostsAddr.MGC-DRW-NBX01.eth.ipv4} netbox.${vars.networking.internalDomain}
+                ${vars.networking.hostsAddr.MGC-DRW-NXC01.eth.ipv4} nextcloud.${vars.networking.internalDomain}
               '';
             };
 
