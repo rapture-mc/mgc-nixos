@@ -37,6 +37,12 @@ in {
       description = "The nextcloud package instance";
     };
 
+    port = mkOption {
+      type = types.int;
+      default = 80;
+      description = "The port for nextcloud. This shouldn't ever change and is primarily used by the TLS nginx shared module'";
+    };
+
     fqdn = mkOption {
       type = types.str;
       default = "localhost";
@@ -78,8 +84,6 @@ in {
     environment.etc."nextcloud-default-admin-password".text = "changeme";
 
     services = {
-      nginx.virtualHosts."${cfg.fqdn}".locations."/".proxyPass = mkIf cfg.tls.enable (lib.mkForce "http://127.0.0.1:80");
-
       nextcloud = {
         enable = true;
         hostName = cfg.fqdn;
