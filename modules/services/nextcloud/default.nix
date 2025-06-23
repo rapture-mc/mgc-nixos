@@ -33,7 +33,7 @@ in {
 
     package = mkOption {
       type = types.package;
-      default = pkgs.nextcloud29;
+      default = pkgs.nextcloud31;
       description = "The nextcloud package instance";
     };
 
