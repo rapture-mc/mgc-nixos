@@ -47,7 +47,7 @@ nixpkgs.lib.nixosSystem {
           nextcloud = {
             enable = true;
             logo = true;
-            fqdn = vars.nextcloudFQDN;
+            fqdn = vars.networking.hostsAddr.MGC-DRW-NXC01.eth.ipv4;
           };
         };
 
