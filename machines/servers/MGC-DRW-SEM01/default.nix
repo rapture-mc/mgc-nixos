@@ -47,7 +47,7 @@ nixpkgs.lib.nixosSystem {
           enable = true;
           fqdn = vars.semaphoreFQDN;
           tls = {
-            enable = false;
+            enable = true;
             cert-file = "/var/lib/nginx/mgc-drw-sem01.crt";
             cert-key = "/var/lib/nginx/mgc-drw-sem01.pem";
           };
