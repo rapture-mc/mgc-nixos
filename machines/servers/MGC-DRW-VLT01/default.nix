@@ -54,7 +54,7 @@ nixpkgs.lib.nixosSystem {
             gui = true;
             logo = true;
             open-firewall = true;
-            address = "mgc-drw-vlt01.megacorp.industries";
+            address = "mgc-drw-vlt01.${vars.networking.internalDomain}";
             tls = {
               enable = true;
               cert-file = "/var/lib/nginx/mgc-drw-vlt01.crt";
