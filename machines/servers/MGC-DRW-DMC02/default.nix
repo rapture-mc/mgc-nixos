@@ -16,7 +16,7 @@ nixpkgs.lib.nixosSystem {
           })
         ];
 
-        networking.hostName = "MGC-DRW-DMC01";
+        networking.hostName = "MGC-DRW-DMC02";
 
         system.stateVersion = "25.05";
 
@@ -26,8 +26,8 @@ nixpkgs.lib.nixosSystem {
 
             networking.static-ip = {
               enable = true;
-              ipv4 = vars.networking.hostsAddr.MGC-DRW-DMC01.eth.ipv4;
-              interface = vars.networking.hostsAddr.MGC-DRW-DMC01.eth.name;
+              ipv4 = vars.networking.hostsAddr.MGC-DRW-DMC02.eth.ipv4;
+              interface = vars.networking.hostsAddr.MGC-DRW-DMC02.eth.name;
               gateway = vars.networking.defaultGateway;
               lan-domain = vars.networking.internalDomain;
             };
