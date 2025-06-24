@@ -55,6 +55,7 @@ in {
         nextcloud         IN              CNAME       mgc-drw-nxc01
         semaphore         IN              CNAME       mgc-drw-sem01
         zabbix            IN              CNAME       mgc-drw-mon01
+        vault             IN              CNAME       mgc-drw-vlt01
       '';
     };
   };
