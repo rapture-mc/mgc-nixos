@@ -64,26 +64,26 @@ nixpkgs.lib.nixosSystem {
             pki = {
               enable = true;
               certs = {
-                vault = {
-                  common_name = "vault.${vars.networking.internalDomain}";
-                };
                 bookstack = {
                   common_name = "bookstack.${vars.networking.internalDomain}";
-                };
-                mgc-drw-sem01 = {
-                  common_name = "semaphore.${vars.networking.internalDomain}";
                 };
                 grafana = {
                   common_name = "grafana.${vars.networking.internalDomain}";
                 };
-                zabbix = {
-                  common_name = "zabbix.${vars.networking.internalDomain}";
+                mgc-drw-frw01 = {
+                  common_name = "mgc-drw-frw01.${vars.networking.internalDomain}";
                 };
                 nextcloud = {
                   common_name = "nextcloud.${vars.networking.internalDomain}";
                 };
-                mgc-drw-frw01 = {
-                  common_name = "mgc-drw-frw01.${vars.networking.internalDomain}";
+                semaphore = {
+                  common_name = "semaphore.${vars.networking.internalDomain}";
+                };
+                vault = {
+                  common_name = "vault.${vars.networking.internalDomain}";
+                };
+                zabbix = {
+                  common_name = "zabbix.${vars.networking.internalDomain}";
                 };
               };
             };
