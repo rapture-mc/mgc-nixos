@@ -33,8 +33,8 @@
     ./services/netbox
     ./services/nextcloud
     ./services/nginx/default.nix
-    ./services/prometheus.nix
-    ./services/restic.nix
+    ./services/prometheus
+    ./services/restic
     ./services/semaphore
     ./services/syncthing
     (import ./services/vault {
