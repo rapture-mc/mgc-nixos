@@ -30,7 +30,31 @@ in {
         ${name-server}    IN              A           ${vars.networking.hostsAddr.MGC-DRW-DMC02.eth.ipv4}
 
 
-        netbox            IN              A           ${vars.networking.hostsAddr.MGC-DRW-NBX01.eth.ipv4}
+        mgc-drw-bks01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-BKS01.eth.ipv4}
+        mgc-drw-bst01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-BST01.eth.ipv4}
+        mgc-drw-dgw01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-DGW01.eth.ipv4}
+        mgc-drw-dmc01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-DMC01.eth.ipv4}
+        mgc-drw-dmc02     IN              A           ${vars.networking.hostsAddr.MGC-DRW-DMC02.eth.ipv4}
+        mgc-drw-fbr01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-FBR01.eth.ipv4}
+        mgc-drw-frw01     IN              A           ${vars.networking.defaultGateway}
+        mgc-drw-git01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-GIT01.eth.ipv4}
+        mgc-drw-hvs01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-HVS01.eth.ipv4}
+        mgc-drw-hvs02     IN              A           ${vars.networking.hostsAddr.MGC-DRW-HVS02.eth.ipv4}
+        mgc-drw-hvs03     IN              A           ${vars.networking.hostsAddr.MGC-DRW-HVS03.eth.ipv4}
+        mgc-drw-mon01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4}
+        mgc-drw-nbx01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-NBX01.eth.ipv4}
+        mgc-drw-nxc01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-NXC01.eth.ipv4}
+        mgc-drw-rst01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-RST01.eth.ipv4}
+        mgc-drw-rvp01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-RVP01.eth.ipv4}
+        mgc-drw-sem01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-SEM01.eth.ipv4}
+        mgc-drw-vlt01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-VLT01.eth.ipv4}
+
+        bookstack         IN              CNAME       mgc-drw-bks01
+        grafana           IN              CNAME       mgc-drw-mon01
+        netbox            IN              CNAME       mgc-drw-nbx01
+        nextcloud         IN              CNAME       mgc-drw-nxc01
+        semaphore         IN              CNAME       mgc-drw-sem01
+        zabbix            IN              CNAME       mgc-drw-mon01
       '';
     };
   };
