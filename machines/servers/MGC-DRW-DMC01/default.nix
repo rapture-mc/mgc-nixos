@@ -70,7 +70,7 @@ in
                 ${vars.networking.hostsAddr.MGC-DRW-RVP01.eth.ipv4} MGC-DRW-RVP01
                 ${vars.networking.hostsAddr.MGC-DRW-SEM01.eth.ipv4} MGC-DRW-SEM01
                 ${vars.networking.hostsAddr.MGC-DRW-VLT01.eth.ipv4} MGC-DRW-VLT01
-                192.168.1.99 MGC-DRW-FRW01
+                192.168.1.99 mgc-drw-frw01.${vars.networking.internalDomain}
                 ${vars.networking.hostsAddr.MGC-DRW-BKS01.eth.ipv4} bookstack.${vars.networking.internalDomain}
                 ${vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4} grafana.${vars.networking.internalDomain}
                 ${vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4} zabbix.${vars.networking.internalDomain}

@@ -92,7 +92,7 @@ nixpkgs.lib.nixosSystem {
                   common_name = "nextcloud.${vars.networking.internalDomain}";
                 };
                 mgc-drw-frw01 = {
-                  common_name = "mgc-drw-frw01";
+                  common_name = "mgc-drw-frw01.${vars.networking.internalDomain}";
                 };
               };
             };
