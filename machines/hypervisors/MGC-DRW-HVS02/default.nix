@@ -91,6 +91,7 @@ nixpkgs.lib.nixosSystem {
 
               domain-controller = {
                 vm_hostname_prefix = "MGC-DRW-DMC";
+                vm_count = 2;
                 vcpu = 2;
               };
 
