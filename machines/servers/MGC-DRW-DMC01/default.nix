@@ -76,7 +76,7 @@ in
                 ${vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4} zabbix.${vars.networking.internalDomain}
                 ${vars.networking.hostsAddr.MGC-DRW-NBX01.eth.ipv4} netbox.${vars.networking.internalDomain}
                 ${vars.networking.hostsAddr.MGC-DRW-NXC01.eth.ipv4} nextcloud.${vars.networking.internalDomain}
-                ${vars.networking.hostsAddr.MGC-DRW-SEM01.eth.ipv4} semaphore.${vars.networking.internalDomain}
+                ${vars.networking.hostsAddr.MGC-DRW-SEM01.eth.ipv4} mgc-drw-sem01.${vars.networking.internalDomain}
               '';
             };
 
