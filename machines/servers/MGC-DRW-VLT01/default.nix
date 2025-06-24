@@ -56,9 +56,9 @@ nixpkgs.lib.nixosSystem {
             open-firewall = true;
             address = "mgc-drw-vlt01.${vars.networking.internalDomain}";
             tls = {
-              enable = false;
-              cert-file = "/var/lib/nginx/mgc-drw-vlt01.crt";
-              cert-key = "/var/lib/nginx/mgc-drw-vlt01.pem";
+              enable = true;
+              cert-file = "/var/lib/nginx/vault.crt";
+              cert-key = "/var/lib/nginx/vault.pem";
             };
 
             pki = {
