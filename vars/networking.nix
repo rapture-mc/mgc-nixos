@@ -2,7 +2,7 @@
   defaultGateway = "192.168.1.99";
   privateLANSubnet = "192.168.1.0/24";
   nameServers = ["192.168.1.5"];
-  internalDomain = "megacorp.industries";
+  internalDomain = "prod.megacorp.industries";
 
   hostsAddr = {
     MGC-DRW-DMC01 = {
