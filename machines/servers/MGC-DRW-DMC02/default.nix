@@ -32,7 +32,7 @@ nixpkgs.lib.nixosSystem {
             ipv4 = vars.networking.hostsAddr.MGC-DRW-DMC02.eth.ipv4;
             interface = vars.networking.hostsAddr.MGC-DRW-DMC02.eth.name;
             gateway = vars.networking.defaultGateway;
-            nameservers = vars.networking.nameServers;
+            nameservers = ["127.0.0.1"];
             lan-domain = vars.networking.internalDomain;
           };
 
