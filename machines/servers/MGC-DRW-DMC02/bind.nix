@@ -13,6 +13,9 @@ in {
       "8.8.8.8"
       "8.8.4.4"
     ];
+    cacheNetworks = [
+      "192.168.1.0/24"
+    ];
     zones."${internal-domain}" = {
       master = true;
       file = pkgs.writeText "zone-${internal-domain}" ''
