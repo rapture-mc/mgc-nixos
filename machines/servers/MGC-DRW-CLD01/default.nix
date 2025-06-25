@@ -2,6 +2,7 @@
   nixpkgs,
   self,
   vars,
+  pkgs,
   ...
 }:
 nixpkgs.lib.nixosSystem {
@@ -18,6 +19,10 @@ nixpkgs.lib.nixosSystem {
       networking.hostName = "MGC-DRW-CLD01";
 
       system.stateVersion = "25.05";
+
+      environment.systemPackages = [
+        pkgs.awscli2
+      ];
 
       megacorp = {
         config = {
