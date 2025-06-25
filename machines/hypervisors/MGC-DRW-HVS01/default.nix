@@ -141,6 +141,12 @@ nixpkgs.lib.nixosSystem {
                 autostart = false;
                 running = false;
               };
+
+              cloud-runners = {
+                vm_hostname_prefix = "MGC-DRW-CLD";
+                memory = "6144";
+                vcpu = 2;
+              };
             };
           };
         };

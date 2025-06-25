@@ -2,6 +2,7 @@
   # Servers
   MGC-DRW-BKS01 = importMachineConfig "servers" "MGC-DRW-BKS01";
   MGC-DRW-BST01 = importMachineConfig "servers" "MGC-DRW-BST01";
+  MGC-DRW-CLD01 = importMachineConfig "servers" "MGC-DRW-CLD01";
   MGC-DRW-DGW01 = importMachineConfig "servers" "MGC-DRW-DGW01";
   MGC-DRW-DMC01 = importMachineConfig "servers" "MGC-DRW-DMC01";
   MGC-DRW-DMC02 = importMachineConfig "servers" "MGC-DRW-DMC02";

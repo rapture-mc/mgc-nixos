@@ -36,6 +36,7 @@ in {
 
         mgc-drw-bks01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-BKS01.eth.ipv4}
         mgc-drw-bst01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-BST01.eth.ipv4}
+        mgc-drw-cld01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-CLD01.eth.ipv4}
         mgc-drw-dgw01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-DGW01.eth.ipv4}
         mgc-drw-dmc01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-DMC01.eth.ipv4}
         mgc-drw-dmc02     IN              A           ${vars.networking.hostsAddr.MGC-DRW-DMC02.eth.ipv4}
