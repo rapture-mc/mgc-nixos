@@ -1,17 +1,23 @@
-{
+let
+  domain = "megacorp.industries";
+in {
   networking = import ./networking.nix;
   keys = import ./keys.nix;
 
   adminUser = "benny";
 
-  guacamoleFQDN = "guacamole.megacorp.industries";
-  file-browserFQDN = "file-browser.megacorp.industries";
-  semaphoreFQDN = "semaphore.megacorp.industries";
-  giteaFQDN = "git.megacorp.industries";
-  grafanaFQDN = "grafana.megacorp.industries";
-  zabbixFQDN = "zabbix.megacorp.industries";
-  netboxFQDN = "netbox.megacorp.industries";
-  nextcloudFQDN = "nextcloud.megacorp.industries";
+  awsZoneID = "/hostedzone/Z02994243ILU2R1YQJ1GF";
+  primaryIP = "123.243.147.17";
+
+  primaryDomain = "${domain}";
+  guacamoleFQDN = "guacamole.${domain}";
+  file-browserFQDN = "file-browser.${domain}";
+  semaphoreFQDN = "semaphore.${domain}";
+  giteaFQDN = "gitea.${domain}";
+  grafanaFQDN = "grafana.${domain}";
+  zabbixFQDN = "zabbix.${domain}";
+  netboxFQDN = "netbox.${domain}";
+  nextcloudFQDN = "nextcloud.${domain}";
 
   terraformModuleSource = "git::https://github.com/rapture-mc/terraform-libvirt-module.git?ref=40acff807a0ffb1c0da741774c37ebeda90730b7";
 }

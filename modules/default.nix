@@ -7,6 +7,9 @@
   ...
 }: {
   imports = [
+    (import ./cloud/aws/route53.nix {
+      inherit config lib pkgs terranix system;
+    })
     ./config/bootloader
     ./config/desktop
     ./config/packages
