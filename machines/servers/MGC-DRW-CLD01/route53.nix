@@ -1,11 +1,18 @@
-{vars}: {
+{vars}: let
+  zone-id = "\${ aws_route53_zone.megacorp-industries.zone_id }";
+in {
   megacorp.cloud.aws.route53 = {
     enable = true;
     credential-path = "/home/benny/.aws/credentials";
     config-path = "/home/benny/.aws/credentials";
+    zones = {
+      megacorp-industries = {
+        name = "${vars.primaryDomain}.";
+      };
+    };
     records = {
       main = {
-        zone_id = vars.awsZoneID;
+        zone_id = zone-id;
         name = vars.primaryDomain;
         type = "A";
         records = [
@@ -14,7 +21,7 @@
       };
 
       mail-mx = {
-        zone_id = vars.awsZoneID;
+        zone_id = zone-id;
         name = vars.primaryDomain;
         type = "MX";
         records = [
@@ -24,7 +31,7 @@
       };
 
       mail-txt = {
-        zone_id = vars.awsZoneID;
+        zone_id = zone-id;
         name = vars.primaryDomain;
         type = "TXT";
         records = [
@@ -33,7 +40,7 @@
       };
 
       mail-dmarc = {
-        zone_id = vars.awsZoneID;
+        zone_id = zone-id;
         name = "_dmarc.${vars.primaryDomain}";
         type = "TXT";
         records = [
@@ -42,7 +49,7 @@
       };
 
       mail-cname-1 = {
-        zone_id = vars.awsZoneID;
+        zone_id = zone-id;
         name = "protonmail._domainkey.${vars.primaryDomain}";
         type = "CNAME";
         records = [
@@ -51,7 +58,7 @@
       };
 
       mail-cname-2 = {
-        zone_id = vars.awsZoneID;
+        zone_id = zone-id;
         name = "protonmail2._domainkey.${vars.primaryDomain}";
         type = "CNAME";
         records = [
@@ -60,7 +67,7 @@
       };
 
       mail-cname-3 = {
-        zone_id = vars.awsZoneID;
+        zone_id = zone-id;
         name = "protonmail3._domainkey.${vars.primaryDomain}";
         type = "CNAME";
         records = [
@@ -69,7 +76,7 @@
       };
 
       cv = {
-        zone_id = vars.awsZoneID;
+        zone_id = zone-id;
         name = "cv.${vars.primaryDomain}";
         type = "CNAME";
         records = [
@@ -78,7 +85,7 @@
       };
 
       guacamole = {
-        zone_id = vars.awsZoneID;
+        zone_id = zone-id;
         name = vars.guacamoleFQDN;
         type = "CNAME";
         records = [
@@ -87,7 +94,7 @@
       };
 
       file-browser = {
-        zone_id = vars.awsZoneID;
+        zone_id = zone-id;
         name = vars.file-browserFQDN;
         type = "CNAME";
         records = [

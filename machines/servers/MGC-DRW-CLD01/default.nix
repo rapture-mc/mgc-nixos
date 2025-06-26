@@ -14,7 +14,7 @@ nixpkgs.lib.nixosSystem {
         (import ../../_shared/common-config.nix {
           inherit vars;
         })
-        (import ./route53-records.nix {
+        (import ./route53.nix {
           inherit vars;
         })
       ];

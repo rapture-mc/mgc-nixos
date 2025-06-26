@@ -28,7 +28,11 @@
           region = cfg.region;
         };
 
-        resource.aws_route53_record = cfg.records;
+        resource = {
+          aws_route53_zone = cfg.zones;
+
+          aws_route53_record = cfg.records;
+        };
       }
     ];
   };
@@ -60,6 +64,23 @@ in {
 
         E.g. "/home/<username>/.aws/config"
       '';
+    };
+
+    zones = mkOption {
+      default = {};
+      type = types.attrsOf (
+        types.submodule (
+          {...}: {
+            options = {
+              name = mkOption {
+                type = types.str;
+                default = "";
+                description = "The name of the zone";
+              };
+            };
+          }
+        )
+      );
     };
 
     records = mkOption {
