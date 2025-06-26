@@ -3,9 +3,9 @@
   main-website-rev = "3eed11c387e49bc75c00261d4645767797655623";
   main-website-hash = "sha256-HRSewPtOVgWlIqi2k/Ax1/uv/3ZRKDU5wCCKrQKB50c=";
 
-  cv-website-root = "/var/www/cv.megacorp.industries";
-  cv-website-rev = "d13484254a9d61edd40d297506cb778757449840";
-  cv-website-hash = "sha256-ku+GyfvJB70qhM+BxUXOxvFSDfVIoIYh4YQgT3peTd4=";
+  about-website-root = "/var/www/cv.megacorp.industries";
+  about-website-rev = "2f7446bd352f03c2022f2f74fd5b4d5e6180d8f6";
+  about-website-hash = "sha256-f34JD88eiulhH9+1QXu2BRLc3Z3odbL/JPRdo9r+AA4=";
 
   # Helper function to build hugo website deriviationn
   build-website = repo: rev: hash:
@@ -51,7 +51,7 @@
   # Deriviations containing the built hugo website
   built-hugo-root-website = build-website "hugo-website" main-website-rev main-website-hash;
 
-  built-hugo-cv-website = build-website "about-website" cv-website-rev cv-website-hash;
+  built-hugo-cv-website = build-website "about-website" about-website-rev about-website-hash;
 in {
   services.nginx.virtualHosts = {
     "megacorp.industries" = {
@@ -66,13 +66,13 @@ in {
     "cv.megacorp.industries" = {
       forceSSL = true;
       enableACME = true;
-      root = cv-website-root;
+      root = about-website-root;
     };
   };
 
   systemd.services = {
     rebuild-hugo-website = rebuild-website main-website-root built-hugo-root-website;
 
-    rebuild-about-website = rebuild-website cv-website-root built-hugo-cv-website;
+    rebuild-about-website = rebuild-website about-website-root built-hugo-cv-website;
   };
 }
