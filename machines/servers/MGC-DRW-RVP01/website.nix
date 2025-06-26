@@ -4,8 +4,8 @@
   main-website-hash = "sha256-HRSewPtOVgWlIqi2k/Ax1/uv/3ZRKDU5wCCKrQKB50c=";
 
   cv-website-root = "/var/www/cv.megacorp.industries";
-  cv-website-rev = "369cdcdf7f7d8652cddf1d3c3dcad8d26bf1b705";
-  cv-website-hash = "sha256-DEgxlXasW16smBw0QFfh6WHOFs7E4nuw0+YBR1H+4HM=";
+  cv-website-rev = "d13484254a9d61edd40d297506cb778757449840";
+  cv-website-hash = "sha256-ku+GyfvJB70qhM+BxUXOxvFSDfVIoIYh4YQgT3peTd4=";
 
   # Helper function to build hugo website deriviationn
   build-website = repo: rev: hash:
