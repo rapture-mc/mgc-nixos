@@ -1,7 +1,11 @@
 {pkgs}: let
   main-website-root = "/var/www/megacorp.industries";
+  main-website-rev = "3eed11c387e49bc75c00261d4645767797655623";
+  main-website-hash = "sha256-HRSewPtOVgWlIqi2k/Ax1/uv/3ZRKDU5wCCKrQKB50c=";
 
   cv-website-root = "/var/www/cv.megacorp.industries";
+  cv-website-rev = "3cd430ed420de4fd2c3a7882c69c137cf0020da1";
+  cv-website-hash = "sha256-X5SktFJcN/ELZ5EdPpF9iIZvE9recBDS+e55yZSz0fY=";
 
   # Helper function to build hugo website deriviationn
   build-website = repo: rev: hash:
@@ -45,9 +49,9 @@
   };
 
   # Deriviations containing the built hugo website
-  built-hugo-root-website = build-website "hugo-website" "3eed11c387e49bc75c00261d4645767797655623" "sha256-HRSewPtOVgWlIqi2k/Ax1/uv/3ZRKDU5wCCKrQKB50c=";
+  built-hugo-root-website = build-website "hugo-website" main-website-rev main-website-hash;
 
-  built-hugo-cv-website = build-website "hugo-terminal" "fe9d1cbc033f0fc14e554f9e437ce1f03560d511" "sha256-u4ab3eYSlBwRevOohCZ5w2LB3JWXnST+khMPikcCK2U=";
+  built-hugo-cv-website = build-website "about-website" cv-website-rev cv-website-hash;
 in {
   services.nginx.virtualHosts = {
     "megacorp.industries" = {
