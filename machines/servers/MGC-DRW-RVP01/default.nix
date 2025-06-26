@@ -62,42 +62,6 @@ nixpkgs.lib.nixosSystem {
               ipv4 = vars.networking.hostsAddr.MGC-DRW-FBR01.eth.ipv4;
               fqdn = vars.file-browserFQDN;
             };
-
-            semaphore = {
-              enable = true;
-              ipv4 = vars.networking.hostsAddr.MGC-DRW-SEM01.eth.ipv4;
-              fqdn = vars.semaphoreFQDN;
-            };
-
-            gitea = {
-              enable = true;
-              ipv4 = vars.networking.hostsAddr.MGC-DRW-GIT01.eth.ipv4;
-              fqdn = vars.giteaFQDN;
-            };
-
-            grafana = {
-              enable = true;
-              ipv4 = vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4;
-              fqdn = vars.grafanaFQDN;
-            };
-
-            zabbix = {
-              enable = true;
-              ipv4 = vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4;
-              fqdn = vars.zabbixFQDN;
-            };
-
-            netbox = {
-              enable = true;
-              ipv4 = vars.networking.hostsAddr.MGC-DRW-NBX01.eth.ipv4;
-              fqdn = vars.netboxFQDN;
-            };
-
-            nextcloud = {
-              enable = true;
-              ipv4 = vars.networking.hostsAddr.MGC-DRW-NXC01.eth.ipv4;
-              fqdn = vars.nextcloudFQDN;
-            };
           };
         };
 
