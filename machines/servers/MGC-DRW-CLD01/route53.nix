@@ -101,6 +101,15 @@ in {
           "${vars.primaryDomain}"
         ];
       };
+
+      semaphore = {
+        zone_id = zone-id;
+        name = vars.semaphoreFQDN;
+        type = "CNAME";
+        records = [
+          "${vars.primaryDomain}"
+        ];
+      };
     };
   };
 }
