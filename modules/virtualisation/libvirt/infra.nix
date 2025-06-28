@@ -43,10 +43,11 @@ in {
   options.megacorp.virtualisation.libvirt.declerative = {
     enable = mkEnableOption "Whether to enable declerative VMs";
 
-    terraform-action = mkOption {
+    action = mkOption {
       type = types.enum [
         "apply"
         "destroy"
+        "plan"
       ];
       default = "apply";
       description = "What Terraform action to perform";
@@ -148,7 +149,7 @@ in {
 
         cp ${terraform-config} config.tf.json \
           && ${pkgs.opentofu}/bin/tofu init \
-          && ${pkgs.opentofu}/bin/tofu ${cfg.terraform-action} -auto-approve
+          && ${pkgs.opentofu}/bin/tofu ${cfg.action} ${if (cfg.action == "apply" || cfg.action == "destroy") then "-auto-approve" else ""}
       '');
     };
   };
