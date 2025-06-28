@@ -22,7 +22,7 @@ nixpkgs.lib.nixosSystem {
 
       networking.hostName = "MGC-DRW-DMC01";
 
-      system.stateVersion = "25.05";
+      system.stateVersion = "24.11";
       megacorp = {
         config = {
           bootloader.enable = true;
