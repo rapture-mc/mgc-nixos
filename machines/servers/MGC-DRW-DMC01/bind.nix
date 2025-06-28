@@ -1,7 +1,7 @@
 {pkgs, vars}: let
   internal-domain = "prod.megacorp.industries";
   email-contact = "ict.megacorp.industries";
-  name-server = "mgc-drw-dmc02";
+  name-server = "mgc-drw-dmc01";
 in {
   networking.firewall.allowedUDPPorts = [
     53
@@ -31,15 +31,13 @@ in {
                                                       )
 
         @                 IN              NS          ${name-server}.${internal-domain}.
-        ${name-server}    IN              A           ${vars.networking.hostsAddr.MGC-DRW-DMC02.eth.ipv4}
+        ${name-server}    IN              A           ${vars.networking.hostsAddr.MGC-DRW-DMC01.eth.ipv4}
 
 
         mgc-drw-bks01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-BKS01.eth.ipv4}
         mgc-drw-bst01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-BST01.eth.ipv4}
         mgc-drw-cld01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-CLD01.eth.ipv4}
         mgc-drw-dgw01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-DGW01.eth.ipv4}
-        mgc-drw-dmc01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-DMC01.eth.ipv4}
-        mgc-drw-dmc02     IN              A           ${vars.networking.hostsAddr.MGC-DRW-DMC02.eth.ipv4}
         mgc-drw-fbr01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-FBR01.eth.ipv4}
         mgc-drw-frw01     IN              A           ${vars.networking.defaultGateway}
         mgc-drw-git01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-GIT01.eth.ipv4}

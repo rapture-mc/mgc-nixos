@@ -124,13 +124,6 @@
       };
     };
 
-    MGC-DRW-DMC02 = {
-      eth = {
-        name = "ens3";
-        ipv4 = "192.168.1.49";
-      };
-    };
-
     MGC-DRW-CLD01 = {
       eth = {
         name = "ens3";
