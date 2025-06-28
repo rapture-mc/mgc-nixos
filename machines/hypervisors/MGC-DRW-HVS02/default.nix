@@ -109,8 +109,6 @@ nixpkgs.lib.nixosSystem {
               file-browser = {
                 vm_hostname_prefix = "MGC-DRW-FBR";
                 vcpu = 2;
-                autostart = false;
-                running = false;
               };
             };
           };
