@@ -1,7 +1,7 @@
 {
   defaultGateway = "192.168.1.99";
   privateLANSubnet = "192.168.1.0/24";
-  nameServers = ["192.168.1.49"];
+  nameServers = ["8.8.8.8"];
   internalDomain = "prod.megacorp.industries";
 
   hostsAddr = {
