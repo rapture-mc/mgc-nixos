@@ -4,28 +4,6 @@
   pkgs,
   ...
 }: let
-  version = "2.10.4";
-
-  godap = pkgs.buildGoModule {
-    pname = "godap";
-    inherit version;
-
-    src = pkgs.fetchFromGitHub {
-      owner = "Macmod";
-      repo = "godap";
-      rev = "v${version}";
-      hash = "sha256-mvzVOuFZABGE7DH3AkhOXvsvSZzgpW0aJUdXW6N6hf0=";
-    };
-
-    vendorHash = "sha256-NiNhKbf5bU1SQXFTZCp8/yNPc89ss8go6M2867ziqq4=";
-
-    meta = {
-      homepage = "https://github.com/Macmod/godap";
-      description = "TUI for LDAP";
-      license = lib.licenses.mit;
-    };
-  };
-
   cfg = config.megacorp.services.openldap;
 
   inherit
@@ -36,6 +14,12 @@
     types
     ;
 in {
+  imports = [
+    (mkIf cfg.enable (import ../../_shared/packages/godap.nix {
+      inherit lib pkgs;
+    }))
+  ];
+
   options.megacorp.services.openldap = {
     enable = mkEnableOption "Enable domain controller";
 
@@ -71,8 +55,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [godap];
-
     networking.firewall.allowedTCPPorts = [
       389
       636

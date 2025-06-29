@@ -33,6 +33,7 @@
       inherit config lib pkgs;
     })
     ./services/k3s
+    ./services/lldap
     ./services/netbox
     ./services/nextcloud
     ./services/nginx/default.nix

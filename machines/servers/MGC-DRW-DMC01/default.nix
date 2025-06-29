@@ -29,7 +29,7 @@ nixpkgs.lib.nixosSystem {
 
           networking.static-ip = {
             enable = true;
-            ipv4 = vars.networking.hostsAddr.MGC-DRW-DMC01.eth.ipv4;
+            ipv4= vars.networking.hostsAddr.MGC-DRW-DMC01.eth.ipv4;
             interface = vars.networking.hostsAddr.MGC-DRW-DMC01.eth.name;
             gateway = vars.networking.defaultGateway;
             nameservers = ["127.0.0.1"];
@@ -39,6 +39,22 @@ nixpkgs.lib.nixosSystem {
           openssh = {
             enable = true;
             authorized-ssh-keys = vars.keys.bastionPubKey;
+          };
+        };
+
+        services.lldap = {
+          enable = true;
+          fqdn = "mgc-drw-dmc01.${vars.networking.internalDomain}";
+          base-dn = "dc=prod,dc=megacorp,dc=industries";
+          tls = {
+            enable = true;
+            cert-file = "/var/lib/nginx/mgc-drw-dmc01.crt";
+            cert-key = "/var/lib/nginx/mgc-drw-dmc01.pem";
+          };
+          ldap-tls = {
+            enable = true;
+            cert-file = "/var/lib/private/lldap/mgc-drw-dmc01.crt";
+            cert-key = "/var/lib/private/lldap/mgc-drw-dmc01.pem";
           };
         };
 
