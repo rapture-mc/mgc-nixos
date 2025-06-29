@@ -1,4 +1,7 @@
-{pkgs, lib}: let
+{
+  pkgs,
+  lib,
+}: let
   version = "2.10.4";
 
   godap = pkgs.buildGoModule {

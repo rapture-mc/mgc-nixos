@@ -95,7 +95,7 @@ in {
         configureRedis = true;
         https =
           if cfg.tls.enable
-          then true 
+          then true
           else false;
         config = {
           dbtype = "pgsql";

@@ -149,7 +149,11 @@ in {
 
         cp ${terraform-config} config.tf.json \
           && ${pkgs.opentofu}/bin/tofu init \
-          && ${pkgs.opentofu}/bin/tofu ${cfg.action} ${if (cfg.action == "apply" || cfg.action == "destroy") then "-auto-approve" else ""}
+          && ${pkgs.opentofu}/bin/tofu ${cfg.action} ${
+          if (cfg.action == "apply" || cfg.action == "destroy")
+          then "-auto-approve"
+          else ""
+        }
       '');
     };
   };

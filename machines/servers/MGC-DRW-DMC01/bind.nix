@@ -1,4 +1,7 @@
-{pkgs, vars}: let
+{
+  pkgs,
+  vars,
+}: let
   internal-domain = "prod.megacorp.industries";
   email-contact = "ict.megacorp.industries";
   name-server = "mgc-drw-dmc01";

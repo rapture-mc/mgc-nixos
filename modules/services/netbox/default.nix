@@ -43,7 +43,7 @@ in {
       description = "The port number for file-browser to listen on";
     };
 
-    allowed-hosts = mkOption  {
+    allowed-hosts = mkOption {
       type = types.listOf types.str;
       default = [];
       description = ''
@@ -72,10 +72,12 @@ in {
           CSRF_TRUSTED_ORIGINS = [
             "https://${cfg.fqdn}"
           ];
-          ALLOWED_HOSTS = [
-            "[::1]"
-            "${cfg.fqdn}"
-          ] ++ cfg.allowed-hosts;
+          ALLOWED_HOSTS =
+            [
+              "[::1]"
+              "${cfg.fqdn}"
+            ]
+            ++ cfg.allowed-hosts;
         };
       };
 

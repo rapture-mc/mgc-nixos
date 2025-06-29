@@ -74,14 +74,16 @@ in {
   };
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [
-      80
-      3890
-    ] ++ (
-      if cfg.ldap-tls.enable
-      then [ 6360 ]
-      else []
-    );
+    networking.firewall.allowedTCPPorts =
+      [
+        80
+        3890
+      ]
+      ++ (
+        if cfg.ldap-tls.enable
+        then [6360]
+        else []
+      );
 
     services = {
       nginx = {

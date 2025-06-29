@@ -5,7 +5,6 @@
   pkgs,
   ...
 }:
-
 nixpkgs.lib.nixosSystem {
   modules = [
     self.nixosModules.default
@@ -29,7 +28,7 @@ nixpkgs.lib.nixosSystem {
 
           networking.static-ip = {
             enable = true;
-            ipv4= vars.networking.hostsAddr.MGC-DRW-DMC01.eth.ipv4;
+            ipv4 = vars.networking.hostsAddr.MGC-DRW-DMC01.eth.ipv4;
             interface = vars.networking.hostsAddr.MGC-DRW-DMC01.eth.name;
             gateway = vars.networking.defaultGateway;
             nameservers = ["127.0.0.1"];
