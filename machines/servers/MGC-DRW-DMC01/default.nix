@@ -3,11 +3,13 @@
   vars,
   self,
   pkgs,
+  sops-nix,
   ...
 }:
 nixpkgs.lib.nixosSystem {
   modules = [
     self.nixosModules.default
+    sops-nix.nixosModules.sops
     {
       imports = [
         ../../_shared/qemu-hardware-config.nix
