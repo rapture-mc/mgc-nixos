@@ -7,6 +7,7 @@ olcRootPW: ENC[AES256_GCM,data:4tkgsmEL,iv:JzMSafmZva8fy7IUh0VtO4NoVMz+AJD3VgpiX
 vault-root-token: ENC[AES256_GCM,data:yAjQzf7IlJ0I80CTBdKaplM6jNaDThUaxMWhAA==,iv:y3oRRhPHtibrtq5NpNQIawAqHs6CacxEtq5yHry4Cy0=,tag:3vrpuaMaoGSBFKaWeLHyeg==,type:str]
 bookstack-keyfile: ENC[AES256_GCM,data:BkK7jrmgIy7OUmrErrhqLHecJk13gTMTuzNvwNXcjJaQxzDbz0Stz6LRc6mCgzIgiWbz,iv:AMuco6K5/v9hP6yzWFS43GtMx3giGod7sQ/LF1bgdSs=,tag:239EuedaBBP0we96TWW64w==,type:str]
 netbox-key-file: ENC[AES256_GCM,data:vSR05kPuaf788PTHxiTnwP4BQSPxKpunBh7wbaVie93ehxVFdOmpGCGRE1nf3A5Tj44Xxmqx2dkAybgu4ky2nbEmbrdmTC6tqdntAxsiKoJYlKJ5jBfcfiOSEXRt0SDCBf8Ejw==,iv:4qKKwhaslH3216WX/68mM/UefLVRXAvpiH1Jj1TlGSU=,tag:t8e5qigrTxRbDMLihvFcpg==,type:str]
+lldap-admin-password: ENC[AES256_GCM,data:cCZMB/cfs6w=,iv:00I2Zg0VdNYLdWBLiOoEXMCxM11Bwxjt4yAXbcz5Mtw=,tag:epniOlHTegGTGFt6GQcR5g==,type:str]
 sops:
     age:
         - recipient: age1p0ccch342uttsucya2kvgqqrf0rmqy3vvnq38tthw9l424lyffjs0vytjh
@@ -81,7 +82,7 @@ sops:
             RmJyQmF3eS80MlFnV0dmSmdxTHFDWlkKov/ment9AbR5iju/8wwiWw55k23zaeHn
             /koO5fn+g+qO+n4Ha2FQHpqf/6zsJrDMZRR9jUvZA4ApV7Vc7GZ1hA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-06-22T04:45:58Z"
-    mac: ENC[AES256_GCM,data:7gS5l1b9+u4219x+1Km0lgWt2nCQzgAXKi39GVGXBtAVTkwlIYSpAgqkyZPbpyaz7HY9lAyGmZK6MO+ciRm1Jmdba2PlSXQpNKn7HH/N31hs0XUbd6AOkhlYMIoDl7fzqZjFYMMAYHefgE7xtbY33JuiHvtzitwDfZ16ssIwmGI=,iv:p8AP6scAC964lwKFZcMBF8J4EMp1fYXnDrzQ/vOa7UA=,tag:1uW+cZWDZMnRYnW3Nch8qg==,type:str]
+    lastmodified: "2025-06-29T04:34:17Z"
+    mac: ENC[AES256_GCM,data:osT6spszi5SzLuoqtHzkE2+1dK9eyVKChH3X9+RCqt+lebZzyUqPeVBpSjfWkkwxbGywIju1FU5AX98KIoStY12a9MfSAwOeoCVuWDoxfIKR45o+n+XKoOO+GeB9bzIjlUXrt6CYB5ZZPH9XUrCiG+IMc62SKpkSLKoYyU+0P6s=,iv:d3DH7cIGZu12JEXC/NZYwu+Eopw7FkSlOyU7w50uWvQ=,tag:KbydFQsd6xLojfa5MsHX8w==,type:str]
     unencrypted_suffix: _unencrypted
     version: 3.10.2

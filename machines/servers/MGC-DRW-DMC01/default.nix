@@ -17,6 +17,9 @@ nixpkgs.lib.nixosSystem {
         (import ./bind.nix {
           inherit pkgs vars;
         })
+        (import ./secrets.nix {
+          inherit vars;
+        })
       ];
 
       networking.hostName = "MGC-DRW-DMC01";
