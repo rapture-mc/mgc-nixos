@@ -1,7 +1,7 @@
 keys:
   - &server_MGC-DRW-BKS01 age1p0ccch342uttsucya2kvgqqrf0rmqy3vvnq38tthw9l424lyffjs0vytjh
   - &server_MGC-DRW-BST01 age174jz0vs3zs06ck59krz3qazrszr8lnst4w8h4shmdj8ccaur84dsea6fkr
-  - &server_MGC-DRW-DMC01 age13ycsdrpwydpw89ae5tpmmwzwplgs2ne20k9ypyvknpz6faya7evquq4nmv
+  - &server_MGC-DRW-DMC01 age1atakc2r5uxz97r64lap73muc7gdydvqfpczz8dlwh85pqrr7gpss8kr9j8
   - &server_MGC-DRW-HVS01 age103qqt3eacmhxestkspwqzrgaekzh6gmquuxa7djradah46zuzfkq6qhu7l
   - &server_MGC-DRW-NBX01 age107607wh3eaq4n9pxjgtvpfy0puf9eul8a4lmtt0u4cnc4t2h749qz29tcw
   - &server_MGC-DRW-SEM01 age1mkzcyetggc8ftex6awe3pyjy82nw5t390qdzjy5edumplz2v7clscky7r0
