@@ -85,6 +85,22 @@ in {
         else []
       );
 
+    services.mysql = {
+      enable = true;
+      package = lib.mkDefault pkgs.mariadb;
+      ensureDatabases = [
+        "lldap"
+      ];
+      ensureUsers = [
+        {
+          name = "lldap";
+          ensurePermissions = {
+            "lldap.*" = "ALL PRIVILEGES";
+          };
+        }
+      ];
+    };
+
     services = {
       nginx = {
         enable = true;
@@ -101,6 +117,7 @@ in {
         settings = {
           http_url = "http://${cfg.fqdn}";
           ldap_base_dn = "${cfg.base-dn}";
+          database_url = "mysql://lldap@localhost/lldap?socket=/var/run/mysqld/mysqld.sock";
           ldaps_options = mkIf cfg.ldap-tls.enable {
             enabled = true;
             port = 6360;
