@@ -82,6 +82,9 @@ nixpkgs.lib.nixosSystem {
                 semaphore = {
                   common_name = "semaphore.${vars.networking.internalDomain}";
                 };
+                snipe-it = {
+                  common_name = "snipe-it.${vars.networking.internalDomain}";
+                };
                 vault = {
                   common_name = "vault.${vars.networking.internalDomain}";
                 };

@@ -7,6 +7,10 @@
       postgres-password = {};
       semaphore-db-pass = {};
       semaphore-access-key-encryption = {};
+      snipe-keyfile = {
+        user = "snipeit";
+        owner = "snipeit";
+      };
     };
   };
 }
