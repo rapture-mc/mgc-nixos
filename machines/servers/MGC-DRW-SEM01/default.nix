@@ -29,11 +29,11 @@ nixpkgs.lib.nixosSystem {
         hostName = "snipe-it.${vars.networking.internalDomain}";
         appKeyFile = "/run/secrets/snipe-keyfile";
         database.createLocally = true;
-        # nginx = {
-        #   forceSSL = true;
-        #   sslCertificate = "/var/lib/nginx/snipe-it.crt";
-        #   sslCertificateKey = "/var/lib/nginx/snipe-it.pem";
-        # };
+        nginx = {
+          forceSSL = true;
+          sslCertificate = "/var/lib/nginx/snipe-it.crt";
+          sslCertificateKey = "/var/lib/nginx/snipe-it.pem";
+        };
       };
 
       megacorp = {
