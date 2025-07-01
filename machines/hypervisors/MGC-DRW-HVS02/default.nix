@@ -103,6 +103,7 @@ nixpkgs.lib.nixosSystem {
 
               desktop-gateway = {
                 vm_hostname_prefix = "MGC-DRW-DGW";
+                memory = "6144";
                 vcpu = 2;
               };
 
