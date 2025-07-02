@@ -19,7 +19,7 @@
     else false;
 in {
   options.megacorp.services.snipe-it = {
-    enable = mkEnableOption "Enable Grafana";
+    enable = mkEnableOption "Enable Snipe-IT";
 
     fqdn = mkOption {
       type = types.str;
@@ -33,7 +33,7 @@ in {
     app-key-file = mkOption {
       type = types.path;
       default = "/run/secrets/snipe-keyfile";
-      description = "The port number for snipe-it to listen on";
+      description = "The snipe-it keyfile";
     };
 
     tls = import ../../_shared/nginx/tls-options.nix {
@@ -46,38 +46,25 @@ in {
       80
     ];
 
-    services = {
-      nginx = {
-        enable = true;
-        virtualHosts."${cfg.fqdn}" = {
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:80";
-            recommendedProxySettings = true;
-            proxyWebsockets = true;
-          };
-        };
-      };
-
-      snipe-it = {
-        enable = true;
-        hostName = cfg.fqdn;
-        appKeyFile = cfg.app-key-file;
-        database.createLocally = true;
-        nginx = mkIf cfg.tls.enable {
-          enableACME =
-            if use-acme-cert
-            then true
-            else false;
-          forceSSL = true;
-          sslCertificate =
-            if !use-acme-cert
-            then cfg.tls.cert-file
-            else null;
-          sslCertificateKey =
-            if !use-acme-cert
-            then cfg.tls.cert-key
-            else null;
-        };
+    services.snipe-it = {
+      enable = true;
+      hostName = cfg.fqdn;
+      appKeyFile = cfg.app-key-file;
+      database.createLocally = true;
+      nginx = mkIf cfg.tls.enable {
+        enableACME =
+          if use-acme-cert
+          then true
+          else false;
+        forceSSL = true;
+        sslCertificate =
+          if !use-acme-cert
+          then cfg.tls.cert-file
+          else null;
+        sslCertificateKey =
+          if !use-acme-cert
+          then cfg.tls.cert-key
+          else null;
       };
     };
   };
