@@ -46,6 +46,8 @@ in {
       80
     ];
 
+    systemd.services."acme-${cfg.fqdn}".serviceConfig = mkIf use-acme-cert {SuccessExitStatus = 10;};
+
     services.snipe-it = {
       enable = true;
       hostName = cfg.fqdn;
