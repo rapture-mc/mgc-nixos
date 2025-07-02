@@ -18,12 +18,6 @@
     then true
     else false;
 in {
-  imports = [
-    (mkIf cfg.tls.enable (import ../../_shared/nginx/tls-config.nix {
-      inherit cfg lib use-acme-cert;
-    }))
-  ];
-
   options.megacorp.services.snipe-it = {
     enable = mkEnableOption "Enable Grafana";
 
@@ -57,7 +51,7 @@ in {
         enable = true;
         virtualHosts."${cfg.fqdn}" = {
           locations."/" = {
-            proxyPass = "http://127.0.0.1:${toString cfg.port}";
+            proxyPass = "http://127.0.0.1:80";
             recommendedProxySettings = true;
             proxyWebsockets = true;
           };
