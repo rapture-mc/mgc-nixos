@@ -24,12 +24,6 @@ in {
 
     logo = mkEnableOption "Whether to show bookstack logo on shell startup";
 
-    open-firewall = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Whether to open port 80 on the firewall";
-    };
-
     fqdn = mkOption {
       type = types.str;
       default = "localhost";
@@ -48,14 +42,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = mkIf cfg.open-firewall ([
+    networking.firewall.allowedTCPPorts = [
       80
     ] ++ (
     if cfg.tls.enable
     then [
       443
-    ] else []
-    ));
+    ] else []);
 
     services.bookstack = {
       enable = true;
