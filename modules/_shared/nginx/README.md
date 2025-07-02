@@ -48,3 +48,4 @@ chown nginx:nginx /var/lib/nginx/*
 chmod 755 /var/lib/nginx
 chmod 600 /var/lib/nginx/*
 ```
+If `megacorp.config.packages.enable = true` is set then the bash script `fixNginxCertDirPermissions` will be available which will do the above command in one go. Run it once to create the cert directory, then again once you've uploaded your certs to it.
