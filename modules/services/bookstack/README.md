@@ -46,3 +46,8 @@ Password: password
 
 ## TLS
 [See here for TLS configuration](https://github.com/rapture-mc/mgc-nixos/tree/main/modules/_shared/nginx)
+
+## Additional Notes
+
+### Use of overlay
+This module uses the 24.11 bookstack package instead of the 25.05 due to a bug present in the 25.05 package that prevents the Bookstack application from compiling.
