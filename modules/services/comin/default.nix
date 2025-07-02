@@ -19,17 +19,13 @@ in {
     repo = mkOption {
       type = types.str;
       default = "";
-      description = ''
-        The git repo where NixOS configuration is stored.
-      '';
+      description = "The git repo where the NixOS configuration is stored";
     };
 
     branch = mkOption {
       type = types.str;
       default = "main";
-      description = ''
-        The git repo where NixOS configuration is stored.
-      '';
+      description = "The git branch to target."
     };
   };
 
