@@ -3,6 +3,16 @@ This module is used by other modules to secure HTTP applications served by NGINX
 
 Modules using this module:
 - [Bookstack](https://github.com/rapture-mc/mgc-nixos/tree/main/modules/services/bookstack)
+- [Gitea](https://github.com/rapture-mc/mgc-nixos/tree/main/modules/services/gitea)
+- [File Browser](https://github.com/rapture-mc/mgc-nixos/tree/main/modules/services/file-browser)
+- [Grafana](https://github.com/rapture-mc/mgc-nixos/tree/main/modules/services/grafana)
+- [Guacamole](https://github.com/rapture-mc/mgc-nixos/tree/main/modules/services/guacamole)
+- [LLDAP](https://github.com/rapture-mc/mgc-nixos/tree/main/modules/services/lldap)
+- [Netbox](https://github.com/rapture-mc/mgc-nixos/tree/main/modules/services/netbox)
+- [Nextcloud](https://github.com/rapture-mc/mgc-nixos/tree/main/modules/services/nextcloud)
+- [Semaphore](https://github.com/rapture-mc/mgc-nixos/tree/main/modules/services/semaphore)
+- [Snipe-IT](https://github.com/rapture-mc/mgc-nixos/tree/main/modules/services/snipe-it)
+- [Zabbix](https://github.com/rapture-mc/mgc-nixos/tree/main/modules/services/zabbix)
 
 # Getting Started
 For example, to enable TLS over HTTP for the Bookstack application...
