@@ -27,56 +27,6 @@
   };
 
   security.pki.certificates = [
-    ''
-      MGC-DRW-VLT01 Intermediate Certificate
-      ======================================
-      -----BEGIN CERTIFICATE-----
-      MIIDpTCCAo2gAwIBAgIUC3/40dOwRqPy++GgIzDRXVb7xIowDQYJKoZIhvcNAQEL
-      BQAwHjEcMBoGA1UEAxMTTWVnYWNvcnAgSW5kdXN0cmllczAeFw0yNTA2MTcxNDEz
-      MDdaFw0yNTEyMTMxODEzMzdaMC4xLDAqBgNVBAMTI01lZ2Fjb3JwIEluZHVzdHJp
-      ZXMgSW50ZXJtZWRpYXRlIENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC
-      AQEA0UHLMb8V1LIqjtMqzQM0v214fs9qIaqUY2ajt4J1fn8BDgD/a7NX+/jUWnng
-      9Ww360M8sET8ks7ilUAL4j/11z4Jj9tytH3nWtwJq31m7IM1Oi0nTucGlKS8nhUi
-      EX7+Etuh6Pxw7/HDvlN3MDmyifTs+ysM/OyD95HrKwhduEufyrlm2XWmp6LP60Vm
-      PnQ0WDz9JHzceuGqQ5W9ky5rUwKIkKFBkhQ5/w2lO68GvzTlFrXtmiYLMU/W/l5y
-      kBWoH+RFR6uR62z9CbmwCCdk3Sjye1H3T3fk/JY9fz7WlB4CDM6abWkkH5iWzkxe
-      546yYlYlKsD2ospyicxZ6Gfj1QIDAQABo4HKMIHHMA4GA1UdDwEB/wQEAwIBBjAP
-      BgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBQpQdBlVw36Y8FQA1t57nNdpArAKDAf
-      BgNVHSMEGDAWgBSYeC0HruOPnR5lYdw1Gc+8Y0FYSjA2BggrBgEFBQcBAQQqMCgw
-      JgYIKwYBBQUHMAKGGmh0dHA6Ly8xMjcuMC4wLjEvdjEvcGtpL2NhMCwGA1UdHwQl
-      MCMwIaAfoB2GG2h0dHA6Ly8xMjcuMC4wLjEvdjEvcGtpL2NybDANBgkqhkiG9w0B
-      AQsFAAOCAQEAN8imyyNmFbSs9NWwz+P7NawqAwR6YGz/XYF4VvxqBhlisIOLDQXi
-      Zrp9xANftUT6cQjPB787jaSPhe0+e6OgbnGkreO02/iF6Qgurv/KrZu6L2ifJqMv
-      /kLa39POcUlXGOEABTC5eBfuTy7Sdoh54aO+NExOaqufPI3EGmABBPKVDbw62XTp
-      LGc28QmksbZRJ0sJhDDjdSJGp0Y34VgskG4ueP+nllGXgSNxOeW+Txe061PYEj0N
-      tL4P1hL0tVlrtPucAtV+yurirteJWJBsBl5nqLlwy0niuY8EMK4POsLzUQMwkBK2
-      0q1Cv60mxBZRZg+w00Af/xuJgpfeW2iM9g==
-      -----END CERTIFICATE-----
-
-      MGC-DRW-VLT01 Root Certificate
-      ==============================
-      -----BEGIN CERTIFICATE-----
-      MIIDlTCCAn2gAwIBAgIUB/FVLnUU/rZ03Oi6vz3xC3+nrXgwDQYJKoZIhvcNAQEL
-      BQAwHjEcMBoGA1UEAxMTTWVnYWNvcnAgSW5kdXN0cmllczAeFw0yNTA2MTcxNDEz
-      MDdaFw0zNTA2MTUxNDEzMzdaMB4xHDAaBgNVBAMTE01lZ2Fjb3JwIEluZHVzdHJp
-      ZXMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCjGBHKdjlXbTXFWkz+
-      cI0AgFTbGg33HRU8w4ClFXt86gaPwjWRIyf3vbgeA0AVhcgsABhyeRAsuz/NE6dp
-      D2XkQkX+fPjQtLZLmXsAJvvHvs0xHTPdaKACCFG3xhYg4PzssdQ8NaWrRqsYcynW
-      bp3ppX81z4QxOzjxPrYvrsfMcTTecKAVLUtFGRAo1LcNyE5zt9gMR72z84lfVf/u
-      859iOxBa30jhqk2GGpHwIDOeMxhUgWKl37PALL7BdcN6JVv9Cc9mWKMgpkB45rJd
-      zN85IW21znHd4vfxTItnn4UGzod2yY72h2dQJcKPTAu+aoQM/3zrogv+EU+f0PcO
-      NTw1AgMBAAGjgcowgccwDgYDVR0PAQH/BAQDAgEGMA8GA1UdEwEB/wQFMAMBAf8w
-      HQYDVR0OBBYEFJh4LQeu44+dHmVh3DUZz7xjQVhKMB8GA1UdIwQYMBaAFJh4LQeu
-      44+dHmVh3DUZz7xjQVhKMDYGCCsGAQUFBwEBBCowKDAmBggrBgEFBQcwAoYaaHR0
-      cDovLzEyNy4wLjAuMS92MS9wa2kvY2EwLAYDVR0fBCUwIzAhoB+gHYYbaHR0cDov
-      LzEyNy4wLjAuMS92MS9wa2kvY3JsMA0GCSqGSIb3DQEBCwUAA4IBAQBQxpBZCLjS
-      FMNplW5x91Tl9gY1n/sC8rlQQuRXK/QjVVWXwxuTLu25Sxz5cO9IMnNyW3uJYxCX
-      yPF8h0YIkjF/CrGfBhf+0BGwH4MbDpIq6Dqt7pMQ3pUwVMxQo2aN5lzjJs+dkmv0
-      gw5oUoW3ht3jPgAg30e9Paq8MlCNLESq8s9fiwVfFhmUiCYUHUlHj9wE/eqRYQ1L
-      xOPnd+tq8u/cEOIFoW4SVmjLE8H/cmIRAxjauwEtT8ZJq32UZmUVPayqIVeeYCJP
-      bnogmEPty0/kOsnteLpc77OZBZuNSB3tTpi8xEeBrp6MDZfFIVVp8LE0yVCyefWh
-      ABV0j1K9fHhd
-      -----END CERTIFICATE-----
-    ''
+    "${vars.keys.root-cert}"
   ];
 }

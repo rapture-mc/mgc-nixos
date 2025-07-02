@@ -2,11 +2,18 @@
   nixpkgs,
   vars,
   self,
+  sops-nix,
   ...
 }:
 nixpkgs.lib.nixosSystem {
+  specialArgs = {
+    inherit vars;
+  };
+
   modules = [
     self.nixosModules.default
+    sops-nix.nixosModules.sops
+    (import ./secrets.nix)
     {
       imports = [
         ../../_shared/qemu-hardware-config.nix
@@ -48,6 +55,18 @@ nixpkgs.lib.nixosSystem {
             enable = true;
             logo = true;
             fqdn = vars.guacamoleFQDN;
+            ldap = {
+              enable = true;
+              server = "mgc-drw-dmc01.prod.megacorp.industries";
+              user-base-dn = "ou=people,dc=prod,dc=megacorp,dc=industries";
+              search-bind-dn = "uid=admin,ou=people,dc=prod,dc=megacorp,dc=industries";
+              user-search-filter = "(memberof=cn=guacamole,ou=groups,dc=prod,dc=megacorp,dc=industries)";
+              admin-ldap-password-file = "/run/secrets/lldap-admin-password";
+              tls = {
+                enable = true;
+                root-cert = vars.keys.root-cert;
+              };
+            };
           };
         };
 
