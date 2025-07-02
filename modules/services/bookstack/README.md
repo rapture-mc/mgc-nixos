@@ -51,3 +51,24 @@ megacorp.services.bookstack = {
 }
 ```
 This will redirect all HTTP requests to HTTPS and attempt to request signed certificates from Let's Encrypt servers. For this ports 80/443 on the bookstack server must be accessible to the internet either via port forwarding or directly exposed to the internet. If these conditions aren't met self-signed certificates will be created instead.
+
+A custom TLS certificate can be used by specifying the cert + key file like so...
+```
+megacorp.services.bookstack = {
+  enable = true;
+  app-key-file = "/run/secrets/bookstack-keyfile";
+  fqdn = "bookstack.local";
+  tls = {
+    enable = true;
+    cert-file = "/var/lib/nginx/bookstack.crt";
+    cert-key = "/var/lib/nginx/bookstack.key";
+  };
+}
+```
+Ensure the **/var/lib/nginx** directory has permissions like so:
+```
+chown nginx:nginx /var/lib/nginx
+chown nginx:nginx /var/lib/nginx/*
+chmod 755 /var/lib/nginx
+chmod 600 /var/lib/nginx/*
+```
