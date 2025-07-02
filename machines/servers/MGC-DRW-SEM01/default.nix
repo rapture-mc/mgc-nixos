@@ -45,7 +45,7 @@ nixpkgs.lib.nixosSystem {
 
         services = {
           semaphore = {
-            enable = true;
+            enable = false;
             fqdn = vars.semaphoreFQDN;
             tls = {
               enable = true;
