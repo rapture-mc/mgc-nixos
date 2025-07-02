@@ -19,16 +19,16 @@
     then true
     else false;
 in {
-  imports = [
-    (mkIf cfg.tls.enable (import ../../_shared/nginx/tls-config.nix {
-      inherit cfg lib use-acme-cert;
-    }))
-  ];
-
   options.megacorp.services.bookstack = {
     enable = mkEnableOption "Enable bookstack";
 
     logo = mkEnableOption "Whether to show bookstack logo on shell startup";
+
+    open-firewall = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Whether to open port 80 on the firewall";
+    };
 
     fqdn = mkOption {
       type = types.str;
@@ -37,7 +37,7 @@ in {
     };
 
     app-key-file = mkOption {
-      type = types.str;
+      type = types.path;
       default = "/run/secrets/bookstack-keyfile";
       description = "The path to the file containing the app key secret";
     };
@@ -48,9 +48,14 @@ in {
   };
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [
+    networking.firewall.allowedTCPPorts = mkIf cfg.open-firewall ([
       80
-    ];
+    ] ++ (
+    if cfg.tls.enable
+    then [
+      443
+    ] else []
+    ));
 
     services.bookstack = {
       enable = true;
