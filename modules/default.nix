@@ -40,6 +40,7 @@
     ./services/prometheus
     ./services/restic
     ./services/semaphore
+    ./services/snipe-it
     ./services/syncthing
     (import ./services/vault {
       inherit config lib pkgs terranix system;

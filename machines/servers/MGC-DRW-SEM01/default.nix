@@ -24,18 +24,6 @@ nixpkgs.lib.nixosSystem {
 
       system.stateVersion = "25.05";
 
-      services.snipe-it = {
-        enable = true;
-        hostName = "snipe-it.${vars.networking.internalDomain}";
-        appKeyFile = "/run/secrets/snipe-keyfile";
-        database.createLocally = true;
-        nginx = {
-          forceSSL = true;
-          sslCertificate = "/var/lib/nginx/snipe-it.crt";
-          sslCertificateKey = "/var/lib/nginx/snipe-it.pem";
-        };
-      };
-
       megacorp = {
         config = {
           bootloader.enable = true;
@@ -55,13 +43,25 @@ nixpkgs.lib.nixosSystem {
           };
         };
 
-        services.semaphore = {
-          enable = true;
-          fqdn = vars.semaphoreFQDN;
-          tls = {
+        services = {
+          semaphore = {
             enable = true;
-            cert-file = "/var/lib/nginx/mgc-drw-sem01.crt";
-            cert-key = "/var/lib/nginx/mgc-drw-sem01.pem";
+            fqdn = vars.semaphoreFQDN;
+            tls = {
+              enable = true;
+              cert-file = "/var/lib/nginx/mgc-drw-sem01.crt";
+              cert-key = "/var/lib/nginx/mgc-drw-sem01.pem";
+            };
+          };
+
+          snipe-it = {
+            enable = true;
+            fqdn = vars.snipe-itFQDN;
+            tls = {
+              enable = true;
+              cert-file = "/var/lib/nginx/snipe-it.crt";
+              cert-key = "/var/lib/nginx/snipe-it.pem";
+            };
           };
         };
 
