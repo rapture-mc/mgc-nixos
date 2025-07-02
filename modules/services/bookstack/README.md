@@ -1,11 +1,12 @@
 # Bookstack Module
 This module installs bookstack and all it's components.
 
+## Simple Setup
 Setting the following...
 ```
 megacorp.services.bookstack = {
   enable = true;
-  app-key-file = "/run/secrets/bookstack-keyfile"l
+  app-key-file = "/run/secrets/bookstack-keyfile";
 }
 ```
 Will:
@@ -15,3 +16,36 @@ Will:
 - Open port TCP/80
 - Configure Bookstack to connect to the MySQL instance
 - Configure Nginx to serve Bookstack over http://localhost 
+
+Since megacorp.services.bookstack.fqdn still has the default value "localhost" Nginx will improperly handle any requests (for example requests made to the bookstack servers IP). It will however be available via http://localhost on the bookstack server itself.
+
+To make it accessible over the network over it's IP for example...
+```
+megacorp.services.bookstack = {
+  enable = true;
+  app-key-file = "/run/secrets/bookstack-keyfile";
+  fqdn = "192.168.1.10";
+}
+```
+Or via a domain name...
+```
+megacorp.services.bookstack = {
+  enable = true;
+  app-key-file = "/run/secrets/bookstack-keyfile";
+  fqdn = "bookstack.local";
+}
+```
+
+## TLS
+To enable TLS over HTTP...
+```
+megacorp.services.bookstack = {
+  enable = true;
+  app-key-file = "/run/secrets/bookstack-keyfile";
+  fqdn = "bookstack.local";
+  tls = {
+    enable = true;
+  };
+}
+```
+This will redirect all HTTP requests to HTTPS and attempt to request signed certificates from Let's Encrypt servers. For this ports 80/443 on the bookstack server must be accessible to the internet either via port forwarding or directly exposed to the internet. If these conditions aren't met self-signed certificates will be created instead.

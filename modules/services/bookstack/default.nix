@@ -50,6 +50,11 @@ in {
       443
     ] else []);
 
+    security.acme = {
+      acceptTerms = true;
+      defaults.email = cfg.tls.email;
+    };
+
     services.bookstack = {
       enable = true;
       hostname = cfg.fqdn;
