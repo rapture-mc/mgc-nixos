@@ -32,6 +32,7 @@
     types
     ;
 
+  # Need to patch jdk8 package with own trusted root certificates
   patched-jdk = pkgs.jdk8.override {
     cacert = pkgs.runCommand "mycacert" {} ''
       mkdir -p $out/etc/ssl/certs
@@ -117,6 +118,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    # Making tomcat webserver use our patched version of JDK
     services.tomcat.jdk = patched-jdk;
 
     environment.etc."guacamole/extensions/guacamole-auth-ldap-${guacVer}.jar".source = "${ldapExtension}/guacamole-auth-ldap-${guacVer}.jar";
@@ -137,7 +139,7 @@ in {
         if [[ -r ${cfg.admin-ldap-password-file} ]]; then
           umask 0077
           temp_conf="$(mktemp)"
-          cp /etc/guacamole/guacamole.properties $temp_conf
+          cp ${config.environment.etc."guacamole/guacamole.properties".source} $temp_conf
           printf 'ldap-search-bind-password = %s\n' "$(cat ${cfg.admin-ldap-password-file})" >> $temp_conf
           mv -fT "$temp_conf" /etc/guacamole/guacamole.properties
           chown root:tomcat /etc/guacamole/guacamole.properties
