@@ -65,7 +65,7 @@ megacorp.services.bookstack = {
   };
 }
 ```
-And ensure the **/var/lib/nginx** directory has permissions like so...
+And ensure the directory housing the certificates has permissions like so...
 ```
 chown nginx:nginx /var/lib/nginx
 chown nginx:nginx /var/lib/nginx/*
