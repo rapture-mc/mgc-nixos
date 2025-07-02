@@ -1,5 +1,5 @@
 # Bookstack Module
-This module installs bookstack and all it's components.
+BookStack is a free and open-source platform for organizing and storing information, often described as a self-hosted wiki or documentation system. It's designed to be simple, easy to use, and suitable for both personal and team use. BookStack uses the concept of "books" to organize content into shelves, chapters, and pages.
 
 ## Getting Started
 Setting the following...
