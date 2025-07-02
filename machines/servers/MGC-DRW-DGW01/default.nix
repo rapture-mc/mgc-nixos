@@ -6,18 +6,16 @@
   ...
 }:
 nixpkgs.lib.nixosSystem {
-  specialArgs = {
-    inherit vars;
-  };
-
   modules = [
     self.nixosModules.default
     sops-nix.nixosModules.sops
-    (import ./secrets.nix)
     {
       imports = [
         ../../_shared/qemu-hardware-config.nix
         (import ../../_shared/common-config.nix {
+          inherit vars;
+        })
+        (import ./secrets.nix {
           inherit vars;
         })
       ];
