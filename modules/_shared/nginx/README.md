@@ -2,7 +2,7 @@
 This module is used by other modules to secure HTTP applications served by NGINX using TLS.
 
 Modules using this module:
-- [Bookstack](https://github.com/rapture-mc/mgc-nixos/modules/services/bookstack)
+- [Bookstack](https://github.com/rapture-mc/mgc-nixos/tree/main/modules/services/bookstack)
 
 # Getting Started
 For example, to enable TLS over HTTP for the Bookstack application...

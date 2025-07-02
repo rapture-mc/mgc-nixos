@@ -39,4 +39,4 @@ megacorp.services.bookstack = {
 ```
 
 ## TLS
-[See here for TLS configuration](https://github.com/rapture-mc/mgc-nixos/modules/_shared/nginx/README.md)
+[See here for TLS configuration](https://github.com/rapture-mc/mgc-nixos/tree/main/modules/_shared/nginx)
