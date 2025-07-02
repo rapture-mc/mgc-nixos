@@ -148,6 +148,9 @@ in {
       '';
     };
 
+    # Ensure no race conditions exist between insert-ldap-password and existing guacamole-client module
+    environment.etc."guacamole/guacamole.properties".enable = false;
+
     services.guacamole-client.settings = {
       ldap-hostname = cfg.server;
       ldap-port = cfg.port;
