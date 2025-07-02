@@ -40,7 +40,7 @@ in {
         This option creates a new file /etc/custom-hosts and doesn't use the default /etc/hosts file because the hostname of the dnsmasq server (when queried) will otherwise resolve to 127.0.0.2 when queried. As in "ping dnsmasq-server" resolves to the localhost of the machine making the query instead of the IP address of the dnsmasq server.
 
         Example value:
-        local-server 192.168.1.50
+        192.168.1.50 local-server
       '';
     };
   };
@@ -71,9 +71,12 @@ in {
         };
       };
 
-      resolved.extraConfig = ''
-        DNSStubListener=no
-      '';
+      resolved = {
+        enable = false;
+        extraConfig = ''
+          DNSStubListener=no
+        '';
+      };
     };
 
     networking.firewall.allowedUDPPorts = [53];
