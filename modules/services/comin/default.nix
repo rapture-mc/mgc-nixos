@@ -25,7 +25,7 @@ in {
     branch = mkOption {
       type = types.str;
       default = "main";
-      description = "The git branch to target."
+      description = "The git branch to target.";
     };
   };
 
