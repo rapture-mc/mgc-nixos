@@ -1,7 +1,7 @@
 # Comin Module
 Comin is a NixOS deployment tool that utilizes a GitOps approach, meaning it deploys configurations by periodically polling Git repositories. It operates in pull mode, where the machine itself fetches the latest configuration from the remote repository.
 
-With Comin one can remove the burden of manually updating NixOS machines whenever changes are made to the Git repository it's config lives in.
+With Comin one can remove the burden of manually updating NixOS machines and instead have the machines rebuild automatically if the Git repository it's config lives in changes.
 
 ## Getting Started
 Setting the following...
