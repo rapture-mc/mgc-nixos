@@ -50,7 +50,7 @@ megacorp.services.bookstack = {
   };
 }
 ```
-This will redirect all HTTP requests to HTTPS and attempt to request signed certificates from Let's Encrypt servers. For this ports 80/443 on the bookstack server must be accessible to the internet either via port forwarding or directly exposed to the internet. If these conditions aren't met self-signed certificates will be created instead.
+This will redirect all HTTP requests to HTTPS and attempt to generated signed certificates from Let's Encrypt servers. For this ports 80/443 on the bookstack server must be accessible to the internet either via port forwarding or directly exposed to the internet. If these conditions aren't met self-signed certificates will be created instead.
 
 A custom TLS certificate can be used by specifying the cert + key file like so...
 ```
