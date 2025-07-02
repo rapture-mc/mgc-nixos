@@ -56,6 +56,10 @@ in {
         + cfg.hosts;
     };
 
+    systemd.services.dnsmasq.restartTriggers = [
+      config.environment.etc.custom-hosts.source
+    ];
+
     services = {
       dnsmasq = {
         enable = true;
