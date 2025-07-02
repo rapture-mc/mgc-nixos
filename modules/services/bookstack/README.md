@@ -1,7 +1,7 @@
 # Bookstack Module
 This module installs bookstack and all it's components.
 
-## Simple Setup
+## Getting Started
 Setting the following...
 ```
 megacorp.services.bookstack = {
@@ -36,6 +36,12 @@ megacorp.services.bookstack = {
   app-key-file = "/run/secrets/bookstack-keyfile";
   fqdn = "bookstack.local";
 }
+```
+
+## Default Credenials
+```
+Username: admin@admin.com
+Password: password
 ```
 
 ## TLS
