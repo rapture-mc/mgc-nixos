@@ -17,7 +17,7 @@ Will:
 - Configure Bookstack to connect to the MySQL instance
 - Configure Nginx to serve Bookstack over http://localhost 
 
-Since megacorp.services.bookstack.fqdn still has the default value "localhost" Nginx will improperly handle any requests (for example requests made to the bookstack servers IP). It will however be available via http://localhost on the bookstack server itself.
+Since **megacorp.services.bookstack.fqdn** still has the default value "localhost" Nginx will improperly handle any requests (for example requests made to the bookstack servers IP). It will however be available via http://localhost on the bookstack server itself.
 
 To make it accessible over the network over it's IP for example...
 ```
