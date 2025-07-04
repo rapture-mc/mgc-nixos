@@ -67,7 +67,7 @@ in {
           initialPassword = "changeme";
           shell = pkgs.${userConfig.shell};
           extraGroups = mkIf userConfig.sudo [ "wheel" ];
-        }
+        };
       }) cfg;
       
 
