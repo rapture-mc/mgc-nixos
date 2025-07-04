@@ -76,9 +76,6 @@ nixpkgs.lib.nixosSystem {
                 mgc-drw-dmc01 = {
                   common_name = "mgc-drw-dmc01.${vars.networking.internalDomain}";
                 };
-                nextcloud = {
-                  common_name = "nextcloud.${vars.networking.internalDomain}";
-                };
                 semaphore = {
                   common_name = "semaphore.${vars.networking.internalDomain}";
                 };
