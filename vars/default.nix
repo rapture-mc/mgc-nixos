@@ -12,11 +12,11 @@ in {
   primaryDomain = "${domain}";
   guacamoleFQDN = "guacamole.${domain}";
   file-browserFQDN = "file-browser.${domain}";
-  semaphoreFQDN = "semaphore.${domain}";
+  semaphoreFQDN = "semaphore.prod.${domain}";
   giteaFQDN = "gitea.${domain}";
-  grafanaFQDN = "grafana.${domain}";
-  zabbixFQDN = "zabbix.${domain}";
-  netboxFQDN = "netbox.${domain}";
+  grafanaFQDN = "grafana.prod.${domain}";
+  zabbixFQDN = "zabbix.prod.${domain}";
+  netboxFQDN = "netbox.prod.${domain}";
   nextcloudFQDN = "nextcloud.${domain}";
   snipe-itFQDN = "snipe-it.prod.${domain}";
 

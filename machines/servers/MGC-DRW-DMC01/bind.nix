@@ -58,7 +58,6 @@ in {
         bookstack         IN              CNAME       mgc-drw-bks01
         grafana           IN              CNAME       mgc-drw-mon01
         netbox            IN              CNAME       mgc-drw-nbx01
-        nextcloud         IN              CNAME       mgc-drw-nxc01
         semaphore         IN              CNAME       mgc-drw-sem01
         snipe-it          IN              CNAME       mgc-drw-sem01
         zabbix            IN              CNAME       mgc-drw-mon01
