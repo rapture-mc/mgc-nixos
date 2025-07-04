@@ -19,6 +19,12 @@ in {
       This will lock down grub so that any operation except for selecting the default grub entry will require a password.
     '';
 
+    user = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "The username for the grub account";
+    };
+
     password-file = mkOption {
       type = types.str;
       default = "/run/secrets/grub-admin-password";
@@ -32,6 +38,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    boot.loader.grub.users.${config.megacorp.config.users.admin-user}.hashedPasswordFile = cfg.password-file;
+    assertions = [
+      {
+        assertion = !cfg.enable || (cfg.user != null);
+        message = "${cfg.user} must be set if ${cfg.enable} is true";
+      }
+    ];
+
+    boot.loader.grub.users.${cfg.user}.hashedPasswordFile = cfg.password-file;
   };
 }

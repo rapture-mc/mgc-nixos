@@ -71,8 +71,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    users.users.${config.megacorp.config.users.admin-user}.extraGroups = ["docker"];
-
     environment.systemPackages = [pkgs.lazydocker];
 
     # Note: Docker doesn't respect the NixOS firewall and will open port 8080 since we declared that in the compose file

@@ -45,11 +45,9 @@ in {
           then true
           else false;
         PermitRootLogin = mkDefault "no";
+        AllowUsers = cfg.authorized-ssh-keys;
       };
     };
-
-    # Authorized SSH keys
-    users.users.${config.megacorp.config.users.admin-user}.openssh.authorizedKeys.keys = cfg.authorized-ssh-keys;
 
     # Required for oh-my-tmux ssh sessions to work correctly
     programs.ssh.extraConfig = ''

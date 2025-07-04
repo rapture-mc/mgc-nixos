@@ -37,7 +37,7 @@ in {
 
     libvirt-users = mkOption {
       type = types.listOf types.str;
-      default = ["${config.megacorp.config.users.admin-user}"];
+      default = [];
       description = "A list of users who will have access to the libvirt API";
     };
   };

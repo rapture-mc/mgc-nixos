@@ -48,6 +48,12 @@ in {
     backups = {
       enable = mkEnableOption "Enable Restic backups";
 
+      restic-admins = mkOption {
+        type = types.listOf types.str;
+        default = [];
+        description = "Users who can will have permissions to the restic backup repostiory";
+      };
+
       run-as = mkOption {
         type = types.str;
         default = "root";
@@ -60,13 +66,7 @@ in {
       target-folders = mkOption {
         type = types.listOf types.str;
         default = [];
-        description = ''
-          The folders to backup. These folders will be backed up as well as the below default folders:
-            - /home/<admin-user>/.ssh
-            - /home/<admin-user>/.config/sops
-            - /etc/ssh/ssh_host_ed25519_key
-            - /etc/ssh/ssh_host_ed25519_key.pub
-        '';
+        description = "The folders to backup. These folders will be backed up as well as the below default folders";
       };
 
       target-host = mkOption {
@@ -125,8 +125,7 @@ in {
 
       groups.restic-backup.members = [
         "restic"
-        "${config.megacorp.config.users.admin-user}"
-      ];
+      ] ++ cfg.restic-admins;
     };
 
     environment.systemPackages = mkIf cfg.sftp-server.enable [
@@ -140,16 +139,7 @@ in {
         user = cfg.backups.run-as;
         passwordFile = cfg.backups.repository-password-file;
         repository = "sftp:restic-backup@${cfg.backups.target-host}:${cfg.backups.target-path}/${cfg.backups.repository-name}";
-        paths =
-          [
-            "/home/${config.megacorp.config.users.admin-user}/.ssh"
-            "/home/${config.megacorp.config.users.admin-user}/.config/sops"
-            "/root/.ssh"
-            "/etc/ssh/ssh_host_ed25519_key"
-            "/etc/ssh/ssh_host_ed25519_key.pub"
-          ]
-          ++ cfg.backups.target-folders;
-
+        paths = cfg.backups.target-folders;
         timerConfig = {
           OnCalendar = cfg.backups.frequency;
           Persistent = true;
