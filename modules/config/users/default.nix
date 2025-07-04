@@ -8,9 +8,7 @@
 
   inherit
     (lib)
-    mkEnableOption
     mkOption
-    mkMerge
     mkIf
     types
     ;
@@ -41,6 +39,12 @@ in {
               default = false;
               description = "Whether to grant the user sudo privilliges";
             };
+
+            authorized-ssh-keys = mkOption {
+              type = types.listOf types.singleLineStr;
+              default = [""];
+              description = "List of authorized ssh keys who are allowed to connect using the admin user";
+            };
           };
         }
       )
@@ -67,6 +71,7 @@ in {
           initialPassword = "changeme";
           shell = pkgs.${userConfig.shell};
           extraGroups = mkIf userConfig.sudo [ "wheel" ];
+          openssh.authorizedKeys = cfg.authorized-ssh-keys;
         };
       }) cfg;
       

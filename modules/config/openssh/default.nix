@@ -22,12 +22,6 @@ in {
       logo = mkEnableOption "Whether to show bastion logo on shell startup";
     };
 
-    authorized-ssh-keys = mkOption {
-      type = types.listOf types.singleLineStr;
-      default = [""];
-      description = "List of authorized ssh keys who are allowed to connect using the admin user";
-    };
-
     auto-accept-server-keys = mkEnableOption ''
       Whether to automatically accept remote machines SSH key
 
@@ -45,7 +39,6 @@ in {
           then true
           else false;
         PermitRootLogin = mkDefault "no";
-        AllowUsers = cfg.authorized-ssh-keys;
       };
     };
 
