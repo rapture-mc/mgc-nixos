@@ -45,8 +45,8 @@ nixpkgs.lib.nixosSystem {
             fqdn = vars.grafanaFQDN;
             tls = {
               enable = true;
-              cert-file = "/var/lib/nginx/grafana.megacorp.industries.crt";
-              cert-key = "/var/lib/nginx/grafana.megacorp.industries.pem";
+              cert-file = "/var/lib/nginx/grafana.crt";
+              cert-key = "/var/lib/nginx/grafana.pem";
             };
           };
 
@@ -56,8 +56,8 @@ nixpkgs.lib.nixosSystem {
               fqdn = vars.zabbixFQDN;
               tls = {
                 enable = true;
-                cert-file = "/var/lib/nginx/zabbix.megacorp.industries.crt";
-                cert-key = "/var/lib/nginx/zabbix.megacorp.industries.pem";
+                cert-file = "/var/lib/nginx/zabbix.crt";
+                cert-key = "/var/lib/nginx/zabbix.pem";
               };
             };
           };
