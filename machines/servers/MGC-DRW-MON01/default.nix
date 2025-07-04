@@ -51,6 +51,7 @@ nixpkgs.lib.nixosSystem {
           };
 
           zabbix = {
+            agent.enable = true;
             server = {
               enable = true;
               fqdn = vars.zabbixFQDN;
