@@ -4,8 +4,9 @@
       system.enable = true;
 
       users = {
-        enable = true;
-        admin-user = vars.adminUser;
+        benny = {
+          sudo = true;
+        };
       };
 
       packages.enable = true;
