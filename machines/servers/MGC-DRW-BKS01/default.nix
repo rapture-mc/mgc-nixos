@@ -36,11 +36,6 @@ nixpkgs.lib.nixosSystem {
             nameservers = vars.networking.nameServers;
             lan-domain = vars.networking.internalDomain;
           };
-
-          openssh = {
-            enable = true;
-            authorized-ssh-keys = vars.keys.bastionPubKey;
-          };
         };
 
         services = {
@@ -57,6 +52,11 @@ nixpkgs.lib.nixosSystem {
         };
 
         virtualisation.libvirt.guest.enable = true;
+
+        hardening.bootloader = {
+          enable = true;
+          user = vars.adminUser;
+        };
       };
     }
   ];

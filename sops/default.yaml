@@ -2,13 +2,13 @@ semaphore-db-pass: ENC[AES256_GCM,data:bA56NSl8V0chPCofydnhAEeJEbv7fK0okeUziVbOy
 postgres-password: ENC[AES256_GCM,data:pAe/0qnuoF8JwtmlOSPFA6eqJPwLH8SbYbHG25fRocpuYhUkNCI=,iv:VsysBnQHOOnFGnmvoI2ix9BiKj5cKHY6NmJgqv0y58w=,tag:P3GQAd0SIElOKfdOJGI7iw==,type:str]
 semaphore-access-key-encryption: ENC[AES256_GCM,data:LPsg0WUG8OsULQ8RbhpHN8I0ooRcVTRWrTtJdhXc8R2nYqCqd1wEPiW45yLaJAp7jnYnn+TgiB24yNc9Kgk5iy6UaiMAcGIzedNRPg==,iv:aFjHts1mHMJfSS1cG1cw02DmwB73DOKOdeTfHgrnQyE=,tag:ecUfdj2dTN7kDUXLC8Jf0g==,type:str]
 restic-repo-password: ENC[AES256_GCM,data:Dz9NM28ETzg=,iv:kKIBjnBIw3t+4+0EBO19jK4S/ao3B4V0o0i1TO/9ja8=,tag:y/2G5ui/eXbN9aayNwyJAQ==,type:str]
-grub-admin-password: ENC[AES256_GCM,data:LYJEuFBhLzyetszAJjy1dZlKbGTkJoH65mRWScYgN+f1OVqYoErn9dpk0as0q/1tQvWo4CqCCLBAoD1PNxFOkLvaFLnDGOaoYxF7hfeMn5R1FD93nJVdfaFkOi9qeY1iU1v1VtnVB97cgmjcYYKdP0oGZQBjixKEAqrkTsOYdhkw2gP7TArE+s8HHb8ZBO1jPovW6mHbuajJ8rACYE57MJH7UQLB0l1y1wj0vSRwN9YlRxDY4RopkPUbzlmVburf5t1HXCWZ3WvHYZQPKzet6EdRy2qhKy6Z5enT5jTZlTofUb5DEaQKOSDXmhXrIP676sbWTgMMMT7WD8U0Q9WBYuf2UpvLS3B7+QjCn2djvkeCN7SLc9zXyymt,iv:3DgOe6pYZtAOaBiv5Vxcx+sVC+sHfUfBdVqPrxeLGEI=,tag:ZEANCAaFYDFyncvU0Eldtw==,type:str]
 olcRootPW: ENC[AES256_GCM,data:4tkgsmEL,iv:JzMSafmZva8fy7IUh0VtO4NoVMz+AJD3VgpiXdHT4po=,tag:LeMCdALNyIPLhzhHChs+Xw==,type:str]
 vault-root-token: ENC[AES256_GCM,data:yAjQzf7IlJ0I80CTBdKaplM6jNaDThUaxMWhAA==,iv:y3oRRhPHtibrtq5NpNQIawAqHs6CacxEtq5yHry4Cy0=,tag:3vrpuaMaoGSBFKaWeLHyeg==,type:str]
 bookstack-keyfile: ENC[AES256_GCM,data:BkK7jrmgIy7OUmrErrhqLHecJk13gTMTuzNvwNXcjJaQxzDbz0Stz6LRc6mCgzIgiWbz,iv:AMuco6K5/v9hP6yzWFS43GtMx3giGod7sQ/LF1bgdSs=,tag:239EuedaBBP0we96TWW64w==,type:str]
 netbox-key-file: ENC[AES256_GCM,data:vSR05kPuaf788PTHxiTnwP4BQSPxKpunBh7wbaVie93ehxVFdOmpGCGRE1nf3A5Tj44Xxmqx2dkAybgu4ky2nbEmbrdmTC6tqdntAxsiKoJYlKJ5jBfcfiOSEXRt0SDCBf8Ejw==,iv:4qKKwhaslH3216WX/68mM/UefLVRXAvpiH1Jj1TlGSU=,tag:t8e5qigrTxRbDMLihvFcpg==,type:str]
 lldap-admin-password: ENC[AES256_GCM,data:cCZMB/cfs6w=,iv:00I2Zg0VdNYLdWBLiOoEXMCxM11Bwxjt4yAXbcz5Mtw=,tag:epniOlHTegGTGFt6GQcR5g==,type:str]
 snipe-keyfile: ENC[AES256_GCM,data:9lnP4J6fN4LBSqAHszUd2UJSJvqXbSboPvU/I+usMd65ma7n4+VmJCjisgI=,iv:f1sk5fZCyQN3TgVxhc06fO7G65Q4EFMOkJcjvrtsW6Q=,tag:XxWxFdMikxquHqVTRgtwFA==,type:str]
+grub-admin-password: ENC[AES256_GCM,data:iST40vOuDOrh1QH5sIUF0xy/yrpXbtg1o5uRBhZ6aQXI/RZ4MKj5AsKWjv+EFjCn+0qFXS8zLMyD1pK76SD8AAM0PuHnHnF8E0and5rziPRgXjfLeSw/sr6u/tis1vLdWux+7l+9s6S9KIJDkbbC/2chga0NVVxM3BhCGIxfCi5PTlIZ5cRc7Yy8UtVyDAcpUNOHGq6UU1WLqw4X+nyrTw2sC8ge1naB6uT8o3xLw1uKESn7YAsqlklAPKjwLBwxRlhsZzs01MWw6L4HCa6CxXh7EwrEKKyD/sP2s1ilhjYG2FMGFurQ+/3Ays+EDUWbNZ3JSteGTPzwCwjtiH0MkONBgwPo1MXV4A1rekDdmSq7LaNWHx5883s/,iv:EdyImrqW/g/EvXmhZ4dAtWreK3RL0nhSiTND+pab43g=,tag:786f2pr48ps5KmCRImIhMw==,type:str]
 sops:
     age:
         - recipient: age1p0ccch342uttsucya2kvgqqrf0rmqy3vvnq38tthw9l424lyffjs0vytjh
@@ -92,7 +92,7 @@ sops:
             SS9ZZmMxRlJIK1NmRWNlbjAwekFtRW8Kk5CUXoprJXg5bgRA3V49WQ4Mg6af6cnL
             dB6TF1qZ8oibkzy7Uv4QDpOP7AKyeuln1Bujpz4zzk15SPi7Irryrg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-06-30T09:48:00Z"
-    mac: ENC[AES256_GCM,data:eAQhYR4hDSEz4KgjYTUefcJnrRUhLadEfHeKbkA4fFOcsUxWPoZ60EKMQK0eW8yq1O9JyU7Pl87YfN+n17eYxrXGFJ2amQTfs7jic1u0BT/oVBakcsGJ8Ny4UriGEMRJqo9Sv4mS9T6tyP+ufq+6FsJqmzhzO3HRCvTjMvEBMPo=,iv:EaoRhnaw8lRGxM2rk07AYyVBYM1CgC4lz++2mUOCRUg=,tag:RstnG8q6s9uNPJFM4O9LuA==,type:str]
+    lastmodified: "2025-07-04T12:56:13Z"
+    mac: ENC[AES256_GCM,data:aWPoiShbOqXkChwDLQO1w7lZBna/AgnsV2S2mQDCloqS6RMZvyM8/qn695KfwRqpZEsvbiB4Osx4NH9MFUFWm8NUkpLlLd10Oyabao72og0jyPDeDuNpmp3fqTYsP6ySMqD7P6N5X8Huukzh7QsugN9C8EtJO3F8Zq9jPnygGYc=,iv:be+27g7Kz1lLexZ6n83BkcNxcEYr+Nb9ImipsCVMyOQ=,tag:VF7Nr+k1d0Zf5W9nbj8riw==,type:str]
     unencrypted_suffix: _unencrypted
     version: 3.10.2
