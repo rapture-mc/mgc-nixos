@@ -8,10 +8,8 @@
   inherit
     (lib)
     mkEnableOption
-    mkOption
     mkIf
     mkDefault
-    types
     ;
 in {
   options.megacorp.config.openssh = {
