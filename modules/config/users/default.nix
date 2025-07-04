@@ -48,7 +48,7 @@ in {
     default = null;
   };
 
-  config = mkIf (cfg.users != null) {
+  config = mkIf (cfg != null) {
     programs.zsh.enable = true;
 
     home-manager.users = lib.mapAttrs'
