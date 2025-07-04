@@ -8,7 +8,6 @@
         owner = "bookstack";
         group = "bookstack";
       };
-      grub-admin-password = {};
     };
   };
 }

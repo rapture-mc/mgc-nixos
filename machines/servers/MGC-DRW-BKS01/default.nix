@@ -52,11 +52,6 @@ nixpkgs.lib.nixosSystem {
         };
 
         virtualisation.libvirt.guest.enable = true;
-
-        hardening.bootloader = {
-          enable = true;
-          user = vars.adminUser;
-        };
       };
     }
   ];
