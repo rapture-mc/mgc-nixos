@@ -71,7 +71,7 @@ in {
           initialPassword = "changeme";
           shell = pkgs.${userConfig.shell};
           extraGroups = mkIf userConfig.sudo [ "wheel" ];
-          openssh.authorizedKeys = ${userConfig.authorized-ssh-keys};
+          openssh.authorizedKeys = userConfig.authorized-ssh-keys;
         };
       }) cfg;
       
