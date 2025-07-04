@@ -53,20 +53,23 @@ in {
 
     home-manager.users = lib.mapAttrs'
       (userName: userConfig: {
-        ${userName} = {
+        name = userName;
+        value = {
           imports = [../../home-manager];
         };
       }) cfg;
 
     users.users = lib.mapAttrs'
       (userName: userConfig: {
-        ${userName} = {
+        name = userName;
+        value = {
           isNormalUser = true;
           initialPassword = "changeme";
           shell = pkgs.${userConfig.shell};
           extraGroups = mkIf userConfig.sudo [ "wheel" ];
-        };
+        }
       }) cfg;
+      
 
     # users.users = mkMerge [
     #   {
