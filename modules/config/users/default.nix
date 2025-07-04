@@ -16,7 +16,7 @@
     ;
 in {
   options.megacorp.config.users = mkOption {
-    type = types.nullOr types.attrsOf (
+    type = types.nullOr (types.attrsOf (
       types.submodule (
         {name, ...}: {
           options = {
@@ -44,7 +44,7 @@ in {
           };
         }
       )
-    );
+    ));
     default = null;
   };
 
