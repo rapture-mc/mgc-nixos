@@ -40,12 +40,15 @@ nixpkgs.lib.nixosSystem {
             lan-domain = vars.networking.internalDomain;
           };
 
-          openssh = {
+          openssh.bastion = {
             enable = true;
-            authorized-ssh-keys = vars.keys.authorizedBastionPubKeys;
-            bastion = {
-              enable = true;
-              logo = true;
+            logo = true;
+          };
+
+          users = {
+            benny = {
+              sudo = true;
+              authorized-ssh-keys = vars.keys.authorizedBastionPubKeys;
             };
           };
         };
