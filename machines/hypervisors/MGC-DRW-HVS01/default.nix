@@ -118,11 +118,11 @@ nixpkgs.lib.nixosSystem {
                 running = false;
               };
 
-              # monitoring-servers = {
-              #   vm_hostname_prefix = "MGC-DRW-MON";
-              #   memory = "8192";
-              #   vcpu = 4;
-              # };
+              monitoring-servers = {
+                vm_hostname_prefix = "MGC-DRW-MON";
+                memory = "8192";
+                vcpu = 4;
+              };
 
               netbox-servers = {
                 vm_hostname_prefix = "MGC-DRW-NBX";
