@@ -124,6 +124,8 @@
             ];
           };
         };
+
+        output.public-dns.value = "\${ aws_instance.nixos_x86-64.public_dns }";
       }
     ];
   };
