@@ -68,7 +68,7 @@ in {
 
     state-dir = mkOption {
       type = types.path;
-      default = "/var/lib/terranix/state/route53";
+      default = "/var/lib/terranix-state/route53";
       description = "Where to store the Terranix state files";
     };
 
