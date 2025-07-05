@@ -66,6 +66,16 @@ in {
       '';
     };
 
+    action = mkOption {
+      type = types.enum [
+        "apply"
+        "destroy"
+        "plan"
+      ];
+      default = "apply";
+      description = "What Terraform action to perform";
+    };
+
     state-dir = mkOption {
       type = types.path;
       default = "/var/lib/terranix-state/aws/route53";
@@ -156,7 +166,11 @@ in {
         fi
         cp ${route53-config} config.tf.json \
           && tofu init \
-          && tofu apply
+          && tofu ${cfg.action} ${
+          if (cfg.action == "apply" || cfg.action == "destroy")
+          then "-auto-approve"
+          else ""
+        }
       '');
     };
   };
