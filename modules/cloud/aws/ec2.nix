@@ -194,10 +194,10 @@ in {
       after = ["network.target"];
       path = [pkgs.git];
       serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-aws-ec2-config" ''
-        if [[ -e config.tf.json ]]; then
-          rm -f config.tf.json;
+        if [[ -e ec2.tf.json ]]; then
+          rm -f ec2.tf.json;
         fi
-        cp ${ec2-config} config.tf.json \
+        cp ${ec2-config} ec2.tf.json \
           && ${pkgs.opentofu}/bin/tofu init \
           && ${pkgs.opentofu}/bin/tofu ${
           if cfg.instance.enable

@@ -131,10 +131,10 @@ in {
       after = ["network.target"];
       path = [pkgs.git];
       serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-aws-route53-config" ''
-        if [[ -e config.tf.json ]]; then
-          rm -f config.tf.json;
+        if [[ -e route53.tf.json ]]; then
+          rm -f route53.tf.json;
         fi
-        cp ${route53-config} config.tf.json \
+        cp ${route53-config} route53.tf.json \
           && ${pkgs.opentofu}/bin/tofu init \
           && ${pkgs.opentofu}/bin/tofu apply -auto-approve
       '');
