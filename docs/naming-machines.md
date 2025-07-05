@@ -1,4 +1,6 @@
-# Machine Types Reference
+# Naming Machines
+
+Below are the naming conventions for machines.
 
 ### BST = Bastion Server
 - This machine acts as a jump host which has direct access to all the other machines through public key authentication
