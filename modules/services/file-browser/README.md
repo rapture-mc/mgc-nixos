@@ -1,8 +1,6 @@
 # File-Browser Module
 File Browser provides a file managing interface within a specified directory and it can be used to upload, delete, preview and edit your files. It is a create-your-own-cloud-kind of software where you can just install it on your server, direct it to a path and access your files through a nice web interface.
 
-**NOTE:** The File-Browser project is currently in [maintenace mode](https://github.com/filebrowser/filebrowser/discussions/4906) meaning it has no active maintainers. There is still a large userbase behind it and many forks and contributions but the official maintainer is wanting to pass the responsibility to someone else.
-
 ## Getting Started
 Setting the following...
 ```
@@ -44,4 +42,9 @@ Password: (run "journalctl -u file-browser.service" to check the default randoml
 
 ## Encrypting HTTP with TLS (HTTPS)
 [See here](https://github.com/rapture-mc/mgc-nixos/tree/main/modules/_shared/nginx)
+
+## Additional Notes
+
+### File-Browser is in maintenance mode (2025-06-05)
+The File-Browser project is currently in [maintenace mode](https://github.com/filebrowser/filebrowser/discussions/4906) meaning it has no active maintainers. There is still a large userbase behind it and many forks and contributions but the official maintainer is wanting to pass the responsibility to someone else.
 
