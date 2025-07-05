@@ -74,7 +74,7 @@
     nixpkgs24-11,
     ...
   }: let
-    # Define system architecture, make lib more accessible and apply overlays to pkgs variable
+    # Define system architecture, make lib more accessible, allow unfree packages and apply overlays to pkgs variable
     system = "x86_64-linux";
     lib = nixpkgs.lib;
     pkgs = import nixpkgs {
@@ -89,10 +89,11 @@
       ];
     };
 
-    # Import custom variables
+    # Define custom variables which are used through NixOS machine configurations
     vars = import ./vars;
 
     # Helper function for importing different nixosConfigurations
+    # Splits nixosConfigurations into seperate files for a less bloated flake.nix file
     importMachineConfig = machineType: machineName:
       import ./machines/${machineType}/${machineName} {
         inherit self vars nixpkgs pkgs terranix system sops-nix;
