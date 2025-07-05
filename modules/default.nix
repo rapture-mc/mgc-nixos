@@ -10,6 +10,9 @@
     (import ./cloud/aws/route53.nix {
       inherit config lib pkgs terranix system;
     })
+    (import ./cloud/aws/ec2.nix {
+      inherit config lib pkgs terranix system;
+    })
     ./config/bootloader
     ./config/desktop
     ./config/packages
@@ -49,9 +52,6 @@
     ./services/wireguard/client.nix
     ./services/zabbix/agent.nix
     ./services/zabbix/server.nix
-    (import ./virtualisation/aws {
-      inherit config lib pkgs terranix system;
-    })
     (import ./virtualisation/libvirt {
       inherit config lib pkgs terranix system;
     })

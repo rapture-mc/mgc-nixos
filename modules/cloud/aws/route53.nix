@@ -126,7 +126,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    systemd.services.aws-infra-provisioner = {
+    systemd.services.aws-infra-route53-provisioner = {
       wantedBy = ["multi-user.target"];
       after = ["network.target"];
       path = [pkgs.git];

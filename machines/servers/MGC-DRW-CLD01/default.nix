@@ -41,19 +41,17 @@ nixpkgs.lib.nixosSystem {
           };
         };
 
-        virtualisation = {
-          libvirt.guest.enable = true;
-
-          aws = {
+        cloud.aws.ec2 = {
+          enable = true;
+          credential-path = "/home/${vars.adminUser}/.aws/credentials";
+          config-path = "/home/${vars.adminUser}/.aws/config";
+          instance = {
             enable = true;
-            credential-path = "/home/${vars.adminUser}/.aws/credentials";
-            config-path = "/home/${vars.adminUser}/.aws/config";
-            instance = {
-              enable = true;
-              public-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKhKBbO3gu8cbKQYOopVAA9gkSHHChkjMYPgfW2NIBrN benny@MGC-LT01";
-            };
+            public-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKhKBbO3gu8cbKQYOopVAA9gkSHHChkjMYPgfW2NIBrN benny@MGC-LT01";
           };
         };
+
+        virtualisation.libvirt.guest.enable = true;
       };
     }
   ];

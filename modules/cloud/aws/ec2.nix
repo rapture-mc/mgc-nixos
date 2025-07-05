@@ -6,7 +6,7 @@
   system,
   ...
 }: let
-  cfg = config.megacorp.virtualisation.aws;
+  cfg = config.megacorp.cloud.aws.ec2;
 
   inherit
     (lib)
@@ -130,7 +130,7 @@
     ];
   };
 in {
-  options.megacorp.virtualisation.aws = {
+  options.megacorp.cloud.aws.ec2 = {
     enable = mkEnableOption "Enable AWS provisioner";
 
     region = mkOption {
@@ -189,7 +189,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    systemd.services.aws-infra-provisioner = {
+    systemd.services.aws-infra-ec2-provisioner = {
       wantedBy = ["multi-user.target"];
       after = ["network.target"];
       path = [pkgs.git];
