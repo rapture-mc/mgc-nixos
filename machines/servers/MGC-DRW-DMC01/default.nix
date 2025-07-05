@@ -27,6 +27,7 @@ nixpkgs.lib.nixosSystem {
       networking.hostName = "MGC-DRW-DMC01";
 
       system.stateVersion = "24.11";
+
       megacorp = {
         config = {
           bootloader.enable = true;
@@ -38,11 +39,6 @@ nixpkgs.lib.nixosSystem {
             gateway = vars.networking.defaultGateway;
             nameservers = ["127.0.0.1"];
             lan-domain = vars.networking.internalDomain;
-          };
-
-          openssh = {
-            enable = true;
-            authorized-ssh-keys = vars.keys.bastionPubKey;
           };
         };
 
