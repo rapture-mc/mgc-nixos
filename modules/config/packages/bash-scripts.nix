@@ -27,10 +27,14 @@
       exit 1
     fi
 
-    echo "Cloning git directory to /tmp/mgc-nixos"
+    echo "Cloning git directory to /tmp/mgc-nixos..."
     git clone https://github.com/rapture-mc/mgc-nixos /tmp/mgc-nixos
 
+    echo "Changing directory to /tmp/mgc-nixos..."
     cd /tmp/mgc-nixos
+
+    echo "Ensuring repo is up to date if already existed..."
+    git pull
 
     echo "Running nh os switch..."
     nh os switch . -H $1
