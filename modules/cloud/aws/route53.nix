@@ -131,6 +131,7 @@ in {
       after = ["network.target"];
       path = [pkgs.git];
       serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-aws-json-config" ''
+        pwd
         if [[ -e config.tf.json ]]; then
           rm -f config.tf.json;
         fi
