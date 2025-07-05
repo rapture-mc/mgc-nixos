@@ -99,16 +99,20 @@
         inherit self vars nixpkgs pkgs terranix system sops-nix;
       };
   in {
+
     ##################
     # NIXOS MACHINES #
     ##################
+
     nixosConfigurations = import ./machines {
       inherit importMachineConfig;
     };
 
+
     #################
     # NIXOS MODULES #
     #################
+
     nixosModules.default = {config, ...}: {
       imports = [
         nixvim.nixosModules.nixvim
@@ -126,13 +130,36 @@
       ];
     };
 
+
     ################
     # NIXOS IMAGES #
     ################
 
     # Build with "nix build .#<image-type>"
+
     packages.${system} = import ./nixos-images.nix {
       inherit self system nixos-generators vars;
+    };
+
+
+    #######################
+    # NIXOS IMAGE TESTING #
+    #######################
+
+    # For testing NixOS configurations in a QEMU virtual machine
+    # Run with "nix run .#build-test-vm"
+
+    apps.${system}.build-test-vm = let
+      machine-name = "test-machine";
+      imported-machine = importMachineConfig "servers" "${machine-name}";
+      run-machine = pkgs.writeShellScript "run-vm.sh" ''
+        ${imported-machine.config.system.build.vm}/bin/run-${machine-name}-vm
+
+        rm -f ${machine-name}.qcow2
+      '';
+    in {
+      type = "app";
+      program = "${run-machine}";
     };
   };
 }
