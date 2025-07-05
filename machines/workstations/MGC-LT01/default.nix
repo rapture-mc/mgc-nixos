@@ -50,22 +50,10 @@ nixpkgs.lib.nixosSystem {
             efi.enable = true;
           };
 
-          openssh = {
-            enable = true;
-            authorized-ssh-keys = vars.keys.bastionPubKey;
-          };
-
           desktop.enable = true;
         };
 
         programs.pass.enable = true;
-
-        services = {
-          comin = {
-            enable = true;
-            repo = "https://github.com/rapture-mc/mgc-nixos";
-          };
-        };
 
         virtualisation.whonix.enable = true;
       };

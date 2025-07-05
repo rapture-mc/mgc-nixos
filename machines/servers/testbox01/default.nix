@@ -29,10 +29,6 @@ nixpkgs.lib.nixosSystem {
       ];
 
       megacorp = {
-        config.users = {
-          enable = true;
-          admin-user = "megaman";
-        };
         programs.nixvim.enable = true;
       };
 

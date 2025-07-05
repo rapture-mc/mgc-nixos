@@ -1,12 +1,12 @@
 {
   nixpkgs,
-  megacorp,
   vars,
+  self,
   ...
 }:
 nixpkgs.lib.nixosSystem {
   modules = [
-    megacorp.nixosModules.default
+    self.nixosModules.default
     {
       imports = [
         ./hardware-config.nix
@@ -25,8 +25,6 @@ nixpkgs.lib.nixosSystem {
             enable = true;
             efi.enable = true;
           };
-
-          users.regular-user.enable = true;
 
           desktop.enable = true;
         };

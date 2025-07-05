@@ -31,24 +31,12 @@ nixpkgs.lib.nixosSystem {
             nameservers = vars.networking.nameServers;
             lan-domain = vars.networking.internalDomain;
           };
-
-          openssh = {
-            enable = true;
-            authorized-ssh-keys = vars.keys.bastionPubKey;
-          };
         };
 
-        services = {
-          comin = {
-            enable = true;
-            repo = "https://github.com/rapture-mc/mgc-nixos";
-          };
-
-          restic.sftp-server = {
-            enable = true;
-            logo = true;
-            authorized-keys = vars.keys.resticPubKeys;
-          };
+        services.restic.sftp-server = {
+          enable = true;
+          logo = true;
+          authorized-keys = vars.keys.resticPubKeys;
         };
 
         virtualisation.libvirt.guest.enable = true;

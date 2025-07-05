@@ -35,39 +35,27 @@ nixpkgs.lib.nixosSystem {
             nameservers = vars.networking.nameServers;
             lan-domain = vars.networking.internalDomain;
           };
-
-          openssh = {
-            enable = true;
-            authorized-ssh-keys = vars.keys.bastionPubKey;
-          };
         };
 
-        services = {
-          comin = {
+        services.nginx = {
+          enable = true;
+          logo = true;
+          guacamole = {
             enable = true;
-            repo = "https://github.com/rapture-mc/mgc-nixos";
+            ipv4 = vars.networking.hostsAddr.MGC-DRW-DGW01.eth.ipv4;
+            fqdn = vars.guacamoleFQDN;
           };
 
-          nginx = {
+          file-browser = {
             enable = true;
-            logo = true;
-            guacamole = {
-              enable = true;
-              ipv4 = vars.networking.hostsAddr.MGC-DRW-DGW01.eth.ipv4;
-              fqdn = vars.guacamoleFQDN;
-            };
+            ipv4 = vars.networking.hostsAddr.MGC-DRW-FBR01.eth.ipv4;
+            fqdn = vars.file-browserFQDN;
+          };
 
-            file-browser = {
-              enable = true;
-              ipv4 = vars.networking.hostsAddr.MGC-DRW-FBR01.eth.ipv4;
-              fqdn = vars.file-browserFQDN;
-            };
-
-            semaphore = {
-              enable = true;
-              ipv4 = vars.networking.hostsAddr.MGC-DRW-SEM01.eth.ipv4;
-              fqdn = vars.semaphoreFQDN;
-            };
+          semaphore = {
+            enable = true;
+            ipv4 = vars.networking.hostsAddr.MGC-DRW-SEM01.eth.ipv4;
+            fqdn = vars.semaphoreFQDN;
           };
         };
 
