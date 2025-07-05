@@ -36,7 +36,10 @@ in {
 
     services = {
       desktopManager.plasma6.enable = true;
-      xserver.xkb.layout = "au";
+      xserver = {
+        enable = true;
+        xkb.layout = "au";
+      };
       displayManager.sddm = {
         enable = true;
         theme = "sddm-astronaut-theme";

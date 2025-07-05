@@ -41,11 +41,6 @@ nixpkgs.lib.nixosSystem {
             nameservers = vars.networking.nameServers;
             lan-domain = vars.networking.internalDomain;
           };
-
-          openssh = {
-            enable = true;
-            authorized-ssh-keys = vars.keys.bastionPubKey;
-          };
         };
 
         services = {

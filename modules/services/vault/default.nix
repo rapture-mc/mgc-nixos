@@ -31,12 +31,6 @@ in {
 
     open-firewall = mkEnableOption "Whether to open the firewall ports";
 
-    zsh-address-env-variable = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Whether to add the VAULT_ADDR environment variable automatically to zsh shell";
-    };
-
     vault-token = mkOption {
       type = types.str;
       default = "/run/secrets/vault-root-token";
@@ -154,9 +148,5 @@ in {
         ]
         else []
       );
-
-    home-manager.users.${config.megacorp.config.users.admin-user} = _: {
-      programs.zsh.sessionVariables.VAULT_ADDR = "http://${cfg.address}";
-    };
   };
 }

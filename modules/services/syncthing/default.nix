@@ -19,12 +19,7 @@ in {
 
     user = mkOption {
       type = types.str;
-      description = ''
-        The user to run syncthing as
-
-        Default is Megacorp admin user
-      '';
-      default = config.megacorp.config.users.admin-user;
+      description = "The user to run the syncthing service under";
     };
 
     gui = mkEnableOption ''

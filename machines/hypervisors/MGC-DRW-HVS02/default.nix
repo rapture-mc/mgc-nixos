@@ -16,8 +16,6 @@ nixpkgs.lib.nixosSystem {
         })
       ];
 
-      nixpkgs.config.allowUnfree = true;
-
       networking.hostName = "MGC-DRW-HVS02";
 
       system.stateVersion = "24.05";
@@ -43,7 +41,6 @@ nixpkgs.lib.nixosSystem {
             enable = true;
             efi.enable = true;
           };
-
           networking = {
             static-ip = {
               enable = true;
@@ -55,22 +52,9 @@ nixpkgs.lib.nixosSystem {
               bridge.enable = true;
             };
           };
-
-          openssh = {
-            enable = true;
-            authorized-ssh-keys = vars.keys.bastionPubKey;
-          };
-
           desktop = {
             enable = true;
             xrdp = true;
-          };
-        };
-
-        services = {
-          comin = {
-            enable = true;
-            repo = "https://github.com/rapture-mc/mgc-nixos";
           };
         };
 

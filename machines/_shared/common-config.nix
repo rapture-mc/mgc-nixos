@@ -2,27 +2,21 @@
   megacorp = {
     config = {
       system.enable = true;
-
-      users = {
-        enable = true;
-        admin-user = vars.adminUser;
-      };
-
+      openssh.enable = true;
       packages.enable = true;
+      users = {
+        benny = {
+          sudo = true;
+          authorized-ssh-keys = vars.keys.bastionPubKey;
+        };
+      };
     };
 
     programs.nixvim.enable = true;
 
-    services = {
-      prometheus = {
-        enable = true;
-        node-exporter.enable = true;
-      };
-
-      comin = {
-        enable = true;
-        repo = "https://github.com/rapture-mc/mgc-nixos";
-      };
+    services.comin = {
+      enable = true;
+      repo = "https://github.com/rapture-mc/mgc-nixos";
     };
   };
 

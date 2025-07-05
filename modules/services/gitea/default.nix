@@ -42,6 +42,12 @@ in {
       '';
     };
 
+    gitea-members = mkOption {
+      type = types.listOf types.str;
+      default = [];
+      description = "The users who will be a member of the gitea group";
+    };
+
     port = mkOption {
       type = types.int;
       default = 3001;
@@ -67,7 +73,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    users.groups.gitea.members = ["${config.megacorp.config.users.admin-user}"];
+    users.groups.gitea.members = cfg.gitea-members;
 
     networking.firewall.allowedTCPPorts = [
       80

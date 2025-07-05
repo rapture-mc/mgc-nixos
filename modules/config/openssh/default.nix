@@ -8,10 +8,8 @@
   inherit
     (lib)
     mkEnableOption
-    mkOption
     mkIf
     mkDefault
-    types
     ;
 in {
   options.megacorp.config.openssh = {
@@ -20,12 +18,6 @@ in {
     bastion = {
       enable = mkEnableOption "Whether to configure as a bastion server";
       logo = mkEnableOption "Whether to show bastion logo on shell startup";
-    };
-
-    authorized-ssh-keys = mkOption {
-      type = types.listOf types.singleLineStr;
-      default = [""];
-      description = "List of authorized ssh keys who are allowed to connect using the admin user";
     };
 
     auto-accept-server-keys = mkEnableOption ''
@@ -47,9 +39,6 @@ in {
         PermitRootLogin = mkDefault "no";
       };
     };
-
-    # Authorized SSH keys
-    users.users.${config.megacorp.config.users.admin-user}.openssh.authorizedKeys.keys = cfg.authorized-ssh-keys;
 
     # Required for oh-my-tmux ssh sessions to work correctly
     programs.ssh.extraConfig = ''
