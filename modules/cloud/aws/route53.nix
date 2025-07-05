@@ -66,6 +66,22 @@ in {
       '';
     };
 
+    action = mkOption {
+      type = types.enum [
+        "apply"
+        "destroy"
+        "plan"
+      ];
+      default = "apply";
+      description = "What Terraform action to perform";
+    };
+
+    state-dir = mkOption {
+      type = types.path;
+      default = "/var/lib/terranix-state/aws/route53";
+      description = "Where to store the Terranix state files";
+    };
+
     zones = mkOption {
       default = {};
       type = types.attrsOf (
@@ -123,7 +139,7 @@ in {
         )
       );
     };
-  } // (import ../../_shared/terraform/options.nix);
+  };
 
   config = mkIf cfg.enable {
     systemd.services.aws-infra-route53-provisioner = {
