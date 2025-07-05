@@ -1,0 +1,1 @@
+Implement: https://discourse.nixos.org/t/a-modern-and-secure-desktop-setup/41154
