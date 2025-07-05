@@ -2,7 +2,14 @@
 *brief service description*
 
 ## Getting Started
-*first steps for configuring module*
+Setting the following...
+```
+megacorp.services.<module-name> = {
+  enable = true;
+}
+```
+Will:
+- Do stuff...
 
 ## Default Credenials
 *default credentials if applicable*
