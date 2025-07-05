@@ -66,6 +66,12 @@ in {
       '';
     };
 
+    state-dir = mkOption {
+      type = types.path;
+      default = "/var/lib/terranix/state/route53";
+      description = "Where to store the Terranix state files";
+    };
+
     zones = mkOption {
       default = {};
       type = types.attrsOf (
@@ -129,15 +135,28 @@ in {
     systemd.services.aws-infra-route53-provisioner = {
       wantedBy = ["multi-user.target"];
       after = ["network.target"];
-      path = [pkgs.git];
-      serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-aws-json-config" ''
-        pwd
+      path = with pkgs; [
+        git
+        opentofu
+      ];
+      serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-aws-route53-config" ''
+        if [ ! -d "${cfg.state-dir}" ]; then
+          echo "Directory ${cfg.state-dir} doesn't exist... Creating..."
+          mkdir -p ${cfg.state-dir}
+          chown root:root ${cfg.state-dir}
+        else
+          echo "Directory ${cfg.state-dir} already exists... Skipping..."
+        fi
+
+        echo "Changing into ${cfg.state-dir}..."
+        cd ${cfg.state-dir}
+
         if [[ -e config.tf.json ]]; then
           rm -f config.tf.json;
         fi
         cp ${route53-config} config.tf.json \
-          && ${pkgs.opentofu}/bin/tofu init \
-          && ${pkgs.opentofu}/bin/tofu apply -auto-approve
+          && tofu init \
+          && tofu plan
       '');
     };
   };
