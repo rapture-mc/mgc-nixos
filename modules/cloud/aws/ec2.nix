@@ -193,7 +193,7 @@ in {
       wantedBy = ["multi-user.target"];
       after = ["network.target"];
       path = [pkgs.git];
-      serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-aws-ec2-config" ''
+      serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-aws-json-config" ''
         if [[ -e config.tf.json ]]; then
           rm -f config.tf.json;
         fi
