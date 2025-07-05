@@ -2,7 +2,7 @@
   zone-id = "\${ aws_route53_zone.megacorp-industries.zone_id }";
 in {
   megacorp.cloud.aws.route53 = {
-    enable = true;
+    enable = false;
     credential-path = "/home/benny/.aws/credentials";
     config-path = "/home/benny/.aws/credentials";
     zones = {
