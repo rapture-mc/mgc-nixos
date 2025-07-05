@@ -1,5 +1,5 @@
 # Adding NixOS Machines
-All machines NixOS configurations are stored in the machines/ directory and organized into 3x categories:
+All NixOS machine configurations are stored in the [../machines](https://github.com/rapture-mc/mgc-nixos/blob/main/machines) directory and organized into 3x categories:
 
 ### Hypervisors
 - Physical hosts
