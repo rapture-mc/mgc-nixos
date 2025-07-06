@@ -1,17 +1,15 @@
 {
   config,
   lib,
-  pkgs,
   terranix,
   system,
   ...
 }: let
-  cfg = config.megacorp.virtualisation.libvirt.declerative;
+  cfg = config.megacorp.virtualisation.libvirt.hypervisor;
 
   inherit
     (lib)
     types
-    mkEnableOption
     mkOption
     mkIf
     ;
@@ -40,17 +38,9 @@
     ];
   };
 in {
-  options.megacorp.virtualisation.libvirt.declerative = {
-    enable = mkEnableOption "Whether to enable declerative VMs";
-
-    action = mkOption {
-      type = types.enum [
-        "apply"
-        "destroy"
-        "plan"
-      ];
-      default = "apply";
-      description = "What Terraform action to perform";
+  options.megacorp.virtualisation.libvirt.hypervisor = {
+    terraform = import ../../_shared/terraform/options.nix {
+      inherit lib;
     };
 
     machines = mkOption {
@@ -72,7 +62,7 @@ in {
         };
 
       '';
-      type = types.attrsOf (
+      type = types.nullOr (types.attrsOf (
         types.submodule (
           {...}: {
             options = {
@@ -133,28 +123,13 @@ in {
             };
           }
         )
-      );
+      ));
     };
   };
 
-  config = mkIf cfg.enable {
-    systemd.services.libvirt-infra-provisioner = {
-      wantedBy = ["multi-user.target"];
-      after = ["network.target"];
-      path = [pkgs.git];
-      serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-libvirt-json-config" ''
-        if [[ -e config.tf.json ]]; then
-          rm -f config.tf.json;
-        fi
-
-        cp ${terraform-config} config.tf.json \
-          && ${pkgs.opentofu}/bin/tofu init \
-          && ${pkgs.opentofu}/bin/tofu ${cfg.action} ${
-          if (cfg.action == "apply" || cfg.action == "destroy")
-          then "-auto-approve"
-          else ""
-        }
-      '');
+  config = mkIf (cfg.machines != null) {
+    systemd.services.libvirt-infra-provisioner = import ../../_shared/terraform/config.nix {
+      inherit cfg lib terraform-config;
     };
   };
 }
