@@ -53,10 +53,7 @@ nixpkgs.lib.nixosSystem {
           libvirt-users = [
             "${vars.adminUser}"
           ];
-          terraform = {
-            action = "plan";
-            state-dir = "/var/lib/terranix-state/libvirt";
-          };
+          terraform.state-dir = "/var/lib/terranix-state/libvirt";
           machines = {
             vault-servers = {
               vm_hostname_prefix = "MGC-DRW-VLT";

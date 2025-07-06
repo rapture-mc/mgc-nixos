@@ -64,10 +64,7 @@ nixpkgs.lib.nixosSystem {
           libvirt-users = [
             "${vars.adminUser}"
           ];
-          terraform = {
-            action = "plan";
-            state-dir = "/var/lib/terranix-state/libvirt";
-          };
+          terraform.state-dir = "/var/lib/terranix-state/libvirt";
           machines = {
             bastion-server = {
               vm_hostname_prefix = "MGC-DRW-BST";
