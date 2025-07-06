@@ -5,6 +5,7 @@ in {
     enable = true;
     credential-path = "/home/benny/.aws/credentials";
     config-path = "/home/benny/.aws/credentials";
+    terraform.state-dir = "/var/lib/terranix-state/aws/route53";
     zones = {
       megacorp-industries = {
         name = "${vars.primaryDomain}.";

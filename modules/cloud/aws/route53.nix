@@ -16,7 +16,7 @@
     types
     ;
 
-  route53-config = terranix.lib.terranixConfiguration {
+  terraform-config = terranix.lib.terranixConfiguration {
     inherit system;
     modules = [
       {
@@ -64,6 +64,10 @@ in {
 
         E.g. "/home/<username>/.aws/config"
       '';
+    };
+
+    terraform = import ../../_shared/terraform/options.nix {
+      inherit lib;
     };
 
     zones = mkOption {
@@ -123,39 +127,11 @@ in {
         )
       );
     };
-  } // (import ../../_shared/terraform/options.nix);
+  };
 
   config = mkIf cfg.enable {
-    systemd.services.aws-infra-route53-provisioner = {
-      wantedBy = ["multi-user.target"];
-      after = ["network.target"];
-      path = with pkgs; [
-        git
-        opentofu
-      ];
-      serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-aws-route53-config" ''
-        if [ ! -d "${cfg.state-dir}" ]; then
-          echo "Directory ${cfg.state-dir} doesn't exist... Creating..."
-          mkdir -p ${cfg.state-dir}
-          chown root:root ${cfg.state-dir}
-        else
-          echo "Directory ${cfg.state-dir} already exists... Skipping..."
-        fi
-
-        echo "Changing into ${cfg.state-dir}..."
-        cd ${cfg.state-dir}
-
-        if [[ -e config.tf.json ]]; then
-          rm -f config.tf.json;
-        fi
-        cp ${route53-config} config.tf.json \
-          && tofu init \
-          && tofu ${cfg.action} ${
-          if (cfg.action == "apply" || cfg.action == "destroy")
-          then "-auto-approve"
-          else ""
-        }
-      '');
+    systemd.services.aws-infra-route53-provisioner = import ../../_shared/terraform/config.nix {
+      inherit pkgs cfg terraform-config;
     };
   };
 }

@@ -1,12 +1,35 @@
 {
   cfg,
-  lib,
-  use-acme-cert,
-}: let
-  inherit
-    (lib)
-    mkIf
-    ;
-in {
+  pkgs,
+  terraform-config,
+}: {
+  wantedBy = ["multi-user.target"];
+  after = ["network.target"];
+  path = with pkgs; [
+    git
+    opentofu
+  ];
+  serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-aws-json-config" ''
+    if [ ! -d "${cfg.terraform.state-dir}" ]; then
+      echo "Directory ${cfg.terraform.state-dir} doesn't exist... Creating..."
+      mkdir -p ${cfg.terraform.state-dir}
+      chown root:root ${cfg.terraform.state-dir}
+    else
+      echo "Directory ${cfg.terraform.state-dir} already exists... Skipping..."
+    fi
 
+    echo "Changing into ${cfg.terraform.state-dir}..."
+    cd ${cfg.terraform.state-dir}
+
+    if [[ -e config.tf.json ]]; then
+      rm -f config.tf.json;
+    fi
+    cp ${terraform-config} config.tf.json \
+      && tofu init \
+      && tofu ${cfg.terraform.action} ${
+      if (cfg.terraform.action == "apply" || cfg.terraform.action == "destroy")
+      then "-auto-approve"
+      else ""
+    }
+  '');
 }

@@ -16,7 +16,7 @@
     types
     ;
 
-  ec2-config = terranix.lib.terranixConfiguration {
+  terraform-config = terranix.lib.terranixConfiguration {
     inherit system;
     modules = [
       {
@@ -112,8 +112,6 @@
             egress = [
               {
                 description = "Allow all traffic out";
-                from_port = 0;
-                to_port = 0;
                 protocol = "-1";
                 cidr_blocks = ["0.0.0.0/0"];
                 ipv6_cidr_blocks = [];
@@ -124,8 +122,6 @@
             ];
           };
         };
-
-        output.public-dns.value = "\${ aws_instance.nixos_x86-64.public_dns }";
       }
     ];
   };
@@ -159,6 +155,10 @@ in {
       '';
     };
 
+    terraform = import ../../_shared/terraform/options.nix {
+      inherit lib;
+    };
+
     instance = {
       enable = mkEnableOption "Enable AWS instance";
 
@@ -189,22 +189,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    systemd.services.aws-infra-ec2-provisioner = {
-      wantedBy = ["multi-user.target"];
-      after = ["network.target"];
-      path = [pkgs.git];
-      serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-aws-json-config" ''
-        if [[ -e config.tf.json ]]; then
-          rm -f config.tf.json;
-        fi
-        cp ${ec2-config} config.tf.json \
-          && ${pkgs.opentofu}/bin/tofu init \
-          && ${pkgs.opentofu}/bin/tofu ${
-          if cfg.instance.enable
-          then "apply"
-          else "destroy"
-        } -auto-approve
-      '');
+    systemd.services.aws-infra-ec2-provisioner = import ../../_shared/terraform/config.nix {
+      inherit cfg pkgs terraform-config;
     };
   };
 }
