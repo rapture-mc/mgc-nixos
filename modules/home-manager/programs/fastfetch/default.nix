@@ -10,7 +10,7 @@ in {
       then ./bastion-logo
       else if cfg.services.openldap.logo
       then ./controller-logo
-      else if cfg.virtualisation.libvirt.hypervisor.logo
+      else if cfg.virtualisation.libvirt.logo
       then ./hypervisor-logo
       else if cfg.services.nginx.logo
       then ./nginx-logo

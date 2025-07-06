@@ -6,7 +6,7 @@
   system,
   ...
 }: let
-  cfg = config.megacorp.virtualisation.libvirt.hypervisor;
+  cfg = config.megacorp.virtualisation.libvirt;
 
   inherit
     (lib)
@@ -17,16 +17,16 @@
     ;
 in {
   imports = [
-    ./guest.nix
     (import ./packages.nix {
       inherit config lib pkgs;
     })
-    (mkIf cfg.enable (import ./infra.nix {
+    ./guest.nix
+    (import ./infra.nix {
       inherit config lib pkgs terranix system;
-    }))
+    })
   ];
 
-  options.megacorp.virtualisation.libvirt.hypervisor = {
+  options.megacorp.virtualisation.libvirt = {
     enable = mkEnableOption ''
       Enable Libvirt hypervisor.
 
