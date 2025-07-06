@@ -156,7 +156,7 @@ in {
       '';
     };
 
-    terraform = import ../../_shared/terraform/options.nix {
+    terraform = import ../../../_shared/terraform/options.nix {
       inherit lib;
     };
 
