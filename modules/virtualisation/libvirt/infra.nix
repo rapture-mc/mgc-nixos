@@ -15,7 +15,7 @@
     mkIf
     ;
 
-  terraform-module.source = "git::https://github.com/rapture-mc/terraform-libvirt-module.git?ref=40acff807a0ffb1c0da741774c37ebeda90730b7";
+  terraform-module.source = "git::https://github.com/rapture-mc/terraform-libvirt-module.git?ref=c303bdb7b5e12a1701be16181b0647cc9e358d6d";
 
   transformed-terraform-config =
     lib.mapAttrs (

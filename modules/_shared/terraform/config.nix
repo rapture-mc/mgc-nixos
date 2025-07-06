@@ -8,6 +8,7 @@
   path = with pkgs; [
     git
     opentofu
+    libxslt
   ];
   serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-aws-json-config" ''
     if [ ! -d "${cfg.terraform.state-dir}" ]; then

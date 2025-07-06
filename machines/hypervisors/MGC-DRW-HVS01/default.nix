@@ -65,7 +65,6 @@ nixpkgs.lib.nixosSystem {
             test-box = {
               vm_hostname_prefix = "testbox";
               memory = "4096";
-              running = false;
               autostart = false;
               vcpu = 2;
             };
@@ -76,7 +75,6 @@ nixpkgs.lib.nixosSystem {
               memory = "8192";
               vcpu = 3;
               autostart = false;
-              running = false;
             };
 
             bookstack-servers = {
@@ -84,7 +82,6 @@ nixpkgs.lib.nixosSystem {
               memory = "4096";
               vcpu = 2;
               autostart = false;
-              running = false;
             };
 
             semaphore-servers = {
@@ -92,7 +89,6 @@ nixpkgs.lib.nixosSystem {
               memory = "4096";
               vcpu = 2;
               autostart = false;
-              running = false;
             };
 
             gitea-servers = {
@@ -100,7 +96,6 @@ nixpkgs.lib.nixosSystem {
               memory = "4096";
               vcpu = 2;
               autostart = false;
-              running = false;
             };
 
             monitoring-servers = {
@@ -114,7 +109,6 @@ nixpkgs.lib.nixosSystem {
               memory = "6144";
               vcpu = 2;
               autostart = false;
-              running = false;
             };
 
             nextcloud-servers = {
@@ -122,7 +116,6 @@ nixpkgs.lib.nixosSystem {
               memory = "6144";
               vcpu = 2;
               autostart = false;
-              running = false;
             };
 
             cloud-runners = {
