@@ -16,7 +16,7 @@
     mkIf
     ;
 
-  # Define ewxtra attributes to append to cfg.pki.certs.<name>
+  # Define extra attributes to append to cfg.pki.certs.<name>
   # We define these here instead of the cfg.pki.certs.<name> option definition because they never change
   extra-cert-attributes = {
     issuer_ref = "\${ vault_pki_secret_backend_issuer.root-issuer.issuer_ref }";
@@ -156,11 +156,15 @@ in {
       '';
     };
 
+    terraform = import ../../_shared/terraform/options.nix {
+      inherit lib;
+    };
+
     certs = mkOption {
       default = {};
       type = types.attrsOf (
         types.submodule (
-          {...}: {
+          _: {
             options = {
               common_name = mkOption {
                 type = types.str;
@@ -188,21 +192,36 @@ in {
     systemd.services.vault-config-provisioner = {
       wantedBy = ["multi-user.target"];
       after = ["network.target"];
-      path = [
-        pkgs.git
-        pkgs.getent
-        pkgs.coreutils
+      path = with pkgs; [
+        git
+        getent
+        coreutils
       ];
-      serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-vault-config" ''
+      serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-terraform-json-config" ''
         export VAULT_TOKEN=$(cat ${cfg.vault-token})
+
+        if [ ! -d "${cfg.terraform.state-dir}" ]; then echo "Directory ${cfg.terraform.state-dir} doesn't exist... Creating..."
+          mkdir -p ${cfg.terraform.state-dir}
+          chown root:root ${cfg.terraform.state-dir}
+        else
+          echo "Directory ${cfg.terraform.state-dir} already exists... Skipping..."
+        fi
+
+        echo "Changing into ${cfg.terraform.state-dir}..."
+        cd ${cfg.terraform.state-dir}
+
 
         if [[ -e config.tf.json ]]; then
           rm -f config.tf.json;
         fi
 
         cp ${terraform-config} config.tf.json \
-          && ${pkgs.opentofu}/bin/tofu init \
-          && ${pkgs.opentofu}/bin/tofu apply -auto-approve
+          && tofu init \
+          && tofu ${cfg.terraform.action} ${
+          if (cfg.terraform.action == "apply" || cfg.terraform.action == "destroy")
+          then "-auto-approve"
+          else ""
+        }
 
         ${
           if cfg.pki.certs != {}

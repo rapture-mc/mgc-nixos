@@ -10,7 +10,7 @@
     opentofu
     libxslt
   ];
-  serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-aws-json-config" ''
+  serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-terraform-json-config" ''
     if [ ! -d "${cfg.terraform.state-dir}" ]; then
       echo "Directory ${cfg.terraform.state-dir} doesn't exist... Creating..."
       mkdir -p ${cfg.terraform.state-dir}
