@@ -6,7 +6,6 @@ in {
 
   adminUser = "benny";
 
-  awsZoneID = "/hostedzone/Z02994243ILU2R1YQJ1GF";
   primaryIP = "123.243.147.17";
 
   primaryDomain = "${domain}";
