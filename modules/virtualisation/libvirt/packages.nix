@@ -52,7 +52,7 @@
           if [ ! -d packer-windows/output-$name ]; then
             cd packer-windows
 
-            echo -e "Initializing and building Windows 2022 image for QCOW2..."
+            echo -e "Initializing and building $name image for QCOW2..."
 
             packer init $packer_file
             packer build $packer_file
