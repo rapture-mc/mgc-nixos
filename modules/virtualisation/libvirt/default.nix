@@ -6,7 +6,7 @@
   system,
   ...
 }: let
-  cfg = config.megacorp.virtualisation.libvirt;
+  cfg = config.megacorp.virtualisation.libvirt.hypervisor;
 
   inherit
     (lib)
@@ -26,7 +26,7 @@ in {
     })
   ];
 
-  options.megacorp.virtualisation.libvirt = {
+  options.megacorp.virtualisation.libvirt.hypervisor = {
     enable = mkEnableOption ''
       Enable Libvirt hypervisor.
 

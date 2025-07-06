@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  cfg = config.megacorp.virtualisation.libvirt;
+  cfg = config.megacorp.virtualisation.libvirt.hypervisor;
 
   inherit
     (lib)
