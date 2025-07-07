@@ -93,6 +93,11 @@ in {
                 default = true;
               };
 
+              running = mkOption {
+                type = types.bool;
+                default = true;
+              };
+
               memory = mkOption {
                 type = types.str;
                 default = "4096";
