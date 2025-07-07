@@ -100,6 +100,7 @@ in {
     systemd.services.tomcat = {
       requires = ["postgresql.service"];
       after = ["postgresql.service"];
+      restartIfChanged = false;
     };
 
     services = {
