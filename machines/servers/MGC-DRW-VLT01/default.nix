@@ -55,12 +55,12 @@ nixpkgs.lib.nixosSystem {
               cert-file = "/var/lib/nginx/vault.crt";
               cert-key = "/var/lib/nginx/vault.pem";
             };
-            terraform = {
-              action = "plan";
-              state-dir = "/var/lib/terranix-state/vault";
-            };
             pki = {
               enable = true;
+              terraform = {
+                action = "plan";
+                state-dir = "/var/lib/terranix-state/vault";
+              };
               certs = {
                 bookstack = {
                   common_name = "bookstack.${vars.networking.internalDomain}";
