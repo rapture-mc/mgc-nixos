@@ -3,6 +3,7 @@
   vars,
   self,
   sops-nix,
+  pkgs,
   ...
 }:
 nixpkgs.lib.nixosSystem {
@@ -23,6 +24,10 @@ nixpkgs.lib.nixosSystem {
       networking.hostName = "MGC-DRW-DGW01";
 
       system.stateVersion = "24.11";
+
+      environment.systemPackages = with pkgs; [
+        cowsay
+      ];
 
       megacorp = {
         config = {
