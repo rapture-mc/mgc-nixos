@@ -70,13 +70,13 @@ nixpkgs.lib.nixosSystem {
               vcpu = 2;
             };
 
-            # terminal-servers = {
-            #   vm_hostname_prefix = "MGC-DRW-TMS";
-            #   os_img_url = "/var/lib/libvirt/images/packer-win2022.qcow2";
-            #   memory = "8192";
-            #   vcpu = 3;
-            #   autostart = false;
-            # };
+            terminal-servers = {
+              vm_hostname_prefix = "MGC-DRW-TMS";
+              os_img_url = "/var/lib/libvirt/images/packer-win2022.qcow2";
+              memory = "8192";
+              vcpu = 3;
+              autostart = false;
+            };
 
             bookstack-servers = {
               vm_hostname_prefix = "MGC-DRW-BKS";
