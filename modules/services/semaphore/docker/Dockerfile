@@ -2,8 +2,6 @@ FROM semaphoreui/semaphore:latest
 
 USER root
 
-RUN apk --no-cache add tzdata && ln -s /usr/share/zoneinfo/Australia/Darwin /etc/localtime
-
 RUN apk --no-cache add \
     su-exec \
     python3 \
