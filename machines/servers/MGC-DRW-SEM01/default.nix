@@ -54,7 +54,7 @@ nixpkgs.lib.nixosSystem {
             kerberos = {
               enable = true;
               kdc = "mgc-drw-tms01";
-              domain = "ad.prod.megacorp.industries"
+              domain = "ad.prod.megacorp.industries";
             };
           };
 
