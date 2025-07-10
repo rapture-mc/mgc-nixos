@@ -2,9 +2,7 @@ FROM semaphoreui/semaphore:latest
 
 USER root
 
-ENV TZ=Australia/Darwin
-
-RUN apk --no-cache add tzdata && date
+RUN apk --no-cache add tzdata && ln -s /usr/share/zoneinfo/Australia/Darwin /etc/localtime
 
 RUN apk --no-cache add \
     su-exec \
