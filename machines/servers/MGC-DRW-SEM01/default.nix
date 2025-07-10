@@ -24,6 +24,10 @@ nixpkgs.lib.nixosSystem {
 
       system.stateVersion = "25.05";
 
+      networking.hosts = {
+        "192.168.1.7" = [ "mgc-drw-tms01.ad.prod.megacorp.industries" ];
+      };
+
       megacorp = {
         config = {
           bootloader.enable = true;
@@ -46,6 +50,11 @@ nixpkgs.lib.nixosSystem {
               enable = true;
               cert-file = "/var/lib/nginx/mgc-drw-sem01.crt";
               cert-key = "/var/lib/nginx/mgc-drw-sem01.pem";
+            };
+            kerberos = {
+              enable = true;
+              kdc = "mgc-drw-tms01";
+              domain = "ad.prod.megacorp.industries"
             };
           };
 
