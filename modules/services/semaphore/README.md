@@ -49,3 +49,18 @@ megacorp.services.semaphore = {
   };
 };
 ```
+
+If using Kerberos in a AD environment to authenticate the ansible_host variable must be a FQDN and **not** an IP address. This will result in a "Server not found in Kerberos database" error.
+
+Ansible hosts must also be resolveable via DNS. Meaning you must be able to ping the host by its hostname/FQDN.
+
+
+Example inventory config that uses Kerberos:
+```
+
+```
+ansible_winrm_transport: kerberos
+ansible_winrm_server_cert_validation: false         # Allow self-signed certificates
+ansible_user: ansible@PROD.EXAMPLE.COM              # Domain portion must be uppercase
+ansible_password: '{{ vault_ansible_password }}'    # Using ansible-vault variable instead of insecure cleartext password value
+ansible_host: dc1.PROD.EXAMPLE.COM                  # Must be FQDN and not an IP address
