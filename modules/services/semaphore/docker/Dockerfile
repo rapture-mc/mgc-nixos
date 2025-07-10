@@ -1,8 +1,10 @@
 FROM semaphoreui/semaphore:latest
 
+USER root
+
 ENV TZ=Australia/Darwin
 
-USER root
+RUN apk --no-cache add tzdata && date
 
 RUN apk --no-cache add \
     su-exec \
