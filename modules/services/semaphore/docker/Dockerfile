@@ -1,5 +1,7 @@
 FROM semaphoreui/semaphore:latest
 
+ENV TZ=Australia/Darwin
+
 USER root
 
 RUN apk --no-cache add \
