@@ -57,10 +57,9 @@ Ansible hosts must also be resolveable via DNS. Meaning you must be able to ping
 
 Example inventory config that uses Kerberos:
 ```
-
-```
 ansible_winrm_transport: kerberos
 ansible_winrm_server_cert_validation: false         # Allow self-signed certificates
 ansible_user: ansible@PROD.EXAMPLE.COM              # Domain portion must be uppercase
 ansible_password: '{{ vault_ansible_password }}'    # Using ansible-vault variable instead of insecure cleartext password value
 ansible_host: dc1.PROD.EXAMPLE.COM                  # Must be FQDN and not an IP address
+```
