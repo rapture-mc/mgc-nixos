@@ -16,6 +16,9 @@ nixpkgs.lib.nixosSystem {
         (import ../../_shared/common-config.nix {
           inherit vars;
         })
+        (import ../../_shared/server-config.nix {
+          inherit vars;
+        })
         (import ./bind.nix {
           inherit pkgs vars;
         })
