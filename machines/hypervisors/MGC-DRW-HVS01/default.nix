@@ -13,6 +13,9 @@ nixpkgs.lib.nixosSystem {
         (import ../../_shared/common-config.nix {
           inherit vars;
         })
+        (import ../../_shared/server-config.nix {
+          inherit vars;
+        })
         (import ./backup.nix {
           inherit vars;
         })
@@ -45,11 +48,6 @@ nixpkgs.lib.nixosSystem {
             enable = true;
             xrdp = true;
           };
-        };
-
-        services.zabbix.agent = {
-          enable = true;
-          server = vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4;
         };
 
         virtualisation.libvirt.hypervisor = {
