@@ -40,7 +40,7 @@ nixpkgs.lib.nixosSystem {
               interface = vars.networking.hostsAddr.MGC-DRW-HVS01.eth.name;
               gateway = vars.networking.defaultGateway;
               nameservers = vars.networking.nameServers;
-              lan-domain = vars.networking.internalDomain;
+              lan-domain = vars.domains.internalDomain;
               bridge.enable = true;
             };
           };

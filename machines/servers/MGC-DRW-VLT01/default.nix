@@ -39,7 +39,7 @@ nixpkgs.lib.nixosSystem {
             interface = vars.networking.hostsAddr.MGC-DRW-VLT01.eth.name;
             gateway = vars.networking.defaultGateway;
             nameservers = vars.networking.nameServers;
-            lan-domain = vars.networking.internalDomain;
+            lan-domain = vars.domains.internalDomain;
           };
         };
 
@@ -49,7 +49,7 @@ nixpkgs.lib.nixosSystem {
             gui = true;
             logo = true;
             open-firewall = true;
-            address = "vault.${vars.networking.internalDomain}";
+            address = "vault.${vars.domains.internalDomain}";
             tls = {
               enable = true;
               cert-file = "/var/lib/nginx/vault.crt";
@@ -63,28 +63,28 @@ nixpkgs.lib.nixosSystem {
               };
               certs = {
                 bookstack = {
-                  common_name = "bookstack.${vars.networking.internalDomain}";
+                  common_name = "bookstack.${vars.domains.internalDomain}";
                 };
                 grafana = {
-                  common_name = "grafana.${vars.networking.internalDomain}";
+                  common_name = "grafana.${vars.domains.internalDomain}";
                 };
                 mgc-drw-frw01 = {
-                  common_name = "mgc-drw-frw01.${vars.networking.internalDomain}";
+                  common_name = "mgc-drw-frw01.${vars.domains.internalDomain}";
                 };
                 mgc-drw-dmc01 = {
-                  common_name = "mgc-drw-dmc01.${vars.networking.internalDomain}";
+                  common_name = "mgc-drw-dmc01.${vars.domains.internalDomain}";
                 };
                 semaphore = {
-                  common_name = "semaphore.${vars.networking.internalDomain}";
+                  common_name = "semaphore.${vars.domains.internalDomain}";
                 };
                 snipe-it = {
-                  common_name = "snipe-it.${vars.networking.internalDomain}";
+                  common_name = "snipe-it.${vars.domains.internalDomain}";
                 };
                 vault = {
-                  common_name = "vault.${vars.networking.internalDomain}";
+                  common_name = "vault.${vars.domains.internalDomain}";
                 };
                 zabbix = {
-                  common_name = "zabbix.${vars.networking.internalDomain}";
+                  common_name = "zabbix.${vars.domains.internalDomain}";
                 };
               };
             };

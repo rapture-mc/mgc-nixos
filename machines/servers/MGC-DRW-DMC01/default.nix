@@ -38,13 +38,13 @@ nixpkgs.lib.nixosSystem {
             interface = vars.networking.hostsAddr.MGC-DRW-DMC01.eth.name;
             gateway = vars.networking.defaultGateway;
             nameservers = ["127.0.0.1"];
-            lan-domain = vars.networking.internalDomain;
+            lan-domain = vars.domains.internalDomain;
           };
         };
 
         services.lldap = {
           enable = true;
-          fqdn = "mgc-drw-dmc01.${vars.networking.internalDomain}";
+          fqdn = "mgc-drw-dmc01.${vars.domains.internalDomain}";
           base-dn = "dc=prod,dc=megacorp,dc=industries";
           tls = {
             enable = true;

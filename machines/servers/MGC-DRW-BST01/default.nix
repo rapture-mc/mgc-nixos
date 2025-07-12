@@ -37,7 +37,7 @@ nixpkgs.lib.nixosSystem {
             interface = vars.networking.hostsAddr.MGC-DRW-BST01.eth.name;
             gateway = vars.networking.defaultGateway;
             nameservers = vars.networking.nameServers;
-            lan-domain = vars.networking.internalDomain;
+            lan-domain = vars.domains.internalDomain;
           };
 
           openssh.bastion = {

@@ -34,7 +34,7 @@ nixpkgs.lib.nixosSystem {
             interface = vars.networking.hostsAddr.MGC-DRW-BKS01.eth.name;
             gateway = vars.networking.defaultGateway;
             nameservers = vars.networking.nameServers;
-            lan-domain = vars.networking.internalDomain;
+            lan-domain = vars.domains.internalDomain;
           };
         };
 
@@ -42,7 +42,7 @@ nixpkgs.lib.nixosSystem {
           bookstack = {
             enable = true;
             logo = true;
-            fqdn = "bookstack.${vars.networking.internalDomain}";
+            fqdn = "bookstack.${vars.domains.internalDomain}";
             tls = {
               enable = true;
               cert-file = "/var/lib/nginx/bookstack.crt";
