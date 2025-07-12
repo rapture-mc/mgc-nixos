@@ -67,6 +67,11 @@ nixpkgs.lib.nixosSystem {
               cert-key = "/var/lib/nginx/snipe-it.pem";
             };
           };
+
+          bloodhound = {
+            enable = true;
+            fqdn = vars.networking.hostsAddr.MGC-DRW-SEM01.eth.ipv4;
+          };
         };
 
         virtualisation.libvirt.guest.enable = true;
