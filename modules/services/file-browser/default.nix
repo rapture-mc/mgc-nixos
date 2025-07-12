@@ -91,10 +91,8 @@ in {
     };
 
     virtualisation = {
-      docker.enable = true;
-
       arion = {
-        backend = "docker";
+        backend = "podman-socket";
         projects.file-browser = {
           serviceName = "file-browser";
           settings = {
