@@ -41,7 +41,7 @@ nixpkgs.lib.nixosSystem {
             lan-domain = vars.networking.internalDomain;
           };
 
-          users.benny.extra-groups = [
+          users.${vars.adminUser}.extra-groups = [
             "podman"
           ];
         };
