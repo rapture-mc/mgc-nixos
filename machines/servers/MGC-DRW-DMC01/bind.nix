@@ -53,6 +53,7 @@ in {
         mgc-drw-rst01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-RST01.eth.ipv4}
         mgc-drw-rvp01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-RVP01.eth.ipv4}
         mgc-drw-sem01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-SEM01.eth.ipv4}
+        mgc-drw-tms01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-TMS01.eth.ipv4}
         mgc-drw-vlt01     IN              A           ${vars.networking.hostsAddr.MGC-DRW-VLT01.eth.ipv4}
 
         bookstack         IN              CNAME       mgc-drw-bks01
