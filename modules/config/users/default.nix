@@ -77,7 +77,7 @@ in {
           initialPassword = "changeme";
           shell = pkgs.${userConfig.shell};
           extraGroups = userConfig.extra-groups ++ (if userConfig.sudo
-            then [ "sudo"] else []);
+            then ["wheel"] else []);
           openssh.authorizedKeys.keys = userConfig.authorized-ssh-keys;
         };
       }) cfg;
