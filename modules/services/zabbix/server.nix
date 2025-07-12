@@ -63,12 +63,14 @@ in {
       zabbixServer = {
         enable = true;
         openFirewall = true;
+        package = pkgs.zabbix72.server-pgsql;
       };
 
       zabbixWeb = {
         enable = true;
         hostname = cfg.fqdn;
         frontend = "nginx";
+        package = pkgs.zabbix72.web;
         nginx.virtualHost = mkIf cfg.tls.enable {
           enableACME =
             if use-acme-cert
