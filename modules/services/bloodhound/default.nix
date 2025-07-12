@@ -90,7 +90,6 @@ in {
                     PGUSER = "bloodhound";
                     POSTGRES_DB = "bloodhound";
                     POSTGRES_USER = "bloodhound";
-                    # POSTGRES_PASSWORD = "bloodhoundcommunityedition";
                   };
                   env_file = [
                     "/run/secrets/postgres-password"
@@ -110,7 +109,6 @@ in {
                 neo4j.service = {
                   image = "docker.io/library/neo4j:4.4.42";
                   environment = {
-                    # NEO4J_AUTH = "neo4j/bloodhoundcommunityedition";
                     NEO4J_dbms_allow__upgrade = "true";
                   };
                   env_file = [
@@ -146,9 +144,7 @@ in {
                       bhe_graph_query_memory_limit = 2;
                       bhe_database_username = "bloodhound";
                       bhe_database_database = "bloodhound";
-                      # bhe_database_secret = "bloodhoundcommunityedition";
                       bhe_database_addr = "postgres";
-                      # bhe_neo4j_connection = "neo4j://neo4j:bloodhoundcommunityedition@neo4j:7687/";
                       bhe_graph_driver = "neo4j";
                     };
                     env_file = [
