@@ -21,6 +21,6 @@
   };
 
   security.pki.certificates = [
-    "${vars.keys.root-cert}"
+    "${vars.keys.rootCert}"
   ];
 }

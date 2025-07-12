@@ -23,7 +23,7 @@
     MGC-DRW-RST01.publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIISU8bYvbLOkCv2WXHHgYRTLp4XKAqf6V/yg4rc3yhJB";
   };
 
-  root-cert = ''
+  rootCert = ''
     MGC-DRW-VLT01 Intermediate Certificate
     ======================================
     -----BEGIN CERTIFICATE-----

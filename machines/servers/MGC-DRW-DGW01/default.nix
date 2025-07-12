@@ -52,7 +52,7 @@ nixpkgs.lib.nixosSystem {
               admin-ldap-password-file = "/run/secrets/lldap-admin-password";
               tls = {
                 enable = true;
-                root-cert = vars.keys.root-cert;
+                root-cert = vars.keys.rootCert;
               };
             };
           };
