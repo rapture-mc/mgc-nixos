@@ -67,10 +67,8 @@ in {
     };
 
     virtualisation = {
-      docker.enable = true;
-
       arion = {
-        backend = "docker";
+        backend = "podman-socket";
         projects.bloodhound = {
           serviceName = "bloodhound";
           settings = {
