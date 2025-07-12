@@ -5,7 +5,7 @@
       openssh.enable = true;
       packages.enable = true;
       users = {
-        benny = {
+        ${vars.adminUser} = {
           sudo = true;
           authorized-ssh-keys = vars.keys.bastionPubKey;
         };
