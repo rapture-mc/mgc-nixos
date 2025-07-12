@@ -44,6 +44,7 @@ Will:
 
 ## Default Credenials
 Username: admin
+
 Password: Run "docker logs bloodhound-bloodhound-1" and find the default password there
 
 ## Accessing HTTP web interface over a network
