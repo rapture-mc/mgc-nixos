@@ -23,6 +23,7 @@
     ./hardening/bootloader.nix
     ./programs/nixvim
     ./programs/pass
+    ./services/bloodhound
     (import ./services/bookstack {
       inherit config lib pkgs;
     })
