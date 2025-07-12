@@ -49,7 +49,7 @@ nixpkgs.lib.nixosSystem {
         services = {
           semaphore = {
             enable = true;
-            fqdn = vars.semaphoreFQDN;
+            fqdn = vars.domains.semaphoreFQDN;
             tls = {
               enable = true;
               cert-file = "/var/lib/nginx/semaphore.crt";
@@ -64,7 +64,7 @@ nixpkgs.lib.nixosSystem {
 
           snipe-it = {
             enable = true;
-            fqdn = vars.snipe-itFQDN;
+            fqdn = vars.domains.snipe-itFQDN;
             tls = {
               enable = true;
               cert-file = "/var/lib/nginx/snipe-it.crt";

@@ -43,13 +43,13 @@ nixpkgs.lib.nixosSystem {
           guacamole = {
             enable = true;
             ipv4 = vars.networking.hostsAddr.MGC-DRW-DGW01.eth.ipv4;
-            fqdn = vars.guacamoleFQDN;
+            fqdn = vars.domains.guacamoleFQDN;
           };
 
           file-browser = {
             enable = true;
             ipv4 = vars.networking.hostsAddr.MGC-DRW-FBR01.eth.ipv4;
-            fqdn = vars.file-browserFQDN;
+            fqdn = vars.domains.file-browserFQDN;
           };
         };
 

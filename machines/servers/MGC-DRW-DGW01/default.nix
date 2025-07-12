@@ -42,7 +42,7 @@ nixpkgs.lib.nixosSystem {
           guacamole = {
             enable = true;
             logo = true;
-            fqdn = vars.guacamoleFQDN;
+            fqdn = vars.domains.guacamoleFQDN;
             ldap = {
               enable = true;
               server = "mgc-drw-dmc01.prod.megacorp.industries";

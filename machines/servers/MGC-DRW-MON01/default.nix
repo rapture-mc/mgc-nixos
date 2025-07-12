@@ -37,7 +37,7 @@ nixpkgs.lib.nixosSystem {
           grafana = {
             enable = true;
             logo = true;
-            fqdn = vars.grafanaFQDN;
+            fqdn = vars.domains.grafanaFQDN;
             tls = {
               enable = true;
               cert-file = "/var/lib/nginx/grafana.crt";
@@ -49,7 +49,7 @@ nixpkgs.lib.nixosSystem {
             agent.enable = true;
             server = {
               enable = true;
-              fqdn = vars.zabbixFQDN;
+              fqdn = vars.domains.zabbixFQDN;
               tls = {
                 enable = true;
                 cert-file = "/var/lib/nginx/zabbix.crt";

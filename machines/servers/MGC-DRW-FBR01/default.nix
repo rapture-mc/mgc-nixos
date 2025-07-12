@@ -36,7 +36,7 @@ nixpkgs.lib.nixosSystem {
         services = {
           file-browser = {
             enable = true;
-            fqdn = vars.file-browserFQDN;
+            fqdn = vars.domains.file-browserFQDN;
             tls = {
               enable = false;
               cert-file = "/var/lib/nginx/mgc-drw-fbr01.crt";

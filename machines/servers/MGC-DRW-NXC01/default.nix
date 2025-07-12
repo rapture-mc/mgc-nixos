@@ -42,7 +42,7 @@ nixpkgs.lib.nixosSystem {
           nextcloud = {
             enable = true;
             logo = true;
-            fqdn = vars.nextcloudFQDN;
+            fqdn = vars.domains.nextcloudFQDN;
             tls = {
               enable = true;
               cert-file = "/var/lib/nginx/nextcloud.crt";
