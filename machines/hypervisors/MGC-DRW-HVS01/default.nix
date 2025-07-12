@@ -47,6 +47,11 @@ nixpkgs.lib.nixosSystem {
           };
         };
 
+        services.zabbix.agent = {
+          enable = true;
+          server = vars.networking.hostsAddr.MGC-DRW-MON01.eth.ipv4;
+        };
+
         virtualisation.libvirt.hypervisor = {
           enable = true;
           logo = true;
