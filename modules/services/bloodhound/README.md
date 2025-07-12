@@ -43,9 +43,9 @@ Will:
 - Expose Bloodhound over http://localhost
 
 ## Default Credenials
-Username: admin
+**Username**: admin
 
-Password: Run "docker logs bloodhound-bloodhound-1" and find the default password there
+**Password**: Run "docker logs bloodhound-bloodhound-1" and find the default password there
 
 ## Accessing HTTP web interface over a network
 [See here](https://github.com/rapture-mc/mgc-nixos/tree/main/docs/making-services-accessible-via-network.md)
