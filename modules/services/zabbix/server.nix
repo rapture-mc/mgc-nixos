@@ -1,5 +1,3 @@
-# This module doesn't use the the shared nginx module
-# If it does use the shared nginx module it causes a 502 bad gateway error
 {
   lib,
   config,
