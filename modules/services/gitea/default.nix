@@ -51,7 +51,7 @@ in {
     port = mkOption {
       type = types.int;
       default = 3001;
-      description = "The port number for file-browser to listen on";
+      description = "The port number for gitea to listen on";
     };
 
     backups = {
