@@ -40,6 +40,12 @@ in {
               description = "Whether to grant the user sudo privilliges";
             };
 
+            extra-groups = mkOption {
+              type = types.listOf types.str;
+              default = [];
+              description = "Extra groups to be a member of";
+            };
+
             authorized-ssh-keys = mkOption {
               type = types.listOf types.singleLineStr;
               default = [""];
@@ -70,29 +76,10 @@ in {
           isNormalUser = true;
           initialPassword = "changeme";
           shell = pkgs.${userConfig.shell};
-          extraGroups = mkIf userConfig.sudo [ "wheel" ];
+          extraGroups = userConfig.extra-groups ++ (if userConfig.sudo
+            then [ "sudo"] else []);
           openssh.authorizedKeys.keys = userConfig.authorized-ssh-keys;
         };
       }) cfg;
-      
-
-    # users.users = mkMerge [
-    #   {
-    #     ${cfg.admin-user} = {
-    #       isNormalUser = true;
-    #       initialPassword = "changeme";
-    #       shell = pkgs.${cfg.shell};
-    #       extraGroups = ["wheel"];
-    #     };
-    #   }
-    #
-    #   (mkIf cfg.regular-user.enable {
-    #     ${cfg.regular-user.name} = {
-    #       isNormalUser = true;
-    #       initialPassword = "changeme";
-    #       shell = pkgs.${cfg.shell};
-    #     };
-    #   })
-    # ];
   };
 }

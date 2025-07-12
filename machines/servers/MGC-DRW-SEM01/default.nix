@@ -40,6 +40,10 @@ nixpkgs.lib.nixosSystem {
             nameservers = vars.networking.nameServers;
             lan-domain = vars.networking.internalDomain;
           };
+
+          users.benny.extra-groups = [
+            "podman"
+          ];
         };
 
         services = {
