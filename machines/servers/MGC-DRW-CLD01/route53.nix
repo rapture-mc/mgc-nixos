@@ -17,7 +17,7 @@ in {
         name = vars.domains.primaryDomain;
         type = "A";
         records = [
-          "${vars.primaryIP}"
+          "${vars.networking.megacorpPrimaryPublicIP}"
         ];
       };
 
