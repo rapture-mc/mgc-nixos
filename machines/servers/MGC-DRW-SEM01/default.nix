@@ -71,6 +71,7 @@ nixpkgs.lib.nixosSystem {
           bloodhound = {
             enable = true;
             fqdn = vars.networking.hostsAddr.MGC-DRW-SEM01.eth.ipv4;
+            tls.enable = true;
           };
         };
 
