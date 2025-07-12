@@ -46,7 +46,7 @@ in {
     port = mkOption {
       type = types.int;
       default = 3000;
-      description = "The port number for file-browser to listen on";
+      description = "The port number for semaphore to listen on";
     };
 
     kerberos = {
@@ -73,7 +73,7 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = [pkgs.lazydocker];
 
-    # Note: Docker doesn't respect the NixOS firewall and will open port 8080 since we declared that in the compose file
+    # Note: Docker doesn't respect the NixOS firewall and will open port 3000 since we declared that in the compose file
     networking.firewall.allowedTCPPorts = [
       80
     ];
