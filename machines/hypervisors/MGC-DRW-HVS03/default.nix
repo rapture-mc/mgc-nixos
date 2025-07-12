@@ -14,6 +14,9 @@ nixpkgs.lib.nixosSystem {
         (import ../../_shared/common-config.nix {
           inherit vars;
         })
+        (import ../../_shared/server-config.nix {
+          inherit vars;
+        })
       ];
 
       networking.hostName = "MGC-DRW-HVS03";
