@@ -45,7 +45,7 @@ nixpkgs.lib.nixosSystem {
             fqdn = vars.domains.guacamoleFQDN;
             ldap = {
               enable = true;
-              server = "mgc-drw-dmc01.prod.megacorp.industries";
+              server = "mgc-drw-dmc01.${vars.domains.internalDomain}";
               user-base-dn = "ou=people,dc=prod,dc=megacorp,dc=industries";
               search-bind-dn = "uid=admin,ou=people,dc=prod,dc=megacorp,dc=industries";
               user-search-filter = "(memberof=cn=guacamole,ou=groups,dc=prod,dc=megacorp,dc=industries)";
