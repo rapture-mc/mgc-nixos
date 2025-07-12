@@ -21,10 +21,10 @@ POSTGRES_PASSWORD=<example-password>
 file: /run/secrets/neo4j-auth
 NEO4J_AUTH=<neo4j-username>/<neo4j-password>
 
-file: /run/secrets/neo4j-connection
+file: /run/secrets/bhe-neo4j-connection
 bhe_neo4j_connection=neo4j://<neo4j-username>:<neo4j-password>@neo4j:7687/
 
-file: /run/secrets/neo4j-database-secret
+file: /run/secrets/bhe-database-secret
 bhe_database_secret=<example-password>
 ```
 

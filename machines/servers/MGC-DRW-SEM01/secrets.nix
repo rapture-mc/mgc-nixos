@@ -8,8 +8,8 @@
       semaphore-db-pass = {};
       semaphore-access-key-encryption = {};
       neo4j-auth = {};
-      neo4j-connection = {};
-      neo4j-database-secret = {};
+      bhe-neo4j-connection = {};
+      bhe-database-secret = {};
       snipe-keyfile = {
         owner = "snipeit";
         group = "snipeit";
