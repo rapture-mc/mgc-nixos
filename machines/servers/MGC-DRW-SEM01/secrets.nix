@@ -7,6 +7,9 @@
       postgres-password = {};
       semaphore-db-pass = {};
       semaphore-access-key-encryption = {};
+      neo4j-auth = {};
+      neo4j-connection = {};
+      neo4j-database-secret = {};
       snipe-keyfile = {
         owner = "snipeit";
         group = "snipeit";
