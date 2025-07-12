@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   cfg = config.megacorp.services.zabbix.agent;
@@ -27,6 +28,7 @@ in {
     services.zabbixAgent = {
       enable = true;
       openFirewall = true;
+      package = pkgs.zabbix.agent2;
       server = cfg.server;
     };
   };
