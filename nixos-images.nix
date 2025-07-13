@@ -9,22 +9,18 @@
   common-config = {
     networking.hostName = "nixos";
 
-    system.stateVersion = "24.11";
+    system.stateVersion = "25.05";
 
     megacorp = {
       config = {
         system.enable = true;
         bootloader.enable = false; # nixos-generator will handle bootloader configuration instead
         packages.enable = true;
+        openssh.enable = true;
 
-        openssh = {
-          enable = true;
+        users.${vars.adminUser} = {
+          sudo = true;
           authorized-ssh-keys = vars.keys.bastionPubKey;
-        };
-
-        users = {
-          enable = true;
-          admin-user = "benny";
         };
       };
 
