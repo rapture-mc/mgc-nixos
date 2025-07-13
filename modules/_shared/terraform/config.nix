@@ -5,6 +5,7 @@
 }: {
   wantedBy = ["multi-user.target"];
   after = ["network-online.target"];
+  wants = ["network-online.target"];
   path = with pkgs; [
     git
     opentofu
