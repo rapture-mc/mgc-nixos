@@ -193,9 +193,10 @@ in {
       wantedBy = ["multi-user.target"];
       after = ["network.target"];
       path = with pkgs; [
+        coreutils
         git
         getent
-        coreutils
+        opentofu
       ];
       serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-terraform-json-config" ''
         export VAULT_TOKEN=$(cat ${cfg.vault-token})
