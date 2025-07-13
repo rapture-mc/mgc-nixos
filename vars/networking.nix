@@ -51,7 +51,7 @@
     };
 
     MGC-DRW-HVS04.eth = {
-      name = "enp6s0";
+      name = "enp87s0";
       ipv4 = "192.168.1.18";
     };
 
