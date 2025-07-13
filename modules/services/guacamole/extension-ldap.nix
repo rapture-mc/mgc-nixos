@@ -47,7 +47,7 @@ in {
     port = mkOption {
       type = types.int;
       default = 6360;
-      description = "The port number for guacamole to listen on";
+      description = "The port number of the LDAP server to connect to.";
     };
 
     server = mkOption {
