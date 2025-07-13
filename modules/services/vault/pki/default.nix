@@ -200,15 +200,15 @@ in {
       serviceConfig.ExecStart = toString (pkgs.writers.writeBash "generate-terraform-json-config" ''
         export VAULT_TOKEN=$(cat ${cfg.vault-token})
 
-        if [ ! -d "${cfg.terraform.state-dir}" ]; then echo "Directory ${cfg.terraform.state-dir} doesn't exist... Creating..."
-          mkdir -p ${cfg.terraform.state-dir}
-          chown root:root ${cfg.terraform.state-dir}
+        if [ ! -d "${cfg.pki.terraform.state-dir}" ]; then echo "Directory ${cfg.pki.terraform.state-dir} doesn't exist... Creating..."
+          mkdir -p ${cfg.pki.terraform.state-dir}
+          chown root:root ${cfg.pki.terraform.state-dir}
         else
-          echo "Directory ${cfg.terraform.state-dir} already exists... Skipping..."
+          echo "Directory ${cfg.pki.terraform.state-dir} already exists... Skipping..."
         fi
 
-        echo "Changing into ${cfg.terraform.state-dir}..."
-        cd ${cfg.terraform.state-dir}
+        echo "Changing into ${cfg.pki.terraform.state-dir}..."
+        cd ${cfg.pki.terraform.state-dir}
 
 
         if [[ -e config.tf.json ]]; then
@@ -217,8 +217,8 @@ in {
 
         cp ${terraform-config} config.tf.json \
           && tofu init \
-          && tofu ${cfg.terraform.action} ${
-          if (cfg.terraform.action == "apply" || cfg.terraform.action == "destroy")
+          && tofu ${cfg.pki.terraform.action} ${
+          if (cfg.pki.terraform.action == "apply" || cfg.pki.terraform.action == "destroy")
           then "-auto-approve"
           else ""
         }
