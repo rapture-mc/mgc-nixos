@@ -45,6 +45,22 @@ nixpkgs.lib.nixosSystem {
             xrdp = true;
           };
         };
+
+        virtualisation.libvirt.hypervisor = {
+          enable = true;
+          logo = true;
+          libvirt-users = [
+            "${vars.adminUser}"
+          ];
+          terraform.state-dir = "/var/lib/terranix-state/libvirt";
+          machines = {
+            monitoring-servers = {
+              vm_hostname_prefix = "MGC-DRW-MON";
+              memory = "8192";
+              vcpu = 4;
+            };
+          };
+        };
       };
     }
   ];
