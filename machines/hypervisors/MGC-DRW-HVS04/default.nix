@@ -55,11 +55,11 @@ nixpkgs.lib.nixosSystem {
           ];
           terraform.state-dir = "/var/lib/terranix-state/libvirt";
           machines = {
-            monitoring-servers = {
-              vm_hostname_prefix = "MGC-DRW-MON";
-              memory = "8192";
-              vcpu = 4;
-            };
+            # monitoring-servers = {
+            #   vm_hostname_prefix = "MGC-DRW-MON";
+            #   memory = "8192";
+            #   vcpu = 4;
+            # };
           };
         };
       };
