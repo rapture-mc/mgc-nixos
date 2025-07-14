@@ -22,6 +22,8 @@ nixpkgs.lib.nixosSystem {
 
       system.stateVersion = "25.05";
 
+      virtualisation.docker.enable = true;
+
       megacorp = {
         config = {
           bootloader = {
