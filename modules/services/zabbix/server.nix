@@ -37,6 +37,19 @@ in {
       description = "The port number for file-browser to listen on";
     };
 
+    extra-packages = mkOption {
+      type = types.listOf types.package;
+      default = with pkgs; [
+        nettools
+        nmap
+        traceroute
+      ];
+      description = ''
+        Packages to be added to the Zabbix {env}`PATH`.
+        Typically used to add executables for scripts, but can be anything.
+      '';
+    };
+
     tls = import ../../_shared/nginx/tls-options.nix {
       inherit lib;
     };
@@ -61,7 +74,7 @@ in {
     systemd.services.zabbix-server.path = lib.mkForce [
       "/run/wrappers"
       "/run/current-system/sw"
-    ];
+    ] ++ cfg.extra-packages;
 
     services = {
       zabbixServer = {
