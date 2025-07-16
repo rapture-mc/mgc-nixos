@@ -62,8 +62,8 @@ in {
         enable = true;
         openFirewall = true;
         package = pkgs.zabbix72.server-pgsql;
-        extraPackages = with pkgs; [
-          busybox
+        extraPackages = [
+          "/run/current-system/sw/bin"
         ];
       };
 
