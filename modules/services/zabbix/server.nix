@@ -60,7 +60,7 @@ in {
     # Scripts won't run in Zabbix otherwise...
     systemd.services.zabbix-server.path = lib.mkForce [
       "/run/wrappers"
-      "/run/current-system/sw/bin"
+      "/run/current-system/sw"
     ];
 
     services = {
