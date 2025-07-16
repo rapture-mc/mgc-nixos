@@ -57,14 +57,17 @@ in {
     # See https://github.com/NixOS/nixpkgs/issues/417572
     services.phpfpm.pools.zabbix.phpPackage = pkgs.php83;
 
+    # Scripts won't run in Zabbix otherwise...
+    systemd.services.zabbix-server.path = lib.mkForce [
+      "/run/wrappers"
+      "/run/current-system/sw/bin"
+    ];
+
     services = {
       zabbixServer = {
         enable = true;
         openFirewall = true;
         package = pkgs.zabbix72.server-pgsql;
-        extraPackages = [
-          "/run/current-system/sw/bin"
-        ];
       };
 
       zabbixWeb = {
