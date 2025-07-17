@@ -65,12 +65,12 @@ nixpkgs.lib.nixosSystem {
               vcpu = 4;
             };
 
-            # domain-controllers = {
-            #   vm_hostname_prefix = "MGC-DRW-DMC";
-            #   memory = "8192";
-            #   index_start = 2;
-            #   vcpu = 4;
-            # };
+            domain-controllers = {
+              vm_hostname_prefix = "MGC-DRW-DMC";
+              memory = "8192";
+              index_start = 2;
+              vcpu = 4;
+            };
           };
         };
       };
