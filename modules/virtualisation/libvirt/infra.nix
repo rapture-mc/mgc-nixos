@@ -74,7 +74,7 @@ in {
       default = null;
       type = types.nullOr (types.attrsOf (
         types.submodule (
-          {...}: {
+          _: {
             options = {
               vm_hostname_prefix = mkOption {
                 type = types.str;
@@ -87,6 +87,11 @@ in {
               };
 
               vm_count = mkOption {
+                type = types.int;
+                default = 1;
+              };
+
+              index_start = mkOption {
                 type = types.int;
                 default = 1;
               };
