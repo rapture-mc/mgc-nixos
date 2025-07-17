@@ -30,6 +30,11 @@
       ipv4 = "192.168.1.5";
     };
 
+    MGC-DRW-DMC02.eth = {
+      name = "ens3";
+      ipv4 = "192.168.1.6";
+    };
+
     MGC-DRW-FBR01.eth = {
       name = "ens3";
       ipv4 = "192.168.1.40";
