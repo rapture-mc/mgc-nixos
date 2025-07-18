@@ -28,7 +28,7 @@ nixpkgs.lib.nixosSystem {
       system.stateVersion = "25.05";
 
       networking.hosts = {
-        "192.168.1.7" = [ "mgc-drw-tms01.ad.prod.megacorp.industries" ];
+        "192.168.1.7" = [ "mgc-drw-dmc01.prod.megacorp.industries" ];
       };
 
       megacorp = {
@@ -60,8 +60,8 @@ nixpkgs.lib.nixosSystem {
             };
             kerberos = {
               enable = true;
-              kdc = "mgc-drw-tms01";
-              domain = "ad.prod.megacorp.industries";
+              kdc = "mgc-drw-dmc01";
+              domain = "prod.megacorp.industries";
             };
           };
 
