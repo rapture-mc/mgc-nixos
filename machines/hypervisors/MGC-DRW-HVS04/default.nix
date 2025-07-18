@@ -67,8 +67,8 @@ nixpkgs.lib.nixosSystem {
 
             domain-controllers = {
               vm_hostname_prefix = "MGC-DRW-DMC";
+              os_img_url = "/var/lib/libvirt/images/win22-core.qcow2";
               memory = "8192";
-              index_start = 2;
               vcpu = 4;
             };
           };
