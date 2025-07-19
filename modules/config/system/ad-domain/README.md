@@ -5,7 +5,7 @@ This module is primarily designed to centralize SSH identity management but can 
 
 You must ensure that the NixOS machine is configured to use the domain controller for DNS. Use the megacorp.config.networking.static-ip.nameservers option to set the DNS server.
 
-## Getting started..
+## Getting started...
 Setting the following...
 ```
 {
