@@ -46,21 +46,22 @@ nixpkgs.lib.nixosSystem {
           };
 
           users = {
-            benny = {
+            "ben.harris" = {
               sudo = true;
               authorized-ssh-keys = vars.keys.authorizedBastionPubKeys;
             };
+
+            "john.smith" = {};
+          };
+
+          system.ad-domain = {
+            enable = true;
+            domain-name = vars.networking.internalDomain;
+            netbios-name = "PROD";
           };
         };
 
         programs.pass.enable = true;
-
-        services = {
-          comin = {
-            enable = true;
-            repo = "https://github.com/rapture-mc/mgc-nixos";
-          };
-        };
 
         virtualisation.libvirt.guest.enable = true;
       };
