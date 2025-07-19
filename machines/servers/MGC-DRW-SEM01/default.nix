@@ -47,6 +47,12 @@ nixpkgs.lib.nixosSystem {
           users.${vars.adminUser}.extra-groups = [
             "podman"
           ];
+
+          system.ad-domain = {
+            enable = true;
+            domain-name = vars.domains.internalDomain;
+            netbios-name = "PROD";
+          };
         };
 
         services = {
