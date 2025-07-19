@@ -40,18 +40,24 @@ nixpkgs.lib.nixosSystem {
             lan-domain = vars.domains.internalDomain;
           };
 
-          openssh.bastion = {
-            enable = true;
-            logo = true;
+          openssh = {
+            allowed-groups = [
+              "rg-authorized_bastion_users"
+            ];
+
+            bastion = {
+              enable = true;
+              logo = true;
+            };
           };
 
           users = {
+            "${vars.adminUser}".authorized-ssh-keys = vars.keys.authorizedBastionPubKeys;
+
             "ben.harris" = {
               sudo = true;
               authorized-ssh-keys = vars.keys.authorizedBastionPubKeys;
             };
-
-            "john.smith" = {};
           };
 
           system.ad-domain = {

@@ -10,6 +10,8 @@
     mkEnableOption
     mkIf
     mkDefault
+    mkOption
+    types
     ;
 in {
   options.megacorp.config.openssh = {
@@ -25,6 +27,16 @@ in {
 
       use this option if it isn't plausible to add each known host key to the known_hosts file
     '';
+
+    allowed-groups = mkOption {
+      type = types.listOf types.str;
+      description = ''
+        A list of groups that are permitted to connect to the SSH daemon (wheel members are always permitted)
+
+        This is necessary when megacorp.config.system.ad-domain is enabled as AD users won't be able to connect unless they are members of a group that is defined using this option.
+      '';
+      default = [];
+    };
   };
 
   config = mkIf cfg.enable {
@@ -37,6 +49,9 @@ in {
           then true
           else false;
         PermitRootLogin = mkDefault "no";
+        AllowGroups = [
+          "wheel"
+        ] ++ cfg.allowed-groups;
       };
     };
 

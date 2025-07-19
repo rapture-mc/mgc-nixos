@@ -14,7 +14,7 @@
     ;
 in {
   imports = [
-    ./ad-domain.nix
+    ./ad-domain
   ];
 
   options.megacorp.config.system = {
