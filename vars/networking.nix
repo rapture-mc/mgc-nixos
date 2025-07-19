@@ -5,11 +5,6 @@
   megacorpPrimaryPublicIP = "123.243.147.17";
 
   hostsAddr = {
-    MGC-DRW-APS01.eth = {
-      name = "ens3";
-      ipv4 = "192.168.1.49";
-    };
-
     MGC-DRW-BKS01.eth = {
       name = "ens3";
       ipv4 = "192.168.1.42";
