@@ -28,11 +28,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    security.pam.services.sshd.makeHomeDir = true;
+    security = {
+      pam.services.sshd.makeHomeDir = true;
 
-    krb5 = {
-      enable = true;
-       libdefaults.default_realm = toUpper cfg.domain-name;
+      krb5 = {
+        enable = true;
+        settings.libdefaults.default_realm = toUpper cfg.domain-name;
+      };
     };
 
     services.sssd = {
