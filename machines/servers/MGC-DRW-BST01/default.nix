@@ -56,7 +56,7 @@ nixpkgs.lib.nixosSystem {
 
           system.ad-domain = {
             enable = true;
-            domain-name = vars.networking.internalDomain;
+            domain-name = vars.domains.internalDomain;
             netbios-name = "PROD";
           };
         };
