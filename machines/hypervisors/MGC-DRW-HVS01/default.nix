@@ -79,6 +79,7 @@ nixpkgs.lib.nixosSystem {
               memory = "8192";
               vcpu = 3;
               autostart = false;
+              running = false;
             };
 
             bookstack-servers = {
@@ -91,9 +92,8 @@ nixpkgs.lib.nixosSystem {
 
             semaphore-servers = {
               vm_hostname_prefix = "MGC-DRW-SEM";
-              memory = "4096";
+              memory = "6144";
               vcpu = 2;
-              autostart = false;
             };
 
             gitea-servers = {
