@@ -78,15 +78,15 @@ in {
       enableWinbindd = lib.mkDefault false;
       package = pkgs.samba4Full;
       securityType = "ads";
-      extraConfig = ''
-        realm = ${toUpper cfg.domain-name}
-        workgroup = ${toUpper cfg.netbios-name}
-        client use spnego = yes
-        restrict anonymous = 2
-        server signing = mandatory
-        client signing = mandatory
-        kerberos method = secrets and keytab
-      '';
+      settings.global = {
+        "realm" = "${toUpper cfg.domain-name}";
+        "workgroup" = "${toUpper cfg.netbios-name}";
+        "client use spnego" = "yes";
+        "restrict anonymous" = 2;
+        "server signing" = "mandatory";
+        "client signing" = "mandatory";
+        "kerberos method" = "secrets and keytab";
+      };
     };
   };
 }
