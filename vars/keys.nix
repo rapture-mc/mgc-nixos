@@ -1,15 +1,4 @@
 {
-  # The following keys are permitted to connect to the bastion server over SSH
-  authorizedBastionPubKeys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKhKBbO3gu8cbKQYOopVAA9gkSHHChkjMYPgfW2NIBrN benny@MGC-LT01"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICkw50I9jIQ89A9l4E+AiZtZzD+gGoya6u0br3FOxfT6 DWN-STZLR-PC10"
-  ];
-
-  # The bastion public key
-  bastionPubKey = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOzlYmoWjZYFeCNdMBCHBXmqpzK1IBmRiB3hNlsgEtre benny@MGC-DRW-BST01"
-  ];
-
   # The following keys are permitted to connect to the Restic server to upload backups
   resticPubKeys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPtoZpA5PAW7Ofpu2bQt6leqV++raEMX0tH7P6HOgNIT root@MGC-DRW-PWS01"

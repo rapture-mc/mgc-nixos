@@ -18,10 +18,7 @@
         packages.enable = true;
         openssh.enable = true;
 
-        users.${vars.adminUser} = {
-          sudo = true;
-          authorized-ssh-keys = vars.keys.bastionPubKey;
-        };
+        users = vars.users;
       };
 
       programs.nixvim.enable = true;

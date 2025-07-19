@@ -51,12 +51,6 @@ nixpkgs.lib.nixosSystem {
             };
           };
 
-          users = {
-            "${vars.adminUser}".authorized-ssh-keys = vars.keys.authorizedBastionPubKeys;
-
-            "ben.harris".sudo = true;
-          };
-
           system.ad-domain = {
             enable = true;
             domain-name = vars.domains.internalDomain;
