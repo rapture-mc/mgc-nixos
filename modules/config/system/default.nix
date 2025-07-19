@@ -13,6 +13,10 @@
     types
     ;
 in {
+  imports = [
+    ./ad-domain.nix
+  ];
+
   options.megacorp.config.system = {
     enable = mkEnableOption ''
       Whether to allow Megacorp to control essential system related settings.
