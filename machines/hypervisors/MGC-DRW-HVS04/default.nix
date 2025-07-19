@@ -71,6 +71,12 @@ nixpkgs.lib.nixosSystem {
               memory = "8192";
               vcpu = 4;
             };
+
+            application-servers = {
+              vm_hostname_prefix = "MGC-DRW-APS";
+              memory = "8192";
+              vcpu = 4;
+            };
           };
         };
       };

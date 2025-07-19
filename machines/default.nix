@@ -1,5 +1,6 @@
 {importMachineConfig, ...}: {
   # Servers
+  MGC-DRW-APS01 = importMachineConfig "servers" "MGC-DRW-APS01";
   MGC-DRW-BKS01 = importMachineConfig "servers" "MGC-DRW-BKS01";
   MGC-DRW-BST01 = importMachineConfig "servers" "MGC-DRW-BST01";
   MGC-DRW-CLD01 = importMachineConfig "servers" "MGC-DRW-CLD01";
