@@ -49,7 +49,7 @@ in {
             authorized-ssh-keys = mkOption {
               type = types.listOf types.singleLineStr;
               default = [""];
-              description = "List of authorized ssh keys who are allowed to connect using the admin user";
+              description = "List of public ssh keys who are authorized to connect to this user account over SSH";
             };
           };
         }
