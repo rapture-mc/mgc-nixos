@@ -2,6 +2,7 @@
   nixpkgs,
   vars,
   self,
+  pkgs,
   ...
 }:
 nixpkgs.lib.nixosSystem {
@@ -16,9 +17,12 @@ nixpkgs.lib.nixosSystem {
         (import ../../_shared/server-config.nix {
           inherit vars;
         })
+        (import ./bind.nix {
+          inherit pkgs vars;
+        })
       ];
 
-      networking.hostName = "MGC-DRW-DMC02";
+      networking.hostName = "MGC-DRW-DNS01";
 
       system.stateVersion = "25.05";
 
@@ -28,10 +32,10 @@ nixpkgs.lib.nixosSystem {
 
           networking.static-ip = {
             enable = true;
-            ipv4 = vars.networking.hostsAddr.MGC-DRW-DMC02.eth.ipv4;
-            interface = vars.networking.hostsAddr.MGC-DRW-DMC02.eth.name;
+            ipv4 = vars.networking.hostsAddr.MGC-DRW-DNS01.eth.ipv4;
+            interface = vars.networking.hostsAddr.MGC-DRW-DNS01.eth.name;
             gateway = vars.networking.defaultGateway;
-            nameservers = ["127.0.0.1"];
+            nameservers = vars.networking.nameServers;
             lan-domain = vars.domains.internalDomain;
           };
         };
