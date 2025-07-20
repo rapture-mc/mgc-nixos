@@ -1,9 +1,11 @@
 # Module to join a NixOS machine to an AD environment
-Using this module one can integrate a NixOS machine into an Active Directory environment and centralize user management.
+Using this module one can integrate a NixOS machine into an Active Directory environment and centralize user management. In doing so authentication for services such as SSHD and sudo can be offloaded to AD for processing.
 
-In doing so authentication for services such as SSHD and sudo can be offloaded to AD for processing.
+## Pre-Requisites
+- AD user with domain joining capabilities
+- DNS on the machine joining an AD domain must be configured to use the domain controller of the AD domain
+- For megacorp related home-manager configuration to apply the user must exist locally on the system (defined using megacorp.config.users.<name>). Otherwise the standard home environment will be applied (default zsh, default KDE DE, etc.)
 
-You must ensure that the NixOS machine is configured to use the domain controller for DNS. Use the megacorp.config.networking.static-ip.nameservers option to set the DNS server.
 
 ## Getting started...
 Setting the following...
@@ -53,4 +55,3 @@ For example to disable sudo and sshd local authentication set the following...
 }
 ```
 This will configure PAM (the local Linux service responsible for authentication) to only permit AD authentication for sudo and sshd.
-
