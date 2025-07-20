@@ -11,6 +11,7 @@
     mkEnableOption
     mkOption
     mkForce
+    mkDefault
     toUpper
     types;
 in {
@@ -30,6 +31,12 @@ in {
     local-auth = {
       # WARNING: These options use experimental PAM options that are potentially subject to change!
       # Set any of these options to false to force authentication for that service through Active Directory instead
+
+      login = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Whether to allow login access using local Unix authentication";
+      };
 
       sudo = mkOption {
         type = types.bool;
@@ -54,6 +61,34 @@ in {
   config = mkIf cfg.enable {
     security = {
       pam.services = {
+        login = {
+          rules.auth = mkIf (!cfg.local-auth.login) {
+            unix.enable = mkForce false;
+
+            sss = {
+              control = mkForce "sufficient";
+              args = mkForce [
+                "likeauth"
+                "try_first_pass"
+              ];
+              order = config.security.pam.services.login.rules.auth.unix.order - 100;
+            };
+          };
+        };
+
+        sudo.rules.auth = mkIf (!cfg.local-auth.sudo) {
+          unix.enable = mkForce false;
+
+          sss = {
+            control = mkForce "sufficient";
+            args = mkForce [
+              "likeauth"
+              "try_first_pass"
+            ];
+            order = config.security.pam.services.sudo.rules.auth.unix.order - 100;
+          };
+        };
+
         sshd = {
           makeHomeDir = true;
 
@@ -81,19 +116,6 @@ in {
               "try_first_pass"
             ];
             order = config.security.pam.services.xrdp-sesman.rules.auth.unix.order - 100;
-          };
-        };
-
-        sudo.rules.auth = mkIf (!cfg.local-auth.sudo) {
-          unix.enable = mkForce false;
-
-          sss = {
-            control = mkForce "sufficient";
-            args = mkForce [
-              "likeauth"
-              "try_first_pass"
-            ];
-            order = config.security.pam.services.sudo.rules.auth.unix.order - 100;
           };
         };
       };
@@ -138,11 +160,11 @@ in {
     # join the domain. A better join method probably exists.
     # `net ads join -U Administrator`
     environment.systemPackages = [ pkgs.samba4Full ];
-    systemd.services.samba-smbd.enable = lib.mkDefault false;
+    systemd.services.samba-smbd.enable = mkDefault false;
     services.samba = {
       enable = true;
-      enableNmbd = lib.mkDefault false;
-      enableWinbindd = lib.mkDefault false;
+      enableNmbd = mkDefault false;
+      enableWinbindd = mkDefault false;
       package = pkgs.samba4Full;
       securityType = "ads";
       settings.global = {
