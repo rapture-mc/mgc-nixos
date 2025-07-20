@@ -97,6 +97,8 @@ nixpkgs.lib.nixosSystem {
               vm_hostname_prefix = "MGC-DRW-FBR";
               system_volume = 300;
               vcpu = 2;
+              autostart = false;
+              running = false;
             };
           };
         };
