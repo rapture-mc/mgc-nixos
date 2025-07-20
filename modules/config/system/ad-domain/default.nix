@@ -72,7 +72,7 @@ in {
         };
 
         xrdp-sesman.rules.auth = mkIf (!cfg.local-auth.xrdp) {
-          unix.enable = false;
+          unix.enable = mkForce false;
 
           sss = {
             control = mkForce "sufficient";
