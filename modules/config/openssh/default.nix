@@ -17,9 +17,12 @@ in {
   options.megacorp.config.openssh = {
     enable = mkEnableOption "Whether to enable the SSH daemon";
 
-    bastion = {
-      enable = mkEnableOption "Whether to configure as a bastion server";
-      logo = mkEnableOption "Whether to show bastion logo on shell startup";
+    bastion-logo = mkEnableOption "Whether to show bastion logo on shell startup";
+
+    allow-password-auth = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Whether to permit password based authentication";
     };
 
     auto-accept-server-keys = mkEnableOption ''
@@ -33,7 +36,7 @@ in {
       description = ''
         A list of groups that are permitted to connect to the SSH daemon (wheel members are always permitted)
 
-        This is necessary when megacorp.config.system.ad-domain is enabled as AD users won't be able to connect unless they are members of a group that is defined using this option.
+        Use this option in conjunction with AD integration to permit which AD users are allowed to connect to the SSHD daemon. 
       '';
       default = [];
     };
@@ -45,7 +48,7 @@ in {
       openFirewall = true;
       settings = {
         PasswordAuthentication =
-          if cfg.bastion.enable
+          if cfg.allow-password-auth
           then true
           else false;
         PermitRootLogin = mkDefault "no";

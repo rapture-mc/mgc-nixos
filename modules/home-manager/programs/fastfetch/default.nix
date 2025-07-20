@@ -6,7 +6,7 @@ in {
   home.file.fastFetchLogo = {
     enable = true;
     source = (
-      if cfg.config.openssh.bastion.logo
+      if cfg.config.openssh.bastion-logo
       then ./bastion-logo
       else if cfg.services.openldap.logo
       then ./controller-logo

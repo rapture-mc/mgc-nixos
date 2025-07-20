@@ -41,14 +41,8 @@ nixpkgs.lib.nixosSystem {
           };
 
           openssh = {
-            allowed-groups = [
-              "rg-authorized_bastion_users"
-            ];
-
-            bastion = {
-              enable = true;
-              logo = true;
-            };
+            bastion-logo = true;
+            allow-password-auth = true;
           };
 
           system.ad-domain = {

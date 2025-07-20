@@ -37,7 +37,7 @@ user@host:~$ sudo systemctl restart sssd
 ```
 
 ## Disabling local auth for sudo + sshd
-By default PAM still permits local authentication for SSHD and sudo ontop of AD auth. Generally this isn't desriable and all authentication should be handled by AD.
+By default the machine still permits local authentication for SSHD and sudo ontop of AD auth. Generally this isn't desirable and instead all authentication should be handled by AD alone.
 
 To only permit AD authentication for SSHD and sudo you can set the following...
 ```
@@ -53,4 +53,4 @@ To only permit AD authentication for SSHD and sudo you can set the following...
   };
 }
 ```
-This will lock down authentication to only AD for SSHD and sudo.
+This will lock down sshd and sudo authentication to AD only.
