@@ -25,11 +25,52 @@ in {
       type = types.str;
       example = "EXAMPLE";
     };
+
+    local-auth = {
+      sudo = mkOption {
+        type = types.bool;
+        default = true;
+        description = ''
+          Whether to allow sudo access using local Unix authentication.
+
+          Set this to false if you want to force authentication through Active Directory.
+
+          WARNING: This option uses experimental PAM options that are potentially subject to change!
+        ''
+      };
+
+      sshd = mkOption {
+        type = types.bool;
+        default = true;
+        description = ''
+          Whether to allow SSHD access using local Unix authentication.
+
+          Set this to false if you want to force authentication through Active Directory.
+
+          WARNING: This option uses experimental PAM options that are potentially subject to change!
+        ''
+      };
+    };
   };
 
   config = mkIf cfg.enable {
     security = {
-      pam.services.sshd.makeHomeDir = true;
+      pam.services = {
+        sshd.makeHomeDir = true;
+
+        sudo.rules.auth = mkIf (!cfg.local-auth.sudo) {
+          unix.enable = lib.mkForce false;
+
+          sss = {
+            control = lib.mkForce "sufficient";
+            args = lib.mkForce [
+              "likeauth"
+              "try_first_pass"
+            ];
+            order = config.security.pam.services.sudo.rules.auth.unix.order - 100;
+          };
+        };
+      };
 
       krb5 = {
         enable = true;
