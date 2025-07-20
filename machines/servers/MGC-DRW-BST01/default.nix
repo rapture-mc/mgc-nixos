@@ -57,6 +57,7 @@ nixpkgs.lib.nixosSystem {
             local-auth = {
               sudo = false;
               sshd = false;
+              xrdp = false;
             };
           };
         };
