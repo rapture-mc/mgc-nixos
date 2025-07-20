@@ -65,6 +65,13 @@ nixpkgs.lib.nixosSystem {
               vcpu = 4;
             };
 
+            dns-servers = {
+              vm_hostname_prefix = "MGC-DRW-DNS";
+              vm_count = 1;
+              memory = "6144";
+              vcpu = 2;
+            };
+
             test-box = {
               vm_hostname_prefix = "testbox";
               memory = "4096";
