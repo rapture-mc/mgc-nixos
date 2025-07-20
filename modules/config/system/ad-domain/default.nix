@@ -136,7 +136,8 @@ in {
         domains = ${cfg.domain-name}
         
         [domain/${cfg.domain-name}]
-        default_shell = /run/current-system/sw/bin/zsh
+        # nologin default shell ensures only users that already exist locally are allowed into the system
+        default_shell = /run/current-system/sw/bin/nologin
         id_provider = ad
         ldap_sasl_authid = ${builtins.substring 0 15 (toUpper config.networking.hostName)}
         cache_credentials = True
