@@ -72,6 +72,13 @@ nixpkgs.lib.nixosSystem {
               memory = "8192";
               vcpu = 4;
             };
+
+            jump-box = {
+              vm_hostname_prefix = "MGC-DRW-JMP";
+              os_img_url = "/var/lib/libvirt/images/win22-gui.qcow2";
+              memory = "8192";
+              vcpu = 4;
+            };
           };
         };
       };
