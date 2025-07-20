@@ -56,7 +56,22 @@ in {
   config = mkIf cfg.enable {
     security = {
       pam.services = {
-        sshd.makeHomeDir = true;
+        sshd = {
+          makeHomeDir = true;
+
+          rules.auth = mkIf (!cfg.local-auth.sshd) {
+            unix.enable = lib.mkForce false;
+
+            sss = {
+              control = lib.mkForce "sufficient";
+              args = lib.mkForce [
+                "likeauth"
+                "try_first_pass"
+              ];
+              order = config.security.pam.services.sshd.rules.auth.unix.order - 100;
+            };
+          };
+        };
 
         sudo.rules.auth = mkIf (!cfg.local-auth.sudo) {
           unix.enable = lib.mkForce false;
