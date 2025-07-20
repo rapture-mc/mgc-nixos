@@ -66,6 +66,7 @@ nixpkgs.lib.nixosSystem {
           logo = true;
           libvirt-users = [
             "${vars.adminUser}"
+            "ben.harris"
           ];
           terraform.state-dir = "/var/lib/terranix-state/libvirt";
           machines = {
