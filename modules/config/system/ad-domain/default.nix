@@ -36,7 +36,7 @@ in {
           Set this to false if you want to force authentication through Active Directory.
 
           WARNING: This option uses experimental PAM options that are potentially subject to change!
-        ''
+        '';
       };
 
       sshd = mkOption {
@@ -48,7 +48,7 @@ in {
           Set this to false if you want to force authentication through Active Directory.
 
           WARNING: This option uses experimental PAM options that are potentially subject to change!
-        ''
+        '';
       };
     };
   };
