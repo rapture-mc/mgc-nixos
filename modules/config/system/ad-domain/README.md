@@ -36,10 +36,9 @@ Now restart the SSSD daemon and it shouldn't fail now.
 user@host:~$ sudo systemctl restart sssd
 ```
 
-## Disabling local auth for sudo + sshd
-By default the machine still permits local authentication for SSHD and sudo ontop of AD auth. Generally this isn't desirable and instead all authentication should be handled by AD alone.
+As is many services will now work with a users AD credentials as well as their existing local credentials. To selectively disable local authentication for different services use the megacorp.config.system.ad-domain.local-auth option.
 
-To only permit AD authentication for SSHD and sudo you can set the following...
+For example to disable sudo and sshd local authentication set the following...
 ```
 {
   megacorp.config.system.ad-domain = {
@@ -53,4 +52,5 @@ To only permit AD authentication for SSHD and sudo you can set the following...
   };
 }
 ```
-This will lock down sshd and sudo authentication to AD only.
+This will configure PAM (the local Linux service responsible for authentication) to only permit AD authentication for sudo and sshd.
+
