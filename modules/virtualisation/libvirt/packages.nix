@@ -13,29 +13,44 @@
 
   generateWinImage = pkgs.writeShellScriptBin "generateWinImage" ''
     echo -e "This script will build a Windows image with packer based on your selection.\n"
+
     echo ""
 
     while true; do
-      echo -e "Which Windows Image?\n--------------------\n1. Server 2022\n2. Server 2019\n3. Windows 11\n4. Windows 10\n"
+      echo -e "Which Windows Image?\n--------------------\n1. Server 2022 GUI\n2. Server 2019 GUI\n3. Server 2022 Core\n4. Server 2019 Core\n5. Windows 11\n6. Windows 10\n"
       read -p "Your selection: " response_image
       case $response_image in
         1 )
           packer_file="win2022.pkr.hcl"
-          name="Windows-Server-2022"
+          packer_command=$packer_file
+          name="Windows-Server-2022-GUI"
           break;;
         2 )
           packer_file="win2019.pkr.hcl"
-          name="Windows-Server-2019"
+          packer_command=$packer_file
+          name="Windows-Server-2019-GUI"
           break;;
         3 )
-          packer_file="win11_23h2.pkr.hcl"
-          name="Windows-11"
+          packer_file="win2022.pkr.hcl"
+          packer_command="-var autounattend=answer_files/2022-core/Autounattend.xml $packer_file"
+          name="Windows-Server-2022-Core"
           break;;
         4 )
+          packer_file="win2019.pkr.hcl"
+          packer_command="-var autounattend=answer_files/2019-core/Autounattend.xml $packer_file"
+          name="Windows-Server-2019-Core"
+          break;;
+        5 )
+          packer_file="win11_23h2.pkr.hcl"
+          packer_command=$packer_file
+          name="Windows-11"
+          break;;
+        6 )
           packer_file="win10_22h2.pkr.hcl"
+          packer_command=$packer_file
           name="Windows-10"
           break;;
-        * ) echo -e "Please enter either 1, 2, 3 or 4\n\n";;
+        * ) echo -e "Please enter either 1, 2, 3, 4, 5 or 6\n\n";;
       esac
     done
 
@@ -55,7 +70,8 @@
             echo -e "Initializing and building $name image for QCOW2..."
 
             packer init $packer_file
-            packer build $packer_file
+
+            packer build $packer_command
           else
             echo "Packer output directory $name already exists... Skipping build creation"
           fi
