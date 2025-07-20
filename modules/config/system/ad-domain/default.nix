@@ -10,6 +10,7 @@
     mkIf
     mkEnableOption
     mkOption
+    mkForce
     toUpper
     types;
 in {
@@ -27,28 +28,25 @@ in {
     };
 
     local-auth = {
+      # WARNING: These options use experimental PAM options that are potentially subject to change!
+      # Set any of these options to false to force authentication for that service through Active Directory instead
+
       sudo = mkOption {
         type = types.bool;
         default = true;
-        description = ''
-          Whether to allow sudo access using local Unix authentication.
-
-          Set this to false if you want to force authentication through Active Directory.
-
-          WARNING: This option uses experimental PAM options that are potentially subject to change!
-        '';
+        description = "Whether to allow sudo access using local Unix authentication";
       };
 
       sshd = mkOption {
         type = types.bool;
         default = true;
-        description = ''
-          Whether to allow SSHD access using local Unix authentication.
+        description = "Whether to allow sshd access using local Unix authentication";
+      };
 
-          Set this to false if you want to force authentication through Active Directory.
-
-          WARNING: This option uses experimental PAM options that are potentially subject to change!
-        '';
+      xrdp = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Whether to allow xrdp access using local Unix authentication";
       };
     };
   };
@@ -60,11 +58,11 @@ in {
           makeHomeDir = true;
 
           rules.auth = mkIf (!cfg.local-auth.sshd) {
-            unix.enable = lib.mkForce false;
+            unix.enable = mkForce false;
 
             sss = {
-              control = lib.mkForce "sufficient";
-              args = lib.mkForce [
+              control = mkForce "sufficient";
+              args = mkForce [
                 "likeauth"
                 "try_first_pass"
               ];
@@ -73,12 +71,25 @@ in {
           };
         };
 
-        sudo.rules.auth = mkIf (!cfg.local-auth.sudo) {
-          unix.enable = lib.mkForce false;
+        xrdp-sesman.rules.auth = mkIf (!cfg.local-auth.xrdp) {
+          unix.enable = false;
 
           sss = {
-            control = lib.mkForce "sufficient";
-            args = lib.mkForce [
+            control = mkForce "sufficient";
+            args = mkForce [
+              "likeauth"
+              "try_first_pass"
+            ];
+            order = config.security.pam.services.xrdp-sesman.rules.auth.unix.order - 100;
+          };
+        };
+
+        sudo.rules.auth = mkIf (!cfg.local-auth.sudo) {
+          unix.enable = mkForce false;
+
+          sss = {
+            control = mkForce "sufficient";
+            args = mkForce [
               "likeauth"
               "try_first_pass"
             ];
