@@ -52,6 +52,9 @@ nixpkgs.lib.nixosSystem {
             enable = true;
             domain-name = vars.domains.internalDomain;
             netbios-name = "PROD";
+            local-auth = {
+              sudo = false;
+            };
           };
         };
 
