@@ -51,7 +51,6 @@ nixpkgs.lib.nixosSystem {
             netbios-name = "PROD";
             local-auth = {
               sudo = false;
-              sshd = false;
             };
           };
         };
