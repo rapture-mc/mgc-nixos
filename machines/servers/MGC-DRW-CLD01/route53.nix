@@ -40,6 +40,15 @@ in {
         ];
       };
 
+      microsoft-txt = {
+        zone_id = zone-id;
+        name = "@";
+        type = "TXT";
+        records = [
+          "MS=ms57820714"
+        ];
+      };
+
       mail-dmarc = {
         zone_id = zone-id;
         name = "_dmarc.${vars.domains.primaryDomain}";
