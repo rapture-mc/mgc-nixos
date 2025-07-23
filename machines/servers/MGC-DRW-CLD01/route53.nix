@@ -42,10 +42,19 @@ in {
 
       microsoft-txt = {
         zone_id = zone-id;
-        name = "@";
+        name = vars.domains.primaryDomain;
         type = "TXT";
         records = [
           "MS=ms57820714"
+        ];
+      };
+
+      microsoft-mx = {
+        zone_id = zone-id;
+        name = vars.domains.primaryDomain;
+        type = "MX";
+        records = [
+          "ms57820714.msv1.invalid"
         ];
       };
 
