@@ -28,6 +28,7 @@ in {
         records = [
           "10 mail.protonmail.ch."
           "20 mailsec.protonmail.ch."
+          "32767 ms57820714.msv1.invalid"
         ];
       };
 
@@ -37,24 +38,7 @@ in {
         type = "TXT";
         records = [
           "protonmail-verification=d0b28026b427ba737e5a6a79a6e3c833da85de5e"
-        ];
-      };
-
-      microsoft-txt = {
-        zone_id = zone-id;
-        name = vars.domains.primaryDomain;
-        type = "TXT";
-        records = [
           "MS=ms57820714"
-        ];
-      };
-
-      microsoft-mx = {
-        zone_id = zone-id;
-        name = vars.domains.primaryDomain;
-        type = "MX";
-        records = [
-          "ms57820714.msv1.invalid"
         ];
       };
 
