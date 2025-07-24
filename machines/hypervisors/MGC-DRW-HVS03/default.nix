@@ -1,6 +1,5 @@
 {
   nixpkgs,
-  pkgs,
   self,
   vars,
   ...
@@ -23,12 +22,6 @@ nixpkgs.lib.nixosSystem {
 
       system.stateVersion = "24.05";
 
-      environment.systemPackages = with pkgs; [
-        devenv
-        direnv
-        hugo
-      ];
-
       megacorp = {
         config = {
           bootloader.enable = true;
@@ -49,8 +42,6 @@ nixpkgs.lib.nixosSystem {
             xrdp = true;
           };
         };
-
-        virtualisation.whonix.enable = true;
       };
     }
   ];
