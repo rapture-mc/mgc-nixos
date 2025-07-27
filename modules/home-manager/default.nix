@@ -10,13 +10,22 @@
     (
       if
         osConfig.megacorp.config.desktop.enable
+        && osConfig.megacorp.config.desktop.theme == "cyberpunk"
         && !osConfig.megacorp.config.hyprland.enable
-      then ./config/desktop/plasma.nix
+      then ./config/desktop/cyberpunk
+      else ./config/desktop/none.nix
+    )
+    (
+      if
+        osConfig.megacorp.config.desktop.enable
+        && osConfig.megacorp.config.desktop.theme == "win-95"
+        && !osConfig.megacorp.config.hyprland.enable
+      then ./config/desktop/win-95
       else ./config/desktop/none.nix
     )
     (
       if osConfig.megacorp.config.hyprland.enable
-      then ./config/desktop/hyprland.nix
+      then ./config/desktop/hyprland
       else ./config/desktop/none.nix
     )
   ];

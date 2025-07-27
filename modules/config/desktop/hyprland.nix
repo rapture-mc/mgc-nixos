@@ -13,7 +13,7 @@
     ;
 in {
   imports = [
-    ./shared.nix
+    (mkIf cfg.enable (import ../../_shared/desktop {inherit pkgs;}))
   ];
 
   options.megacorp.config.hyprland = {
@@ -25,10 +25,11 @@ in {
       hyprland.enable = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      (callPackage ./sddm-theme.nix {}).sddm-sugar-candy-theme
-      libsForQt5.qt5.qtgraphicaleffects
-    ];
+    # Where did ./sddm-theme.nix go?!
+    # environment.systemPackages = with pkgs; [
+    #   (callPackage ./sddm-theme.nix {}).sddm-sugar-candy-theme
+    #   libsForQt5.qt5.qtgraphicaleffects
+    # ];
 
     services.displayManager.sddm = {
       enable = true;

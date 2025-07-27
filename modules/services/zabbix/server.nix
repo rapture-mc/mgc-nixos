@@ -71,10 +71,12 @@ in {
     services.phpfpm.pools.zabbix.phpPackage = pkgs.php83;
 
     # Scripts won't run in Zabbix otherwise...
-    systemd.services.zabbix-server.path = lib.mkForce [
-      "/run/wrappers"
-      "/run/current-system/sw"
-    ] ++ cfg.extra-packages;
+    systemd.services.zabbix-server.path =
+      lib.mkForce [
+        "/run/wrappers"
+        "/run/current-system/sw"
+      ]
+      ++ cfg.extra-packages;
 
     services = {
       zabbixServer = {

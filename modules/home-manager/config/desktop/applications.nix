@@ -14,21 +14,21 @@ in {
       genericName = "XMR Swap";
       exec = "UnstoppableSwap";
       terminal = false;
-      icon = ./unstoppable-swap.svg;
+      icon = ../../../../resources/unstoppable-swap.svg;
     };
 
     StartWhonix = mkIf osConfig.megacorp.virtualisation.whonix.enable {
       name = "Start Whonix";
       exec = "startWhonix";
       terminal = false;
-      icon = ./whonix.svg;
+      icon = ../../../../resources/whonix.svg;
     };
 
     StopWhonix = mkIf osConfig.megacorp.virtualisation.whonix.enable {
       name = "Stop Whonix";
       exec = "stopWhonix";
       terminal = false;
-      icon = ./whonix.svg;
+      icon = ../../../../resources/whonix.svg;
     };
   };
 }

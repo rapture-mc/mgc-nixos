@@ -99,7 +99,6 @@
         inherit self vars nixpkgs pkgs terranix system sops-nix;
       };
   in {
-
     ##################
     # NIXOS MACHINES #
     ##################
@@ -107,7 +106,6 @@
     nixosConfigurations = import ./machines {
       inherit importMachineConfig;
     };
-
 
     #################
     # NIXOS MODULES #
@@ -130,7 +128,6 @@
       ];
     };
 
-
     ################
     # NIXOS IMAGES #
     ################
@@ -140,7 +137,6 @@
     packages.${system} = import ./nixos-images.nix {
       inherit self system nixos-generators vars;
     };
-
 
     #######################
     # NIXOS IMAGE TESTING #

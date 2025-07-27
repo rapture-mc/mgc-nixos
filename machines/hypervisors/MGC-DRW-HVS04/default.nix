@@ -24,7 +24,7 @@ nixpkgs.lib.nixosSystem {
 
       virtualisation.docker.enable = true;
 
-      networking.firewall.allowedTCPPorts = [ 3000 ];
+      networking.firewall.allowedTCPPorts = [3000];
 
       megacorp = {
         config = {

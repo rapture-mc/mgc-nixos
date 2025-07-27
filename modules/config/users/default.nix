@@ -61,25 +61,34 @@ in {
   config = mkIf (cfg != null) {
     programs.zsh.enable = true;
 
-    home-manager.users = lib.mapAttrs'
+    home-manager.users =
+      lib.mapAttrs'
       (userName: userConfig: {
         name = userName;
         value = {
           imports = [../../home-manager];
         };
-      }) cfg;
+      })
+      cfg;
 
-    users.users = lib.mapAttrs'
+    users.users =
+      lib.mapAttrs'
       (userName: userConfig: {
         name = userName;
         value = {
           isNormalUser = true;
           initialPassword = "changeme";
           shell = pkgs.${userConfig.shell};
-          extraGroups = userConfig.extra-groups ++ (if userConfig.sudo
-            then ["wheel"] else []);
+          extraGroups =
+            userConfig.extra-groups
+            ++ (
+              if userConfig.sudo
+              then ["wheel"]
+              else []
+            );
           openssh.authorizedKeys.keys = userConfig.authorized-ssh-keys;
         };
-      }) cfg;
+      })
+      cfg;
   };
 }

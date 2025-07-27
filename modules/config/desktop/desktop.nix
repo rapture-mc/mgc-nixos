@@ -9,51 +9,47 @@
   inherit
     (lib)
     mkEnableOption
+    mkOption
     mkIf
+    types
     ;
+
+  cyberpunk =
+    if cfg.enable && cfg.theme == "cyberpunk"
+    then true
+    else false;
+
+  win-95 =
+    if cfg.enable && cfg.theme == "win-95"
+    then true
+    else false;
 in {
   imports = [
-    ./shared.nix
+    (mkIf cfg.enable (import ../../_shared/desktop {inherit pkgs;}))
+    (mkIf cyberpunk (import ./cyberpunk {inherit pkgs;}))
+    (mkIf win-95 (import ./win-95 {inherit pkgs;}))
   ];
 
   options.megacorp.config.desktop = {
     enable = mkEnableOption "Whether to enable desktop environment";
 
+    theme = mkOption {
+      description = "Which desktop theme to use";
+      type = types.enum [
+        "cyberpunk"
+        "win-95"
+      ];
+      default = "cyberpunk";
+    };
+
     xrdp = mkEnableOption "Whether to enable RDP server";
   };
 
-  config = mkIf cfg.enable {
-    environment.systemPackages = [
-      (pkgs.callPackage ./sddm-astronaut-theme.nix {
-        theme = "cyberpunk";
-        themeConfig.General = {
-          Background = "${../../home-manager/config/desktop/desktop-wallpaper.jpg}";
-          HeaderText = "System Locked...";
-          DateFormat = "dd/M";
-        };
-      })
-    ];
-
-    services = {
-      desktopManager.plasma6.enable = true;
-      xserver = {
-        enable = true;
-        xkb.layout = "au";
-      };
-      displayManager.sddm = {
-        enable = true;
-        theme = "sddm-astronaut-theme";
-        extraPackages = [
-          pkgs.kdePackages.qtmultimedia
-          pkgs.kdePackages.qtsvg
-          pkgs.kdePackages.qtvirtualkeyboard
-        ];
-      };
-      xrdp = mkIf cfg.xrdp {
-        enable = true;
-        openFirewall = true;
-        defaultWindowManager = "startplasma-x11";
-      };
+  config = {
+    services.xrdp = mkIf cfg.xrdp {
+      enable = true;
+      openFirewall = true;
+      defaultWindowManager = "startplasma-x11";
     };
   };
 }

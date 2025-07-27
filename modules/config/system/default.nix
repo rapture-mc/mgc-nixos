@@ -53,7 +53,9 @@ in {
       LC_TIME = "${cfg.locale}";
     };
 
-    home-manager.backupFileExtension = "backup";
+    home-manager = {
+      backupFileExtension = "backup";
+    };
 
     nix.settings = {
       experimental-features = ["nix-command" "flakes"];

@@ -50,7 +50,10 @@ nixpkgs.lib.nixosSystem {
             efi.enable = true;
           };
 
-          desktop.enable = true;
+          desktop = {
+            enable = true;
+            theme = "win-95";
+          };
         };
 
         programs.pass.enable = true;

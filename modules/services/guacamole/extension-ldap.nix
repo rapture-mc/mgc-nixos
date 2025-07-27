@@ -154,7 +154,10 @@ in {
     services.guacamole-client.settings = {
       ldap-hostname = cfg.server;
       ldap-port = cfg.port;
-      ldap-encryption-method = if cfg.tls.enable then "ssl" else "none";
+      ldap-encryption-method =
+        if cfg.tls.enable
+        then "ssl"
+        else "none";
       ldap-user-base-dn = cfg.user-base-dn;
       ldap-search-bind-dn = cfg.search-bind-dn;
       ldap-user-search-filter = cfg.user-search-filter;

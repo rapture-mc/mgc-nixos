@@ -123,9 +123,11 @@ in {
         openssh.authorizedKeys.keys = cfg.sftp-server.authorized-keys;
       };
 
-      groups.restic-backup.members = [
-        "restic"
-      ] ++ cfg.restic-admins;
+      groups.restic-backup.members =
+        [
+          "restic"
+        ]
+        ++ cfg.restic-admins;
     };
 
     environment.systemPackages = mkIf cfg.sftp-server.enable [

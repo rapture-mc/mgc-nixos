@@ -42,13 +42,17 @@ in {
   };
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [
-      80
-    ] ++ (
-    if cfg.tls.enable
-    then [
-      443
-    ] else []);
+    networking.firewall.allowedTCPPorts =
+      [
+        80
+      ]
+      ++ (
+        if cfg.tls.enable
+        then [
+          443
+        ]
+        else []
+      );
 
     security.acme = {
       acceptTerms = true;
