@@ -88,6 +88,8 @@ in {
 
       netdevs.${cfg.bridge.name} = {
         enable = cfg.bridge.enable;
+
+        # Create the bridge interface
         netdevConfig = {
           Kind = "bridge";
           Name = cfg.bridge.name;
@@ -95,28 +97,14 @@ in {
       };
 
       networks = {
+        # Create IP settings on bridge interface
         "${cfg.bridge.name}-lan" = {
           enable = cfg.bridge.enable;
-          matchConfig = {
-            Name = [
-              cfg.bridge.name
-              "vm-*"
-            ];
-          };
-
-          networkConfig = {
-            Bridge = cfg.bridge.name;
-          };
-        };
-
-        "${cfg.bridge.name}-lan-bridge" = {
-          enable = cfg.bridge.enable;
-          matchConfig = {
-            Name = cfg.bridge.name;
-          };
+          matchConfig.Name = cfg.bridge.name;
 
           networkConfig = {
             DHCP = "no";
+            Bridge = cfg.bridge.name;
             Address = "${cfg.ipv4}/${builtins.toString cfg.prefix}";
             DNS = cfg.nameservers;
             Domains = cfg.lan-domain;
@@ -130,10 +118,9 @@ in {
           ];
         };
 
+        # Configure IP settings on physical interface
         ${cfg.interface} = {
-          matchConfig = {
-            Name = cfg.interface;
-          };
+          matchConfig.Name = cfg.interface;
 
           networkConfig = {
             Bridge = mkIf cfg.bridge.enable cfg.bridge.name;
