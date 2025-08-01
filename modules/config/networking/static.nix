@@ -97,7 +97,7 @@ in {
       };
 
       networks = {
-        # Create IP settings on bridge interface
+        # Configure IP settings on bridge interface
         "${cfg.bridge.name}-lan" = {
           enable = cfg.bridge.enable;
           matchConfig.Name = cfg.bridge.name;
