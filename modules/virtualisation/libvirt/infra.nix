@@ -34,14 +34,6 @@
 
         provider.libvirt.uri = "qemu:///system";
 
-        resource.libvirt_pool.default = {
-          name = "default";
-          type = "dir";
-          target = {
-            path = "/var/lib/libvirt/images";
-          };
-        };
-
         module = transformed-terraform-config;
       }
     ];

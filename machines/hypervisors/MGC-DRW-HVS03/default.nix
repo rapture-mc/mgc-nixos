@@ -31,9 +31,10 @@ nixpkgs.lib.nixosSystem {
               enable = true;
               ipv4 = vars.networking.hostsAddr.MGC-DRW-HVS03.eth.ipv4;
               interface = vars.networking.hostsAddr.MGC-DRW-HVS03.eth.name;
-              gateway = vars.networking.defaultGateway;
+              gateway = "192.168.10.1";
               nameservers = vars.networking.nameServers;
               lan-domain = vars.domains.internalDomain;
+              bridge.enable = true;
             };
           };
 
@@ -41,6 +42,23 @@ nixpkgs.lib.nixosSystem {
             enable = true;
             xrdp = true;
           };
+        };
+
+        virtualisation.libvirt.hypervisor = {
+          enable =  true;
+          libvirt-users = [
+            "ben.harris"
+          ];
+
+          terraform.state-dir = "/var/lib/terranix-state/libvirt";
+
+          machines = {
+            test-vm = {
+              vm_hostname_prefix = "test-vm";
+              memory = "6144";
+              vcpu = 2;
+            };                      
+          };                        
         };
       };
     }

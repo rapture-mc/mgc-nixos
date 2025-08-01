@@ -52,7 +52,7 @@
 
     MGC-DRW-HVS03.eth = {
       name = "enp6s0";
-      ipv4 = "192.168.1.15";
+      ipv4 = "192.168.10.15";
     };
 
     MGC-DRW-HVS04.eth = {
