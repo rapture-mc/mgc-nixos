@@ -79,6 +79,18 @@ nixpkgs.lib.nixosSystem {
               memory = "8192";
               vcpu = 4;
             };
+
+            k3s-master = {
+              vm_hostname_prefix = "MGC-DRW-K3M";
+              memory = "6144";
+              vcpu = 2;
+            };
+
+            k3s-slave = {
+              vm_hostname_prefix = "MGC-DRW-K3S";
+              memory = "6144";
+              vcpu = 2;
+            };
           };
         };
       };
