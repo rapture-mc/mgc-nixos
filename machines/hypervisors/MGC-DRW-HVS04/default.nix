@@ -83,6 +83,7 @@ nixpkgs.lib.nixosSystem {
 
           k3s-slave = {
             vm_hostname_prefix = "MGC-DRW-K3S";
+            vm_count = 2;
             memory = "6144";
             vcpu = 2;
           };

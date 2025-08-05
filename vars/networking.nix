@@ -75,6 +75,11 @@
       ipv4 = "192.168.1.20";
     };
 
+    MGC-DRW-K3S02.eth = {
+      name = "ens3";
+      ipv4 = "192.168.1.21";
+    };
+
     MGC-DRW-MON01.eth = {
       name = "ens3";
       ipv4 = "192.168.1.46";
