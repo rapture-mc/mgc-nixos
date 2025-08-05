@@ -1,4 +1,6 @@
-_: {
+{osConfig, ... }: let
+  cfg = osConfig.megacorp;
+in {
   imports = [fastfetch/default.nix];
 
   # Makes directories pink
@@ -20,7 +22,6 @@ _: {
 
       shellAliases = {
         v = "vi";
-        ra = "ranger";
         nix-list-generations = "nix profile history --profile /nix/var/nix/profiles/system";
       };
 
@@ -30,6 +31,7 @@ _: {
         plugins = [
           "tmux"
           "aws"
+          "${if cfg.services.k3s.role == "server" && cfg.services.k3s.enable then "kubectl" else ""}"
         ];
       };
     };
