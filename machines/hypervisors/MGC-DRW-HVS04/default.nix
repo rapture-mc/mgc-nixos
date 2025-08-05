@@ -16,6 +16,9 @@ nixpkgs.lib.nixosSystem {
         (import ../../_shared/server-config.nix {
           inherit vars;
         })
+        (import ../../_shared/hypervisor-config.nix {
+          inherit vars;
+        })
       ];
 
       networking.hostName = "MGC-DRW-HVS04";
@@ -51,46 +54,37 @@ nixpkgs.lib.nixosSystem {
           };
         };
 
-        virtualisation.libvirt.hypervisor = {
-          enable = true;
-          logo = true;
-          libvirt-users = [
-            "${vars.adminUser}"
-            "ben.harris"
-          ];
-          terraform.state-dir = "/var/lib/terranix-state/libvirt";
-          machines = {
-            monitoring-servers = {
-              vm_hostname_prefix = "MGC-DRW-MON";
-              memory = "8192";
-              vcpu = 4;
-            };
+        virtualisation.libvirt.hypervisor.machines = {
+          monitoring-servers = {
+            vm_hostname_prefix = "MGC-DRW-MON";
+            memory = "8192";
+            vcpu = 4;
+          };
 
-            domain-controllers = {
-              vm_hostname_prefix = "MGC-DRW-DMC";
-              os_img_url = "/var/lib/libvirt/images/win22-core.qcow2";
-              memory = "8192";
-              vcpu = 4;
-            };
+          domain-controllers = {
+            vm_hostname_prefix = "MGC-DRW-DMC";
+            os_img_url = "/var/lib/libvirt/images/win22-core.qcow2";
+            memory = "8192";
+            vcpu = 4;
+          };
 
-            jump-box = {
-              vm_hostname_prefix = "MGC-DRW-JMP";
-              os_img_url = "/var/lib/libvirt/images/win22-gui.qcow2";
-              memory = "8192";
-              vcpu = 4;
-            };
+          jump-box = {
+            vm_hostname_prefix = "MGC-DRW-JMP";
+            os_img_url = "/var/lib/libvirt/images/win22-gui.qcow2";
+            memory = "8192";
+            vcpu = 4;
+          };
 
-            k3s-master = {
-              vm_hostname_prefix = "MGC-DRW-K3M";
-              memory = "6144";
-              vcpu = 2;
-            };
+          k3s-master = {
+            vm_hostname_prefix = "MGC-DRW-K3M";
+            memory = "6144";
+            vcpu = 2;
+          };
 
-            k3s-slave = {
-              vm_hostname_prefix = "MGC-DRW-K3S";
-              memory = "6144";
-              vcpu = 2;
-            };
+          k3s-slave = {
+            vm_hostname_prefix = "MGC-DRW-K3S";
+            memory = "6144";
+            vcpu = 2;
           };
         };
       };
