@@ -12,10 +12,8 @@ nixpkgs.lib.nixosSystem {
     {
       imports = [
         ../../_shared/qemu-hardware-config.nix
+        ./secrets.nix
         (import ../../_shared/common-config.nix {
-          inherit vars;
-        })
-        (import ./secrets.nix {
           inherit vars;
         })
       ];

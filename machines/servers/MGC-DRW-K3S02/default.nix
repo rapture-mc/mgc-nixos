@@ -12,12 +12,10 @@ nixpkgs.lib.nixosSystem {
     {
       imports = [
         ../../_shared/qemu-hardware-config.nix
+        ./secrets.nix
         (import ../../_shared/common-config.nix {
           inherit vars;
         })
-        # (import ./secrets.nix {
-        #   inherit vars;
-        # })
       ];
 
       networking.hostName = "MGC-DRW-K3S02";
@@ -51,7 +49,7 @@ nixpkgs.lib.nixosSystem {
         };
         
         services.k3s = {
-          enable = false;
+          enable = true;
           logo = true;
           role = "agent";
           server-ip = vars.networking.hostsAddr.MGC-DRW-K3M01.eth.ipv4;
