@@ -42,8 +42,6 @@ nixpkgs.lib.nixosSystem {
             domain-name = vars.domains.internalDomain;
             netbios-name = "PROD";
             local-auth = {
-              login = false;
-              sudo = false;
               sshd = false;
               xrdp = false;
             };
