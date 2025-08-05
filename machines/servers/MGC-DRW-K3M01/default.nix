@@ -53,7 +53,6 @@ nixpkgs.lib.nixosSystem {
         services.k3s = {
           enable = true;
           cluster-init = true;
-          server-ip = vars.networking.hostsAddr.MGC-DRW-K3M01.eth.ipv4;
         };
       };
     }
