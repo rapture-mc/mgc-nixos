@@ -51,7 +51,7 @@ nixpkgs.lib.nixosSystem {
         };
 
         services.k3s = {
-          enable = false;
+          enable = true;
           cluster-init = true;
         };
       };
