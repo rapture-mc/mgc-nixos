@@ -66,12 +66,12 @@
     };
 
     MGC-DRW-K3M01.eth = {
-      name = "enp87s0";
+      name = "ens3";
       ipv4 = "192.168.1.19";
     };
 
     MGC-DRW-K3S01.eth = {
-      name = "enp87s0";
+      name = "ens3";
       ipv4 = "192.168.1.20";
     };
 
