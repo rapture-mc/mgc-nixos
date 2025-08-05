@@ -1,4 +1,4 @@
-{vars}: {
+_: {
   sops = {
     defaultSopsFile = ../../../sops/default.yaml;
     defaultSopsFormat = "yaml";
