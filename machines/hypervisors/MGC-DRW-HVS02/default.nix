@@ -17,6 +17,9 @@ nixpkgs.lib.nixosSystem {
         (import ../../_shared/server-config.nix {
           inherit vars;
         })
+        (import ../../_shared/hypervisor-config.nix {
+          inherit vars;
+        })
       ];
 
       networking.hostName = "MGC-DRW-HVS02";
@@ -61,46 +64,37 @@ nixpkgs.lib.nixosSystem {
           };
         };
 
-        virtualisation.libvirt.hypervisor = {
-          enable = true;
-          logo = true;
-          libvirt-users = [
-            "${vars.adminUser}"
-            "ben.harris"
-          ];
-          terraform.state-dir = "/var/lib/terranix-state/libvirt";
-          machines = {
-            bastion-server = {
-              vm_hostname_prefix = "MGC-DRW-BST";
-              memory = "6144";
-              vcpu = 2;
-            };
+        virtualisation.libvirt.hypervisor.machines = {
+          bastion-server = {
+            vm_hostname_prefix = "MGC-DRW-BST";
+            memory = "6144";
+            vcpu = 2;
+          };
 
-            domain-controller = {
-              vm_hostname_prefix = "MGC-DRW-DMC";
-              memory = "6144";
-              vm_count = 1;
-              vcpu = 2;
-            };
+          domain-controller = {
+            vm_hostname_prefix = "MGC-DRW-DMC";
+            memory = "6144";
+            vm_count = 1;
+            vcpu = 2;
+          };
 
-            reverse-proxy = {
-              vm_hostname_prefix = "MGC-DRW-RVP";
-              vcpu = 2;
-            };
+          reverse-proxy = {
+            vm_hostname_prefix = "MGC-DRW-RVP";
+            vcpu = 2;
+          };
 
-            desktop-gateway = {
-              vm_hostname_prefix = "MGC-DRW-DGW";
-              memory = "6144";
-              vcpu = 2;
-            };
+          desktop-gateway = {
+            vm_hostname_prefix = "MGC-DRW-DGW";
+            memory = "6144";
+            vcpu = 2;
+          };
 
-            file-browser = {
-              vm_hostname_prefix = "MGC-DRW-FBR";
-              system_volume = 300;
-              vcpu = 2;
-              autostart = false;
-              running = false;
-            };
+          file-browser = {
+            vm_hostname_prefix = "MGC-DRW-FBR";
+            system_volume = 300;
+            vcpu = 2;
+            autostart = false;
+            running = false;
           };
         };
       };
