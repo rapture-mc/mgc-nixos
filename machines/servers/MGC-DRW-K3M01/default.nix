@@ -19,6 +19,10 @@ nixpkgs.lib.nixosSystem {
 
       system.stateVersion = "25.05";
 
+      networking.firewall.allowedTCPPorts = [
+        80
+      ];
+
       megacorp = {
         config = {
           bootloader.enable = true;
