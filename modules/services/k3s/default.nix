@@ -93,6 +93,7 @@ in {
         clusterInit = cfg.cluster-init;
         role = cfg.role;
         tokenFile = cfg.token-file;
+        gracefulNodeShutdown.enable = true;
         serverAddr =
           if cfg.server-ip != null
           then "https://${cfg.server-ip}:6443"
