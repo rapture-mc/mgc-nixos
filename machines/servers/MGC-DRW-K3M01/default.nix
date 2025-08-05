@@ -2,22 +2,17 @@
   nixpkgs,
   self,
   vars,
-  sops-nix,
   ...
 }:
 nixpkgs.lib.nixosSystem {
   modules = [
     self.nixosModules.default
-    sops-nix.nixosModules.sops
     {
       imports = [
         ../../_shared/qemu-hardware-config.nix
         (import ../../_shared/common-config.nix {
           inherit vars;
         })
-        # (import ./secrets.nix {
-        #   inherit vars;
-        # })
       ];
 
       networking.hostName = "MGC-DRW-K3M01";
