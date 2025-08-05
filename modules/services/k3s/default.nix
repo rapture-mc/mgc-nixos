@@ -17,7 +17,7 @@ in {
   options.megacorp.services.k3s = {
     enable = mkEnableOption "Enable k3s";
 
-    clusterInit = mkEnableOption "Whether to initialize the cluster";
+    cluster-init = mkEnableOption "Whether to initialize the cluster";
 
     logo = mkEnableOption "Whether to enable the k3s logo";
 
@@ -27,13 +27,13 @@ in {
       description = "The k3s role (either 'server' or 'agent')";
     };
 
-    tokenFile = mkOption {
+    token-file = mkOption {
       type = types.path;
       default = /run/secrets/kube-token;
       description = "The path to the file containing the k3s token";
     };
 
-    serverIP = mkOption {
+    server-ip = mkOption {
       type = types.str;
       default = "127.0.0.1";
       description = "The k3s master server IP";
@@ -63,10 +63,10 @@ in {
     services = {
       k3s = {
         enable = true;
-        clusterInit = cfg.clusterInit;
+        clusterInit = cfg.cluster-init;
         role = cfg.role;
-        tokenFile = cfg.tokenFile;
-        serverAddr = "https://${cfg.serverIP}:6443";
+        tokenFile = cfg.token-file;
+        serverAddr = "https://${cfg.server-ip}:6443";
       };
       rpcbind.enable = true;
     };
