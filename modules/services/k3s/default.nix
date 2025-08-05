@@ -28,8 +28,8 @@ in {
     };
 
     token-file = mkOption {
-      type = types.path;
-      default = "/run/secrets/kube-token";
+      type = types.nullOr types.path;
+      default = null;
       description = "The path to the file containing the k3s token";
     };
 
