@@ -19,6 +19,9 @@ nixpkgs.lib.nixosSystem {
         (import ./backup.nix {
           inherit vars;
         })
+        (import ../../_shared/hypervisor-config.nix {
+          inherit vars;
+        })
       ];
 
       networking.hostName = "MGC-DRW-HVS01";
@@ -50,89 +53,80 @@ nixpkgs.lib.nixosSystem {
           };
         };
 
-        virtualisation.libvirt.hypervisor = {
-          enable = true;
-          logo = true;
-          libvirt-users = [
-            "${vars.adminUser}"
-            "ben.harris"
-          ];
-          terraform.state-dir = "/var/lib/terranix-state/libvirt";
-          machines = {
-            vault-servers = {
-              vm_hostname_prefix = "MGC-DRW-VLT";
-              vm_count = 1;
-              memory = "8192";
-              vcpu = 4;
-            };
+        virtualisation.libvirt.hypervisor.machines = {
+          vault-servers = {
+            vm_hostname_prefix = "MGC-DRW-VLT";
+            vm_count = 1;
+            memory = "8192";
+            vcpu = 4;
+          };
 
-            dns-servers = {
-              vm_hostname_prefix = "MGC-DRW-DNS";
-              vm_count = 1;
-              memory = "6144";
-              vcpu = 2;
-            };
+          dns-servers = {
+            vm_hostname_prefix = "MGC-DRW-DNS";
+            vm_count = 1;
+            memory = "6144";
+            vcpu = 2;
+          };
 
-            test-box = {
-              vm_hostname_prefix = "testbox";
-              memory = "4096";
-              autostart = false;
-              running = false;
-              vcpu = 2;
-            };
+          test-box = {
+            vm_hostname_prefix = "testbox";
+            memory = "4096";
+            autostart = false;
+            running = false;
+            vcpu = 2;
+          };
 
-            terminal-servers = {
-              vm_hostname_prefix = "MGC-DRW-TMS";
-              os_img_url = "/var/lib/libvirt/images/packer-win2022.qcow2";
-              memory = "8192";
-              vcpu = 3;
-              autostart = false;
-              running = false;
-            };
+          terminal-servers = {
+            vm_hostname_prefix = "MGC-DRW-TMS";
+            os_img_url = "/var/lib/libvirt/images/packer-win2022.qcow2";
+            memory = "8192";
+            vcpu = 3;
+            autostart = false;
+            running = false;
+          };
 
-            bookstack-servers = {
-              vm_hostname_prefix = "MGC-DRW-BKS";
-              memory = "4096";
-              vcpu = 2;
-              autostart = false;
-              running = false;
-            };
+          bookstack-servers = {
+            vm_hostname_prefix = "MGC-DRW-BKS";
+            memory = "4096";
+            vcpu = 2;
+            autostart = false;
+            running = false;
+          };
 
-            semaphore-servers = {
-              vm_hostname_prefix = "MGC-DRW-SEM";
-              memory = "6144";
-              vcpu = 2;
-            };
+          semaphore-servers = {
+            vm_hostname_prefix = "MGC-DRW-SEM";
+            memory = "6144";
+            vcpu = 2;
+          };
 
-            gitea-servers = {
-              vm_hostname_prefix = "MGC-DRW-GIT";
-              memory = "4096";
-              vcpu = 2;
-              autostart = false;
-              running = false;
-            };
+          gitea-servers = {
+            vm_hostname_prefix = "MGC-DRW-GIT";
+            memory = "4096";
+            vcpu = 2;
+            autostart = false;
+            running = false;
+          };
 
-            netbox-servers = {
-              vm_hostname_prefix = "MGC-DRW-NBX";
-              memory = "6144";
-              vcpu = 2;
-              autostart = false;
-              running = false;
-            };
+          netbox-servers = {
+            vm_hostname_prefix = "MGC-DRW-NBX";
+            memory = "6144";
+            vcpu = 2;
+            autostart = false;
+            running = false;
+          };
 
-            nextcloud-servers = {
-              vm_hostname_prefix = "MGC-DRW-NXC";
-              memory = "6144";
-              vcpu = 2;
-              autostart = false;
-              running = false;
-            };
+          nextcloud-servers = {
+            vm_hostname_prefix = "MGC-DRW-NXC";
+            memory = "6144";
+            vcpu = 2;
+            autostart = false;
+            running = false;
+          };
 
-            cloud-runners = {
-              vm_hostname_prefix = "MGC-DRW-CLD";
-              memory = "6144";
-              vcpu = 2;
-            };
+          cloud-runners = {
+            vm_hostname_prefix = "MGC-DRW-CLD";
+            memory = "6144";
+            vcpu = 2;
           };
         };
       };

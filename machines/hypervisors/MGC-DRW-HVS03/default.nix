@@ -16,6 +16,9 @@ nixpkgs.lib.nixosSystem {
         (import ../../_shared/server-config.nix {
           inherit vars;
         })
+        (import ../../_shared/hypervisor-config.nix {
+          inherit vars;
+        })
       ];
 
       networking.hostName = "MGC-DRW-HVS03";
@@ -44,21 +47,12 @@ nixpkgs.lib.nixosSystem {
           };
         };
 
-        virtualisation.libvirt.hypervisor = {
-          enable =  true;
-          libvirt-users = [
-            "ben.harris"
-          ];
-
-          terraform.state-dir = "/var/lib/terranix-state/libvirt";
-
-          machines = {
-            test-vm = {
-              vm_hostname_prefix = "test-vm";
-              memory = "6144";
-              vcpu = 2;
-            };                      
-          };                        
+        virtualisation.libvirt.hypervisor.machines = {
+          test-vm = {
+            vm_hostname_prefix = "test-vm";
+            memory = "6144";
+            vcpu = 2;
+          };
         };
       };
     }
