@@ -15,9 +15,9 @@ nixpkgs.lib.nixosSystem {
         (import ../../_shared/common-config.nix {
           inherit vars;
         })
-        # (import ./secrets.nix {
-        #   inherit vars;
-        # })
+        (import ./secrets.nix {
+          inherit vars;
+        })
       ];
 
       networking.hostName = "MGC-DRW-K3S01";
@@ -48,6 +48,14 @@ nixpkgs.lib.nixosSystem {
               xrdp = false;
             };
           };
+        };
+        
+        services.k3s = {
+          enable = true;
+          logo = true;
+          role = "agent";
+          server-ip = vars.networking.hostsAddr.MGC-DRW-K3M01.eth.ipv4;
+          token-file = "/run/secrets/kube-token";
         };
       };
     }
