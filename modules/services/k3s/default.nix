@@ -35,7 +35,7 @@ in {
 
     server-ip = mkOption {
       type = types.str;
-      default = "127.0.0.1";
+      default = "";
       description = "The k3s master server IP";
     };
   };
@@ -66,7 +66,7 @@ in {
         clusterInit = cfg.cluster-init;
         role = cfg.role;
         tokenFile = cfg.token-file;
-        serverAddr = "https://${cfg.server-ip}:6443";
+        serverAddr = if cfg.server-ip != null then "https://${cfg.server-ip}:6443" else "";
       };
       rpcbind.enable = true;
     };
