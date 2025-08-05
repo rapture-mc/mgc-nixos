@@ -1,4 +1,4 @@
-{osConfig, ... }: let
+{osConfig, ...}: let
   cfg = osConfig.megacorp;
 in {
   imports = [fastfetch/default.nix];
@@ -31,7 +31,11 @@ in {
         plugins = [
           "tmux"
           "aws"
-          "${if cfg.services.k3s.role == "server" && cfg.services.k3s.enable then "kubectl" else ""}"
+          "${
+            if cfg.services.k3s.role == "server" && cfg.services.k3s.enable
+            then "kubectl"
+            else ""
+          }"
         ];
       };
     };

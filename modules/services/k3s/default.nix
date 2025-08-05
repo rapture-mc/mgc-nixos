@@ -93,7 +93,10 @@ in {
         clusterInit = cfg.cluster-init;
         role = cfg.role;
         tokenFile = cfg.token-file;
-        serverAddr = if cfg.server-ip != null then "https://${cfg.server-ip}:6443" else "";
+        serverAddr =
+          if cfg.server-ip != null
+          then "https://${cfg.server-ip}:6443"
+          else "";
       };
     };
 

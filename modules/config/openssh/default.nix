@@ -36,7 +36,7 @@ in {
       description = ''
         A list of groups that are permitted to connect to the SSH daemon (wheel members are always permitted)
 
-        Use this option in conjunction with AD integration to permit which AD users are allowed to connect to the SSHD daemon. 
+        Use this option in conjunction with AD integration to permit which AD users are allowed to connect to the SSHD daemon.
       '';
       default = [];
     };
@@ -52,9 +52,11 @@ in {
           then true
           else false;
         PermitRootLogin = mkDefault "no";
-        AllowGroups = [
-          "wheel"
-        ] ++ cfg.allowed-groups;
+        AllowGroups =
+          [
+            "wheel"
+          ]
+          ++ cfg.allowed-groups;
       };
     };
 

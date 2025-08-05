@@ -6,14 +6,16 @@
 }: let
   cfg = config.megacorp.config.system.ad-domain;
 
-  inherit (lib)
+  inherit
+    (lib)
     mkIf
     mkEnableOption
     mkOption
     mkForce
     mkDefault
     toUpper
-    types;
+    types
+    ;
 in {
   options.megacorp.config.system.ad-domain = {
     enable = mkEnableOption "Join Domain with SSSD";
@@ -134,7 +136,7 @@ in {
         services = nss, pam, ssh
         config_file_version = 2
         domains = ${cfg.domain-name}
-        
+
         [domain/${cfg.domain-name}]
         # nologin default shell ensures only users that already exist locally are allowed into the system
         default_shell = /run/current-system/sw/bin/nologin
@@ -160,7 +162,7 @@ in {
     # Samba is configured, but just for the "net" command, to
     # join the domain. A better join method probably exists.
     # `net ads join -U Administrator`
-    environment.systemPackages = [ pkgs.samba4Full ];
+    environment.systemPackages = [pkgs.samba4Full];
     systemd.services.samba-smbd.enable = mkDefault false;
     services.samba = {
       enable = true;
