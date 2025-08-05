@@ -56,11 +56,18 @@ in {
     };
 
     environment = mkIf (cfg.role == "server") {
-      sessionVariables = {KUBECONFIG = "$HOME/.kube/config";};
-      systemPackages = [pkgs.k9s];
+      sessionVariables = {
+        KUBECONFIG = "$HOME/.kube/config";
+      };
+
+      systemPackages = [
+        pkgs.k9s
+      ];
     };
 
     services = {
+      rpcbind.enable = true;
+
       k3s = {
         enable = true;
         clusterInit = cfg.cluster-init;
@@ -68,7 +75,6 @@ in {
         tokenFile = cfg.token-file;
         serverAddr = if cfg.server-ip != null then "https://${cfg.server-ip}:6443" else "";
       };
-      rpcbind.enable = true;
     };
 
     boot.supportedFilesystems = ["nfs"];
