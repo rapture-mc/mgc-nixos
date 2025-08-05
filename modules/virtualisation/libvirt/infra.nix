@@ -139,21 +139,6 @@ in {
       libvirt-infra-provisioner = import ../../_shared/terraform/config.nix {
         inherit cfg pkgs terraform-config;
       };
-
-      libvirt-ensure-pool-dir-exists = {
-        after = ["libvirtd.service"];
-        before = ["libvirt-infra-provisioner.service"];
-        wantedBy = ["multi-user.target"];
-        serviceConfig.ExecStart = toString (pkgs.writers.writeBash "libvirt-create-pool-dir" ''
-          if [ ! -d "/var/lib/libvirt/images" ]; then
-            echo "Directory /var/lib/libvirt/images doesn't exist... Creating..."
-            mkdir -p /var/lib/libvirt/images
-            chown root:root /var/lib/libvirt/images
-          else
-            echo "Directory /var/lib/libvirt/images already exists... Skipping..."
-          fi
-        '');
-      };
     };
   };
 }
