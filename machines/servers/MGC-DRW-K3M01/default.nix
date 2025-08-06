@@ -23,6 +23,100 @@ nixpkgs.lib.nixosSystem {
         80
       ];
 
+      services.k3s.manifests = {
+        metallb = {
+          enable = true;
+          source = pkgs.fetchurl {
+            url = "https://raw.githubusercontent.com/metallb/metallb/v0.15.2/config/manifests/metallb-native.yaml";
+            hash = "sha256-obBMN2+znJMmX1Uf4jcWo65uCbeQ7bO/JX0/x4TDWhg=";
+          };
+        };
+
+        metallb-pool = {
+          enable = true;
+          content = {
+            apiVersion = "metallb.io/v1beta1";
+            kind = "IPAddressPool";
+            metadata = {
+              name = "cheap";
+              namespace = "metallb-system";
+            };
+            spec.addresses = [
+              "192.168.1.64/28"
+            ];
+          };
+        };
+
+        nginx = {
+          enable = true;
+          content = [
+            {
+              apiVersion = "apps/v1";
+              kind = "Deployment";
+              metadata.name = "nginx-deployment";
+              spec = {
+                selector.matchLabels."app.kubernetes.io/name" = "nginx";
+                template = {
+                  metadata.labels."app.kubernetes.io/name" = "nginx";
+                  spec.containers = [
+                    {
+                      name = "nginx";
+                      image = "nginx:latest";
+                      ports = [
+                        {
+                          containerPort = 80;
+                        }
+                      ];
+                    }
+                  ];
+                };
+              };
+            }
+
+            {
+              apiVersion = "v1";
+              kind = "Service";
+              metadata.name = "nginx";
+              spec = {
+                type = "ClusterIP";
+                selector."app.kubernetes.io/name" = "nginx";
+                ports = [
+                  {
+                    protocol = "TCP";
+                    port = 80;
+                    targetPort = 80;
+                  }
+                ];
+              };
+            }
+
+            {
+              apiVersion = "networking.k8s.io/v1";
+              kind = "Ingress";
+              metadata = {
+                name = "nginx-server";
+                namespace = "default";
+              };
+              spec.rules = [
+                {
+                  host = "nginx.prod.megacorp.industries";
+                  http.paths = [
+                    {
+                      path = "/";
+                      pathType = "Prefix";
+                      backend.service = {
+                        name = "nginx";
+                        port.number = 80;
+                      };
+                    }
+                  ];
+                }
+              ];
+            }
+          ];
+        };
+      };
+
       megacorp = {
         config = {
           bootloader.enable = true;
