@@ -83,6 +83,7 @@ in {
       };
       extraPlugins = with pkgs.vimPlugins; [
         lazygit-nvim
+        tabular
         vim-table-mode
       ];
     };
