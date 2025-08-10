@@ -51,21 +51,22 @@ nixpkgs.lib.nixosSystem {
           };
 
           desktop.enable = true;
+
+          system.ad-domain = {
+            enable = true;
+            domain-name = vars.domains.internalDomain;
+            netbios-name = "PROD";
+            # local-auth = {
+            #   login = false;
+            #   sudo = false;
+            # };
+          };
         };
 
         programs.pass.enable = true;
 
         virtualisation.whonix.enable = true;
 
-        system.ad-domain = {
-          enable = true;
-          domain-name = vars.domains.internalDomain;
-          netbios-name = "PROD";
-          # local-auth = {
-          #   login = false;
-          #   sudo = false;
-          # };
-        };
       };
     }
   ];
