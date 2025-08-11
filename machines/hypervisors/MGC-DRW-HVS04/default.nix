@@ -75,6 +75,12 @@ nixpkgs.lib.nixosSystem {
             vcpu = 4;
           };
 
+          mail-servers = {
+            vm_hostname_prefix = "MGC-DRW-MBX";
+            memory = "8192";
+            vcpu = 4;
+          };
+
           k3s-master = {
             vm_hostname_prefix = "MGC-DRW-K3M";
             memory = "6144";
