@@ -21,6 +21,15 @@ in {
         ];
       };
 
+      mail = {
+        zone_id = zone-id;
+        name = "mail.${vars.domains.primaryDomain}";
+        type = "A";
+        records = [
+          "${vars.networking.megacorpPrimaryPublicIP}"
+        ];
+      };
+
       mail-mx = {
         zone_id = zone-id;
         name = vars.domains.primaryDomain;
