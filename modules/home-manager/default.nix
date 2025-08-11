@@ -3,6 +3,7 @@
     ./config/desktop/applications.nix
     ./programs/btop.nix
     ./programs/kitty.nix
+    ./programs/neomutt.nix
     ./programs/nushell.nix
     ./programs/rofi.nix
     ./programs/tmux.nix
