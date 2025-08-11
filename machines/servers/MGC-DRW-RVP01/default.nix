@@ -26,6 +26,11 @@ nixpkgs.lib.nixosSystem {
 
       system.stateVersion = "24.11";
 
+      services.nginx = {
+        recommendedProxySettings = true;
+        virtualHosts."mail.megacorp.industries".locations."/".proxyPass = "http://192.168.1.49:80";
+      };
+
       megacorp = {
         config = {
           bootloader.enable = true;
