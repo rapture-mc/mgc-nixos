@@ -30,6 +30,15 @@ in {
         ];
       };
 
+      mail-reverse = {
+        zone_id = zone-id;
+        name = vars.networking.megacorpPrimaryPublicIP;
+        type = "PTR";
+        records = [
+          "mail.${vars.domains.primaryDomain}"
+        ];
+      };
+
       mail-mx = {
         zone_id = zone-id;
         name = vars.domains.primaryDomain;
