@@ -79,6 +79,8 @@ nixpkgs.lib.nixosSystem {
             vm_hostname_prefix = "MGC-DRW-K3M";
             memory = "6144";
             vcpu = 2;
+            autostart = false;
+            running = false;
           };
 
           k3s-slave = {
@@ -86,6 +88,8 @@ nixpkgs.lib.nixosSystem {
             vm_count = 2;
             memory = "6144";
             vcpu = 2;
+            autostart = false;
+            running = false;
           };
         };
       };
