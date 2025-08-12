@@ -1,5 +1,6 @@
 {
   nixpkgs,
+  pkgs,
   self,
   vars,
   sops-nix,
@@ -26,6 +27,13 @@ nixpkgs.lib.nixosSystem {
       networking.hostName = "MGC-DRW-BST01";
 
       system.stateVersion = "24.11";
+
+      environment.systemPackages = [
+        (pkgs.bottles.override {
+          removeWarningPopup = true;
+        })
+        pkgs.hledger
+      ];
 
       megacorp = {
         config = {
