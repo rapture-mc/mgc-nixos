@@ -49,8 +49,8 @@ nixpkgs.lib.nixosSystem {
             ldap = {
               enable = true;
               server = "mgc-drw-dmc01.${vars.domains.internalDomain}";
-              user-base-dn = "ou=people,dc=prod,dc=megacorp,dc=industries";
-              search-bind-dn = "uid=admin,ou=people,dc=prod,dc=megacorp,dc=industries";
+              user-base-dn = "ou=users,ou=mgc,dc=prod,dc=megacorp,dc=industries";
+              search-bind-dn = "uid=ben.harris,ou=system admins,ou=users,ou=mgc,dc=prod,dc=megacorp,dc=industries";
               user-search-filter = "(memberof=cn=rg - guacamole users,ou=groups,ou=mgc,dc=prod,dc=megacorp,dc=industries)";
               admin-ldap-password-file = "/run/secrets/lldap-admin-password";
               tls = {
