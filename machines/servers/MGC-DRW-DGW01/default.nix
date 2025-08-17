@@ -53,7 +53,6 @@ nixpkgs.lib.nixosSystem {
               search-bind-dn = "CN=ben.harris,OU=System Admins,OU=Users,OU=MGC,DC=prod,DC=megacorp,DC=industries";
               user-search-filter = "(memberof=CN=RG - Guacamole Users,OU=Roll Groups,OU=Groups,OU=MGC,DC=prod,DC=megacorp,DC=industries)";
               admin-ldap-password-file = "/run/secrets/lldap-admin-password";
-              username-attribute = "sAMAccountName";
               tls = {
                 enable = true;
                 root-cert = vars.keys.rootCert;

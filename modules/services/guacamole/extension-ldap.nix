@@ -161,6 +161,7 @@ in {
       ldap-user-base-dn = cfg.user-base-dn;
       ldap-search-bind-dn = cfg.search-bind-dn;
       ldap-user-search-filter = cfg.user-search-filter;
+      username-attribute = "sAMAccountName";
     };
   };
 }
