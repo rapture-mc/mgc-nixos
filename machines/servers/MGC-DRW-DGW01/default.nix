@@ -49,10 +49,11 @@ nixpkgs.lib.nixosSystem {
             ldap = {
               enable = true;
               server = "mgc-drw-dmc01.${vars.domains.internalDomain}";
-              user-base-dn = "ou=users,ou=mgc,dc=prod,dc=megacorp,dc=industries";
-              search-bind-dn = "cn=ben.harris,ou=system admins,ou=users,ou=mgc,dc=prod,dc=megacorp,dc=industries";
-              user-search-filter = "(memberof=cn=rg - guacamole users,ou=roll groups,ou=groups,ou=mgc,dc=prod,dc=megacorp,dc=industries)";
+              user-base-dn = "OU=Users,OU=MGC,DC=prod,DC=megacorp,DC=industries";
+              search-bind-dn = "CN=ben.harris,OU=System Admins,OU=Users,OU=MGC,DC=prod,DC=megacorp,DC=industries";
+              user-search-filter = "(memberof=CN=RG - Guacamole Users,OU=Roll Groups,OU=Groups,OU=MGC,DC=prod,DC=megacorp,DC=industries)";
               admin-ldap-password-file = "/run/secrets/lldap-admin-password";
+              username-attribute = "sAMAccountName";
               tls = {
                 enable = true;
                 root-cert = vars.keys.rootCert;
