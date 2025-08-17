@@ -48,6 +48,7 @@ nixpkgs.lib.nixosSystem {
             fqdn = vars.domains.guacamoleFQDN;
             ldap = {
               enable = true;
+              port = 636;
               server = "mgc-drw-dmc01.${vars.domains.internalDomain}";
               user-base-dn = "OU=Users,OU=MGC,DC=prod,DC=megacorp,DC=industries";
               search-bind-dn = "CN=ben.harris,OU=System Admins,OU=Users,OU=MGC,DC=prod,DC=megacorp,DC=industries";
