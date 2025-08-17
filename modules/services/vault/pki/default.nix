@@ -46,7 +46,7 @@
     {
       name = "${name}-key";
       value = {
-        filename = "${cfg.pki.cert-output-dir}/${name}.pem";
+        filename = "${cfg.pki.cert-output-dir}/${name}.key";
         content = "\${ vault_pki_secret_backend_cert.${name}.private_key }";
       };
     }
