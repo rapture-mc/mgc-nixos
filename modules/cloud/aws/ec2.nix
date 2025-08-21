@@ -44,19 +44,19 @@
         };
 
         resource = {
-          aws_instance.nixos_x86-64 = {
-            ami = "\${ data.aws_ami.nixos-x86_64.id }";
-            instance_type = cfg.instance.instance-type;
-            subnet_id = "\${ aws_subnet.nix-subnet.id }";
-            associate_public_ip_address = true;
-            key_name = "\${ aws_key_pair.default.key_name }";
-            vpc_security_group_ids = [
-              "\${ aws_security_group.default.id }"
-            ];
-            root_block_device = {
-              volume_size = cfg.instance.disk-size;
-            };
-          };
+          # aws_instance.nixos_x86-64 = {
+          #   ami = "\${ data.aws_ami.nixos-x86_64.id }";
+          #   instance_type = cfg.instance.instance-type;
+          #   subnet_id = "\${ aws_subnet.nix-subnet.id }";
+          #   associate_public_ip_address = true;
+          #   key_name = "\${ aws_key_pair.default.key_name }";
+          #   vpc_security_group_ids = [
+          #     "\${ aws_security_group.default.id }"
+          #   ];
+          #   root_block_device = {
+          #     volume_size = cfg.instance.disk-size;
+          #   };
+          # };
 
           aws_key_pair.default = {
             key_name = "default-key";
@@ -159,33 +159,65 @@ in {
       inherit lib;
     };
 
-    instance = {
-      enable = mkEnableOption "Enable AWS instance";
+    machines = mkOption {
+      type = types.attrsOf (
+        types.submodule (
+          _: {
+            instance-type = mkOption {
+              type = types.str;
+              default = "t2.medium";
+              description = "Instance type";
+            };
 
-      instance-type = mkOption {
-        type = types.str;
-        default = "t2.medium";
-        description = "Instance type";
-      };
+            nixos-version = mkOption {
+              type = types.str;
+              default = "25.05";
+              description = "The NixOS version";
+            };
 
-      nixos-version = mkOption {
-        type = types.str;
-        default = "25.05";
-        description = "The NixOS version";
-      };
+            disk-size = mkOption {
+              type = types.str;
+              default = "30";
+              description = "The size of the VM disk";
+            };
 
-      disk-size = mkOption {
-        type = types.str;
-        default = "30";
-        description = "The size of the VM disk";
-      };
-
-      public-key = mkOption {
-        type = types.str;
-        default = "";
-        description = "The SSH public key authorized to connect to the instance (using root account)";
-      };
+            public-key = mkOption {
+              type = types.str;
+              default = "";
+              description = "The SSH public key authorized to connect to the instance (using root account)";
+            };
+          }
+        )
+      )
     };
+
+    # instance = {
+    #   enable = mkEnableOption "Enable AWS instance";
+    #
+    #   instance-type = mkOption {
+    #     type = types.str;
+    #     default = "t2.medium";
+    #     description = "Instance type";
+    #   };
+    #
+    #   nixos-version = mkOption {
+    #     type = types.str;
+    #     default = "25.05";
+    #     description = "The NixOS version";
+    #   };
+    #
+    #   disk-size = mkOption {
+    #     type = types.str;
+    #     default = "30";
+    #     description = "The size of the VM disk";
+    #   };
+    #
+    #   public-key = mkOption {
+    #     type = types.str;
+    #     default = "";
+    #     description = "The SSH public key authorized to connect to the instance (using root account)";
+    #   };
+    # };
   };
 
   config = mkIf cfg.enable {
