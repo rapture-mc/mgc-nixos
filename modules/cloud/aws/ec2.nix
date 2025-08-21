@@ -160,7 +160,8 @@ in {
     };
 
     machines = mkOption {
-      type = types.attrsOf (
+      default = null;
+      type = types.nullOr (types.attrsOf (
         types.submodule (
           _: {
             instance-type = mkOption {
@@ -188,7 +189,7 @@ in {
             };
           }
         )
-      )
+      ));
     };
 
     # instance = {
