@@ -43,6 +43,8 @@ nixpkgs.lib.nixosSystem {
 
         cloud.aws.ec2 = {
           enable = true;
+          credential-path = "/home/benny/.aws/credentials";
+          config-path = "/home/benny/.aws/config";
           terraform = {
             action = "destroy";
             state-dir = "/var/lib/terranix-state/aws/ec2";
