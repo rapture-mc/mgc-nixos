@@ -34,7 +34,7 @@
           filter = [
             {
               name = "name";
-              values = ["nixos/${cfg.instance.nixos-version}*"];
+              values = ["nixos/25.05*"];
             }
             {
               name = "architecture";
@@ -57,11 +57,11 @@
           #     volume_size = cfg.instance.disk-size;
           #   };
           # };
-
-          aws_key_pair.default = {
-            key_name = "default-key";
-            public_key = cfg.instance.public-key;
-          };
+          #
+          # aws_key_pair.default = {
+          #   key_name = "default-key";
+          #   public_key = cfg.instance.public-key;
+          # };
 
           aws_vpc.nix-vpc = {
             cidr_block = "10.10.0.0/24";
@@ -168,12 +168,6 @@ in {
               type = types.str;
               default = "t2.medium";
               description = "Instance type";
-            };
-
-            nixos-version = mkOption {
-              type = types.str;
-              default = "25.05";
-              description = "The NixOS version";
             };
 
             disk-size = mkOption {
