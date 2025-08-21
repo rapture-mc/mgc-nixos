@@ -41,9 +41,12 @@ nixpkgs.lib.nixosSystem {
           };
         };
 
-        cloud.aws.ec2.terraform = {
-          action = "destroy";
-          state-dir = "/var/lib/terranix-state/aws/ec2";
+        cloud.aws.ec2 = {
+          enable = true;
+          terraform = {
+            action = "destroy";
+            state-dir = "/var/lib/terranix-state/aws/ec2";
+          };
         };
 
         virtualisation.libvirt.guest.enable = true;
