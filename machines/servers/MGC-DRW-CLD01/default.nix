@@ -39,6 +39,8 @@ nixpkgs.lib.nixosSystem {
             nameservers = vars.networking.nameServers;
             lan-domain = vars.domains.internalDomain;
           };
+
+          cloud.aws.ec2.terraform.action = "destroy";
         };
 
         virtualisation.libvirt.guest.enable = true;
