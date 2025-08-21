@@ -38,6 +38,10 @@ nixpkgs.lib.nixosSystem {
       megacorp = {
         config = {
           bootloader.enable = true;
+          
+          users."ben.harris".authorized-ssh-keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINIULVXKCxz5mcwPGZkFythejWSDn6nrb9zsjjFOthJf"
+          ];
 
           desktop = {
             enable = true;
