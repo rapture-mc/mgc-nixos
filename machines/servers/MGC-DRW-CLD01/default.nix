@@ -45,10 +45,7 @@ nixpkgs.lib.nixosSystem {
           enable = true;
           credential-path = "/home/benny/.aws/credentials";
           config-path = "/home/benny/.aws/config";
-          terraform = {
-            action = "destroy";
-            state-dir = "/var/lib/terranix-state/aws/ec2";
-          };
+          terraform.state-dir = "/var/lib/terranix-state/aws/ec2";
         };
 
         virtualisation.libvirt.guest.enable = true;
