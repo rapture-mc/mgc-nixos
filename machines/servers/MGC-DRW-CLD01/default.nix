@@ -41,17 +41,6 @@ nixpkgs.lib.nixosSystem {
           };
         };
 
-        cloud.aws.ec2 = {
-          enable = false;
-          credential-path = "/home/${vars.adminUser}/.aws/credentials";
-          config-path = "/home/${vars.adminUser}/.aws/config";
-          terraform.state-dir = "/var/lib/terranix-state/aws/ec2";
-          instance = {
-            enable = true;
-            public-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKhKBbO3gu8cbKQYOopVAA9gkSHHChkjMYPgfW2NIBrN benny@MGC-LT01";
-          };
-        };
-
         virtualisation.libvirt.guest.enable = true;
       };
     }
