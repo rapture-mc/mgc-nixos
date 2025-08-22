@@ -196,7 +196,8 @@ in {
               };
 
               root_block_device = mkOption {
-                type = types.submodule (
+                default = null;
+                type = types.nullOr (types.submodule (
                   _: {
                     options = {
                       encrypted = mkOption {
@@ -210,7 +211,7 @@ in {
                       };
                     };
                   }
-                );
+                ));
               };
             };
           }
