@@ -46,6 +46,12 @@ nixpkgs.lib.nixosSystem {
           credential-path = "/home/benny/.aws/credentials";
           config-path = "/home/benny/.aws/config";
           terraform.state-dir = "/var/lib/terranix-state/aws/ec2";
+          machines = {
+            mail-server = {
+              instance_type = "t2.medium";
+              associate_public_ip_address = true;
+            };
+          };
         };
 
         virtualisation.libvirt.guest.enable = true;

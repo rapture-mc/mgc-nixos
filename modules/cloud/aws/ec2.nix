@@ -16,6 +16,25 @@
     types
     ;
 
+  static-terraform-config = {
+    source  = "terraform-aws-modules/ec2-instance/aws";
+    ami = "\${ data.aws_ami.nixos-x86_64.id }";
+    key_name = "\${ aws_key_pair.default.key_name }";
+    subnet_id = "\${ aws_subnet.nix-subnet.id }";
+    vpc_security_group_ids = [
+      "\${ aws_security_group.default.id }"
+    ];
+  };
+
+  transformed-terraform-config =
+    lib.mapAttrs (
+      name: value:
+        if lib.isAttrs value
+        then value // static-terraform-config
+        else value
+    )
+    cfg.machines;
+
   terraform-config = terranix.lib.terranixConfiguration {
     inherit system;
     modules = [
@@ -43,25 +62,13 @@
           ];
         };
 
+        module = transformed-terraform-config;
+
         resource = {
-          # aws_instance.nixos_x86-64 = {
-          #   ami = "\${ data.aws_ami.nixos-x86_64.id }";
-          #   instance_type = cfg.instance.instance-type;
-          #   subnet_id = "\${ aws_subnet.nix-subnet.id }";
-          #   associate_public_ip_address = true;
-          #   key_name = "\${ aws_key_pair.default.key_name }";
-          #   vpc_security_group_ids = [
-          #     "\${ aws_security_group.default.id }"
-          #   ];
-          #   root_block_device = {
-          #     volume_size = cfg.instance.disk-size;
-          #   };
-          # };
-          #
-          # aws_key_pair.default = {
-          #   key_name = "default-key";
-          #   public_key = cfg.instance.public-key;
-          # };
+          aws_key_pair.default = {
+            key_name = "default-key";
+            public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOzlYmoWjZYFeCNdMBCHBXmqpzK1IBmRiB3hNlsgEtre benny@MGC-DRW-BST01";
+          };
 
           aws_vpc.nix-vpc = {
             cidr_block = "10.10.0.0/24";
@@ -157,6 +164,11 @@ in {
       '';
     };
 
+    key-pair = mkOption {
+      type = types.str;
+      default = "";
+    };
+
     terraform = import ../../_shared/terraform/options.nix {
       inherit lib;
     };
@@ -165,56 +177,28 @@ in {
       default = null;
       type = types.nullOr (types.attrsOf (
         types.submodule (
-          _: {
-            instance-type = mkOption {
-              type = types.str;
-              default = "t2.medium";
-              description = "Instance type";
-            };
+          { name, ...}: {
+            options = {
+              instance_type = mkOption {
+                type = types.str;
+                default = "t2.medium";
+                description = "Instance type";
+              };
 
-            disk-size = mkOption {
-              type = types.str;
-              default = "30";
-              description = "The size of the VM disk";
-            };
+              associate_public_ip_address = mkOption {
+                type = types.bool;
+                default = false;
+              };
 
-            public-key = mkOption {
-              type = types.str;
-              default = "";
-              description = "The SSH public key authorized to connect to the instance (using root account)";
+              name = mkOption {
+                type = types.str;
+                default = name;
+              };
             };
           }
         )
       ));
     };
-
-    # instance = {
-    #   enable = mkEnableOption "Enable AWS instance";
-    #
-    #   instance-type = mkOption {
-    #     type = types.str;
-    #     default = "t2.medium";
-    #     description = "Instance type";
-    #   };
-    #
-    #   nixos-version = mkOption {
-    #     type = types.str;
-    #     default = "25.05";
-    #     description = "The NixOS version";
-    #   };
-    #
-    #   disk-size = mkOption {
-    #     type = types.str;
-    #     default = "30";
-    #     description = "The size of the VM disk";
-    #   };
-    #
-    #   public-key = mkOption {
-    #     type = types.str;
-    #     default = "";
-    #     description = "The SSH public key authorized to connect to the instance (using root account)";
-    #   };
-    # };
   };
 
   config = mkIf cfg.enable {
