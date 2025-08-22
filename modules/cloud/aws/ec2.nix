@@ -207,7 +207,7 @@ in {
 
                       size = mkOption {
                         type = types.int;
-                        default = 30;
+                        default = 5;
                       };
                     };
                   }
