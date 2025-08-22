@@ -179,6 +179,11 @@ in {
         types.submodule (
           { name, ...}: {
             options = {
+              name = mkOption {
+                type = types.str;
+                default = name;
+              };
+
               instance_type = mkOption {
                 type = types.str;
                 default = "t2.medium";
@@ -190,9 +195,22 @@ in {
                 default = false;
               };
 
-              name = mkOption {
-                type = types.str;
-                default = name;
+              root_block_device = mkOption {
+                type = types.submodule (
+                  _: {
+                    options = {
+                      encrypted = mkOption {
+                        type = types.bool;
+                        default = false;
+                      };
+
+                      size = mkOption {
+                        type = types.int;
+                        default = 30;
+                      };
+                    };
+                  }
+                );
               };
             };
           }
