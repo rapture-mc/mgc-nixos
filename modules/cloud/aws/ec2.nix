@@ -16,7 +16,7 @@
     types
     ;
 
-  static-terraform-config = {
+  staticTerraformModuleConfig = {
     source  = "terraform-aws-modules/ec2-instance/aws";
     ami = "\${ data.aws_ami.nixos-x86_64.id }";
     key_name = "\${ aws_key_pair.default.key_name }";
@@ -26,16 +26,16 @@
     ];
   };
 
-  transformed-terraform-config =
+  transformedTerraformModuleConfig =
     lib.mapAttrs (
       name: value:
         if lib.isAttrs value
-        then value // static-terraform-config
+        then value // staticTerraformModuleConfig
         else value
     )
     cfg.machines;
 
-  terraform-config = terranix.lib.terranixConfiguration {
+  finalTerraformConfig = terranix.lib.terranixConfiguration {
     inherit system;
     modules = [
       {
@@ -62,7 +62,7 @@
           ];
         };
 
-        module = transformed-terraform-config;
+        module = transformedTerraformModuleConfig;
 
         resource = {
           aws_key_pair.default = {
@@ -195,6 +195,11 @@ in {
                 default = false;
               };
 
+              create_eip = mkOption {
+                type = types.bool;
+                default = false;
+              };
+
               root_block_device = mkOption {
                 default = null;
                 type = types.nullOr (types.submodule (
@@ -222,7 +227,7 @@ in {
 
   config = mkIf cfg.enable {
     systemd.services.aws-infra-ec2-provisioner = import ../../_shared/terraform/config.nix {
-      inherit cfg pkgs terraform-config;
+      inherit cfg pkgs finalTerraformConfig;
     };
   };
 }

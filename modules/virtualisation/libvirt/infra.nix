@@ -15,18 +15,18 @@
     mkIf
     ;
 
-  terraform-module.source = "git::https://github.com/rapture-mc/terraform-libvirt-module.git?ref=c303bdb7b5e12a1701be16181b0647cc9e358d6d";
+  staticTerraformModuleConfig.source = "git::https://github.com/rapture-mc/terraform-libvirt-module.git?ref=c303bdb7b5e12a1701be16181b0647cc9e358d6d";
 
-  transformed-terraform-config =
+  transformedTerraformModuleConfig =
     lib.mapAttrs (
       name: value:
         if lib.isAttrs value
-        then value // terraform-module
+        then value // staticTerraformModuleConfig
         else value
     )
     cfg.machines;
 
-  terraform-config = terranix.lib.terranixConfiguration {
+  finalTerraformConfig = terranix.lib.terranixConfiguration {
     inherit system;
     modules = [
       {
@@ -34,7 +34,7 @@
 
         provider.libvirt.uri = "qemu:///system";
 
-        module = transformed-terraform-config;
+        module = transformedTerraformModuleConfig;
       }
     ];
   };
@@ -137,7 +137,7 @@ in {
   config = mkIf (cfg.machines != null) {
     systemd.services = {
       libvirt-infra-provisioner = import ../../_shared/terraform/config.nix {
-        inherit cfg pkgs terraform-config;
+        inherit cfg pkgs finalTerraformConfig;
       };
     };
   };
