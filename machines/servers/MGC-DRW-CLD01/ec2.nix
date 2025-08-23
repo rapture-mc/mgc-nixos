@@ -7,7 +7,7 @@
     machines = {
       mail-server = {
         instance_type = "t2.medium";
-        # associate_public_ip_address = true;
+        associate_public_ip_address = true;
         create_eip = true;
         root_block_device.size = 100;
       };
