@@ -74,7 +74,7 @@
   # 3. Convert the flat list of entries into a single attribute set
   generatedFilesAttrSet = builtins.listToAttrs flatListOfFileEntries;
 
-  terraform-config = terranix.lib.terranixConfiguration {
+  finalTerraformConfig = terranix.lib.terranixConfiguration {
     inherit system;
     modules = [
       {
@@ -217,7 +217,7 @@ in {
           rm -f config.tf.json;
         fi
 
-        cp ${terraform-config} config.tf.json \
+        cp ${finalTerraformConfig} config.tf.json \
           && tofu init \
           && tofu ${cfg.pki.terraform.action} ${
           if (cfg.pki.terraform.action == "apply" || cfg.pki.terraform.action == "destroy")

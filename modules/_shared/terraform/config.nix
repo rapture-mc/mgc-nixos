@@ -1,7 +1,7 @@
 {
   cfg,
   pkgs,
-  terraform-config,
+  finalTerraformConfig,
 }: {
   wantedBy = ["multi-user.target"];
   after = ["network-online.target"];
@@ -26,7 +26,7 @@
     if [[ -e config.tf.json ]]; then
       rm -f config.tf.json;
     fi
-    cp ${terraform-config} config.tf.json \
+    cp ${finalTerraformConfig} config.tf.json \
       && tofu init \
       && tofu ${cfg.terraform.action} ${
       if (cfg.terraform.action == "apply" || cfg.terraform.action == "destroy")

@@ -16,7 +16,7 @@
     types
     ;
 
-  terraform-config = terranix.lib.terranixConfiguration {
+  finalTerraformConfig = terranix.lib.terranixConfiguration {
     inherit system;
     modules = [
       {
@@ -131,7 +131,7 @@ in {
 
   config = mkIf cfg.enable {
     systemd.services.aws-infra-route53-provisioner = import ../../_shared/terraform/config.nix {
-      inherit pkgs cfg terraform-config;
+      inherit pkgs cfg finalTerraformConfig;
     };
   };
 }
