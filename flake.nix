@@ -7,7 +7,7 @@
       owner = "nixos";
       repo = "nixpkgs";
       ref = "nixos-25.05";
-      rev = "88331c17ba434359491e8d5889cce872464052c2"; # 2025-06-20
+      rev = "88331c17ba434359491e8d5889cce872464052c2"; # 2025-06-10
     };
 
     nixpkgs24-11 = {
@@ -15,7 +15,7 @@
       owner = "nixos";
       repo = "nixpkgs";
       ref = "nixos-24.11";
-      rev = "c5d77df613e70b94eededdc43d89827067baeb14"; # 2025-06-20
+      rev = "c5d77df613e70b94eededdc43d89827067baeb14"; # 2025-06-10
     };
 
     terranix = {
