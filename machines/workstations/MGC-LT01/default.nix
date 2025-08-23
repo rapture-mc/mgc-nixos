@@ -30,10 +30,12 @@ nixpkgs.lib.nixosSystem {
         qbittorrent
         spotify
         sioyek
-        waydroid
       ];
 
-      virtualisation.docker.enable = true;
+      virtualisation = {
+        waydroid.enable = true;
+        docker.enable = true;
+      };
 
       services.nginx = {
         enable = true;
