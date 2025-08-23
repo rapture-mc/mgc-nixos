@@ -26,13 +26,13 @@ in {
         name = "mail.${vars.domains.primaryDomain}";
         type = "A";
         records = [
-          "${vars.networking.megacorpPrimaryPublicIP}"
+          "${vars.networking.awsPrimaryPublicIP}"
         ];
       };
 
       mail-reverse = {
         zone_id = zone-id;
-        name = vars.networking.megacorpPrimaryPublicIP;
+        name = vars.networking.awsPrimaryPublicIP;
         type = "PTR";
         records = [
           "mail.${vars.domains.primaryDomain}"

@@ -3,6 +3,7 @@
   privateLANSubnet = "192.168.1.0/24";
   nameServers = ["192.168.1.7"];
   megacorpPrimaryPublicIP = "123.243.147.17";
+  awsPrimaryPublicIP = "3.25.118.85";
 
   hostsAddr = {
     MGC-DRW-BKS01.eth = {
