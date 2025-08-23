@@ -21,6 +21,7 @@
     ami = "\${ data.aws_ami.nixos-x86_64.id }";
     key_name = "\${ aws_key_pair.default.key_name }";
     subnet_id = "\${ aws_subnet.nix-subnet.id }";
+    associate_public_ip_address = true;
     vpc_security_group_ids = [
       "\${ aws_security_group.default.id }"
     ];
@@ -188,11 +189,6 @@ in {
                 type = types.str;
                 default = "t2.medium";
                 description = "Instance type";
-              };
-
-              associate_public_ip_address = mkOption {
-                type = types.bool;
-                default = false;
               };
 
               create_eip = mkOption {
