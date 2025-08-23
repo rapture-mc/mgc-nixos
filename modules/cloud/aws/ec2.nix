@@ -139,6 +139,42 @@
                 security_groups = [];
                 self = false;
               }
+
+              {
+                description = "Allow SMTP TLS in";
+                from_port = 465;
+                to_port = 465;
+                protocol = "tcp";
+                cidr_blocks = ["0.0.0.0/0"];
+                ipv6_cidr_blocks = [];
+                prefix_list_ids = [];
+                security_groups = [];
+                self = false;
+              }
+
+              {
+                description = "Allow IMAP start TLS in";
+                from_port = 587;
+                to_port = 587;
+                protocol = "tcp";
+                cidr_blocks = ["0.0.0.0/0"];
+                ipv6_cidr_blocks = [];
+                prefix_list_ids = [];
+                security_groups = [];
+                self = false;
+              }
+
+              {
+                description = "Allow IMAP in";
+                from_port = 993;
+                to_port = 993;
+                protocol = "tcp";
+                cidr_blocks = ["0.0.0.0/0"];
+                ipv6_cidr_blocks = [];
+                prefix_list_ids = [];
+                security_groups = [];
+                self = false;
+              }
             ];
 
             egress = [
