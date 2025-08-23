@@ -62,42 +62,41 @@ in {
         ];
       };
 
-      mail-dkim = {
-        zone_id = zone-id;
-        name = "mail._domainkey.${vars.domains.primaryDomain}";
-        type = "TXT";
-        records = [
-          "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt9npCATJoV5od4WRx2ZFEG5M5vScACPbZUULQUcwafJV/HbS4YnSuCnRXeIQELfYpB7AhbIg+aL6DBvWI+vrhMYQnf4RjhrTR8lfzrePBoNLIlzRdnTSrN2cJjGjpsVYsppXhgeX6rY1fJFYD+OkkoRlS8gnETWjI97+fq4DKHfj23bQgG6k5RtW3T+XRcbTFCeWo7iKjrFj1wrFs"
-
-        ];
-      };
-
-      mail-cname-1 = {
-        zone_id = zone-id;
-        name = "protonmail._domainkey.${vars.domains.primaryDomain}";
-        type = "CNAME";
-        records = [
-          "protonmail.domainkey.dkgcgqd47lmlbegrwsaoxwusl6mweqym7566o2nkf4gwhustgzoyq.domains.proton.ch."
-        ];
-      };
-
-      mail-cname-2 = {
-        zone_id = zone-id;
-        name = "protonmail2._domainkey.${vars.domains.primaryDomain}";
-        type = "CNAME";
-        records = [
-          "protonmail2.domainkey.dkgcgqd47lmlbegrwsaoxwusl6mweqym7566o2nkf4gwhustgzoyq.domains.proton.ch."
-        ];
-      };
-
-      mail-cname-3 = {
-        zone_id = zone-id;
-        name = "protonmail3._domainkey.${vars.domains.primaryDomain}";
-        type = "CNAME";
-        records = [
-          "protonmail3.domainkey.dkgcgqd47lmlbegrwsaoxwusl6mweqym7566o2nkf4gwhustgzoyq.domains.proton.ch."
-        ];
-      };
+      # mail-dkim = {
+      #   zone_id = zone-id;
+      #   name = "mail._domainkey.${vars.domains.primaryDomain}";
+      #   type = "TXT";
+      #   records = [
+      #     "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt9npCATJoV5od4WRx2ZFEG5M5vScACPbZUULQUcwafJV/HbS4YnSuCnRXeIQELfYpB7AhbIg+aL6DBvWI+vrhMYQnf4RjhrTR8lfzrePBoNLIlzRdnTSrN2cJjGjpsVYsppXhgeX6rY1fJFYD+OkkoRlS8gnETWjI97+fq4DKHfj23bQgG6k5RtW3T+XRcbTFCeWo7iKjrFj1wrFs"
+      #   ];
+      # };
+      #
+      # mail-cname-1 = {
+      #   zone_id = zone-id;
+      #   name = "protonmail._domainkey.${vars.domains.primaryDomain}";
+      #   type = "CNAME";
+      #   records = [
+      #     "protonmail.domainkey.dkgcgqd47lmlbegrwsaoxwusl6mweqym7566o2nkf4gwhustgzoyq.domains.proton.ch."
+      #   ];
+      # };
+      #
+      # mail-cname-2 = {
+      #   zone_id = zone-id;
+      #   name = "protonmail2._domainkey.${vars.domains.primaryDomain}";
+      #   type = "CNAME";
+      #   records = [
+      #     "protonmail2.domainkey.dkgcgqd47lmlbegrwsaoxwusl6mweqym7566o2nkf4gwhustgzoyq.domains.proton.ch."
+      #   ];
+      # };
+      #
+      # mail-cname-3 = {
+      #   zone_id = zone-id;
+      #   name = "protonmail3._domainkey.${vars.domains.primaryDomain}";
+      #   type = "CNAME";
+      #   records = [
+      #     "protonmail3.domainkey.dkgcgqd47lmlbegrwsaoxwusl6mweqym7566o2nkf4gwhustgzoyq.domains.proton.ch."
+      #   ];
+      # };
 
       cv = {
         zone_id = zone-id;
