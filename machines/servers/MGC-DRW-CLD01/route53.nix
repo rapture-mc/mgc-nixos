@@ -47,7 +47,8 @@ in {
         name = vars.domains.primaryDomain;
         type = "TXT";
         records = [
-          "protonmail-verification=d0b28026b427ba737e5a6a79a6e3c833da85de5e"
+          # "protonmail-verification=d0b28026b427ba737e5a6a79a6e3c833da85de5e"
+          "v=spf1 a:mail.megacorp.industries -all"
           "MS=ms57820714"
         ];
       };
