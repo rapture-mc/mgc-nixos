@@ -15,6 +15,8 @@ nixpkgs.lib.nixosSystem {
         })
       ];
 
+      megacorp.config.users.benny.enable = false;
+
       networking.hostName = "MGC-DRW-MBX01";
 
       system.stateVersion = "25.05";

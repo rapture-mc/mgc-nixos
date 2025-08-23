@@ -14,6 +14,7 @@
     ;
 in {
   options.megacorp.config.users = mkOption {
+    default = null;
     type = types.nullOr (types.attrsOf (
       types.submodule (
         {name, ...}: {
@@ -22,6 +23,12 @@ in {
               type = types.str;
               default = name;
               description = "The name of the user";
+            };
+
+            enable = mkOption {
+              type = types.bool;
+              default = true;
+              description = "Whether the user account should be enabled";
             };
 
             shell = mkOption {
@@ -55,7 +62,6 @@ in {
         }
       )
     ));
-    default = null;
   };
 
   config = mkIf (cfg != null) {
@@ -76,6 +82,7 @@ in {
       (userName: userConfig: {
         name = userName;
         value = {
+          enable = userConfig.enable;
           isNormalUser = true;
           initialPassword = "changeme";
           shell = pkgs.${userConfig.shell};
