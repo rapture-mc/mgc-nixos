@@ -50,7 +50,7 @@ nixpkgs.lib.nixosSystem {
             mail-server = {
               instance_type = "t2.medium";
               associate_public_ip_address = true;
-              root_block_device.size = 30;
+              root_block_device.size = 100;
             };
           };
         };
