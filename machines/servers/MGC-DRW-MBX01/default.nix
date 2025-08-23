@@ -1,5 +1,6 @@
 {
   nixpkgs,
+  lib,
   self,
   vars,
   ...
@@ -17,6 +18,8 @@ nixpkgs.lib.nixosSystem {
       networking.hostName = "MGC-DRW-MBX01";
 
       system.stateVersion = "25.05";
+
+      nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     }
   ];
 }
