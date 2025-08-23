@@ -62,15 +62,15 @@ in {
         ];
       };
 
-      # mail-dkim = {
-      #   zone_id = zone-id;
-      #   name = "mail._domainkey.${vars.domains.primaryDomain}";
-      #   type = "TXT";
-      #   records = [
-      #     "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt9npCATJoV5od4WRx2ZFEG5M5vScACPbZUULQUcwafJV/HbS4YnSuCnRXeIQELfYpB7AhbIg+aL6DBvWI+vrhMYQnf4RjhrTR8lfzrePBoNLIlzRdnTSrN2cJjGjpsVYsppXhgeX6rY1fJFYD+OkkoRlS8gnETWjI97+fq4DKHfj23bQgG6k5RtW3T+XRcbTFCeWo7iKjrFj1wrFs"
-      #   ];
-      # };
-      #
+      mail-dkim = {
+        zone_id = zone-id;
+        name = "mail._domainkey.${vars.domains.primaryDomain}";
+        type = "TXT";
+        records = [
+          "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt9npCATJoV5od4WRx2ZFEG5M5vScACPbZUULQUcwafJV/HbS4" "YnSuCnRXeIQELfYpB7AhbIg+aL6DBvWI+vrhMYQnf4RjhrTR8lfzrePBoNLIlzRdnTSrN2cJjGjpsVYsppXhgeX6rY1fJFYD+OkkoRlS8gnETWjI97+fq4DKHfj23bQgG6k5RtW3T+XRcbTFCeWo7iKjrFj1wrFs"
+        ];
+      };
+
       # mail-cname-1 = {
       #   zone_id = zone-id;
       #   name = "protonmail._domainkey.${vars.domains.primaryDomain}";
