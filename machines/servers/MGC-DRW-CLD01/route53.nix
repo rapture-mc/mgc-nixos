@@ -3,8 +3,8 @@
 in {
   megacorp.cloud.aws.route53 = {
     enable = true;
-    credential-path = "/home/benny/.aws/credentials";
-    config-path = "/home/benny/.aws/credentials";
+    credential-path = "/home/ben.harris/.aws/credentials";
+    config-path = "/home/ben.harris/.aws/credentials";
     terraform.state-dir = "/var/lib/terranix-state/aws/route53";
     zones = {
       megacorp-industries = {
