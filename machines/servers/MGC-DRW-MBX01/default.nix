@@ -1,6 +1,5 @@
 {
   nixpkgs,
-  lib,
   self,
   vars,
   ...
@@ -19,7 +18,7 @@ nixpkgs.lib.nixosSystem {
 
       system.stateVersion = "25.05";
 
-      nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+      nixpkgs.hostPlatform = nixpkgs.lib.mkDefault "x86_64-linux";
     }
   ];
 }
