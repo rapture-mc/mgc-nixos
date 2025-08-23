@@ -70,7 +70,6 @@ nixpkgs.lib.nixosSystem {
             pki = {
               enable = true;
               terraform = {
-                action = "plan";
                 state-dir = "/var/lib/terranix-state/vault";
               };
 
