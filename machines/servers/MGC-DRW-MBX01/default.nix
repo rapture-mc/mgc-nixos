@@ -47,7 +47,7 @@ nixpkgs.lib.nixosSystem {
       };
 
       security.acme.acceptTerms = true;
-      security.acme.defaults.email = "acme@${vars.networking.primaryDomain}";
+      security.acme.defaults.email = "acme@${vars.domains.primaryDomain}";
     })
   ];
 }
