@@ -30,6 +30,7 @@ nixpkgs.lib.nixosSystem {
         qbittorrent
         spotify
         sioyek
+        waydroid
       ];
 
       virtualisation.docker.enable = true;
