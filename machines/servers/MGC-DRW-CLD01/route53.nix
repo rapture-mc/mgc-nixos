@@ -30,22 +30,14 @@ in {
         ];
       };
 
-      mail-reverse = {
-        zone_id = zone-id;
-        name = vars.networking.awsPrimaryPublicIP;
-        type = "PTR";
-        records = [
-          "mail.${vars.domains.primaryDomain}"
-        ];
-      };
-
       mail-mx = {
         zone_id = zone-id;
         name = vars.domains.primaryDomain;
         type = "MX";
         records = [
-          "10 mail.protonmail.ch."
-          "20 mailsec.protonmail.ch."
+          "10 mail.megacorp.industries."
+          # "10 mail.protonmail.ch."
+          # "20 mailsec.protonmail.ch."
           "32767 ms57820714.msv1.invalid"
         ];
       };
