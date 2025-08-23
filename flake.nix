@@ -58,6 +58,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    nixos-mailserver = {
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -72,6 +77,7 @@
     comin,
     plasma-manager,
     nixpkgs24-11,
+    nixos-mailserver,
     ...
   }: let
     # Define system architecture, make lib more accessible, allow unfree packages and apply overlays to pkgs variable
@@ -96,7 +102,7 @@
     # Splits nixosConfigurations into seperate files for a less bloated flake.nix file
     importMachineConfig = machineType: machineName:
       import ./machines/${machineType}/${machineName} {
-        inherit self vars nixpkgs pkgs terranix system sops-nix;
+        inherit self vars nixpkgs pkgs terranix system sops-nix nixos-mailserver;
       };
   in {
     ##################

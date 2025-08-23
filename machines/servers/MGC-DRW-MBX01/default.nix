@@ -2,11 +2,13 @@
   nixpkgs,
   self,
   vars,
+  nixos-mailserver,
   ...
 }:
 nixpkgs.lib.nixosSystem {
   modules = [
     self.nixosModules.default
+    nixos-mailserver.nixosModules.default
     ({modulesPath, ...}: {
       imports = [
         "${modulesPath}/virtualisation/amazon-image.nix"
