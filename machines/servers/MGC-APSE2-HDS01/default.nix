@@ -29,6 +29,11 @@ nixpkgs.lib.nixosSystem {
       security.acme.acceptTerms = true;
       security.acme.defaults.email = "acme@${vars.domains.primaryDomain}";
 
+      networking.firewall.allowedTCPPorts = [
+        80
+        443
+      ];
+
       services = {
         nginx = {
           enable = true;
