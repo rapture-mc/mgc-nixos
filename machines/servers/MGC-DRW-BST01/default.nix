@@ -36,6 +36,8 @@ nixpkgs.lib.nixosSystem {
       ];
 
       megacorp = {
+        services.tailscale.client.enable = true;
+
         config = {
           bootloader.enable = true;
           
