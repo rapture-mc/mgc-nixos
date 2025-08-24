@@ -16,6 +16,22 @@
     types
     ;
 
+  staticIngressRulesConfig = {
+    ipv6_cidr_blocks = [];
+    prefix_list_ids = [];
+    security_groups = [];
+    self = false;
+  };
+
+  transformedIngressRulesConfig =
+    builtins.map (lib.mapAttrs (
+      name: value:
+        if lib.isAttrs value
+        then value // staticIngressRulesConfig
+        else value
+    )
+    cfg.ingress-rules);
+
   staticTerraformModuleConfig = {
     source  = "terraform-aws-modules/ec2-instance/aws";
     ami = "\${ data.aws_ami.nixos-x86_64.id }";
@@ -68,7 +84,7 @@
         resource = {
           aws_key_pair.default = {
             key_name = "default-key";
-            public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOzlYmoWjZYFeCNdMBCHBXmqpzK1IBmRiB3hNlsgEtre benny@MGC-DRW-BST01";
+            public_key = cfg.ssh-public-key;
           };
 
           aws_vpc.nix-vpc = {
@@ -103,91 +119,93 @@
           aws_security_group.default = {
             vpc_id = "\${ aws_vpc.nix-vpc.id }";
 
-            ingress = [
-              {
-                description = "Allow SSH in";
-                from_port = 22;
-                to_port = 22;
-                protocol = "tcp";
-                cidr_blocks = ["0.0.0.0/0"];
-                ipv6_cidr_blocks = [];
-                prefix_list_ids = [];
-                security_groups = [];
-                self = false;
-              }
+            # ingress = [
+            #   {
+            #     description = "Allow SSH in";
+            #     from_port = 22;
+            #     to_port = 22;
+            #     protocol = "tcp";
+            #     cidr_blocks = ["0.0.0.0/0"];
+            #     ipv6_cidr_blocks = [];
+            #     prefix_list_ids = [];
+            #     security_groups = [];
+            #     self = false;
+            #   }
+            #
+            #   {
+            #     description = "Allow SMTP in";
+            #     from_port = 25;
+            #     to_port = 25;
+            #     protocol = "tcp";
+            #     cidr_blocks = ["0.0.0.0/0"];
+            #     ipv6_cidr_blocks = [];
+            #     prefix_list_ids = [];
+            #     security_groups = [];
+            #     self = false;
+            #   }
+            #
+            #   {
+            #     description = "Allow HTTP in";
+            #     from_port = 80;
+            #     to_port = 80;
+            #     protocol = "tcp";
+            #     cidr_blocks = ["0.0.0.0/0"];
+            #     ipv6_cidr_blocks = [];
+            #     prefix_list_ids = [];
+            #     security_groups = [];
+            #     self = false;
+            #   }
+            #
+            #   {
+            #     description = "Allow IMAP in";
+            #     from_port = 143;
+            #     to_port = 143;
+            #     protocol = "tcp";
+            #     cidr_blocks = ["0.0.0.0/0"];
+            #     ipv6_cidr_blocks = [];
+            #     prefix_list_ids = [];
+            #     security_groups = [];
+            #     self = false;
+            #   }
+            #
+            #   {
+            #     description = "Allow SMTP TLS in";
+            #     from_port = 465;
+            #     to_port = 465;
+            #     protocol = "tcp";
+            #     cidr_blocks = ["0.0.0.0/0"];
+            #     ipv6_cidr_blocks = [];
+            #     prefix_list_ids = [];
+            #     security_groups = [];
+            #     self = false;
+            #   }
+            #
+            #   {
+            #     description = "Allow IMAP start TLS in";
+            #     from_port = 587;
+            #     to_port = 587;
+            #     protocol = "tcp";
+            #     cidr_blocks = ["0.0.0.0/0"];
+            #     ipv6_cidr_blocks = [];
+            #     prefix_list_ids = [];
+            #     security_groups = [];
+            #     self = false;
+            #   }
+            #
+            #   {
+            #     description = "Allow IMAP in";
+            #     from_port = 993;
+            #     to_port = 993;
+            #     protocol = "tcp";
+            #     cidr_blocks = ["0.0.0.0/0"];
+            #     ipv6_cidr_blocks = [];
+            #     prefix_list_ids = [];
+            #     security_groups = [];
+            #     self = false;
+            #   }
+            # ];
 
-              {
-                description = "Allow SMTP in";
-                from_port = 25;
-                to_port = 25;
-                protocol = "tcp";
-                cidr_blocks = ["0.0.0.0/0"];
-                ipv6_cidr_blocks = [];
-                prefix_list_ids = [];
-                security_groups = [];
-                self = false;
-              }
-
-              {
-                description = "Allow HTTP in";
-                from_port = 80;
-                to_port = 80;
-                protocol = "tcp";
-                cidr_blocks = ["0.0.0.0/0"];
-                ipv6_cidr_blocks = [];
-                prefix_list_ids = [];
-                security_groups = [];
-                self = false;
-              }
-
-              {
-                description = "Allow IMAP in";
-                from_port = 143;
-                to_port = 143;
-                protocol = "tcp";
-                cidr_blocks = ["0.0.0.0/0"];
-                ipv6_cidr_blocks = [];
-                prefix_list_ids = [];
-                security_groups = [];
-                self = false;
-              }
-
-              {
-                description = "Allow SMTP TLS in";
-                from_port = 465;
-                to_port = 465;
-                protocol = "tcp";
-                cidr_blocks = ["0.0.0.0/0"];
-                ipv6_cidr_blocks = [];
-                prefix_list_ids = [];
-                security_groups = [];
-                self = false;
-              }
-
-              {
-                description = "Allow IMAP start TLS in";
-                from_port = 587;
-                to_port = 587;
-                protocol = "tcp";
-                cidr_blocks = ["0.0.0.0/0"];
-                ipv6_cidr_blocks = [];
-                prefix_list_ids = [];
-                security_groups = [];
-                self = false;
-              }
-
-              {
-                description = "Allow IMAP in";
-                from_port = 993;
-                to_port = 993;
-                protocol = "tcp";
-                cidr_blocks = ["0.0.0.0/0"];
-                ipv6_cidr_blocks = [];
-                prefix_list_ids = [];
-                security_groups = [];
-                self = false;
-              }
-            ];
+            ingress = transformedIngressRulesConfig;
 
             egress = [
               {
@@ -237,7 +255,7 @@ in {
       '';
     };
 
-    key-pair = mkOption {
+    ssh-public-key = mkOption {
       type = types.str;
       default = "";
     };
@@ -246,11 +264,49 @@ in {
       inherit lib;
     };
 
+    ingress-rules = mkOption {
+      type = types.listOf (types.submodule (
+        _: {
+          options = {
+            description = mkOption {
+              type = types.str;
+              default = "";
+            };
+
+            from_port = mkOption {
+              type = types.int;
+              description = "Incoming port";
+            };
+
+            to_port = mkOption {
+              type = types.bool;
+              description = "Destination port";
+            };
+
+            protocol = mkOption {
+              type = types.enum [
+                "tcp"
+                "udp"
+              ];
+              default = "tcp";
+              description = "Transport protocol";
+            };
+
+            cidr_blocks = mkOption {
+              type = types.str;
+              default = "0.0.0.0/0";
+              description = "Allowed source IP's in CIDR notation";
+            };
+          };
+        }
+      ));
+    };
+
     machines = mkOption {
       default = null;
       type = types.nullOr (types.attrsOf (
         types.submodule (
-          { name, ...}: {
+          { name, ... }: {
             options = {
               name = mkOption {
                 type = types.str;
