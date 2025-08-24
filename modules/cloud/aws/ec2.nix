@@ -286,8 +286,10 @@ in {
             };
 
             cidr_blocks = mkOption {
-              type = types.str;
-              default = "0.0.0.0/0";
+              type = types.listOf types.str;
+              default = [
+                "0.0.0.0/0"
+              ];
               description = "Allowed source IP's in CIDR notation";
             };
           };
