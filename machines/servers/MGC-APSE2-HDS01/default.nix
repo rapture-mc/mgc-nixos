@@ -1,5 +1,6 @@
 {
   nixpkgs,
+  pkgs,
   self,
   vars,
   ...
@@ -21,8 +22,32 @@ nixpkgs.lib.nixosSystem {
 
       nixpkgs.hostPlatform = nixpkgs.lib.mkDefault "x86_64-linux";
 
-      services.headscale = {
-        enable = true;
+      environment.systemPackages = with pkgs; [
+        headscale
+      ];
+
+      services = {
+        nginx.virtualHosts."net.${vars.domains.primaryDomain}" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://localhost:8080";
+            proxyWebsockets = true;
+          };
+        };
+
+        headscale = {
+          enable = true;
+          address = "0.0.0.0";
+          port = 8080;
+          settings = {
+            server_url = "https://net.${vars.domains.primaryDomain}";
+            dns = {
+              base_domain = vars.domains.primaryDomain;
+            };
+            log.level = "debug";
+          };
+        };
       };
     })
   ];
