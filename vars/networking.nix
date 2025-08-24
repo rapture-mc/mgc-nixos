@@ -4,6 +4,7 @@
   nameServers = ["192.168.1.7"];
   megacorpPrimaryPublicIP = "123.243.147.17";
   awsPrimaryPublicIP = "52.64.195.230";
+  awsHeadscalePublicIP = "13.236.251.106";
 
   hostsAddr = {
     MGC-DRW-BKS01.eth = {

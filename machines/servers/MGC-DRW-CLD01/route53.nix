@@ -30,6 +30,15 @@ in {
         ];
       };
 
+      headscale = {
+        zone_id = zone-id;
+        name = "net.${vars.domains.primaryDomain}";
+        type = "A";
+        records = [
+          "${vars.networking.awsHeadscalePublicIP}"
+        ];
+      };
+
       mail-mx = {
         zone_id = zone-id;
         name = vars.domains.primaryDomain;
