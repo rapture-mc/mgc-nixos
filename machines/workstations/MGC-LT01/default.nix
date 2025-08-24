@@ -46,19 +46,8 @@ nixpkgs.lib.nixosSystem {
 
       services.xserver.enable = true;
 
-      services.tailscale.enable = true;
-
-      networking.firewall = {
-        checkReversePath = "loose";
-        trustedInterfaces = [
-          "tailscale0"
-        ];
-        allowedUDPPorts = [
-          41641
-        ];
-      };
-
       megacorp = {
+        services.tailscale.client.enable = true;
         config = {
           bootloader = {
             enable = true;
