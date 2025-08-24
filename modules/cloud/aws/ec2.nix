@@ -244,6 +244,12 @@ in {
                 default = false;
               };
 
+              disable_api_stop = mkOption {
+                type = types.bool;
+                default = true;
+                description = "Prevent instance from accidental termination";
+              };
+
               root_block_device = mkOption {
                 default = null;
                 type = types.nullOr (types.submodule (
