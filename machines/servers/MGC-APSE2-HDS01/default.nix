@@ -26,6 +26,9 @@ nixpkgs.lib.nixosSystem {
         headscale
       ];
 
+      security.acme.acceptTerms = true;
+      security.acme.defaults.email = "acme@${vars.domains.primaryDomain}";
+
       services = {
         nginx = {
           enable = true;
