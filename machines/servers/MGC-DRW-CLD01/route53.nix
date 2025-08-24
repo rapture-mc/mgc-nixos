@@ -36,8 +36,6 @@ in {
         type = "MX";
         records = [
           "10 mail.megacorp.industries."
-          # "10 mail.protonmail.ch."
-          # "20 mailsec.protonmail.ch."
           "32767 ms57820714.msv1.invalid"
         ];
       };
@@ -47,7 +45,6 @@ in {
         name = vars.domains.primaryDomain;
         type = "TXT";
         records = [
-          # "protonmail-verification=d0b28026b427ba737e5a6a79a6e3c833da85de5e"
           "v=spf1 a:mail.megacorp.industries -all"
           "MS=ms57820714"
         ];
@@ -70,33 +67,6 @@ in {
           "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt9npCATJoV5od4WRx2ZFEG5M5vScACPbZUULQUcwafJV/HbS4" "YnSuCnRXeIQELfYpB7AhbIg+aL6DBvWI+vrhMYQnf4RjhrTR8lfzrePBoNLIlzRdnTSrN2cJjGjpsVYsppXhgeX6rY1fJFYD+OkkoRlS8gnETWjI97+fq4DKHfj23bQgG6k5RtW3T+XRcbTFCeWo7iKjrFj1wrFs"
         ];
       };
-
-      # mail-cname-1 = {
-      #   zone_id = zone-id;
-      #   name = "protonmail._domainkey.${vars.domains.primaryDomain}";
-      #   type = "CNAME";
-      #   records = [
-      #     "protonmail.domainkey.dkgcgqd47lmlbegrwsaoxwusl6mweqym7566o2nkf4gwhustgzoyq.domains.proton.ch."
-      #   ];
-      # };
-      #
-      # mail-cname-2 = {
-      #   zone_id = zone-id;
-      #   name = "protonmail2._domainkey.${vars.domains.primaryDomain}";
-      #   type = "CNAME";
-      #   records = [
-      #     "protonmail2.domainkey.dkgcgqd47lmlbegrwsaoxwusl6mweqym7566o2nkf4gwhustgzoyq.domains.proton.ch."
-      #   ];
-      # };
-      #
-      # mail-cname-3 = {
-      #   zone_id = zone-id;
-      #   name = "protonmail3._domainkey.${vars.domains.primaryDomain}";
-      #   type = "CNAME";
-      #   records = [
-      #     "protonmail3.domainkey.dkgcgqd47lmlbegrwsaoxwusl6mweqym7566o2nkf4gwhustgzoyq.domains.proton.ch."
-      #   ];
-      # };
 
       cv = {
         zone_id = zone-id;
