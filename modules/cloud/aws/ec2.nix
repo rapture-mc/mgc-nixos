@@ -272,7 +272,7 @@ in {
             };
 
             to_port = mkOption {
-              type = types.bool;
+              type = types.int;
               description = "Destination port";
             };
 
