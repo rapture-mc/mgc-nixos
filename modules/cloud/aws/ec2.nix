@@ -111,93 +111,6 @@
 
           aws_security_group.default = {
             vpc_id = "\${ aws_vpc.nix-vpc.id }";
-
-            # ingress = [
-            #   {
-            #     description = "Allow SSH in";
-            #     from_port = 22;
-            #     to_port = 22;
-            #     protocol = "tcp";
-            #     cidr_blocks = ["0.0.0.0/0"];
-            #     ipv6_cidr_blocks = [];
-            #     prefix_list_ids = [];
-            #     security_groups = [];
-            #     self = false;
-            #   }
-            #
-            #   {
-            #     description = "Allow SMTP in";
-            #     from_port = 25;
-            #     to_port = 25;
-            #     protocol = "tcp";
-            #     cidr_blocks = ["0.0.0.0/0"];
-            #     ipv6_cidr_blocks = [];
-            #     prefix_list_ids = [];
-            #     security_groups = [];
-            #     self = false;
-            #   }
-            #
-            #   {
-            #     description = "Allow HTTP in";
-            #     from_port = 80;
-            #     to_port = 80;
-            #     protocol = "tcp";
-            #     cidr_blocks = ["0.0.0.0/0"];
-            #     ipv6_cidr_blocks = [];
-            #     prefix_list_ids = [];
-            #     security_groups = [];
-            #     self = false;
-            #   }
-            #
-            #   {
-            #     description = "Allow IMAP in";
-            #     from_port = 143;
-            #     to_port = 143;
-            #     protocol = "tcp";
-            #     cidr_blocks = ["0.0.0.0/0"];
-            #     ipv6_cidr_blocks = [];
-            #     prefix_list_ids = [];
-            #     security_groups = [];
-            #     self = false;
-            #   }
-            #
-            #   {
-            #     description = "Allow SMTP TLS in";
-            #     from_port = 465;
-            #     to_port = 465;
-            #     protocol = "tcp";
-            #     cidr_blocks = ["0.0.0.0/0"];
-            #     ipv6_cidr_blocks = [];
-            #     prefix_list_ids = [];
-            #     security_groups = [];
-            #     self = false;
-            #   }
-            #
-            #   {
-            #     description = "Allow IMAP start TLS in";
-            #     from_port = 587;
-            #     to_port = 587;
-            #     protocol = "tcp";
-            #     cidr_blocks = ["0.0.0.0/0"];
-            #     ipv6_cidr_blocks = [];
-            #     prefix_list_ids = [];
-            #     security_groups = [];
-            #     self = false;
-            #   }
-            #
-            #   {
-            #     description = "Allow IMAP in";
-            #     from_port = 993;
-            #     to_port = 993;
-            #     protocol = "tcp";
-            #     cidr_blocks = ["0.0.0.0/0"];
-            #     ipv6_cidr_blocks = [];
-            #     prefix_list_ids = [];
-            #     security_groups = [];
-            #     self = false;
-            #   }
-            # ];
-
             ingress = transformedIngressRulesConfig;
 
             egress = [
@@ -258,6 +171,18 @@ in {
     };
 
     ingress-rules = mkOption {
+      description = ''
+        Ingress firewall rules for the entire subnet.
+
+        Default is to allow SSH inbound for basic connectivity to the subnet.
+      '';
+      default = [
+        {
+          description = "Allow SSH inbound";
+          from_port = 22;
+          to_port = 22;
+        }
+      ];
       type = types.listOf (types.submodule (
         _: {
           options = {
