@@ -43,7 +43,7 @@ nixpkgs.lib.nixosSystem {
           settings = {
             server_url = "https://net.${vars.domains.primaryDomain}";
             dns = {
-              base_domain = vars.domains.primaryDomain;
+              base_domain = "megacorp.net";
             };
             log.level = "debug";
           };
