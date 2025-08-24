@@ -11,12 +11,6 @@
         to_port = 22;
         description = "Allow SSH in";
       }
-
-      {
-        from_port = 80;
-        to_port = 80;
-        description = "Allow SSH in";
-      }
     ];
     machines = {
       headscale-server = {
