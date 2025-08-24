@@ -42,7 +42,8 @@ nixpkgs.lib.nixosSystem {
           bootloader.enable = true;
           
           users."ben.harris".authorized-ssh-keys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINIULVXKCxz5mcwPGZkFythejWSDn6nrb9zsjjFOthJf"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINIULVXKCxz5mcwPGZkFythejWSDn6nrb9zsjjFOthJf @termux"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKhKBbO3gu8cbKQYOopVAA9gkSHHChkjMYPgfW2NIBrN benny@MGC-LT01"
           ];
 
           desktop = {
