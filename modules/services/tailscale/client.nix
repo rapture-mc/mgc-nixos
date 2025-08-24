@@ -11,7 +11,7 @@
     mkIf
     ;
 in {
-  options.megacorp.services.tailscale.enable = mkEnableOption "Whether to enable the tailscale client";
+  options.megacorp.services.tailscale.client.enable = mkEnableOption "Whether to enable the tailscale client";
 
   config = mkIf cfg.enable {
     services.tailscale.enable = true;
