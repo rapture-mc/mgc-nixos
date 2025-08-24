@@ -23,14 +23,7 @@
     self = false;
   };
 
-  transformedIngressRulesConfig =
-    builtins.map (lib.mapAttrs (
-      name: value:
-        if lib.isAttrs value
-        then value // staticIngressRulesConfig
-        else value
-    )
-    cfg.ingress-rules);
+  transformedIngressRulesConfig = builtins.map (value: value // staticIngressRulesConfig) cfg.ingress-rules;
 
   staticTerraformModuleConfig = {
     source  = "terraform-aws-modules/ec2-instance/aws";
