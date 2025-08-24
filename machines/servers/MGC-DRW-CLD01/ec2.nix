@@ -17,6 +17,12 @@
         to_port = 80;
         description = "Allow HTTP in";
       }
+
+      {
+        from_port = 443;
+        to_port = 443;
+        description = "Allow HTTPS in";
+      }
     ];
     machines = {
       headscale-server = {
