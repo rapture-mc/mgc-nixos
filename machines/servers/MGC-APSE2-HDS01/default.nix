@@ -27,12 +27,15 @@ nixpkgs.lib.nixosSystem {
       ];
 
       services = {
-        nginx.virtualHosts."net.${vars.domains.primaryDomain}" = {
-          forceSSL = true;
-          enableACME = true;
-          locations."/" = {
-            proxyPass = "http://localhost:8080";
-            proxyWebsockets = true;
+        nginx = {
+          enable = true;
+          virtualHosts."net.${vars.domains.primaryDomain}" = {
+            forceSSL = true;
+            enableACME = true;
+            locations."/" = {
+              proxyPass = "http://localhost:8080";
+              proxyWebsockets = true;
+            };
           };
         };
 
