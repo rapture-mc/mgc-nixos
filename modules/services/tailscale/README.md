@@ -43,5 +43,6 @@ Will:
 ### Joining a Tailscale client to your Tailnet network
 ```
 # The following command will output a link with instructions to add the client to the "prod" namespace.
+# Note: The link instructions will contain a "--user USERNAME" flag. Replace this with the namespace you created prior like "prod" (without the quotes).
 sudo tailscale up --login-server tailscale.example.com
 ```
