@@ -19,7 +19,6 @@ in
       libreoffice
       networkmanager
       remmina
-      shutter
       signal-desktop
       thunderbird
       vlc

@@ -166,10 +166,9 @@ in {
     systemd.services.samba-smbd.enable = mkDefault false;
     services.samba = {
       enable = true;
-      enableNmbd = mkDefault false;
-      enableWinbindd = mkDefault false;
+      nmbd.enable = mkDefault false;
+      winbindd.enable = mkDefault false;
       package = pkgs.samba4Full;
-      securityType = "ads";
       settings.global = {
         "realm" = "${toUpper cfg.domain-name}";
         "workgroup" = "${toUpper cfg.netbios-name}";
@@ -178,6 +177,7 @@ in {
         "server signing" = "mandatory";
         "client signing" = "mandatory";
         "kerberos method" = "secrets and keytab";
+        "security" = "ads";
       };
     };
   };
