@@ -20,7 +20,7 @@ nixpkgs.lib.nixosSystem {
         })
       ];
 
-      networking.hostName = "MGC-DRW-MBX01";
+      networking.hostName = "MGC-APSE2-MBX01";
 
       system.stateVersion = "25.05";
 

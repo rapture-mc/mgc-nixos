@@ -1,5 +1,7 @@
 {importMachineConfig, ...}: {
   # Servers
+  MGC-APSE2-HDS01 = importMachineConfig "servers" "MGC-APSE2-HDS01";
+  MGC-APSE2-MBX01 = importMachineConfig "servers" "MGC-APSE2-MBX01";
   MGC-DRW-BKS01 = importMachineConfig "servers" "MGC-DRW-BKS01";
   MGC-DRW-BST01 = importMachineConfig "servers" "MGC-DRW-BST01";
   MGC-DRW-CLD01 = importMachineConfig "servers" "MGC-DRW-CLD01";
@@ -11,7 +13,6 @@
   MGC-DRW-K3M01 = importMachineConfig "servers" "MGC-DRW-K3M01";
   MGC-DRW-K3S01 = importMachineConfig "servers" "MGC-DRW-K3S01";
   MGC-DRW-K3S02 = importMachineConfig "servers" "MGC-DRW-K3S02";
-  MGC-DRW-MBX01 = importMachineConfig "servers" "MGC-DRW-MBX01";
   MGC-DRW-MON01 = importMachineConfig "servers" "MGC-DRW-MON01";
   MGC-DRW-NBX01 = importMachineConfig "servers" "MGC-DRW-NBX01";
   MGC-DRW-NXC01 = importMachineConfig "servers" "MGC-DRW-NXC01";
