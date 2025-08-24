@@ -246,7 +246,7 @@ in {
 
               disable_api_termination = mkOption {
                 type = types.bool;
-                default = false;
+                default = true;
                 description = "Prevent instance from accidental termination";
               };
 
