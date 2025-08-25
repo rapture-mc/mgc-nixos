@@ -29,6 +29,14 @@ nixpkgs.lib.nixosSystem {
           devices = {
             MGC-DRW-BST01.id = vars.syncthing.MGC-DRW-BST01.id;
           };
+            folders = {
+              sync = {
+                path = "/home/ben.harris/Sync";
+                devices = [
+                  "MGC-DRW-BST01"
+                ];
+              };
+            };
         };
 
         tailscale = {
