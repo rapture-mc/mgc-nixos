@@ -44,7 +44,7 @@ nixpkgs.lib.nixosSystem {
             user = "ben.harris";
             gui = true;
             devices = {
-              MGC-APSE2-HDS01.id = vars.syncthing.MGC-DRW-BST01.id;
+              MGC-APSE2-HDS01.id = vars.syncthing.MGC-APSE2-HDS01.id;
             };
             folders = {
               sync = {
