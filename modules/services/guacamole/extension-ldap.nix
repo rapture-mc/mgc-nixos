@@ -123,7 +123,7 @@ in {
 
     environment.etc."guacamole/extensions/guacamole-auth-ldap-${guacVer}.jar".source = "${ldapExtension}/guacamole-auth-ldap-${guacVer}.jar";
 
-    systemd.services.insert-ldap-password = {
+    systemd.services.inject-ldap-password = {
       wantedBy = [
         "multi-user.target"
       ];
