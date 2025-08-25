@@ -24,6 +24,7 @@ nixpkgs.lib.nixosSystem {
       megacorp.services = {
         syncthing = {
           enable = false;
+            user = "ben.harris";
           gui = true;
         };
 

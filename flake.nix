@@ -96,9 +96,7 @@
     };
 
     # Define custom variables which are used throughout NixOS machine configurations
-    vars = import ./vars {
-      inherit lib;
-    };
+    vars = import ./vars;
 
     # Helper function for importing different nixosConfigurations
     # Splits nixosConfigurations into seperate files for a less bloated flake.nix file

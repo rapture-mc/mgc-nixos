@@ -41,7 +41,7 @@ nixpkgs.lib.nixosSystem {
 
           syncthing = {
             enable = true;
-            user = vars.users."ben.harris".name;
+            user = "ben.harris";
             gui = true;
           };
         };
