@@ -99,18 +99,38 @@ in {
       ];
     };
 
-    systemd.services.syncthing-init.serviceConfig.ExecStartPost = mkIf (cfg.gui.enable && cfg.gui.hashed-admin-password-file != null) (pkgs.writeShellScript "inject-syncthing-gui-password" ''
-      if [[ -r ${cfg.gui.hashed-admin-password-file} ]]; then
-        echo "Injecting <user>syncthing</user> into ${config.services.syncthing.configDir}/config.xml"
-        ${pkgs.yq-go}/bin/yq -i '.configuration.gui += {"user": "syncthing"}' ${config.services.syncthing.configDir}/config.xml
+    systemd.services.inject-syncthing-gui-password = mkIf (cfg.gui.enable && cfg.gui.hashed-admin-password-file != null) {
+      wantedBy = [
+        "syncthing.service"
+      ];
 
+      after = [
+        "syncthing.service"
+      ];
 
-        echo "Injecting <password>***SYNCTHING_PASSWORD***</password> into ${config.services.syncthing.configDir}/config.xml"
-        SYNCTHING_PASSWORD=$(< ${cfg.gui.hashed-admin-password-file})
-        ${pkgs.yq-go}/bin/yq -i ".configuration.gui.password = \"$SYNCTHING_PASSWORD\"" ${config.services.syncthing.configDir}/config.xml
-      fi
+      bindsTo = [
+        "syncthing.service"
+      ];
 
-    '');
+      partOf = [
+        "syncthing.service"
+      ];
+
+      serviceConfig = {
+        Type = "oneshot";
+        User = "root";
+        Group = "root";
+        # ExecStartPost = "${pkgs.systemdUkify}/bin/systemctl restart syncthing.service";
+      };
+
+      script = ''
+        if [[ -r ${cfg.gui.hashed-admin-password-file} ]]; then
+          echo "Updating syncthing GUI password"
+          SYNCTHING_PASSWORD=$(< ${cfg.gui.hashed-admin-password-file})
+          ${pkgs.syncthing}/bin/syncthing generate --gui-password=$SYNCTHING_PASSWORD
+        fi
+      '';
+    };
 
     services = {
       syncthing = {
@@ -123,7 +143,7 @@ in {
         overrideFolders = true;
         settings = {
           options.urAccepted = -1;
-          gui.tls = true;
+          gui.user = "syncthing";
           devices = cfg.devices;
           folders = cfg.folders;
         };
