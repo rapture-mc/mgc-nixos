@@ -45,14 +45,12 @@ nixpkgs.lib.nixosSystem {
             gui = true;
             devices = {
               MGC-APSE2-HDS01.id = vars.syncthing.MGC-APSE2-HDS01.id;
-              MGC-LT01.id = vars.syncthing.MGC-LT01.id;
             };
             folders = {
               sync = {
                 path = "/home/ben.harris/Sync";
                 devices = [
                   "MGC-APSE2-HDS01"
-                  "MGC-LT01"
                 ];
               };
             };
