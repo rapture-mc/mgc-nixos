@@ -101,7 +101,7 @@ in {
 
     systemd.services.inject-syncthing-gui-password = mkIf (cfg.gui.enable && cfg.gui.hashed-admin-password-file != null) {
       wantedBy = [
-        "multi-user.target"
+        "syncthing.service"
       ];
 
       after = [
