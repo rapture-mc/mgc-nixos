@@ -47,7 +47,29 @@ nixpkgs.lib.nixosSystem {
       services.xserver.enable = true;
 
       megacorp = {
-        services.tailscale.client.enable = true;
+        services = {
+          tailscale.client.enable = true;
+
+          syncthing = {
+            enable = true;
+            user = "ben.harris";
+            gui = true;
+            devices = {
+              MGC-APSE2-HDS01.id = vars.syncthing.MGC-APSE2-HDS01.id;
+              MGC-DRW-BST01.id = vars.syncthing.MGC-DRW-BST01.id;
+            };
+            folders = {
+              sync = {
+                path = "/home/ben.harris/Sync";
+                devices = [
+                  "MGC-APSE2-HDS01"
+                  "MGC-DRW-BST01"
+                ];
+              };
+            };
+          };
+        };
+
         config = {
           bootloader = {
             enable = true;
