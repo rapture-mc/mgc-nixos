@@ -46,6 +46,14 @@ nixpkgs.lib.nixosSystem {
             devices = {
               MGC-APSE2-HDS01.id = vars.syncthing.MGC-DRW-BST01.id;
             };
+            folders = {
+              sync = {
+                path = "/home/ben.harris/Sync";
+              };
+              devices = [
+                "MGC-APSE2-HDS01"
+              ];
+            };
           };
         };
         config = {
