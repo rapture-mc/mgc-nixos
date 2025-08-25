@@ -113,7 +113,7 @@ in {
 
       script = ''
         if [[ -r ${cfg.gui.hashed-admin-password-file} ]]; then
-          ${pkgs.yq-go}/bin/yq -i '.configuration.gui += {"user": "syncthing"' ${config.services.syncthing.configDir}/config.xml
+          ${pkgs.yq-go}/bin/yq -i '.configuration.gui += {"user": "syncthing"}' ${config.services.syncthing.configDir}/config.xml
 
           SYNCTHING_PASSWORD=$(< ${cfg.gui.hashed-admin-password-file})
           ${pkgs.yq-go}/bin/yq -i ".configuration.gui.password = \"$SYNCTHING_PASSWORD\"" ${config.services.syncthing.configDir}/config.xml
