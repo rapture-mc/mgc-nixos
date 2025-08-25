@@ -26,6 +26,9 @@ nixpkgs.lib.nixosSystem {
           enable = true;
           user = "ben.harris";
           gui = true;
+          devices = {
+            MGC-DRW-BST01.id = vars.syncthing.MGC-DRW-BST01.id;
+          };
         };
 
         tailscale = {
