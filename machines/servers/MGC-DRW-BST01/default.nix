@@ -36,8 +36,15 @@ nixpkgs.lib.nixosSystem {
       ];
 
       megacorp = {
-        services.tailscale.client.enable = true;
+        services = {
+          tailscale.client.enable = true;
 
+          syncthing = {
+            enable = true;
+            user = "ben.harris";
+            gui = true;
+          };
+        };
         config = {
           bootloader.enable = true;
           
