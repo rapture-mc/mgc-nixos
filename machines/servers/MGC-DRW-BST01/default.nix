@@ -49,10 +49,10 @@ nixpkgs.lib.nixosSystem {
             folders = {
               sync = {
                 path = "/home/ben.harris/Sync";
+                devices = [
+                  "MGC-APSE2-HDS01"
+                ];
               };
-              devices = [
-                "MGC-APSE2-HDS01"
-              ];
             };
           };
         };
