@@ -124,11 +124,9 @@ in {
       };
 
       script = ''
-        if [[ -r ${cfg.gui.hashed-admin-password-file} ]]; then
-          echo "Updating syncthing GUI password"
-          SYNCTHING_PASSWORD=$(< ${cfg.gui.hashed-admin-password-file})
-          ${pkgs.syncthing}/bin/syncthing generate --gui-password=$SYNCTHING_PASSWORD
-        fi
+        SYNCTHING_PASSWORD=$(< ${cfg.gui.hashed-admin-password-file})
+        echo "Updating syncthing GUI password"
+        ${pkgs.syncthing}/bin/syncthing generate --gui-password=$SYNCTHING_PASSWORD
       '';
     };
 
