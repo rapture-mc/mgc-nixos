@@ -112,54 +112,13 @@ in {
 
     '');
 
-    # systemd.services.inject-syncthing-gui-password = mkIf (cfg.gui.enable && cfg.gui.hashed-admin-password-file != null) {
-    #   wantedBy = [
-    #     "syncthing.service"
-    #   ];
-    #
-    #   after = [
-    #     "syncthing.service"
-    #   ];
-    #
-    #   bindsTo = [
-    #     "syncthing.service"
-    #   ];
-    #
-    #   partOf = [
-    #     "syncthing.service"
-    #   ];
-    #
-    #   serviceConfig = {
-    #     Type = "oneshot";
-    #     User = "root";
-    #     Group = "root";
-    #     # ExecStartPost = "${pkgs.systemdUkify}/bin/systemctl restart syncthing.service";
-    #   };
-    #
-    #   script = ''
-    #     if [[ -r ${cfg.gui.hashed-admin-password-file} ]]; then
-    #       echo "Injecting <user>syncthing</user> into ${config.services.syncthing.configDir}/config.xml"
-    #       ${pkgs.yq-go}/bin/yq -i '.configuration.gui += {"user": "syncthing"}' ${config.services.syncthing.configDir}/config.xml
-    #
-    #
-    #       echo "Injecting <password>***SYNCTHING_PASSWORD***</password> into ${config.services.syncthing.configDir}/config.xml"
-    #       SYNCTHING_PASSWORD=$(< ${cfg.gui.hashed-admin-password-file})
-    #       ${pkgs.yq-go}/bin/yq -i ".configuration.gui.password = \"$SYNCTHING_PASSWORD\"" ${config.services.syncthing.configDir}/config.xml
-    #     fi
-    #   '';
-    # };
-
     services = {
       syncthing = {
         enable = true;
-        # group = "users";
-        # user = cfg.user;
         guiAddress =
           if cfg.gui.enable
           then "0.0.0.0:8384"
           else "127.0.0.1:8384";
-        # dataDir = "/home/${cfg.user}/Documents";
-        configDir = "/etc/syncthing";
         overrideDevices = true;
         overrideFolders = true;
         settings = {
