@@ -117,7 +117,7 @@ in {
       ];
 
       serviceConfig = {
-        Type = "simple";
+        Type = "oneshot";
         User = "root";
         Group = "root";
         # ExecStartPost = "${pkgs.systemdUkify}/bin/systemctl restart syncthing.service";
