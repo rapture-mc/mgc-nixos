@@ -13,6 +13,7 @@ bhe-neo4j-connection: ENC[AES256_GCM,data:Vd8S0f/C0DnmEeSQaT6Jjb8WN3d3ClDwcvt/Zz
 bhe-database-secret: ENC[AES256_GCM,data:AG1YIj84/K/nuvle/s6YJhlfaCrIagQ6Pj+5bQgYNjCzBAvuvAURAA==,iv:QV7+w3HC8PU0v0tOcVbqW62WgLOh70KbvMt5OVdO8y8=,tag:jTYSBEjMlmDkUV1+2PbxJg==,type:str]
 kube-token: ENC[AES256_GCM,data:dWbd3z6Ugm7Mf505xNLSXgvn73wPdxyU+Tzt1qcnMu5vCmogT2/jUU+19ZYcCYEuWk6zO1ZYyC8p31UevXFiKIAgtEQQ6QFYvC5hNpnZLJy6apPBFuTshpTLN6dhx/Hg1+SpO/x6bd8Gs7qM,iv:gbSo/i5ykcwZ0IS+3zY9Un6VjTRxylzKvoYZKg2sSBk=,tag:h7gSpcCs4smoZJlN6Eu9Gw==,type:str]
 mailserver-password-file: ENC[AES256_GCM,data:ZsxIcoOXTpIbXurW10Yw7tOM5vhi9GJSbbFs++szSXOSkRtUzLwM8eUJwz/BJRXLJnqlwGrapnjJBRUF,iv:wY499BXRpZNfBTuP+TqZX6jWltaN2yeBt8lqPQ+3Kog=,tag:QsfS4rbbbyLslIeDaXpG7A==,type:str]
+syncthing-admin-password: ENC[AES256_GCM,data:kujl9MXksxSbDcsFkx74p6vGlnYRMnMdXkopNPwqGkmguMxw1pyLPmTFJRifHbOuxGP/49YgS1QCOME0,iv:N9PYpDytQMCpF55jbh/UJGpUZK74bhBDBayqTH1YFVY=,tag:O/j1ifPQ/a4v36lORFNEIg==,type:str]
 sops:
     age:
         - recipient: age1p0ccch342uttsucya2kvgqqrf0rmqy3vvnq38tthw9l424lyffjs0vytjh
@@ -123,7 +124,7 @@ sops:
             bTIwWW4zYnYrOU5CVTJTVTZvcTBYaFkKyEYOBE072y5P4gHJxKN3U85XqaNm0THB
             oYJ1+fJuUUTobNvZZUPCtGotYq/nJtNi0UQlSZO2SWfYSdwv+n8G4g==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-08-23T06:30:08Z"
-    mac: ENC[AES256_GCM,data:PI+dhRmbq0n4HzraR3TTFs46DOaMQ4CL+AXv2gFopwJ98K7DIFF0/kbXmgIWYhY0KaA24Oex3EH/n+75s51lTeccPvMwjSLDqoX55IY51UbGHNn15XYYDuQ31/y3bcVtV/kMau/jiMocoMQoVgmzAQTeRjoS94/kvG+uvPqf38o=,iv:nkRZ3K37IH5oKuhmJAfbsmifciXCooWf+JSVdUU4b1o=,tag:ieGW+I9JXqS54mHHHzCPNA==,type:str]
+    lastmodified: "2025-08-25T05:30:54Z"
+    mac: ENC[AES256_GCM,data:hEdZf0ObxzD6wYng+fvK45rPu2jfBt4VIZk4SE3Kt+9MNBMgCgQtUaSNbdt0i9N8ZREymomu726/SRKK/ML/bIGmZJ9Akio5VT/RHsutpvMVhVw0fiV/6fCcOFs33ugIRbhby+1MOwcykYK0A1zMPIXjXuzgeaoOfUn08XI+V8k=,iv:rK6hDirBU3AUw8Uybnb574XUY5O+f6q+9adPrIlbEXg=,tag:K/HpcwwnJlteNKEphvVhAw==,type:str]
     unencrypted_suffix: _unencrypted
     version: 3.10.2

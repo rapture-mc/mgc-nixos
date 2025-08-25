@@ -3,6 +3,9 @@
     defaultSopsFile = ../../../sops/default.yaml;
     defaultSopsFormat = "yaml";
     age.keyFile = "/home/${vars.adminUser}/.config/sops/age/keys.txt";
-    secrets.restic-repo-password = {};
+    secrets = {
+      restic-repo-password = {};
+      syncthing-admin-password = {};
+    };
   };
 }

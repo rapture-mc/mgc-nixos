@@ -29,10 +29,14 @@ in {
       NOTE: GUI will be unprotected until you set a password.
       '';
 
-      admin-password-file = mkOption {
-        type = types.path;
-        default = "";
-        description = "The absolute path to a password file containing the LDAP admin password";
+      hashed-admin-password-file = mkOption {
+        type = types.nullOr types.path;
+        default = null;
+        description = ''
+          The absolute path to a password file containing the bcrypt hashed admin password.
+
+          Hash can be generated using "htpasswd -bnBC 10 "" PASSWORD | tr -d ':'" from the apacheHttpd nix package.
+        '';
       };
     };
 
@@ -74,7 +78,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [pkgs.syncthing];
+    environment.systemPackages = [
+      pkgs.syncthing
+    ];
 
     networking.firewall = {
       allowedTCPPorts =
@@ -93,29 +99,27 @@ in {
       ];
     };
 
-    # systemd.services.insert-syncthing-gui-password = mkIf cfg.gui.enable {
-    #   wantedBy = [
-    #     "multi-user.target"
-    #   ];
-    #
-    #   serviceConfig = {
-    #     Type = "oneshot";
-    #     User = "root";
-    #     Group = "root";
-    #   };
-    #
-    #   script = ''
-    #     if [[ -r ${cfg.gui.admin-password-file} ]]; then
-    #       umask 0077
-    #       temp_conf="$(mktemp)"
-    #       cp ${config.environment.etc."guacamole/guacamole.properties".source} $temp_conf
-    #       printf 'ldap-search-bind-password = %s\n' "$(cat ${cfg.gui.admin-password-file})" >> $temp_conf
-    #       mv -fT "$temp_conf" /etc/guacamole/guacamole.properties
-    #       chown root:tomcat /etc/guacamole/guacamole.properties
-    #       chmod 750 /etc/guacamole/guacamole.properties
-    #     fi
-    #   '';
-    # };
+    systemd.services.inject-syncthing-gui-password = mkIf (cfg.gui.enable && cfg.gui.hashed-admin-password-file != null) {
+      wantedBy = [
+        "multi-user.target"
+      ];
+
+      serviceConfig = {
+        Type = "oneshot";
+        User = "root";
+        Group = "root";
+        ExecStartPost = "${pkgs.systemdUkify}/bin/systemctl restart syncthing.service";
+      };
+
+      script = ''
+        if [[ -r ${cfg.gui.hashed-admin-password-file} ]]; then
+          ${pkgs.yq-go}/bin/yq -i '.configuration.gui += {"user": "syncthing"' ${config.services.syncthing.configDir}/config.xml
+
+          SYNCTHING_PASSWORD=$(< ${cfg.gui.hashed-admin-password-file})
+          ${pkgs.yq-go}/bin/yq -i ".configuration.gui.password = \"$SYNCTHING_PASSWORD\"" ${config.services.syncthing.configDir}/config.xml
+        fi
+      '';
+    };
 
     services = {
       syncthing = {

@@ -40,9 +40,12 @@ nixpkgs.lib.nixosSystem {
           tailscale.client.enable = true;
 
           syncthing = {
-            enable = true;
+            enable = false;
             user = "ben.harris";
-            gui.enable = true;
+            gui = {
+              enable = true;
+              hashed-admin-password-file = "/run/secrets/syncthing-admin-password";
+            };
           };
         };
         config = {
