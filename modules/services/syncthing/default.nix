@@ -126,7 +126,7 @@ in {
       script = ''
         SYNCTHING_PASSWORD=$(< ${cfg.gui.hashed-admin-password-file})
         echo "Updating syncthing GUI password"
-        ${pkgs.syncthing}/bin/syncthing generate --gui-password=$SYNCTHING_PASSWORD
+        ${pkgs.syncthing}/bin/syncthing generate --gui-password=$SYNCTHING_PASSWORD --gui-user=syncthing
       '';
     };
 
