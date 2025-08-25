@@ -21,6 +21,10 @@ nixpkgs.lib.nixosSystem {
 
       nixpkgs.hostPlatform = nixpkgs.lib.mkDefault "x86_64-linux";
 
+      users.users."ben.harris".extraGroups = [
+        "headscale"
+      ];
+
       megacorp.services.tailscale = {
         client.enable = true;
         server = {
