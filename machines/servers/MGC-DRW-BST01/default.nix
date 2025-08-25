@@ -41,10 +41,7 @@ nixpkgs.lib.nixosSystem {
 
           syncthing = {
             enable = true;
-            gui = {
-              enable = true;
-              hashed-admin-password-file = "/run/secrets/syncthing-admin-password";
-            };
+            gui = true;
           };
         };
         config = {

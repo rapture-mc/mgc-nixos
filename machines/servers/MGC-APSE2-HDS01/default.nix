@@ -24,7 +24,7 @@ nixpkgs.lib.nixosSystem {
       megacorp.services = {
         syncthing = {
           enable = false;
-          gui.enable = true;
+          gui = true;
         };
 
         tailscale = {
