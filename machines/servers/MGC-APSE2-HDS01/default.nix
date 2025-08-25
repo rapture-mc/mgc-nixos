@@ -35,7 +35,7 @@ nixpkgs.lib.nixosSystem {
             base-domain = "megacorp.net";
           };
         };
-      }
+      };
     })
   ];
 }
