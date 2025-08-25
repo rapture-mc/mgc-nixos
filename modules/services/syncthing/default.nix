@@ -108,6 +108,10 @@ in {
         "syncthing.service"
       ];
 
+      bindsTo = [
+        "syncthing.service"
+      ];
+
       serviceConfig = {
         Type = "oneshot";
         User = "root";
