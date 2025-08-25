@@ -21,14 +21,21 @@ nixpkgs.lib.nixosSystem {
 
       nixpkgs.hostPlatform = nixpkgs.lib.mkDefault "x86_64-linux";
 
-      megacorp.services.tailscale = {
-        client.enable = true;
-        server = {
+      megacorp.services = {
+        syncthing = {
           enable = true;
-          server-url = "net.${vars.domains.primaryDomain}";
-          base-domain = "megacorp.net";
+          user = "ben.harris";
         };
-      };
+
+        tailscale = {
+          client.enable = true;
+          server = {
+            enable = true;
+            server-url = "net.${vars.domains.primaryDomain}";
+            base-domain = "megacorp.net";
+          };
+        };
+      }
     })
   ];
 }
