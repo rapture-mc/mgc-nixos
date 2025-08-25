@@ -17,10 +17,10 @@ in {
   options.megacorp.services.syncthing = {
     enable = mkEnableOption "Enable syncthing";
 
-    user = mkOption {
-      type = types.str;
-      description = "The user to run the syncthing service under";
-    };
+    # user = mkOption {
+    #   type = types.str;
+    #   description = "The user to run the syncthing service under";
+    # };
 
     gui = {
       enable = mkEnableOption ''
@@ -124,8 +124,8 @@ in {
     services = {
       syncthing = {
         enable = true;
-        group = "users";
-        user = cfg.user;
+        # group = "users";
+        # user = cfg.user;
         guiAddress =
           if cfg.gui.enable
           then "0.0.0.0:8384"
