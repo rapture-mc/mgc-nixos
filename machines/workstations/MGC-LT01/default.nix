@@ -77,7 +77,6 @@ nixpkgs.lib.nixosSystem {
         programs.pass.enable = true;
 
         virtualisation.whonix.enable = true;
-
       };
     }
   ];

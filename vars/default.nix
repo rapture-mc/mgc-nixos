@@ -1,8 +1,10 @@
-{
+{lib}: {
   networking = import ./networking.nix;
   keys = import ./keys.nix;
   domains = import ./domains.nix;
-  users = import ./users.nix;
+  users = import ./users.nix {
+    inherit lib;
+  };
 
   adminUser = "benny";
 }

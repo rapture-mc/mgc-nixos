@@ -26,7 +26,7 @@
   transformedIngressRulesConfig = builtins.map (value: value // staticIngressRulesConfig) cfg.ingress-rules;
 
   staticTerraformModuleConfig = {
-    source  = "terraform-aws-modules/ec2-instance/aws";
+    source = "terraform-aws-modules/ec2-instance/aws";
     ami = "\${ data.aws_ami.nixos-x86_64.id }";
     key_name = "\${ aws_key_pair.default.key_name }";
     subnet_id = "\${ aws_subnet.nix-subnet.id }";
@@ -226,7 +226,7 @@ in {
       default = null;
       type = types.nullOr (types.attrsOf (
         types.submodule (
-          { name, ... }: {
+          {name, ...}: {
             options = {
               name = mkOption {
                 type = types.str;

@@ -51,7 +51,7 @@ nixpkgs.lib.nixosSystem {
             };
           };
         };
-        
+
         services.k3s = {
           enable = true;
           logo = true;
