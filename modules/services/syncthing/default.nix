@@ -112,7 +112,7 @@ in {
         Type = "oneshot";
         User = "root";
         Group = "root";
-        ExecStartPost = "${pkgs.systemdUkify}/bin/systemctl restart syncthing.service";
+        # ExecStartPost = "${pkgs.systemdUkify}/bin/systemctl restart syncthing.service";
       };
 
       script = ''
