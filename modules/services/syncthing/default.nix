@@ -93,6 +93,8 @@ in {
     services = {
       syncthing = {
         enable = true;
+        user = cfg.user;
+        group = "users";
         guiAddress =
           if cfg.gui
           then "0.0.0.0:8384"
