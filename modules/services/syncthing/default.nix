@@ -22,11 +22,19 @@ in {
       description = "The user to run the syncthing service under";
     };
 
-    gui = mkEnableOption ''
+    gui = {
+      enable = mkEnableOption ''
       Whether to enable the GUI. Will be available at the hosts IP on port 8384.
 
       NOTE: GUI will be unprotected until you set a password.
-    '';
+      '';
+
+      admin-password-file = mkOption {
+        type = types.path;
+        default = "";
+        description = "The absolute path to a password file containing the LDAP admin password";
+      };
+    };
 
     devices = mkOption {
       type = types.attrs;
@@ -74,7 +82,7 @@ in {
           22000
         ]
         ++ (
-          if cfg.gui
+          if cfg.gui.enable
           then [8384]
           else []
         );
@@ -85,13 +93,37 @@ in {
       ];
     };
 
+    # systemd.services.insert-syncthing-gui-password = mkIf cfg.gui.enable {
+    #   wantedBy = [
+    #     "multi-user.target"
+    #   ];
+    #
+    #   serviceConfig = {
+    #     Type = "oneshot";
+    #     User = "root";
+    #     Group = "root";
+    #   };
+    #
+    #   script = ''
+    #     if [[ -r ${cfg.gui.admin-password-file} ]]; then
+    #       umask 0077
+    #       temp_conf="$(mktemp)"
+    #       cp ${config.environment.etc."guacamole/guacamole.properties".source} $temp_conf
+    #       printf 'ldap-search-bind-password = %s\n' "$(cat ${cfg.gui.admin-password-file})" >> $temp_conf
+    #       mv -fT "$temp_conf" /etc/guacamole/guacamole.properties
+    #       chown root:tomcat /etc/guacamole/guacamole.properties
+    #       chmod 750 /etc/guacamole/guacamole.properties
+    #     fi
+    #   '';
+    # };
+
     services = {
       syncthing = {
         enable = true;
         group = "users";
         user = cfg.user;
         guiAddress =
-          if cfg.gui
+          if cfg.gui.enable
           then "0.0.0.0:8384"
           else "127.0.0.1:8384";
         dataDir = "/home/${cfg.user}/Documents";

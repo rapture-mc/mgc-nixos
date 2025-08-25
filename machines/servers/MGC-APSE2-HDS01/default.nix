@@ -25,7 +25,7 @@ nixpkgs.lib.nixosSystem {
         syncthing = {
           enable = true;
           user = "ben.harris";
-          gui = true;
+          gui.enable = true;
         };
 
         tailscale = {

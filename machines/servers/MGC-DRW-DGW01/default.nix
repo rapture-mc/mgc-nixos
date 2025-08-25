@@ -47,7 +47,7 @@ nixpkgs.lib.nixosSystem {
             logo = true;
             fqdn = vars.domains.guacamoleFQDN;
             ldap = {
-              enable = true;
+              enable = false;
               port = 636;
               server = "mgc-drw-dmc01.${vars.domains.internalDomain}";
               user-base-dn = "OU=Users,OU=MGC,DC=prod,DC=megacorp,DC=industries";

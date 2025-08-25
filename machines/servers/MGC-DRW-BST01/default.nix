@@ -40,9 +40,9 @@ nixpkgs.lib.nixosSystem {
           tailscale.client.enable = true;
 
           syncthing = {
-            enable = true;
+            enable = false;
             user = "ben.harris";
-            gui = true;
+            gui.enable = true;
           };
         };
         config = {
