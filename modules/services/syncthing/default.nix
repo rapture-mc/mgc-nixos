@@ -136,6 +136,7 @@ in {
         overrideFolders = true;
         settings = {
           options.urAccepted = -1;
+          gui.tls = true;
           devices = cfg.devices;
           folders = cfg.folders;
         };
