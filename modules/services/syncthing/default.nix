@@ -99,12 +99,13 @@ in {
           else "127.0.0.1:8384";
         overrideDevices = true;
         overrideFolders = true;
+        dataDir = "/home/${cfg.user}";
+        configDir = "/home/${cfg.user}/.config/syncthing";
         settings = {
           options.urAccepted = -1;
           gui = mkIf cfg.gui {
             user = "syncthing";
             password = "changeme";
-            tls = true;
           };
           devices = cfg.devices;
           folders = cfg.folders;
