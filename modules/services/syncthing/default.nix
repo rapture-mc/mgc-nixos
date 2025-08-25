@@ -104,6 +104,10 @@ in {
         "multi-user.target"
       ];
 
+      after = [
+        "syncthing.service"
+      ];
+
       serviceConfig = {
         Type = "oneshot";
         User = "root";
