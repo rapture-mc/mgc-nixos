@@ -21,10 +21,13 @@ nixpkgs.lib.nixosSystem {
 
       nixpkgs.hostPlatform = nixpkgs.lib.mkDefault "x86_64-linux";
 
-      megacorp.services.tailscale.server = {
-        enable = true;
-        server-url = "net.${vars.domains.primaryDomain}";
-        base-domain = "megacorp.net";
+      megacorp.services.tailscale = {
+        client.enable = true;
+        server = {
+          enable = true;
+          server-url = "net.${vars.domains.primaryDomain}";
+          base-domain = "megacorp.net";
+        };
       };
     })
   ];
