@@ -77,7 +77,7 @@ in {
           22000
         ]
         ++ (
-          if cfg.gui.enable
+          if cfg.enable
           then [8384]
           else []
         );
@@ -94,14 +94,14 @@ in {
       syncthing = {
         enable = true;
         guiAddress =
-          if cfg.gui.enable
+          if cfg.gui
           then "0.0.0.0:8384"
           else "127.0.0.1:8384";
         overrideDevices = true;
         overrideFolders = true;
         settings = {
           options.urAccepted = -1;
-          gui = {
+          gui = mkIf cfg.gui {
             user = "syncthing";
             password = "changeme";
           };
