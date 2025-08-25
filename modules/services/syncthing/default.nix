@@ -17,28 +17,17 @@ in {
   options.megacorp.services.syncthing = {
     enable = mkEnableOption "Enable syncthing";
 
-    # user = mkOption {
-    #   type = types.str;
-    #   description = "The user to run the syncthing service under";
-    # };
+    user = mkOption {
+      type = types.str;
+      description = "The user to run the syncthing service under";
+    };
 
-    gui = {
-      enable = mkEnableOption ''
+    gui = mkEnableOption ''
       Whether to enable the GUI. Will be available at the hosts IP on port 8384.
 
-      NOTE: GUI will be unprotected until you set a password.
-      '';
-
-      hashed-admin-password-file = mkOption {
-        type = types.nullOr types.path;
-        default = null;
-        description = ''
-          The absolute path to a password file containing the bcrypt hashed admin password.
-
-          Hash can be generated using "htpasswd -bnBC 10 "" PASSWORD | tr -d ':'" from the apacheHttpd nix package.
-        '';
-      };
-    };
+      Default username: syncthing
+      Default password: changeme
+    '';
 
     devices = mkOption {
       type = types.attrs;
@@ -99,37 +88,6 @@ in {
       ];
     };
 
-    systemd.services.inject-syncthing-gui-password = mkIf (cfg.gui.enable && cfg.gui.hashed-admin-password-file != null) {
-      wantedBy = [
-        "syncthing.service"
-      ];
-
-      after = [
-        "syncthing.service"
-      ];
-
-      bindsTo = [
-        "syncthing.service"
-      ];
-
-      partOf = [
-        "syncthing.service"
-      ];
-
-      serviceConfig = {
-        Type = "oneshot";
-        User = "root";
-        Group = "root";
-        # ExecStartPost = "${pkgs.systemdUkify}/bin/systemctl restart syncthing.service";
-      };
-
-      script = ''
-        SYNCTHING_PASSWORD=$(< ${cfg.gui.hashed-admin-password-file})
-        echo "Updating syncthing GUI password"
-        ${pkgs.syncthing}/bin/syncthing generate --gui-password=$SYNCTHING_PASSWORD --gui-user=syncthing
-      '';
-    };
-
     services = {
       syncthing = {
         enable = true;
@@ -141,7 +99,10 @@ in {
         overrideFolders = true;
         settings = {
           options.urAccepted = -1;
-          gui.user = "syncthing";
+          gui = {
+            user = "syncthing";
+            password = "changeme";
+          };
           devices = cfg.devices;
           folders = cfg.folders;
         };
