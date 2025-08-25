@@ -99,7 +99,7 @@ in {
       ];
     };
 
-    systemd.services.syncthing-init.serviceConfig.ExecStartPre = mkIf (cfg.gui.enable && cfg.gui.hashed-admin-password-file != null) (pkgs.writeShellScript "inject-syncthing-gui-password" ''
+    systemd.services.syncthing-init.serviceConfig.ExecStartPost = mkIf (cfg.gui.enable && cfg.gui.hashed-admin-password-file != null) (pkgs.writeShellScript "inject-syncthing-gui-password" ''
       if [[ -r ${cfg.gui.hashed-admin-password-file} ]]; then
         echo "Injecting <user>syncthing</user> into ${config.services.syncthing.configDir}/config.xml"
         ${pkgs.yq-go}/bin/yq -i '.configuration.gui += {"user": "syncthing"}' ${config.services.syncthing.configDir}/config.xml
