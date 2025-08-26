@@ -1,5 +1,6 @@
 {importMachineConfig, ...}: {
   # Servers
+  MGC-APSE2-BPS01 = importMachineConfig "servers" "MGC-APSE2-BPS01";
   MGC-APSE2-HDS01 = importMachineConfig "servers" "MGC-APSE2-HDS01";
   MGC-APSE2-MBX01 = importMachineConfig "servers" "MGC-APSE2-MBX01";
   MGC-DRW-BKS01 = importMachineConfig "servers" "MGC-DRW-BKS01";
