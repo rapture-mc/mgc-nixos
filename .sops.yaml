@@ -1,4 +1,5 @@
 keys:
+  - &server_MGC-APSE2-HDS01 age135l98d5fxzlt43xw8ljmgqa6st7j00mzw9d3r7uq2lyvxxrrtd7q856mss
   - &server_MGC-DRW-BKS01 age1p0ccch342uttsucya2kvgqqrf0rmqy3vvnq38tthw9l424lyffjs0vytjh
   - &server_MGC-DRW-BST01 age174jz0vs3zs06ck59krz3qazrszr8lnst4w8h4shmdj8ccaur84dsea6fkr
   - &server_MGC-DRW-DGW01 age1a9vwxjsy220jjeauf2kll6fn3mvltzx9rujvr75ea7w696v4qqvsu376j2
@@ -16,6 +17,7 @@ creation_rules:
   - path_regex: sops/default.yaml
     key_groups:
     - age:
+      - *server_MGC-APSE2-HDS01
       - *server_MGC-DRW-BKS01
       - *server_MGC-DRW-BST01
       - *server_MGC-DRW-DGW01

@@ -53,7 +53,10 @@ nixpkgs.lib.nixosSystem {
           syncthing = {
             enable = true;
             user = "ben.harris";
-            gui = true;
+            gui = {
+              enable = true;
+              # password-file = "/run/secrets/syncthing-admin-password";
+            };
             devices = {
               MGC-APSE2-HDS01.id = vars.syncthing.MGC-APSE2-HDS01.id;
               MGC-DRW-BST01.id = vars.syncthing.MGC-DRW-BST01.id;

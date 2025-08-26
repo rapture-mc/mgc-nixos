@@ -2,17 +2,20 @@
   nixpkgs,
   self,
   vars,
+  sops-nix,
   ...
 }:
 nixpkgs.lib.nixosSystem {
   modules = [
     self.nixosModules.default
+    sops-nix.nixosModules.sops
     ({modulesPath, ...}: {
       imports = [
         "${modulesPath}/virtualisation/amazon-image.nix"
         (import ../../_shared/common-config.nix {
           inherit vars;
         })
+        ./secrets.nix
       ];
 
       networking.hostName = "MGC-APSE2-HDS01";
@@ -25,18 +28,21 @@ nixpkgs.lib.nixosSystem {
         syncthing = {
           enable = true;
           user = "ben.harris";
-          gui = true;
+          gui = {
+            enable = true;
+            password-file = "/run/secrets/syncthing-admin-password";
+          };
           devices = {
             MGC-DRW-BST01.id = vars.syncthing.MGC-DRW-BST01.id;
           };
-            folders = {
-              sync = {
-                path = "/home/ben.harris/Sync";
-                devices = [
-                  "MGC-DRW-BST01"
-                ];
-              };
+          folders = {
+            sync = {
+              path = "/home/ben.harris/Sync";
+              devices = [
+                "MGC-DRW-BST01"
+              ];
             };
+          };
         };
 
         tailscale = {
