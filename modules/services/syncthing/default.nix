@@ -108,6 +108,7 @@ in {
           gui = mkIf cfg.gui {
             user = "syncthing";
             password = "changeme";
+            useTLS = true;
           };
           devices = cfg.devices;
           folders = cfg.folders;
