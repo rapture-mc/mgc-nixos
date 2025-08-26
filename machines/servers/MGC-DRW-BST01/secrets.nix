@@ -5,7 +5,7 @@
     age.keyFile = "/home/${vars.adminUser}/.config/sops/age/keys.txt";
     secrets = {
       restic-repo-password = {};
-      syncthing-admin-password = {};
+      syncthing-admin-password.owner = "syncthing";
     };
   };
 }
