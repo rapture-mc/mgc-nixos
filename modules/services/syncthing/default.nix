@@ -115,7 +115,7 @@ in {
         user = cfg.user;
         group = "users";
         guiAddress =
-          if cfg.gui
+          if cfg.gui.enable
           then "0.0.0.0:8384"
           else "127.0.0.1:8384";
         overrideDevices = true;
@@ -124,7 +124,7 @@ in {
         configDir = "/home/${cfg.user}/.config/syncthing";
         settings = {
           options.urAccepted = -1;
-          gui = mkIf cfg.gui {
+          gui = mkIf cfg.gui.enable {
             user = "syncthing";
             password ="changeme";
             useTLS = true;
