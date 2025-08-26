@@ -20,6 +20,7 @@ nixpkgs.lib.nixosSystem {
       system.stateVersion = "25.05";
 
       megacorp = {
+        services.tailscale.client.enable = true;
         config = {
           bootloader = {
             enable = true;
