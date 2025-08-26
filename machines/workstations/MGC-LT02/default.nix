@@ -26,6 +26,8 @@ nixpkgs.lib.nixosSystem {
             efi.enable = true;
           };
 
+          users.benny.sudo = true;
+
           desktop.enable = true;
         };
 
