@@ -1,7 +1,7 @@
 {
   defaultGateway = "192.168.1.99";
   privateLANSubnet = "192.168.1.0/24";
-  nameServers = ["192.168.1.7"];
+  nameServers = ["192.168.1.7" "1.1.1.1"];
   megacorpPrimaryPublicIP = "123.243.147.17";
   awsPrimaryPublicIP = "52.64.195.230";
   awsHeadscalePublicIP = "13.236.251.106";
