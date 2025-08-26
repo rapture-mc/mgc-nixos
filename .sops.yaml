@@ -14,6 +14,12 @@ keys:
   - &workstation_MGC-LT01 age1axz8g6j9t8rrtyphrrhwhp9fjpntttftjndwdq5regx2r3p8e3aswujypg
 
 creation_rules:
+  - path_regex: sops/syncthing.yml
+    key_groups:
+    - age:
+      - *server_MGC-APSE2-HDS01
+      - *server_MGC-DRW-BST01
+
   - path_regex: sops/default.yaml
     key_groups:
     - age:

@@ -1,0 +1,25 @@
+syncthing-admin-password: ENC[AES256_GCM,data:rMbGVoh8QujfN7PMF/fHfK9FI3DEOFjqOA==,iv:CCrJwU77F1q2L9+5FnNkuOj9qCO4EDS7vgQlL8YTiKQ=,tag:HD8gk0jItjesjpABpND8+A==,type:str]
+sops:
+    age:
+        - recipient: age135l98d5fxzlt43xw8ljmgqa6st7j00mzw9d3r7uq2lyvxxrrtd7q856mss
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBqeUx3UndwUlpEK0d3Sklw
+            YUJ2YUhuUjJGYnlVT2pFMWJOVzZ2dytEb0NBCjlVTENLZkdPS0xuUng0aHBIck9D
+            cXVWclI1V293SEVoajl3MU5SYVphZ3MKLS0tIHMxSUFYakNRSzVtakw1V1VVUDdp
+            cHdMSWJiUDluNTVzZ1hNM1NHVmVoMk0KlMftw5oe39J04C4sxPDbZtG45801EBW5
+            ZlMm6QrWYVzN1toiQSCOtpQt6GjvLbrgMIV+cHgLOTjx+gPXmuPHJw==
+            -----END AGE ENCRYPTED FILE-----
+        - recipient: age174jz0vs3zs06ck59krz3qazrszr8lnst4w8h4shmdj8ccaur84dsea6fkr
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBDaXM5YjFnMy92VlMwUExu
+            aVF6bURwTnhrU2JLS0pxUFNNemhwNk56cUdnCitzOTl1MUJxN1VOZVhzZDUvUlNG
+            eFg5cjJBdkY4a3dOL1pRUG55azFkRTAKLS0tIEZoNWtJVlFudmhicnVtMTNpVFJG
+            eDZRS3ZsamFGaFVjZk1nY3htMTRTQ3cKQ+XSXlxyWWjLiZmY/ww1S3NtGRWwe+04
+            F7UV5zdIlndaFI2XKPhGzsfGdQJQWXR2o1juCtyYvK5h1VynwcM/sg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-08-26T04:17:20Z"
+    mac: ENC[AES256_GCM,data:bC2YOIbUYi9WZeL/sAxtdsgkav3KSxlSyIDwRGRmjLFkHahCnK3g8zIBNQsVHS3FPMuYoheOU6Rr5Ovlc4YKRa85FmhEOxorj/pOFkJq5wO+AcEVcoc45+XnS1lYOjXaV8dqQC6uM7HTsnVVrcHsjQfsKTHTW/eierBAd4wXvyQ=,iv:AOl/fPpClzy+Nm7iZE9SyZtj/IvcZhWCUAKQaK/upxI=,tag:S2Jul/6nV6Xe+lGEMAuFsA==,type:str]
+    unencrypted_suffix: _unencrypted
+    version: 3.10.2
