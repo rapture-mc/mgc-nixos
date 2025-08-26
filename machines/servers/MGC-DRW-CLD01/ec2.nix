@@ -25,19 +25,7 @@
       }
     ];
     machines = {
-      backup-server = {
-        instance_type = "t2.medium";
-        create_eip = true;
-        root_block_device.size = 100;
-      };
-
       headscale-server = {
-        instance_type = "t2.medium";
-        create_eip = true;
-        root_block_device.size = 100;
-      };
-
-      zammand-server = {
         instance_type = "t2.medium";
         create_eip = true;
         root_block_device.size = 100;
