@@ -17,10 +17,16 @@ creation_rules:
   - path_regex: sops/syncthing.yml
     key_groups:
     - age:
-      - *server_MGC-APSE2-HDS01
       - *server_MGC-DRW-BST01
+      - *server_MGC-APSE2-HDS01
 
-  - path_regex: sops/default.yaml
+  - path_regex: sops/semaphore.yml
+    key_groups:
+    - age:
+      - *server_MGC-DRW-BST01
+      - *server_MGC-DRW-SEM01
+
+  - path_regex: sops/default.yml
     key_groups:
     - age:
       - *server_MGC-APSE2-HDS01

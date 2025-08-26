@@ -1,12 +1,12 @@
-{vars}: {
+{
   sops = {
     defaultSopsFile = ../../../sops/default.yaml;
     defaultSopsFormat = "yaml";
-    age.keyFile = "/home/${vars.adminUser}/.config/sops/age/keys.txt";
+    age.keyFile = "/home/benny/.config/sops/age/keys.txt";
     secrets = {
-      postgres-password = {};
-      semaphore-db-pass = {};
-      semaphore-access-key-encryption = {};
+      postgres-password.sopsFile = ../../../sops/semaphore.yml;
+      semaphore-db-pass.sopsFile = ../../../sops/semaphore.yml;
+      semaphore-access-key-encryption.sopsFile = ../../../sops/semaphore.yml;
       neo4j-auth = {};
       bhe-neo4j-connection = {};
       bhe-database-secret = {};

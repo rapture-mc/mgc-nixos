@@ -1,6 +1,3 @@
-semaphore-db-pass: ENC[AES256_GCM,data:bA56NSl8V0chPCofydnhAEeJEbv7fK0okeUziVbOyd760f07TUE=,iv:BVHLbJ3GYiZn4tw4Sy9ZbuIiBx3jQ05BF5GxMVnPxIA=,tag:AHu/H8V4r6jSuw9Tqnz0ug==,type:str]
-postgres-password: ENC[AES256_GCM,data:pAe/0qnuoF8JwtmlOSPFA6eqJPwLH8SbYbHG25fRocpuYhUkNCI=,iv:VsysBnQHOOnFGnmvoI2ix9BiKj5cKHY6NmJgqv0y58w=,tag:P3GQAd0SIElOKfdOJGI7iw==,type:str]
-semaphore-access-key-encryption: ENC[AES256_GCM,data:LPsg0WUG8OsULQ8RbhpHN8I0ooRcVTRWrTtJdhXc8R2nYqCqd1wEPiW45yLaJAp7jnYnn+TgiB24yNc9Kgk5iy6UaiMAcGIzedNRPg==,iv:aFjHts1mHMJfSS1cG1cw02DmwB73DOKOdeTfHgrnQyE=,tag:ecUfdj2dTN7kDUXLC8Jf0g==,type:str]
 restic-repo-password: ENC[AES256_GCM,data:Dz9NM28ETzg=,iv:kKIBjnBIw3t+4+0EBO19jK4S/ao3B4V0o0i1TO/9ja8=,tag:y/2G5ui/eXbN9aayNwyJAQ==,type:str]
 olcRootPW: ENC[AES256_GCM,data:4tkgsmEL,iv:JzMSafmZva8fy7IUh0VtO4NoVMz+AJD3VgpiXdHT4po=,tag:LeMCdALNyIPLhzhHChs+Xw==,type:str]
 vault-root-token: ENC[AES256_GCM,data:yAjQzf7IlJ0I80CTBdKaplM6jNaDThUaxMWhAA==,iv:y3oRRhPHtibrtq5NpNQIawAqHs6CacxEtq5yHry4Cy0=,tag:3vrpuaMaoGSBFKaWeLHyeg==,type:str]
@@ -132,7 +129,7 @@ sops:
             SE00N2V3WGJudGZkMEowVUZ6NE5rQ0kKtf0DOT22E2H7avH3lrlQViX2q6sNWFCc
             NN/SzspkS3P2cnCM8ZE5ioFXE3n9e7jytzBe26GKiCZK/XZXTZbpkw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-08-26T04:18:02Z"
-    mac: ENC[AES256_GCM,data:iMpOqZLVaeenCpchjdjoAYY1lbfw02pnPpzLu8T1zdHAcdqA2ZLMpPg0fK+mNF/PhVBMoXw6mQVXXVV3ZfL5HTXA80r+63awnHWYmJj56AHIaJkUxCb5duLyv7dDFQETgqBxxBh/PUZSGCwigY6mxQP+ipgSLGDWBTc04TMs9Oc=,iv:F8HuQghySWhJ4uopphjhUzCD33qP1EXdghTNnl8KI9g=,tag:2H2qg46gSYHLt3p9U8z1qA==,type:str]
+    lastmodified: "2025-08-26T04:30:40Z"
+    mac: ENC[AES256_GCM,data:NkBs9ReTTfuQ5nDXHs3zLjBYxBXsRl5+9I8J3d8Fzv+lbZEfkUrVhABapdV8mw+T/v6P+XCbktHd/1ud2hmM2QRh0EHAG0NATIMx3wtLN+nnvn/KEcaJsWxTSHDS5lkPkoqNLzmkJrYy80oJGsIIlPJeETzBgy6GDzEIbopJ3KY=,iv:EB1wjvS0G5c/Rrm9CrAivVs/45Px9qQMPEVZF+ofiUI=,tag:nK1rThaTL04xTm4DSMLHOw==,type:str]
     unencrypted_suffix: _unencrypted
     version: 3.10.2

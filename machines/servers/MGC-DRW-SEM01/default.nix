@@ -18,9 +18,7 @@ nixpkgs.lib.nixosSystem {
         (import ../../_shared/server-config.nix {
           inherit vars;
         })
-        (import ./secrets.nix {
-          inherit vars;
-        })
+        ./secrets.nix
       ];
 
       networking.hostName = "MGC-DRW-SEM01";
