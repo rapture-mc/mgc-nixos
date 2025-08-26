@@ -17,7 +17,7 @@ nixpkgs.lib.nixosSystem {
 
       networking.hostName = "MGC-LT02";
 
-      system.stateVersion = "24.05";
+      system.stateVersion = "25.05";
 
       megacorp = {
         config = {
@@ -26,12 +26,10 @@ nixpkgs.lib.nixosSystem {
             efi.enable = true;
           };
 
-          users.benny.sudo = true;
+          users.ben_harris.sudo = true;
 
           desktop.enable = true;
         };
-
-        virtualisation.whonix.enable = true;
       };
     }
   ];
