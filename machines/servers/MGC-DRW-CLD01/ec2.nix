@@ -23,6 +23,19 @@
         to_port = 443;
         description = "Allow HTTPS in";
       }
+
+      {
+        from_port = 21115;
+        to_port = 21119;
+        description = "Allow RustDesk TCP in";
+      }
+
+      {
+        from_port = 21116;
+        to_port = 21116;
+        protocol = "udp";
+        description = "Allow RustDesk UDP in";
+      }
     ];
     machines = {
       headscale-server = {
