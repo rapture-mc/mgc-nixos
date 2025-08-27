@@ -28,11 +28,12 @@ nixpkgs.lib.nixosSystem {
 
       system.stateVersion = "24.11";
 
-      environment.systemPackages = [
-        (pkgs.bottles.override {
+      environment.systemPackages = with pkgs; [
+        (bottles.override {
           removeWarningPopup = true;
         })
-        pkgs.hledger
+        hledger
+        rustdesk
       ];
 
       megacorp = {
