@@ -76,6 +76,8 @@ nixpkgs.lib.nixosSystem {
             memory = "6144";
             vm_count = 1;
             vcpu = 2;
+            running = false;
+            autostart = false;
           };
 
           reverse-proxy = {
