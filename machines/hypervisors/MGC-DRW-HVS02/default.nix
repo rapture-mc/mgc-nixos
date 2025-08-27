@@ -67,8 +67,8 @@ nixpkgs.lib.nixosSystem {
         virtualisation.libvirt.hypervisor.machines = {
           bastion-server = {
             vm_hostname_prefix = "MGC-DRW-BST";
-            memory = "6144";
-            vcpu = 2;
+            memory = "10000";
+            vcpu = 3;
           };
 
           domain-controller = {
