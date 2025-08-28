@@ -126,7 +126,7 @@ in {
           options.urAccepted = -1;
           gui = mkIf cfg.gui.enable {
             user = "syncthing";
-            password = mkIf (cfg.gui.password-file == null) "changeme";
+            password = mkIf (cfg.gui.password-file != null) "changeme";
             useTLS = true;
           };
           devices = cfg.devices;
