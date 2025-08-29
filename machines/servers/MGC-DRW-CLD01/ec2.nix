@@ -4,7 +4,7 @@
     credential-path = "/home/ben.harris/.aws/credentials";
     config-path = "/home/ben.harris/.aws/config";
     terraform.state-dir = "/var/lib/terranix-state/aws/ec2";
-    ssh-public-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOzlYmoWjZYFeCNdMBCHBXmqpzK1IBmRiB3hNlsgEtre benny@MGC-DRW-BST01";
+    ssh-public-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMd4cRviP5Fs5YX/WZLAl3ln8tws9cDXTknA5zJHu3hG ben_harris@MGC-DRW-HVS02";
     ingress-rules = [
       {
         from_port = 22;
