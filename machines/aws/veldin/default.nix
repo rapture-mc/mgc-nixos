@@ -21,9 +21,13 @@ nixpkgs.lib.nixosSystem {
 
       nixpkgs.hostPlatform = nixpkgs.lib.mkDefault "x86_64-linux";
 
-      megacorp.config.openssh = {
-        bastion-logo = true;
-        allow-password-auth = true;
+      megacorp = {
+        config.openssh = {
+          bastion-logo = true;
+          allow-password-auth = true;
+        };
+
+        programs.pass.enable = true;
       };
     })
   ];
