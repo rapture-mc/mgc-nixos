@@ -24,6 +24,8 @@
   test-machine = importMachineConfig "servers" "test-machine";
   test-vm01 = importMachineConfig "servers" "test-vm01";
 
+  veldin = importMachingConfig "aws" "veldin";
+
   # Hypervisors
   MGC-DRW-HVS01 = importMachineConfig "hypervisors" "MGC-DRW-HVS01";
   MGC-DRW-HVS02 = importMachineConfig "hypervisors" "MGC-DRW-HVS02";
