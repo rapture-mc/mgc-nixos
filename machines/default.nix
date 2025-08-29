@@ -24,6 +24,7 @@
   test-machine = importMachineConfig "servers" "test-machine";
   test-vm01 = importMachineConfig "servers" "test-vm01";
 
+  novalis = importMachineConfig "aws" "novalis";
   veldin = importMachineConfig "aws" "veldin";
 
   # Hypervisors

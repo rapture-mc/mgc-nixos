@@ -15,22 +15,11 @@ nixpkgs.lib.nixosSystem {
         })
       ];
 
-      networking.hostName = "veldin";
+      networking.hostName = "novalis";
 
       system.stateVersion = "25.05";
 
       nixpkgs.hostPlatform = nixpkgs.lib.mkDefault "x86_64-linux";
-
-      services.fail2ban.enable = true;
-
-      megacorp = {
-        config.openssh = {
-          bastion-logo = true;
-          allow-password-auth = true;
-        };
-
-        programs.pass.enable = true;
-      };
     })
   ];
 }
