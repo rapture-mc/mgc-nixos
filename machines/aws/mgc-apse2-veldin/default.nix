@@ -15,13 +15,21 @@ nixpkgs.lib.nixosSystem {
         })
       ];
 
-      networking.hostName = "veldin";
+      networking.hostName = "mgc-apse2-veldin";
 
       system.stateVersion = "25.05";
 
       nixpkgs.hostPlatform = nixpkgs.lib.mkDefault "x86_64-linux";
 
-      services.fail2ban.enable = true;
+      services = {
+        fail2ban.enable = true;
+
+        enable = true;
+        openFirewall = true;
+        signal.relayHosts = [
+          "127.0.0.1"
+        ];
+      };
 
       megacorp = {
         config.openssh = {
@@ -30,6 +38,15 @@ nixpkgs.lib.nixosSystem {
         };
 
         programs.pass.enable = true;
+
+        tailscale = {
+          client.enable = true;
+          server = {
+            enable = true;
+            server-url = "net.${vars.domains.primaryDomain}";
+            base-domain = "megacorp.net";
+          };
+        };
       };
     })
   ];

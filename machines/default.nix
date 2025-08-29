@@ -21,11 +21,8 @@
   MGC-DRW-RVP01 = importMachineConfig "servers" "MGC-DRW-RVP01";
   MGC-DRW-SEM01 = importMachineConfig "servers" "MGC-DRW-SEM01";
   MGC-DRW-VLT01 = importMachineConfig "servers" "MGC-DRW-VLT01";
-  test-machine = importMachineConfig "servers" "test-machine";
-  test-vm01 = importMachineConfig "servers" "test-vm01";
 
-  novalis = importMachineConfig "aws" "novalis";
-  veldin = importMachineConfig "aws" "veldin";
+  mgc-apse2-veldin = importMachineConfig "aws" "mgc-apse2-veldin";
 
   # Hypervisors
   MGC-DRW-HVS01 = importMachineConfig "hypervisors" "MGC-DRW-HVS01";
